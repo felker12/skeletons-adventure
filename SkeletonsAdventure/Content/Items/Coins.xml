@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ItemClasses="RpgLibrary.ItemClasses">
+  <Asset Type="ItemClasses:ItemData">
+    <Name>Coins</Name>
+    <Type>Currency</Type>
+    <Description>Money</Description>
+    <Price>1</Price>
+    <Weight>0</Weight>
+    <Equipped>false</Equipped>
+    <Stackable>true</Stackable>
+    <Consumable>false</Consumable>
+    <Position>0 0</Position>
+    <Quantity>1</Quantity>
+  </Asset>
+</XnaContent>
