@@ -13,6 +13,9 @@ using SkeletonsAdventure.ItemClasses;
 using System;
 using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.GameObjects;
+using RpgLibrary.GameObjectClasses;
+using Microsoft.Xna.Framework.Input;
+using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -30,7 +33,7 @@ namespace SkeletonsAdventure.GameWorld
         public Vector2 PlayerStartPosition { get; set; }
         public Vector2 PlayerRespawnPosition { get; set; }
         public ChestManager ChestManager { get; set; }
-
+        public Menu ChestMenu { get; set; }
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
@@ -45,7 +48,8 @@ namespace SkeletonsAdventure.GameWorld
             _mapSpawnerLayer = tiledMap.GetLayer<TiledMapTileLayer>("SpawnerLayer");
             ChestManager = new(tiledMap.GetLayer<TiledMapTileLayer>("ChestLayer"));
 
-            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(new Chest() { ID = 8 });
+            //ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(new Chest() { ID = 8 }); //TODO
+            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.GetChestsClone()["BasicChest"]);
 
             this.Enemies = Enemies;
 
@@ -67,6 +71,12 @@ namespace SkeletonsAdventure.GameWorld
             {
                 title
             };
+
+            ChestMenu = new()
+            {
+                Visible = false,
+                Texture = GameManager.GamePopUpBoxTexture
+            };
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -87,6 +97,11 @@ namespace SkeletonsAdventure.GameWorld
             EntityManager.Draw(spriteBatch);
             ControlManager.Draw(spriteBatch);
 
+            if(ChestMenu.Visible)
+            {
+                ChestMenu.Draw(spriteBatch);
+            }
+
             spriteBatch.End();
         }
 
@@ -103,6 +118,9 @@ namespace SkeletonsAdventure.GameWorld
             TotalTimeInWorld = totalTimeInWorld;
 
             ChestManager.Update();
+            CheckIfPlayerNearChest();
+            ChestMenu.Update(gameTime);
+            
         }
 
         public void LoadLevelDataFromLevelData(LevelData levelData)
@@ -112,6 +130,7 @@ namespace SkeletonsAdventure.GameWorld
             EntityManager.Add(Player);
             LoadEnemies(levelData.EntityManagerData);
             LoadDroppedItemsFromLevelData(levelData.DroppedItemDatas);
+            LoadChestFromLevelData(levelData.Chests);
         }
 
         public LevelData GetLevelData()
@@ -121,6 +140,7 @@ namespace SkeletonsAdventure.GameWorld
                 MinMaxPair = EnemyLevels,
                 EntityManagerData = EntityManager.GetEnemyData(),
                 DroppedItemDatas = EntityManager.DroppedLootManager.GetDroppedItemData(),
+                Chests = ChestManager.GetChestDatas()
             };
         }
 
@@ -135,29 +155,9 @@ namespace SkeletonsAdventure.GameWorld
                         dynamic en = Activator.CreateInstance(enemy.GetType(), entityData);
                         en.SetEnemyLevel(EnemyLevels);
                         en.UpdateEntityData(entityData);
-                        LoadEnemyGameItemsFromGameData(entityData.Items, en);
+                        en.LootList.Add(GameManager.LoadGameItemsFromItemData(entityData.Items));
 
                         EntityManager.Add(en);
-                    }
-                }
-            }
-        }
-
-        public void LoadEnemyGameItemsFromGameData(List<ItemData> itemDatas, Enemy enemy)
-        {
-            GameItem temp;
-
-            foreach (ItemData item in itemDatas)
-            {
-                foreach (GameItem gameItem in GameManager.GetItemsClone().Values)
-                {
-                    if (item.Name == gameItem.BaseItem.Name)
-                    {
-                        temp = gameItem.Clone();
-                        temp.Quantity = item.Quantity;
-                        temp.BaseItem.Quantity = item.Quantity;
-
-                        enemy.LootList.Add(temp);
                     }
                 }
             }
@@ -171,7 +171,11 @@ namespace SkeletonsAdventure.GameWorld
             {
                 EntityManager.DroppedLootManager.Items.Add(gameItem);
             }
+        }
 
+        public void LoadChestFromLevelData(List<ChestData> chests)
+        {
+            //TODO
         }
 
         private void AddEnemys()
@@ -186,30 +190,75 @@ namespace SkeletonsAdventure.GameWorld
                     EntityManager.Add(spawnerEnemy);
                 }
             }
+        }
 
-            //TODO this is just for testing
-            EliteSkeleton eliteSkeleton = (EliteSkeleton)Enemies["Elite Skeleton"].Clone();
-            eliteSkeleton.Position = new Vector2(500,500);
-            eliteSkeleton.LevelRange = EnemyLevels;
-            eliteSkeleton.SetEnemyLevel(EnemyLevels);
-            //EntityManager.Add(eliteSkeleton);
-
-            Spider spider = (Spider)Enemies["Spider"];
-            spider.Position = new Vector2(300,300);
-            spider.DefaultColor = Color.Orange;
-            spider.SpriteColor = Color.Orange;
-            //EntityManager.Add(spider);
-
-            Skeleton skeleton = (Skeleton)Enemies["Skeleton"];
-
-            EliteSkeleton skeleton1 = new(skeleton.GetEntityData())
+        private void CheckIfPlayerNearChest()
+        {
+            int count = 0;
+            foreach (Chest chest in ChestManager.Chests)
             {
-                Position = new Vector2(100, 100),
-                LevelRange = EnemyLevels
-            };
-            skeleton1.SetEnemyLevel(76);
-            skeleton1.LootList = skeleton.LootList;
-            //EntityManager.Add(skeleton1);
+                if (Player.GetRectangle.Intersects(chest.DetectionArea))
+                {
+                    chest.Info.Visible = true;
+                    count++;
+
+                    if (InputHandler.KeyReleased(Keys.R) ||
+                        InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
+                    {
+                        ChestOpened(chest);
+                    }
+                }
+                else
+                {
+                    chest.Info.Visible = false;
+                }
+            }
+
+            if(count < 1) //the player isn't near a chest anymore hide menu
+            {
+                ChestMenu.Visible = false;
+            }
+        }
+        
+        private void ChestOpened(Chest chest)
+        {
+            if (ChestMenu.Visible == false)
+            {
+                ChestMenu.Visible = true;
+                ChestMenu.Buttons.Clear();
+
+                Dictionary<string, Button> buttons = [];
+                foreach (GameItem gameItem in chest.Loot.Loots)
+                {
+                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
+
+                    EventHandler handler = (object sender, EventArgs e) =>
+                    {
+                        btn.Visible = false;
+                        Player.Backpack.AddItem(gameItem);
+                        chest.Loot.Remove(gameItem);
+                    };
+                    btn.Click += (object sender, EventArgs e) =>
+                    {
+                        handler?.Invoke(sender, e);
+                        btn.Click -= handler;
+                    };
+
+                    buttons.Add(gameItem.Name, btn);
+                }
+
+                ChestMenu.AddButtons(buttons);
+
+                foreach (Button button in ChestMenu.Buttons)
+                {
+                    button.Visible = true;
+                }
+            }
+            else
+                ChestMenu.Visible = false;
+
+            ChestMenu.Position = chest.Position;
+
         }
     }
 }

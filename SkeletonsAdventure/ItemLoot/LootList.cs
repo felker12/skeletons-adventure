@@ -6,11 +6,17 @@ namespace SkeletonsAdventure.ItemLoot
 {
     public class LootList()
     {
-        public List<GameItem> Loots = [];
+        public List<GameItem> Loots { get; set; } = [];
 
         public void Add(GameItem item) { Loots.Add(item.Clone()); } 
         public void Remove(GameItem item) { Loots.Remove(item); }
         public void Clear() { Loots.Clear(); }
+
+        public void Add(List<GameItem> items)
+        {
+            foreach (GameItem item in items)
+                Add(item);
+        }
 
         public override string ToString()
         {

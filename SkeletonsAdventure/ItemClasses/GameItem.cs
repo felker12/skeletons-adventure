@@ -20,6 +20,7 @@ namespace SkeletonsAdventure.ItemClasses
         public static int Height { get; } = 32;
         public int Quantity { get; set; }
         public Label ToolTip { get; set; }
+        public string Name => GetItemData().Name;
 
         public GameItem(BaseItem item, int quantity, SpriteFont font, Texture2D texture, Rectangle source)
         {

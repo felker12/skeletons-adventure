@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
+    public class PopUpBox
     {
-        public Vector2 Position { get; set; } = pos;
+        public Vector2 Position { get; set; } = new();
         public Vector2 ButtonOffset { get; set; } = new(4, 4);
-        public Texture2D Texture { get; set; } = texture;
-        public int Width { get; set; } = width;
-        public int Height { get; set; } = height;
+        public Texture2D Texture { get; set; }
+        public int Width { get; set; } = 100;
+        public int Height { get; set; } = 100;
         public Color Color { get; set; } = Color.White;
         public bool Visible { get; set; } = false;
-        public List<Button> Buttons { get; private set; } = [];
+        public List<Button> Buttons { get; protected set; } = [];
         public Rectangle Rectangle
         {
             get
@@ -21,7 +21,7 @@ namespace SkeletonsAdventure.Controls
                 return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
             }
         }
-        Rectangle SourceRectangle
+        Rectangle SourceRectangle //TODO
         {
             get
             {
@@ -29,7 +29,21 @@ namespace SkeletonsAdventure.Controls
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
+        {
+            Position = pos;
+            Texture = texture;
+            Width = width;
+            Height = height;
+        }
+
+        public  PopUpBox()
+        {
+
+        }
+
+
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(Texture, Rectangle, SourceRectangle, Color);
             spriteBatch.Draw(Texture, Rectangle, Color);
@@ -43,7 +57,7 @@ namespace SkeletonsAdventure.Controls
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             Vector2 offset = ButtonOffset;
             foreach (Button button in Buttons)
@@ -65,6 +79,14 @@ namespace SkeletonsAdventure.Controls
             button.Height = (int)button.Font.MeasureString(buttonText).Y;
 
             Buttons.Add(button);
+        }
+
+        public void AddButtons(Dictionary<string, Button> buttons)
+        {
+            foreach (KeyValuePair<string, Button> button in buttons)
+            {
+                AddButton(button.Value, button.Key);
+            }
         }
 
         public int VisibleButtonsCount()

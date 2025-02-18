@@ -1,5 +1,6 @@
 ﻿using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
+using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
 
 namespace RpgLibrary.WorldClasses
@@ -8,7 +9,8 @@ namespace RpgLibrary.WorldClasses
     {
         public MinMaxPair MinMaxPair { get; set; } = new();
         public EntityManagerData EntityManagerData { get; set; } = new();
-        public List<ItemData> DroppedItemDatas { get; set; } = new();
+        public List<ItemData> DroppedItemDatas { get; set; } = [];
+        public List<ChestData> Chests { get; set; } = [];
 
         public LevelData() { }
 

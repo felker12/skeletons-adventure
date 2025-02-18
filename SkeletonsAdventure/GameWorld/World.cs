@@ -6,14 +6,10 @@ using MonoGame.Extended.Tiled;
 using SkeletonsAdventure.Entities;
 using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.ItemClasses;
-using SkeletonsAdventure.ItemLoot;
 using RpgLibrary.DataClasses;
-using RpgLibrary.EntityClasses;
 using RpgLibrary.WorldClasses;
-using System;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
-using SkeletonsAdventure.GameObjects;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -168,7 +164,7 @@ namespace SkeletonsAdventure.GameWorld
         public void CreateLevels(ContentManager content, GraphicsDevice graphics)
         {
             _tiledMap = content.Load<TiledMap>("TiledFiles/TestLevel");
-            Level level = new(graphics, _tiledMap, GameManager.Enemies, new MinMaxPair(76,76))
+            Level level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76,76))
             {
                 PlayerStartPosition = new(80, 80),
                 PlayerRespawnPosition = new(80, 80)
@@ -176,7 +172,7 @@ namespace SkeletonsAdventure.GameWorld
             Levels.Add("testLevel", level);
 
             _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level0");
-            level = new(graphics, _tiledMap, GameManager.Enemies, new MinMaxPair(0, 100))
+            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
             {
                 PlayerStartPosition = new(80, 80),
                 PlayerRespawnPosition = new(80, 80)
@@ -199,9 +195,6 @@ namespace SkeletonsAdventure.GameWorld
             }
             level.EntityManager.Add(Player);
         }
-
-        
-
 
         public void FillPlayerBackback() //TODO
         {

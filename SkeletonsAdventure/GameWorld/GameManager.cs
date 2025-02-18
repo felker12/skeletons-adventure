@@ -10,6 +10,7 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
+using RpgLibrary.GameObjectClasses;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -19,18 +20,26 @@ namespace SkeletonsAdventure.GameWorld
         public static ContentManager Content { get; private set; }
         public static SpriteFont InfoFont { get; private set; }
         public static SpriteFont ToolTipFont { get; private set; }
-        public static Dictionary<string, Enemy> Enemies { get; private set; } = [];
+
+        private static Dictionary<string, Enemy> Enemies { get; set; } = [];
         private static Dictionary<string, GameItem> Items { get; set; } = [];
-        public static Dictionary<string, Chest> Chests { get; private set; } = [];
+        private static Dictionary<string, Chest> Chests { get; set; } = [];
+        public static Dictionary<string, Chest> ChestsClone => GetChestsClone(); //TODO probably wont use
+
         public static Texture2D SkeletonTexture { get; private set; }
         public static Texture2D SkeletonAttackTexture { get; private set; }
         public static Texture2D SpiderTexture { get; private set; }
+        public static Texture2D GamePopUpBoxTexture { get; private set; }
+        public static Texture2D DefaultButtonTexture { get; private set; }
+
+        private static GraphicsDevice GraphicsDevice { get; set; }
 
         public GameManager(Game1 game)
         {
             Game = game;
             Content = game.Content;
             InfoFont = Content.Load<SpriteFont>("Fonts/Font");
+            GraphicsDevice = game.GraphicsDevice;
             LoadTextures ();
             CreateItems();
             CreateEnemies();
@@ -79,11 +88,42 @@ namespace SkeletonsAdventure.GameWorld
             return items;
         }
 
+        public static Dictionary<string, Chest> GetChestsClone()
+        {
+            Dictionary<string, Chest> chests = [];
+
+            foreach(var item in Chests)
+            {
+                chests.Add(item.Key, item.Value.Clone());
+            }
+
+            return chests;
+        }
+
+
+        public static Dictionary<string, Enemy> GetEnemiesClone()
+        {
+            Dictionary<string, Enemy> enemy = [];
+
+            foreach (var item in Enemies)
+            {
+                enemy.Add(item.Key, item.Value.Clone());
+            }
+
+            return enemy;
+        }
+
         public static void LoadTextures()
         {
             SkeletonTexture = Content.Load<Texture2D>(@"Player\SkeletonSpriteSheet");
             SkeletonAttackTexture = Content.Load<Texture2D>(@"Player\SkeletonAttackSprites");
             SpiderTexture = Content.Load<Texture2D>(@"EntitySprites/spider");
+
+            GamePopUpBoxTexture = new(GraphicsDevice, 1, 1);
+            GamePopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
+
+            DefaultButtonTexture = new(GraphicsDevice, 1, 1);
+            DefaultButtonTexture.SetData([new Color(83, 105, 140, 230)]);
         }
 
         public static void CreateItems()
@@ -182,20 +222,21 @@ namespace SkeletonsAdventure.GameWorld
             Coins.Quantity = 10;
 
             LootList loots = new();
-            //loots.Add(basicSword.Clone());
-            //loots.Add(basicRobe.Clone());
+            loots.Add(GetItemsClone()["Robes"]);
+            loots.Add(GetItemsClone()["Bones"]);
             loots.Add(Coins.Clone());
-            //loots.Add(bones.Clone());
+            loots.Add(GetItemsClone()["Sword"]);
 
 
             Chest BasicChest = new(loots)
             {
-                ID = 8
+                ID = 8,
+                ChestType = ChestType.Basic
             };
 
-
-            if (Chests.ContainsKey(BasicChest.GetType().Name) == false)
-                Chests.Add(BasicChest.GetType().Name, BasicChest);
+            string name = nameof(BasicChest);
+            if (Chests.ContainsKey(name) == false)
+                Chests.Add(name, BasicChest);
         }
 
     }
