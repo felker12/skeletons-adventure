@@ -117,10 +117,9 @@ namespace SkeletonsAdventure.GameWorld
 
             TotalTimeInWorld = totalTimeInWorld;
 
-            ChestManager.Update();
+            ChestManager.Update();//TODO is this needed?
             CheckIfPlayerNearChest();
-            ChestMenu.Update(gameTime);
-            
+            ChestMenu.Update(true, Camera.Transformation);
         }
 
         public void LoadLevelDataFromLevelData(LevelData levelData)
@@ -128,9 +127,10 @@ namespace SkeletonsAdventure.GameWorld
             EntityManager.RemoveAll();
 
             EntityManager.Add(Player);
+            EntityManager.DroppedLootManager.Items = GameManager.LoadGameItemsFromItemData(levelData.DroppedItemDatas);
             LoadEnemies(levelData.EntityManagerData);
-            LoadDroppedItemsFromLevelData(levelData.DroppedItemDatas);
-            LoadChestFromLevelData(levelData.Chests);
+
+            ChestManager.UpdateFromSave(levelData.Chests);
         }
 
         public LevelData GetLevelData()
@@ -163,21 +163,6 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
-        public void LoadDroppedItemsFromLevelData(List<ItemData> items)
-        {
-            List<GameItem> gameItems = GameManager.LoadGameItemsFromItemData(items); 
-
-            foreach (GameItem gameItem in gameItems)
-            {
-                EntityManager.DroppedLootManager.Items.Add(gameItem);
-            }
-        }
-
-        public void LoadChestFromLevelData(List<ChestData> chests)
-        {
-            //TODO
-        }
-
         private void AddEnemys()
         {
             Spawner spawner = new(_mapSpawnerLayer);
@@ -195,34 +180,44 @@ namespace SkeletonsAdventure.GameWorld
         private void CheckIfPlayerNearChest()
         {
             int count = 0;
+            Chest chestToOpen = null;
             foreach (Chest chest in ChestManager.Chests)
             {
                 if (Player.GetRectangle.Intersects(chest.DetectionArea))
                 {
+                    if(chest.Loot.Loots.Count > 0)
+                    {
+                        chest.Info.Text = "Press R to open";
+
+                        if (InputHandler.KeyReleased(Keys.R) ||
+                            InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
+                        {
+                            chestToOpen = chest;
+                        }
+                    }
+                    else
+                        chest.Info.Text = "Chest Empty";
+
                     chest.Info.Visible = true;
                     count++;
-
-                    if (InputHandler.KeyReleased(Keys.R) ||
-                        InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
-                    {
-                        ChestOpened(chest);
-                    }
                 }
                 else
-                {
                     chest.Info.Visible = false;
-                }
             }
 
-            if(count < 1) //the player isn't near a chest anymore hide menu
-            {
+            if (count < 1) //the player isn't near a chest anymore hide menu
                 ChestMenu.Visible = false;
+            else
+            {
+                //having the chestToOpen variable prevents the menu from not appearing if multiple chests are detected
+                if (chestToOpen is not null) 
+                    ChestOpened(chestToOpen);
             }
         }
         
         private void ChestOpened(Chest chest)
         {
-            if (ChestMenu.Visible == false)
+            if (ChestMenu.Visible == false && chest.Info.Visible == true)
             {
                 ChestMenu.Visible = true;
                 ChestMenu.Buttons.Clear();
@@ -230,7 +225,7 @@ namespace SkeletonsAdventure.GameWorld
                 Dictionary<string, Button> buttons = [];
                 foreach (GameItem gameItem in chest.Loot.Loots)
                 {
-                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
+                    GameButton btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
 
                     EventHandler handler = (object sender, EventArgs e) =>
                     {

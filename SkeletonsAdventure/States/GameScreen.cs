@@ -182,7 +182,7 @@ namespace SkeletonsAdventure.States
                 {
                     pickUp.Visible = true;
 
-                    PopUpBox.Update(gameTime, true, Camera.Transformation);
+                    PopUpBox.Update(true, Camera.Transformation);
 
                     if (transformedMouseRectangle.Intersects(PopUpBox.Rectangle) == false)
                         PopUpBox.Visible = false;
@@ -206,7 +206,7 @@ namespace SkeletonsAdventure.States
                     }
                     drop.Visible = true;
 
-                    PopUpBox.Update(gameTime, false, Camera.Transformation);
+                    PopUpBox.Update(false, Camera.Transformation);
 
                     if (mouseRec.Intersects(PopUpBox.Rectangle) == false)
                         PopUpBox.Visible = false;

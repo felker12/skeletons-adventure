@@ -4,17 +4,15 @@ using System;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class Menu : PopUpBox
+    public class Menu : GamePopUpBox
     {
-        public Menu() : base() 
+        public Menu() : base()
         {
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
         }
 
         public void HandleInput(PlayerIndex playerIndex)
@@ -26,7 +24,9 @@ namespace SkeletonsAdventure.Controls
         {
             base.Update(gameTime);
         }
-
-
+        public override void Update(bool transformMouse, Matrix transformation)
+        {
+            base.Update(transformMouse, transformation);
+        }
     }
 }

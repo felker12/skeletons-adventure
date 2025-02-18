@@ -228,10 +228,11 @@ namespace SkeletonsAdventure.GameWorld
             loots.Add(GetItemsClone()["Sword"]);
 
 
-            Chest BasicChest = new(loots)
+            Chest BasicChest = new()
             {
                 ID = 8,
-                ChestType = ChestType.Basic
+                ChestType = ChestType.Basic,
+                Loot = loots.Clone()
             };
 
             string name = nameof(BasicChest);

@@ -5,6 +5,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using SkeletonsAdventure.EntitySpawners;
 using RpgLibrary.GameObjectClasses;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameObjects
 {
@@ -58,6 +59,20 @@ namespace SkeletonsAdventure.GameObjects
             }
 
             return chestDatas;
+        }
+
+        public void UpdateFromSave(List<ChestData> chestDatas)
+        {
+            foreach (Chest chest in Chests)
+            {
+                foreach(ChestData data in chestDatas)
+                {
+                    if(chest.Position == data.Position)
+                    {
+                        chest.Loot.Loots = GameManager.LoadGameItemsFromItemData(data.ItemDatas);
+                    }
+                }
+            }
         }
     }
 }

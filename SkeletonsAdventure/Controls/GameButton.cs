@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SkeletonsAdventure.ItemClasses;
 using System;
 
 namespace SkeletonsAdventure.Controls
 {
     public class GameButton(Texture2D texture, SpriteFont font) : Button(texture, font)
     {
-        public delegate void BtnClicked(GameItem item);
         new public event EventHandler Click;
 
         public void Update(bool transformMouse, Matrix transformation)

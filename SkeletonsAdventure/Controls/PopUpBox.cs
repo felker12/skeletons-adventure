@@ -39,9 +39,7 @@ namespace SkeletonsAdventure.Controls
 
         public  PopUpBox()
         {
-
         }
-
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {

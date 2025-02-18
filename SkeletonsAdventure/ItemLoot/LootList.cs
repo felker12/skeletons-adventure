@@ -28,14 +28,22 @@ namespace SkeletonsAdventure.ItemLoot
             return toString;
         }
 
+        public LootList Clone()
+        {
+            LootList loot = new();
+
+            foreach (GameItem item in Loots)
+                loot.Add(item);
+
+            return loot;
+        }
+
         public List<ItemData> GetLootListItemData()
         {
             List<ItemData> data = [];
 
             foreach (GameItem item in Loots)
-            {
                 data.Add(item.GetItemData());
-            }
 
             return data;
         }

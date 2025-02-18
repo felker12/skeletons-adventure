@@ -47,7 +47,7 @@ namespace SkeletonsAdventure.GameObjects
             DetectionArea = chest.DetectionArea;
             ID = chest.ID;
             ChestType = chest.ChestType;
-            Loot = chest.Loot;
+            Loot = chest.Loot.Clone();
             Info.Position = chest.Position;
         }
 
@@ -65,7 +65,9 @@ namespace SkeletonsAdventure.GameObjects
 
         public Chest Clone()
         {
-            return new(this);
+            return new(this)
+            {
+            };
         }
 
         public ChestData GetChestData()

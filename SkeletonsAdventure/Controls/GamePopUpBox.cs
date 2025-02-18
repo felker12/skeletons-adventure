@@ -4,37 +4,33 @@ using System.Linq;
 
 namespace SkeletonsAdventure.Controls
 {
-    public  class GamePopUpBox(Vector2 pos, Texture2D texture, int width, int height) 
-        : PopUpBox(pos, texture, width, height)
+    public  class GamePopUpBox : PopUpBox
     {
-        public void Update(GameTime gameTime, bool transformMouse, Matrix transformation)
+        public GamePopUpBox(Vector2 pos, Texture2D texture, int width, int height) 
+            : base(pos, texture, width, height) { }
+
+        public GamePopUpBox() { }
+        public virtual void Update(bool transformMouse, Matrix transformation)
         {
-            Height = VisibleButtonsHeight() + (int)ButtonOffset.Y * 2;
-            Width = LongestButtonTextLength() + (int)ButtonOffset.X * 2;
-            Vector2 offset = ButtonOffset;
-            if (transformMouse == false)
+            if(VisibleButtonsCount() > 0)
             {
+                Height = VisibleButtonsHeight() + (int)ButtonOffset.Y * 2;
+                Width = LongestButtonTextLength() + (int)ButtonOffset.X * 2; Vector2 offset = ButtonOffset;
+
                 foreach (GameButton button in Buttons.Cast<GameButton>())
                 {
                     if (button.Visible)
                     {
-                        button.Update(false, transformation);
+                        button.Update(transformMouse, transformation);
                         button.Position = Position + offset;
                         offset += new Vector2(0, button.Height);
                     }
                 }
             }
-            else if (transformMouse == true)
+            else
             {
-                foreach (GameButton button in Buttons.Cast<GameButton>())
-                {
-                    if (button.Visible)
-                    {
-                        button.Update(true, transformation);
-                        button.Position = Position + offset;
-                        offset += new Vector2(0, button.Height);
-                    }
-                }
+                Height = 0;
+                Width = 0;
             }
         }
     }
