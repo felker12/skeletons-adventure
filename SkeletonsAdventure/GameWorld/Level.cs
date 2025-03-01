@@ -11,9 +11,7 @@ using RpgLibrary.EntityClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.ItemClasses;
 using System;
-using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.GameObjects;
-using RpgLibrary.GameObjectClasses;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
 
