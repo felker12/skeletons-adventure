@@ -11,10 +11,9 @@ using System.Collections.Generic;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
 
-enum BoxSource { Game, Panel }
-
 namespace SkeletonsAdventure.States
 {
+    enum BoxSource { Game, Panel }
     public class GameScreen : State
     {
         private Viewport _gameWindow, _sidePanel;

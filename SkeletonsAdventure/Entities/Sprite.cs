@@ -66,7 +66,7 @@ namespace SkeletonsAdventure.Entities
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, Position, Frame, SpriteColor);
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
             Info.Draw(spriteBatch);
         }
 

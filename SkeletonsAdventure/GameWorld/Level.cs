@@ -251,7 +251,6 @@ namespace SkeletonsAdventure.GameWorld
                 ChestMenu.Visible = false;
 
             ChestMenu.Position = chest.Position;
-
         }
     }
 }

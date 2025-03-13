@@ -50,9 +50,7 @@ namespace SkeletonsAdventure.GameWorld
             List<GameItem> items = [];
 
             foreach (ItemData item in itemDatas)
-            {
                 items.Add(LoadGameItemFromItemData(item));
-            }
 
             return items;
         }
@@ -80,9 +78,7 @@ namespace SkeletonsAdventure.GameWorld
             Dictionary<string, GameItem> items = [];
 
             foreach (var item in Items)
-            {
                 items.Add(item.Key, item.Value.Clone());
-            }
 
             return items;
         }
@@ -92,9 +88,7 @@ namespace SkeletonsAdventure.GameWorld
             Dictionary<string, Chest> chests = [];
 
             foreach(var item in Chests)
-            {
                 chests.Add(item.Key, item.Value.Clone());
-            }
 
             return chests;
         }
@@ -105,9 +99,7 @@ namespace SkeletonsAdventure.GameWorld
             Dictionary<string, Enemy> enemy = [];
 
             foreach (var item in Enemies)
-            {
                 enemy.Add(item.Key, item.Value.Clone());
-            }
 
             return enemy;
         }

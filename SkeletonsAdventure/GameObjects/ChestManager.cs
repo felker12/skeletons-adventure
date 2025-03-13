@@ -53,9 +53,7 @@ namespace SkeletonsAdventure.GameObjects
             List<ChestData> chestDatas = [];
 
             foreach (Chest chest in Chests)
-            {
                 chestDatas.Add(chest.GetChestData());
-            }
 
             return chestDatas;
         }
