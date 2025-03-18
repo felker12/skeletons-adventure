@@ -119,7 +119,7 @@ namespace SkeletonsAdventure.Entities
                 if (entity is Enemy enemy && enemy.isDead == false)
                 {
                     //if the player is close then go to the player
-                    if (enemy.detectionArea.Intersects(Player.GetRectangle))
+                    if (enemy.DetectionArea.Intersects(Player.GetRectangle))
                     {
                         enemy.Motion = Vector2.Zero; //Stops any motion caused by another method
 
@@ -128,13 +128,27 @@ namespace SkeletonsAdventure.Entities
                         else
                             enemy.FaceTarget(Player);
                         //attack the player if the player is close enough
-                        if (enemy.attackArea.Intersects(Player.GetRectangle))
+                        if (enemy.AttackArea.Intersects(Player.GetRectangle))
                             enemy.BasicAttack(gameTime);
                     }
                     else //if no player in sight do something
                         enemy.WalkInSquare();
                 }
             }
+        }
+
+        public bool CheckIfPlayerIsInExitLocation(TiledMapObject exit)
+        {
+            bool nearExit = false;
+
+            Rectangle rec = new((int)exit.Position.X, (int)exit.Position.Y, (int)exit.Size.Width, (int)exit.Size.Height);
+
+            if (rec.Intersects(Player.GetRectangle))
+            {
+                nearExit = true;
+            }
+
+            return nearExit;
         }
 
         public void CheckEntityBoundaryCollisions(TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)

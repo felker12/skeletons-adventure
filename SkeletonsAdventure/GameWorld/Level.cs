@@ -29,13 +29,17 @@ namespace SkeletonsAdventure.GameWorld
         private GraphicsDevice GraphicsDevice { get; }
         public GameTime TotalTimeInWorld { get; set; }
         public Vector2 PlayerStartPosition { get; set; }
+        public Vector2 PlayerEndPosition { get; set; } //location of the exit so if the player comes back to the level this is where they will be placed
         public Vector2 PlayerRespawnPosition { get; set; }
         public ChestManager ChestManager { get; set; }
         public Menu ChestMenu { get; set; }
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
+        private TiledMapObjectLayer EnterExitLayer { get; set; } = null;
         private readonly Dictionary<string, Enemy> Enemies = [];
+
+        public TiledMapObject Exit { get; private set; } = null;
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
@@ -45,6 +49,7 @@ namespace SkeletonsAdventure.GameWorld
             _mapCollisionLayer = TiledMap.GetLayer<TiledMapTileLayer>("CollisionLayer");
             _mapSpawnerLayer = tiledMap.GetLayer<TiledMapTileLayer>("SpawnerLayer");
             ChestManager = new(tiledMap.GetLayer<TiledMapTileLayer>("ChestLayer"));
+            EnterExitLayer = TiledMap.GetLayer<TiledMapObjectLayer>("EnterExitLayer");
 
             //ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(new Chest() { ID = 8 }); //TODO
             ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.GetChestsClone()["BasicChest"]);
@@ -75,6 +80,26 @@ namespace SkeletonsAdventure.GameWorld
                 Visible = false,
                 Texture = GameManager.GamePopUpBoxTexture
             };
+
+            //TODO
+            foreach(TiledMapObject obj in EnterExitLayer.Objects)
+            {
+                System.Diagnostics.Debug.WriteLine(obj.Name);
+                System.Diagnostics.Debug.WriteLine(obj.Size);
+                System.Diagnostics.Debug.WriteLine(obj.Position);
+
+                if(obj.Name == "ExitReturnLocation")
+                {
+                    PlayerEndPosition = obj.Position;
+                }
+                else if (obj.Name == "Exit")
+                {
+                    Exit = obj;
+                }
+
+            }
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

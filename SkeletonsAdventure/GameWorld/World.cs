@@ -47,8 +47,10 @@ namespace SkeletonsAdventure.GameWorld
             CreateLevels(_content, _graphics);
 
             //TODO
-            //SetCurrentLevel(Levels["level0"]);
-            SetCurrentLevel(Levels["testLevel"], true);
+            SetCurrentLevel(Levels["level0"], true);
+            //SetCurrentLevel(Levels["testLevel"], true);
+
+            Player.Position = CurrentLevel.PlayerEndPosition - new Vector2(0,120); //TODO
 
             TotalTimeInWorld = new();
         }
@@ -66,7 +68,15 @@ namespace SkeletonsAdventure.GameWorld
             CurrentLevel.title.Text = "\n" + gameTime.TotalGameTime + 
                 "\n" + TotalTimeInWorld.TotalGameTime;
 
-            //TODO
+
+            Player.Info.Text +="\n" + CurrentLevel.EntityManager.CheckIfPlayerIsInExitLocation(CurrentLevel.Exit);
+
+            if (CurrentLevel.EntityManager.CheckIfPlayerIsInExitLocation(CurrentLevel.Exit))
+            {
+            }
+
+
+            //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
             {
                 SetCurrentLevel(Levels["level0"], true);
@@ -75,6 +85,7 @@ namespace SkeletonsAdventure.GameWorld
             {
                 SetCurrentLevel(Levels["testLevel"], true);
             }
+            //=======================================================================
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -120,8 +131,6 @@ namespace SkeletonsAdventure.GameWorld
                 }
             }
         }
-
-
 
         public WorldData GetWorldData()
         {

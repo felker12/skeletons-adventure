@@ -12,11 +12,11 @@ namespace SkeletonsAdventure.Entities
     {
         private Vector2 movement;
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
-        public Rectangle detectionArea, attackArea;
+        public Rectangle DetectionArea, AttackArea;
         public bool IsElite { get; set; } = false;
 
-        public MinMaxPair LevelRange { get; set; } = new(0, 0);
-        public int ID { get; set; } = 0;
+        private MinMaxPair LevelRange { get; set; } = new(0, 0);
+        public int ID { get; protected set; } = 0;
 
         public Enemy(EntityData entityData) : base(entityData)
         {
@@ -74,6 +74,7 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this
             Info.Text += "\nXP = " + XP;
 
+            //TODO delete this
             //Info.Text += "\nAttack = " + attack;
             //Info.Text += "\nDefence = " + defence;
             //Info.Text += "\nBase Attack = " + baseAttack;
@@ -83,18 +84,18 @@ namespace SkeletonsAdventure.Entities
 
             int detectX = (int)Position.X - (detectionWidth - Width) /2;
             int detectY = (int)Position.Y - (detectionHeight - Height) / 2;
-            detectionArea = new(detectX, detectY, detectionWidth, detectionHeight);
+            DetectionArea = new(detectX, detectY, detectionWidth, detectionHeight);
 
             detectX = (int)Position.X - Width;
             detectY = (int)Position.Y - Width;
-            attackArea = new(detectX, detectY, Width * 3, Height + Width * 2);
+            AttackArea = new(detectX, detectY, Width * 3, Height + Width * 2);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.DrawRectangle(detectionArea, Color.Aqua, 1, 0); //TODO
-            spriteBatch.DrawRectangle(attackArea, Color.Red, 1, 0); //TODO
+            spriteBatch.DrawRectangle(DetectionArea, Color.Aqua, 1, 0); //TODO
+            spriteBatch.DrawRectangle(AttackArea, Color.Red, 1, 0); //TODO
         }
 
         public override Enemy Clone()
