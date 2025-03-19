@@ -15,10 +15,10 @@ namespace SkeletonsAdventure.GameWorld
 {
     public class World
     {
-        public Dictionary<string, Level> Levels { get; set; } = [];
-        public Level CurrentLevel { get; set; }
-        public Player Player { get; set; }
-        public Camera Camera { get; set; }
+        public static Dictionary<string, Level> Levels { get; set; } = [];
+        public static Level CurrentLevel { get; set; }
+        public static Player Player { get; set; }
+        public static Camera Camera { get; set; }
         public SpriteFont ToolTipFont { get; private set; }
         public GameTime TotalTimeInWorld { get; set; }
 
@@ -44,13 +44,15 @@ namespace SkeletonsAdventure.GameWorld
                 RespawnPosition = new(80, 80)
             };
 
+            Levels = []; //Clear the levels dictionary 
             CreateLevels(_content, _graphics);
 
             //TODO
-            SetCurrentLevel(Levels["level0"], true);
+            SetCurrentLevel(Levels["level0"], Levels["level0"].PlayerStartPosition);
             //SetCurrentLevel(Levels["testLevel"], true);
 
-            Player.Position = CurrentLevel.PlayerEndPosition - new Vector2(0,120); //TODO
+            if(CurrentLevel.LevelExit is not null)
+                Player.Position = CurrentLevel.LevelExit.ExitPosition - new Vector2(0,20); //TODO
 
             TotalTimeInWorld = new();
         }
@@ -68,27 +70,23 @@ namespace SkeletonsAdventure.GameWorld
             CurrentLevel.title.Text = "\n" + gameTime.TotalGameTime + 
                 "\n" + TotalTimeInWorld.TotalGameTime;
 
-
-            Player.Info.Text +="\n" + CurrentLevel.EntityManager.CheckIfPlayerIsInExitLocation(CurrentLevel.Exit);
-
-            if (CurrentLevel.EntityManager.CheckIfPlayerIsInExitLocation(CurrentLevel.Exit))
-            {
-            }
-
-
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
             {
-                SetCurrentLevel(Levels["level0"], true);
+                SetCurrentLevel(Levels["level0"], Levels["level0"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad1))
             {
-                SetCurrentLevel(Levels["testLevel"], true);
+                SetCurrentLevel(Levels["level1"], Levels["level1"].PlayerStartPosition);
+            }
+            if (InputHandler.KeyReleased(Keys.NumPad9))
+            {
+                SetCurrentLevel(Levels["testLevel"], Levels["testLevel"].PlayerStartPosition);
             }
             //=======================================================================
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             CurrentLevel.Draw(spriteBatch);
         }
@@ -111,10 +109,10 @@ namespace SkeletonsAdventure.GameWorld
                 }
             }
 
-            SetCurrentLevel(Levels[worldData.CurrentLevel], false);
+            SetCurrentLevel(Levels[worldData.CurrentLevel], Player.Position);
         }
 
-        public void LoadPlayerGameItemsFromGameData(List<ItemData> itemDatas)
+        public static void LoadPlayerGameItemsFromGameData(List<ItemData> itemDatas)
         {
             GameItem temp;
             int index;
@@ -156,11 +154,9 @@ namespace SkeletonsAdventure.GameWorld
             };
         }
 
-        public void SetCurrentLevel(Level level, bool resetPlayerPosition)
+        public static void SetCurrentLevel(Level level, Vector2 playerPosition)
         {
-            if(resetPlayerPosition)
-                Player.Position = level.PlayerStartPosition;
-
+            Player.Position = playerPosition;
             Player.RespawnPosition = level.PlayerRespawnPosition;
 
             CurrentLevel = level;
@@ -172,29 +168,40 @@ namespace SkeletonsAdventure.GameWorld
 
         public void CreateLevels(ContentManager content, GraphicsDevice graphics)
         {
+            //Test Level
             _tiledMap = content.Load<TiledMap>("TiledFiles/TestLevel");
             Level level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76,76))
             {
                 PlayerStartPosition = new(80, 80),
-                PlayerRespawnPosition = new(80, 80)
+                PlayerRespawnPosition = new(80, 80),
+                Name = "testLevel"
             };
             Levels.Add("testLevel", level);
 
+            //Level 1
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level1");
+            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
+            {
+                Name = "level1"
+            };
+            Levels.Add("level1", level);
+
+            //Level 0
             _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level0");
             level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
             {
-                PlayerStartPosition = new(80, 80),
-                PlayerRespawnPosition = new(80, 80)
+                Name = "level0"
             };
             Levels.Add("level0", level);
 
+            //Initialize Levels
             foreach (Level lvl in Levels.Values)
             {
                 InitializeLevel(lvl);
             }
         }
 
-        private void InitializeLevel(Level level)
+        private static void InitializeLevel(Level level)
         {
             level.Player = Player;
             level.Camera = Camera;
@@ -203,9 +210,39 @@ namespace SkeletonsAdventure.GameWorld
                 level.EntityManager.Remove(Player);
             }
             level.EntityManager.Add(Player);
+
+            //TODO just used to temporarily provide a way to see where the hitboxes are for the exits
+            Rectangle rec;
+
+            foreach (TiledMapObject obj in level.EnterExitLayer.Objects)
+            {
+                //TODO delete these
+                //System.Diagnostics.Debug.WriteLine(obj.Name);
+                //System.Diagnostics.Debug.WriteLine(obj.Size);
+                //System.Diagnostics.Debug.WriteLine(obj.Position);
+
+                if (obj.Name == "Exit")
+                {
+                    level.LevelExit = new(obj, level, World.Levels[obj.Properties["ToLocation"]]);
+                }
+                if (obj.Name == "Entrance")
+                {
+                    System.Diagnostics.Debug.WriteLine(level.Name);
+
+                    if(obj.Properties.TryGetValue("ToLocation", out TiledMapPropertyValue value))
+                        level.LevelEntrance = new(obj, level, World.Levels[value]); //TODO?
+
+                    level.PlayerStartPosition = new((int)obj.Position.X, (int)obj.Position.Y);
+                    level.PlayerRespawnPosition = level.PlayerStartPosition;
+                }
+
+                rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
+
+                level.Recs.Add(rec);
+            }
         }
 
-        public void FillPlayerBackback() //TODO
+        public static void FillPlayerBackback() //TODO
         {
             for (int i = 0; i < 6; i++)
             {

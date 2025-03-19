@@ -86,7 +86,7 @@ namespace SkeletonsAdventure.States
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             Game.GameScreen = new(Game);
-            Game.GameScreen.World.FillPlayerBackback(); //TODO
+            GameWorld.World.FillPlayerBackback(); //TODO
 
             StateManager.ChangeState(Game.GameScreen);
         }

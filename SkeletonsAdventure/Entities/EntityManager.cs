@@ -137,20 +137,6 @@ namespace SkeletonsAdventure.Entities
             }
         }
 
-        public bool CheckIfPlayerIsInExitLocation(TiledMapObject exit)
-        {
-            bool nearExit = false;
-
-            Rectangle rec = new((int)exit.Position.X, (int)exit.Position.Y, (int)exit.Size.Width, (int)exit.Size.Height);
-
-            if (rec.Intersects(Player.GetRectangle))
-            {
-                nearExit = true;
-            }
-
-            return nearExit;
-        }
-
         public void CheckEntityBoundaryCollisions(TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             foreach (Entity entity in Entities)

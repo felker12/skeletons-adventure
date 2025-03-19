@@ -14,11 +14,13 @@ using System;
 using SkeletonsAdventure.GameObjects;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
+using MonoGame.Extended;
 
 namespace SkeletonsAdventure.GameWorld
 {
     public class Level
     {
+        public string Name { get; set; } = string.Empty;
         public Label title;
         protected ControlManager ControlManager { get; set; }
         public Player Player { get; set; }
@@ -33,13 +35,15 @@ namespace SkeletonsAdventure.GameWorld
         public Vector2 PlayerRespawnPosition { get; set; }
         public ChestManager ChestManager { get; set; }
         public Menu ChestMenu { get; set; }
+        public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
+        public LevelExit LevelExit { get; set; } = null;
+        public LevelExit LevelEntrance { get; set; } = null;
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
-        private TiledMapObjectLayer EnterExitLayer { get; set; } = null;
         private readonly Dictionary<string, Enemy> Enemies = [];
 
-        public TiledMapObject Exit { get; private set; } = null;
+        public List<Rectangle> Recs { get; set; } = []; //TODO
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
@@ -80,26 +84,6 @@ namespace SkeletonsAdventure.GameWorld
                 Visible = false,
                 Texture = GameManager.GamePopUpBoxTexture
             };
-
-            //TODO
-            foreach(TiledMapObject obj in EnterExitLayer.Objects)
-            {
-                System.Diagnostics.Debug.WriteLine(obj.Name);
-                System.Diagnostics.Debug.WriteLine(obj.Size);
-                System.Diagnostics.Debug.WriteLine(obj.Position);
-
-                if(obj.Name == "ExitReturnLocation")
-                {
-                    PlayerEndPosition = obj.Position;
-                }
-                else if (obj.Name == "Exit")
-                {
-                    Exit = obj;
-                }
-
-            }
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -125,6 +109,11 @@ namespace SkeletonsAdventure.GameWorld
                 ChestMenu.Draw(spriteBatch);
             }
 
+            foreach(Rectangle rec in Recs) //TODO delete this 
+            {
+                spriteBatch.DrawRectangle(rec, Color.White, 1, 0);
+            }
+
             spriteBatch.End();
         }
 
@@ -143,6 +132,12 @@ namespace SkeletonsAdventure.GameWorld
             ChestManager.Update();//TODO is this needed?
             CheckIfPlayerNearChest();
             ChestMenu.Update(true, Camera.Transformation);
+
+            if(LevelExit != null)
+                CheckIfPlayerIsNearExit(LevelExit);
+
+            if (LevelEntrance != null)
+                CheckIfPlayerIsNearExit(LevelEntrance);
         }
 
         public void LoadLevelDataFromLevelData(LevelData levelData)
@@ -250,12 +245,14 @@ namespace SkeletonsAdventure.GameWorld
                 {
                     GameButton btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
 
+                    #pragma warning disable IDE0039 // Use local function
                     EventHandler handler = (object sender, EventArgs e) =>
                     {
                         btn.Visible = false;
                         Player.Backpack.AddItem(gameItem);
                         chest.Loot.Remove(gameItem);
                     };
+                    #pragma warning restore IDE0039 // Use local function
                     btn.Click += (object sender, EventArgs e) =>
                     {
                         handler?.Invoke(sender, e);
@@ -276,6 +273,31 @@ namespace SkeletonsAdventure.GameWorld
                 ChestMenu.Visible = false;
 
             ChestMenu.Position = chest.Position;
+        }
+
+        private bool CheckIfPlayerIsNearLevelExit(LevelExit exit)
+        {
+            bool nearExit = false;
+
+            if (exit.ExitArea.Intersects(Player.GetRectangle))
+                nearExit = true;
+
+            return nearExit;
+        }
+
+        public void CheckIfPlayerIsNearExit(LevelExit exit)
+        {
+            if(CheckIfPlayerIsNearLevelExit(exit))
+            {
+                Player.Info.Text += "\n" + CheckIfPlayerIsNearLevelExit(LevelExit); //TODO delete this
+
+                if (InputHandler.KeyReleased(Keys.R) ||
+                            InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
+                {
+                    //TODO change location when have better method to determine where the player will go
+                    World.SetCurrentLevel(exit.NextLevel, exit.NextLevel.PlayerStartPosition); 
+                }
+            }
         }
     }
 }

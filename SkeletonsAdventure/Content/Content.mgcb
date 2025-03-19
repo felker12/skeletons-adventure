@@ -134,6 +134,11 @@
 /processor:TiledMapProcessor
 /build:TiledFiles/Level0.tmx
 
+#begin TiledFiles/Level1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:TiledFiles/Level1.tmx
+
 #begin TiledFiles/ProjectUtumno_full.tsx
 /importer:TiledMapTilesetImporter
 /processor:TiledMapTilesetProcessor
