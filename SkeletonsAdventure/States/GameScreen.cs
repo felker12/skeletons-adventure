@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Entities;
 using System;
-using System.Collections.Generic;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
 
@@ -141,8 +140,6 @@ namespace SkeletonsAdventure.States
                     itemUnderMouse = item;
             }
 
-            //TODO this variable might not be needed now. Could be useful in future if I want to be able to select from a list of items to pick up
-            List<GameItem> itemsUnderMouse = []; 
             foreach (GameItem item in World.CurrentLevel.EntityManager.DroppedLootManager.Items)
             {
                 Intersects(transformedMouseRectangle, item.ItemRectangle, item, BoxSource.Game);
@@ -156,7 +153,6 @@ namespace SkeletonsAdventure.States
                 else if (transformedMouseRectangle.Intersects(item.ItemRectangle))
                 {
                     itemUnderMouse = item;
-                    itemsUnderMouse.Add(item);
                 }
             }
 
@@ -203,6 +199,7 @@ namespace SkeletonsAdventure.States
                                 consume.Visible = true;
                         }
                     }
+
                     drop.Visible = true;
 
                     PopUpBox.Update(false, Camera.Transformation);

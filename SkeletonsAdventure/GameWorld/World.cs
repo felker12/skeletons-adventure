@@ -19,7 +19,6 @@ namespace SkeletonsAdventure.GameWorld
         public static Level CurrentLevel { get; set; }
         public static Player Player { get; set; }
         public static Camera Camera { get; set; }
-        public SpriteFont ToolTipFont { get; private set; }
         public GameTime TotalTimeInWorld { get; set; }
 
         private TiledMap _tiledMap;
@@ -68,7 +67,7 @@ namespace SkeletonsAdventure.GameWorld
 
             //TODO
             CurrentLevel.title.Text = "\n" + gameTime.TotalGameTime + 
-                "\n" + TotalTimeInWorld.TotalGameTime;
+                "\n" + TotalTimeInWorld.TotalGameTime + "\n" + CurrentLevel.Width + "\n" + CurrentLevel.Height;
 
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
@@ -82,6 +81,10 @@ namespace SkeletonsAdventure.GameWorld
             if (InputHandler.KeyReleased(Keys.NumPad9))
             {
                 SetCurrentLevel(Levels["testLevel"], Levels["testLevel"].PlayerStartPosition);
+            }
+            if (InputHandler.KeyReleased(Keys.NumPad8))
+            {
+                SetCurrentLevel(Levels["testing"], Levels["testing"].PlayerStartPosition);
             }
             //=======================================================================
         }
@@ -174,9 +177,21 @@ namespace SkeletonsAdventure.GameWorld
             {
                 PlayerStartPosition = new(80, 80),
                 PlayerRespawnPosition = new(80, 80),
+                PlayerEndPosition = new(80,80),
                 Name = "testLevel"
             };
             Levels.Add("testLevel", level);
+
+            //Test Level
+            _tiledMap = content.Load<TiledMap>("TiledFiles/Testing");
+            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76, 76))
+            {
+                PlayerStartPosition = new(80, 80),
+                PlayerRespawnPosition = new(80, 80),
+                PlayerEndPosition = new(80, 80),
+                Name = "testing"
+            };
+            Levels.Add("testing", level);
 
             //Level 1
             _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level1");
@@ -216,33 +231,29 @@ namespace SkeletonsAdventure.GameWorld
 
             foreach (TiledMapObject obj in level.EnterExitLayer.Objects)
             {
-                //TODO delete these
-                //System.Diagnostics.Debug.WriteLine(obj.Name);
-                //System.Diagnostics.Debug.WriteLine(obj.Size);
-                //System.Diagnostics.Debug.WriteLine(obj.Position);
-
                 if (obj.Name == "Exit")
                 {
-                    level.LevelExit = new(obj, level, World.Levels[obj.Properties["ToLocation"]]);
+                    level.LevelExit = new(obj, World.Levels[obj.Properties["ToLocation"]]);
+
+                    level.PlayerEndPosition = new((int)obj.Position.X, (int)obj.Position.Y);
                 }
                 if (obj.Name == "Entrance")
                 {
                     System.Diagnostics.Debug.WriteLine(level.Name);
 
                     if(obj.Properties.TryGetValue("ToLocation", out TiledMapPropertyValue value))
-                        level.LevelEntrance = new(obj, level, World.Levels[value]); //TODO?
+                        level.LevelEntrance = new(obj, World.Levels[value]);
 
                     level.PlayerStartPosition = new((int)obj.Position.X, (int)obj.Position.Y);
                     level.PlayerRespawnPosition = level.PlayerStartPosition;
                 }
 
                 rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
-
                 level.Recs.Add(rec);
             }
         }
 
-        public static void FillPlayerBackback() //TODO
+        public static void FillPlayerBackback() //TODO this is for testing
         {
             for (int i = 0; i < 6; i++)
             {

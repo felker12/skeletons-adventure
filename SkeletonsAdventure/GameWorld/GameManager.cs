@@ -15,7 +15,7 @@ namespace SkeletonsAdventure.GameWorld
 {
     public class GameManager
     {
-        public Game1 Game { get; private set; }
+        public static Game1 Game { get; private set; }
         public static ContentManager Content { get; private set; }
         public static SpriteFont InfoFont { get; private set; }
         public static SpriteFont ToolTipFont { get; private set; }

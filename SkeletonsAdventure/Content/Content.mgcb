@@ -149,6 +149,11 @@
 /processor:TiledMapProcessor
 /build:TiledFiles/SidePanel.tmx
 
+#begin TiledFiles/Testing.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:TiledFiles/Testing.tmx
+
 #begin TiledFiles/TestLevel.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor

@@ -1,15 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using SkeletonsAdventure.Controls;
-using Microsoft.Xna.Framework.Content;
-using MonoGame.Extended;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Entities
 {
     public class Sprite
     {
-        public Texture2D texture;
+        public Texture2D Texture { get; set; }
         public float speed;
         public bool isCollidingBoundary;
 
@@ -27,7 +25,7 @@ namespace SkeletonsAdventure.Entities
 
         public Sprite()
         {
-            texture = GameManager.SkeletonTexture; //default to the player/skeleton sprite
+            Texture = GameManager.SkeletonTexture; //default to the player/skeleton sprite
             Initialize();
             Info.SpriteFont = GameManager.InfoFont;
         }
@@ -52,9 +50,9 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void Update(GameTime gameTime)
         {
-            LockToMap();
-            Info.Position = new Vector2(MathHelper.Clamp(Position.X, 0, 1000000000),
-                MathHelper.Clamp(Position.Y - 60, 0, 1000000000));
+            Position = LockToMap(Position);
+            Info.Position = LockToMap(Position - new Vector2(0, 60));
+
             GetRectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
 
             if (IsColliding)
@@ -65,20 +63,18 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, Frame, SpriteColor);
+            spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
             //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
             Info.Draw(spriteBatch);
         }
 
-        public void LockToMap()
+        public Vector2 LockToMap(Vector2 position)
         {
-            //TODO set the max value based on the width of the map
-            Vector2 pos = new()
+            return new()
             {
-                X = MathHelper.Clamp(Position.X, 0, 1000000000),
-                Y = MathHelper.Clamp(Position.Y, 0, 1000000000)
+                X = MathHelper.Clamp(position.X, 0, World.CurrentLevel.Width - Width),
+                Y = MathHelper.Clamp(position.Y, 0, World.CurrentLevel.Height - Height)
             };
-            Position = pos;
         }
     }
 }

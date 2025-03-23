@@ -21,7 +21,7 @@ namespace SkeletonsAdventure.Attacks
 
         public EntityAttack(Texture2D texture, Entity source) : base()
         {
-            this.texture = texture;
+            Texture = texture;
             AttackLength = 300; //length the attack animation is drawn on the screen in milliseconds
             AttackOffset = new();
             Frame = new();
@@ -38,7 +38,7 @@ namespace SkeletonsAdventure.Attacks
 
         public EntityAttack(Texture2D texture, Entity source, int attackLength) : base()
         {
-            this.texture = texture;
+            Texture = texture;
             AttackLength = attackLength; //length the attack animation is drawn on the screen in milliseconds
             AttackOffset = new();
             Frame = new();
@@ -47,14 +47,14 @@ namespace SkeletonsAdventure.Attacks
 
         public EntityAttack Clone()
         {
-            EntityAttack attack = new(texture, Source);
+            EntityAttack attack = new(Texture, Source);
             return attack;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0);
-            spriteBatch.Draw(texture, Position, Frame, SpriteColor);
+            spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
             Info.Draw(spriteBatch);
         }

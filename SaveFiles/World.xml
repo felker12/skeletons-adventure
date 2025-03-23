@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT12.4500249S</TotalTimeInWorld>
-    <CurrentLevel>level1</CurrentLevel>
+    <TotalTimeInWorld>PT1M16.7834869S</TotalTimeInWorld>
+    <CurrentLevel>testLevel</CurrentLevel>
     <PlayerData>
       <Items />
       <type>Player</type>
@@ -11,13 +11,13 @@
       <baseAttack>400</baseAttack>
       <entityLevel>0</entityLevel>
       <baseXP>1</baseXP>
-      <currentHealth>1000000</currentHealth>
-      <position>463.61026 60.301533</position>
-      <respawnPosition>125 36</respawnPosition>
+      <currentHealth>998058</currentHealth>
+      <position>108.32827 195.98755</position>
+      <respawnPosition>266 92</respawnPosition>
       <isDead>false</isDead>
       <LastDeathTime>PT0S</LastDeathTime>
-      <totalXP>0</totalXP>
-      <xPSinceLastLevel>0</xPSinceLastLevel>
+      <totalXP>1424</totalXP>
+      <xPSinceLastLevel>1424</xPSinceLastLevel>
       <backpack>
         <Item>
           <Name>Coins</Name>
@@ -29,7 +29,7 @@
           <Stackable>true</Stackable>
           <Consumable>false</Consumable>
           <Position>32 32</Position>
-          <Quantity>30</Quantity>
+          <Quantity>110</Quantity>
         </Item>
         <Item>
           <Name>Sword</Name>
@@ -65,7 +65,7 @@
           <Stackable>true</Stackable>
           <Consumable>true</Consumable>
           <Position>128 32</Position>
-          <Quantity>6</Quantity>
+          <Quantity>11</Quantity>
         </Item>
         <Item>
           <Name>Sword</Name>
@@ -187,6 +187,30 @@
           <Position>64 128</Position>
           <Quantity>1</Quantity>
         </Item>
+        <Item>
+          <Name>Robes</Name>
+          <Type>Robes</Type>
+          <Description>A Robe</Description>
+          <Price>10</Price>
+          <Weight>5</Weight>
+          <Equipped>false</Equipped>
+          <Stackable>false</Stackable>
+          <Consumable>false</Consumable>
+          <Position>96 128</Position>
+          <Quantity>1</Quantity>
+        </Item>
+        <Item>
+          <Name>Sword</Name>
+          <Type>Slashing</Type>
+          <Description>A Sword</Description>
+          <Price>40</Price>
+          <Weight>15</Weight>
+          <Equipped>false</Equipped>
+          <Stackable>false</Stackable>
+          <Consumable>false</Consumable>
+          <Position>128 128</Position>
+          <Quantity>1</Quantity>
+        </Item>
       </backpack>
     </PlayerData>
     <Levels>
@@ -210,7 +234,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -222,7 +246,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -234,7 +258,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -246,7 +270,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -257,10 +281,10 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>172</currentHealth>
-                <position>320 458</position>
+                <position>467.12128 633.2518</position>
                 <respawnPosition>320 458</respawnPosition>
                 <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
+                <LastDeathTime>PT25.1333836S</LastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -273,7 +297,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -285,7 +309,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -297,7 +321,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -309,7 +333,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -320,10 +344,10 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>172</currentHealth>
-                <position>736 458</position>
+                <position>715.4943 529.94965</position>
                 <respawnPosition>736 458</respawnPosition>
                 <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
+                <LastDeathTime>PT33.833401S</LastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -336,7 +360,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -348,7 +372,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -360,7 +384,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -372,7 +396,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -383,10 +407,10 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>430</currentHealth>
-                <position>800 778</position>
+                <position>823.94965 750.4234</position>
                 <respawnPosition>800 778</respawnPosition>
                 <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
+                <LastDeathTime>PT45.8167583S</LastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -399,7 +423,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -411,7 +435,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -423,7 +447,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -435,7 +459,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -446,14 +470,183 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>4</baseXP>
                 <currentHealth>167</currentHealth>
-                <position>608 288</position>
+                <position>808.7071 334.7071</position>
                 <respawnPosition>608 288</respawnPosition>
                 <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
+                <LastDeathTime>PT29.666726S</LastDeathTime>
               </Item>
             </EntityData>
           </EntityManagerData>
-          <DroppedItemDatas />
+          <DroppedItemDatas>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1063.0894 415.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>463.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>535.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>607.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>673.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>751.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>823.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>895.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>961.08936 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1033.0894 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1105.0894 217.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1117.0894 391.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1117.0894 529.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+            <Item>
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>1117.0894 601.77795</Position>
+              <Quantity>1</Quantity>
+            </Item>
+          </DroppedItemDatas>
           <Chests>
             <Item>
               <ID>8</ID>
@@ -679,6 +872,20 @@
         </Value>
       </Item>
       <Item>
+        <Key>testing</Key>
+        <Value>
+          <MinMaxPair>
+            <Min>76</Min>
+            <Max>76</Max>
+          </MinMaxPair>
+          <EntityManagerData>
+            <EntityData />
+          </EntityManagerData>
+          <DroppedItemDatas />
+          <Chests />
+        </Value>
+      </Item>
+      <Item>
         <Key>level1</Key>
         <Value>
           <MinMaxPair>
@@ -712,7 +919,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -724,7 +931,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -736,7 +943,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -748,7 +955,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -756,13 +963,13 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>68</entityLevel>
+                <entityLevel>4</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>156</currentHealth>
-                <position>441 106</position>
+                <currentHealth>-178</currentHealth>
+                <position>431.68652 137.31372</position>
                 <respawnPosition>256 106</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
+                <isDead>true</isDead>
+                <LastDeathTime>PT5.5666778S</LastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -775,7 +982,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -787,7 +994,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -799,7 +1006,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -811,7 +1018,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -819,10 +1026,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>23</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>110</currentHealth>
-                <position>409 522</position>
+                <currentHealth>66</currentHealth>
+                <position>424 701</position>
                 <respawnPosition>224 522</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -838,7 +1045,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -850,7 +1057,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -862,7 +1069,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -874,7 +1081,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -882,10 +1089,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>25</entityLevel>
+                <entityLevel>39</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>70</currentHealth>
-                <position>249 714</position>
+                <currentHealth>98</currentHealth>
+                <position>264 809</position>
                 <respawnPosition>64 714</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -901,7 +1108,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -913,7 +1120,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -925,7 +1132,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -937,7 +1144,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -945,10 +1152,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>22</entityLevel>
+                <entityLevel>32</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>64</currentHealth>
-                <position>217 1034</position>
+                <currentHealth>84</currentHealth>
+                <position>232 1213</position>
                 <respawnPosition>32 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -964,7 +1171,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -976,7 +1183,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -988,7 +1195,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1000,7 +1207,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1008,10 +1215,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>5</entityLevel>
+                <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>30</currentHealth>
-                <position>473 1034</position>
+                <currentHealth>182</currentHealth>
+                <position>479 1193</position>
                 <respawnPosition>288 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1027,7 +1234,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1039,7 +1246,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1051,7 +1258,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1063,7 +1270,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1071,10 +1278,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>95</entityLevel>
+                <entityLevel>74</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>210</currentHealth>
-                <position>287 1482</position>
+                <currentHealth>168</currentHealth>
+                <position>287 1577</position>
                 <respawnPosition>192 1482</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1090,7 +1297,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1102,7 +1309,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1114,7 +1321,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1126,7 +1333,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1134,10 +1341,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>49</entityLevel>
+                <entityLevel>73</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>118</currentHealth>
-                <position>2105 1738</position>
+                <currentHealth>166</currentHealth>
+                <position>2120 1917</position>
                 <respawnPosition>1920 1738</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1153,7 +1360,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1165,7 +1372,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1177,7 +1384,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1189,7 +1396,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1197,10 +1404,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>98</entityLevel>
+                <entityLevel>39</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>216</currentHealth>
-                <position>281 1802</position>
+                <currentHealth>98</currentHealth>
+                <position>296 1981</position>
                 <respawnPosition>96 1802</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1216,7 +1423,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1228,7 +1435,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1240,7 +1447,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1252,7 +1459,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1260,10 +1467,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>18</entityLevel>
+                <entityLevel>41</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>56</currentHealth>
-                <position>2393 1802</position>
+                <currentHealth>102</currentHealth>
+                <position>2408 1981</position>
                 <respawnPosition>2208 1802</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1279,7 +1486,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1291,7 +1498,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1303,7 +1510,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1315,7 +1522,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1323,10 +1530,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>89</entityLevel>
+                <entityLevel>7</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>198</currentHealth>
-                <position>953 1834</position>
+                <currentHealth>34</currentHealth>
+                <position>968 1993</position>
                 <respawnPosition>768 1834</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1342,7 +1549,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1354,7 +1561,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1366,7 +1573,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1378,7 +1585,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1386,10 +1593,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>76</entityLevel>
+                <entityLevel>6</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>172</currentHealth>
-                <position>409 1898</position>
+                <currentHealth>32</currentHealth>
+                <position>424 2057</position>
                 <respawnPosition>224 1898</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1405,7 +1612,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1417,7 +1624,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1429,7 +1636,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1441,7 +1648,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1449,10 +1656,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>86</entityLevel>
+                <entityLevel>91</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>192</currentHealth>
-                <position>1887 2026</position>
+                <currentHealth>202</currentHealth>
+                <position>1887 2185</position>
                 <respawnPosition>1760 2026</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1468,7 +1675,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1480,7 +1687,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1492,7 +1699,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1504,7 +1711,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1512,10 +1719,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>46</entityLevel>
+                <entityLevel>86</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>112</currentHealth>
-                <position>2201 2058</position>
+                <currentHealth>192</currentHealth>
+                <position>2216 2121</position>
                 <respawnPosition>2016 2058</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1531,7 +1738,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1543,7 +1750,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1555,7 +1762,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1567,7 +1774,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1575,10 +1782,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>73</entityLevel>
+                <entityLevel>51</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>166</currentHealth>
-                <position>857 2186</position>
+                <currentHealth>122</currentHealth>
+                <position>872 2365</position>
                 <respawnPosition>672 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1594,7 +1801,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1606,7 +1813,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1618,7 +1825,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1630,7 +1837,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1638,10 +1845,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>93</entityLevel>
+                <entityLevel>9</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>206</currentHealth>
-                <position>1049 2186</position>
+                <currentHealth>38</currentHealth>
+                <position>1064 2365</position>
                 <respawnPosition>864 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1657,7 +1864,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1669,7 +1876,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1681,7 +1888,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1693,7 +1900,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1701,10 +1908,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>28</entityLevel>
+                <entityLevel>61</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>76</currentHealth>
-                <position>383 2282</position>
+                <currentHealth>142</currentHealth>
+                <position>383 2441</position>
                 <respawnPosition>224 2282</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1720,7 +1927,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1732,7 +1939,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1744,7 +1951,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1756,7 +1963,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1767,7 +1974,7 @@
                 <entityLevel>73</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>166</currentHealth>
-                <position>1401 2314</position>
+                <position>1416 2409</position>
                 <respawnPosition>1216 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1783,7 +1990,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1795,7 +2002,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1807,7 +2014,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1819,7 +2026,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1827,10 +2034,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>47</entityLevel>
+                <entityLevel>10</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>114</currentHealth>
-                <position>1721 2314</position>
+                <currentHealth>40</currentHealth>
+                <position>1736 2409</position>
                 <respawnPosition>1536 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1846,7 +2053,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1858,7 +2065,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1870,7 +2077,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1882,7 +2089,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1890,10 +2097,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>9</entityLevel>
+                <entityLevel>36</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>38</currentHealth>
-                <position>2175 2410</position>
+                <currentHealth>92</currentHealth>
+                <position>2175 2569</position>
                 <respawnPosition>2080 2410</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1909,7 +2116,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1921,7 +2128,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1933,7 +2140,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -1945,7 +2152,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -1953,10 +2160,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>79</entityLevel>
+                <entityLevel>72</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>178</currentHealth>
-                <position>2265 2442</position>
+                <currentHealth>164</currentHealth>
+                <position>2280 2569</position>
                 <respawnPosition>2080 2442</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1972,7 +2179,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1984,7 +2191,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -1996,7 +2203,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2008,7 +2215,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2016,10 +2223,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>61</entityLevel>
+                <entityLevel>32</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>142</currentHealth>
-                <position>729 2506</position>
+                <currentHealth>84</currentHealth>
+                <position>744 2633</position>
                 <respawnPosition>544 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2035,7 +2242,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2047,7 +2254,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2059,7 +2266,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2071,7 +2278,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2079,10 +2286,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>46</entityLevel>
+                <entityLevel>25</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>112</currentHealth>
-                <position>1049 2506</position>
+                <currentHealth>70</currentHealth>
+                <position>1064 2633</position>
                 <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2098,7 +2305,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2110,7 +2317,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2122,7 +2329,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2134,7 +2341,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2142,10 +2349,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>13</entityLevel>
+                <entityLevel>33</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>46</currentHealth>
-                <position>2495 2602</position>
+                <currentHealth>86</currentHealth>
+                <position>2495 2781</position>
                 <respawnPosition>2336 2602</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2161,7 +2368,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2173,7 +2380,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2185,7 +2392,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2197,7 +2404,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2205,10 +2412,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>56</entityLevel>
+                <entityLevel>82</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>132</currentHealth>
-                <position>2495 2634</position>
+                <currentHealth>184</currentHealth>
+                <position>2495 2813</position>
                 <respawnPosition>2336 2634</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2224,7 +2431,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2236,7 +2443,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2248,7 +2455,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2260,7 +2467,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2268,10 +2475,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>100</entityLevel>
+                <entityLevel>58</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>220</currentHealth>
-                <position>1663 2698</position>
+                <currentHealth>136</currentHealth>
+                <position>1663 2877</position>
                 <respawnPosition>1504 2698</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2287,7 +2494,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2299,7 +2506,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2311,7 +2518,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2323,7 +2530,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2331,10 +2538,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>1</entityLevel>
+                <entityLevel>15</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>22</currentHealth>
-                <position>1407 2858</position>
+                <currentHealth>50</currentHealth>
+                <position>1407 3037</position>
                 <respawnPosition>1248 2858</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2350,7 +2557,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2362,7 +2569,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2374,7 +2581,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2386,7 +2593,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2394,10 +2601,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>68</entityLevel>
+                <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>156</currentHealth>
-                <position>2495 2954</position>
+                <currentHealth>182</currentHealth>
+                <position>2495 3133</position>
                 <respawnPosition>2336 2954</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2413,7 +2620,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2425,7 +2632,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2437,7 +2644,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2449,7 +2656,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2457,10 +2664,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>93</entityLevel>
+                <entityLevel>54</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>206</currentHealth>
-                <position>217 2986</position>
+                <currentHealth>128</currentHealth>
+                <position>232 3113</position>
                 <respawnPosition>32 2986</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2476,7 +2683,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2488,7 +2695,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2500,7 +2707,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2512,7 +2719,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2520,10 +2727,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>49</entityLevel>
+                <entityLevel>6</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>118</currentHealth>
-                <position>1407 2986</position>
+                <currentHealth>32</currentHealth>
+                <position>1407 3165</position>
                 <respawnPosition>1248 2986</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2539,7 +2746,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2551,7 +2758,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2563,7 +2770,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2575,7 +2782,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2583,9 +2790,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>20</entityLevel>
+                <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>60</currentHealth>
+                <currentHealth>172</currentHealth>
                 <position>640 3018</position>
                 <respawnPosition>640 3018</respawnPosition>
                 <isDead>false</isDead>
@@ -2602,7 +2809,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2614,7 +2821,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2626,7 +2833,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2638,7 +2845,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2646,10 +2853,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>78</entityLevel>
+                <entityLevel>57</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>176</currentHealth>
-                <position>1663 3146</position>
+                <currentHealth>134</currentHealth>
+                <position>1663 3325</position>
                 <respawnPosition>1504 3146</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2665,7 +2872,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2677,7 +2884,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2689,7 +2896,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2701,7 +2908,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2709,10 +2916,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>35</entityLevel>
+                <entityLevel>90</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>90</currentHealth>
-                <position>2041 3210</position>
+                <currentHealth>200</currentHealth>
+                <position>2056 3305</position>
                 <respawnPosition>1856 3210</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2728,7 +2935,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2740,7 +2947,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2752,7 +2959,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2764,7 +2971,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2772,10 +2979,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>78</entityLevel>
+                <entityLevel>24</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>176</currentHealth>
-                <position>2495 3242</position>
+                <currentHealth>68</currentHealth>
+                <position>2495 3421</position>
                 <respawnPosition>2336 3242</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2791,7 +2998,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2803,7 +3010,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2815,7 +3022,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2827,7 +3034,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2835,10 +3042,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>50</entityLevel>
+                <entityLevel>0</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>120</currentHealth>
-                <position>1119 3466</position>
+                <currentHealth>20</currentHealth>
+                <position>1119 3645</position>
                 <respawnPosition>1024 3466</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2854,7 +3061,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2866,7 +3073,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2878,7 +3085,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2890,7 +3097,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2898,10 +3105,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>7</entityLevel>
+                <entityLevel>22</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>34</currentHealth>
-                <position>2297 3466</position>
+                <currentHealth>64</currentHealth>
+                <position>2312 3593</position>
                 <respawnPosition>2112 3466</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2917,7 +3124,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2929,7 +3136,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2941,7 +3148,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -2953,7 +3160,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -2961,10 +3168,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>81</entityLevel>
+                <entityLevel>66</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>182</currentHealth>
-                <position>1433 3498</position>
+                <currentHealth>152</currentHealth>
+                <position>1439 3677</position>
                 <respawnPosition>1248 3498</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2980,7 +3187,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -2992,7 +3199,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3004,7 +3211,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -3016,7 +3223,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -3024,10 +3231,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>47</entityLevel>
+                <entityLevel>87</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>114</currentHealth>
-                <position>1951 3594</position>
+                <currentHealth>194</currentHealth>
+                <position>1951 3753</position>
                 <respawnPosition>1824 3594</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3043,7 +3250,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3055,7 +3262,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3067,7 +3274,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -3079,7 +3286,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -3087,10 +3294,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>43</entityLevel>
+                <entityLevel>17</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>106</currentHealth>
-                <position>1439 3626</position>
+                <currentHealth>54</currentHealth>
+                <position>1439 3753</position>
                 <respawnPosition>1408 3626</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3106,7 +3313,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3118,7 +3325,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3130,7 +3337,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -3142,7 +3349,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -3150,10 +3357,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>66</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>110</currentHealth>
-                <position>889 3690</position>
+                <currentHealth>152</currentHealth>
+                <position>904 3753</position>
                 <respawnPosition>704 3690</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3169,7 +3376,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3181,7 +3388,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3193,7 +3400,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -3205,7 +3412,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -3213,10 +3420,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>80</entityLevel>
+                <entityLevel>97</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>450</currentHealth>
-                <position>2425 1162</position>
+                <currentHealth>535</currentHealth>
+                <position>2440 1341</position>
                 <respawnPosition>2240 1162</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3232,7 +3439,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>886.3709 999.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3244,7 +3451,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>901.3709 1014.0319</Position>
                     <Quantity>1</Quantity>
                   </Item>
                   <Item>
@@ -3256,7 +3463,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>916.3709 1029.032</Position>
                     <Quantity>10</Quantity>
                   </Item>
                   <Item>
@@ -3268,7 +3475,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>931.3709 1044.032</Position>
                     <Quantity>1</Quantity>
                   </Item>
                 </Items>
@@ -3276,10 +3483,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>81</entityLevel>
+                <entityLevel>82</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>455</currentHealth>
-                <position>857 3338</position>
+                <currentHealth>460</currentHealth>
+                <position>872 3517</position>
                 <respawnPosition>672 3338</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>

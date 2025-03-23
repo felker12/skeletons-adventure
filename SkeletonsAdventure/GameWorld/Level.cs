@@ -20,8 +20,10 @@ namespace SkeletonsAdventure.GameWorld
 {
     public class Level
     {
-        public string Name { get; set; } = string.Empty;
         public Label title;
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public string Name { get; set; } = string.Empty;
         protected ControlManager ControlManager { get; set; }
         public Player Player { get; set; }
         public Camera Camera { get; set; }
@@ -84,6 +86,9 @@ namespace SkeletonsAdventure.GameWorld
                 Visible = false,
                 Texture = GameManager.GamePopUpBoxTexture
             };
+
+            Width = tiledMap.WidthInPixels;
+            Height = tiledMap.HeightInPixels;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -134,10 +139,10 @@ namespace SkeletonsAdventure.GameWorld
             ChestMenu.Update(true, Camera.Transformation);
 
             if(LevelExit != null)
-                CheckIfPlayerIsNearExit(LevelExit);
+                CheckIfPlayerIsNearExit(LevelExit, LevelExit.NextLevel.PlayerStartPosition);
 
             if (LevelEntrance != null)
-                CheckIfPlayerIsNearExit(LevelEntrance);
+                CheckIfPlayerIsNearExit(LevelEntrance, LevelEntrance.NextLevel.PlayerEndPosition);
         }
 
         public void LoadLevelDataFromLevelData(LevelData levelData)
@@ -275,27 +280,14 @@ namespace SkeletonsAdventure.GameWorld
             ChestMenu.Position = chest.Position;
         }
 
-        private bool CheckIfPlayerIsNearLevelExit(LevelExit exit)
+        public void CheckIfPlayerIsNearExit(LevelExit exit, Vector2 targetPosition)
         {
-            bool nearExit = false;
-
             if (exit.ExitArea.Intersects(Player.GetRectangle))
-                nearExit = true;
-
-            return nearExit;
-        }
-
-        public void CheckIfPlayerIsNearExit(LevelExit exit)
-        {
-            if(CheckIfPlayerIsNearLevelExit(exit))
             {
-                Player.Info.Text += "\n" + CheckIfPlayerIsNearLevelExit(LevelExit); //TODO delete this
-
                 if (InputHandler.KeyReleased(Keys.R) ||
                             InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
                 {
-                    //TODO change location when have better method to determine where the player will go
-                    World.SetCurrentLevel(exit.NextLevel, exit.NextLevel.PlayerStartPosition); 
+                    World.SetCurrentLevel(exit.NextLevel, targetPosition);
                 }
             }
         }
