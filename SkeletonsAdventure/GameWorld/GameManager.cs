@@ -23,7 +23,8 @@ namespace SkeletonsAdventure.GameWorld
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
         private static Dictionary<string, GameItem> Items { get; set; } = [];
         private static Dictionary<string, Chest> Chests { get; set; } = [];
-        public static Dictionary<string, Chest> ChestsClone => GetChestsClone(); //TODO probably wont use
+        public static Dictionary<string, Chest> ChestsClone => GetChestsClone();
+        public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
 
         public static Texture2D SkeletonTexture { get; private set; }
         public static Texture2D SkeletonAttackTexture { get; private set; }
@@ -158,14 +159,14 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void CreateEnemies()
         {
-            GameItem Coins = GetItemsClone()["Coins"];
+            GameItem Coins = ItemsClone["Coins"];
             Coins.Quantity = 10;
 
             LootList loots = new();
-            loots.Add(GetItemsClone()["Robes"]);
-            loots.Add(GetItemsClone()["Bones"]);
+            loots.Add(ItemsClone["Robes"]);
+            loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
-            loots.Add(GetItemsClone()["Sword"]);
+            loots.Add(ItemsClone["Sword"]);
 
             List<ItemData> items = [];
 
@@ -209,14 +210,14 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void CreateChests() //TODO
         {
-            GameManager.GetItemsClone().TryGetValue("Coins", out GameItem Coins);
+            GameManager.ItemsClone.TryGetValue("Coins", out GameItem Coins);
             Coins.Quantity = 10;
 
             LootList loots = new();
-            loots.Add(GetItemsClone()["Robes"]);
-            loots.Add(GetItemsClone()["Bones"]);
+            loots.Add(ItemsClone["Robes"]);
+            loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
-            loots.Add(GetItemsClone()["Sword"]);
+            loots.Add(ItemsClone["Sword"]);
 
 
             Chest BasicChest = new()

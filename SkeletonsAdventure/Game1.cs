@@ -17,7 +17,7 @@ namespace SkeletonsAdventure
         public ExitScreen ExitScreen { get; private set; }
         public StateManager StateManager { get; private set; } = new();
         public static int ScreenWidth { get; } = 1280;
-        public static int ScreenHeight { get; } = 736;
+        public static int ScreenHeight { get; } = 720;
         public GameManager GameManager { get; private set; }
 
         public Game1()

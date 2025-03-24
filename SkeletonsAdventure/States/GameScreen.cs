@@ -9,13 +9,14 @@ using SkeletonsAdventure.Entities;
 using System;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
+using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.States
 {
     enum BoxSource { Game, Panel }
     public class GameScreen : State
     {
-        private Viewport _gameWindow, _sidePanel;
+        private Viewport _sidePanel;
         private InfoPanel _infoPanel;
         private Backpack _backpack;
         private MouseState _mouseState, _lastMouseState;
@@ -27,6 +28,8 @@ namespace SkeletonsAdventure.States
         public World World { get; private set; }
         public Player Player { get; set; }
         public GamePopUpBox PopUpBox { get; private set; }
+
+        public static int InfoPanelWidth { get; private set; }
 
         public GameScreen(Game1 game) : base(game)
         {
@@ -42,18 +45,15 @@ namespace SkeletonsAdventure.States
 
         public void Initialize()
         {
-            int gameWindowWidth = Game1.ScreenWidth - 192,
-                gameWindowHeight = Game1.ScreenHeight - 64;
-            _gameWindow = new(0, 0, gameWindowWidth, gameWindowHeight);
+            TiledMap backsplash = Content.Load<TiledMap>(@"TiledFiles/SidePanel");
+            InfoPanelWidth = backsplash.WidthInPixels;
 
-            World = new(Content, GraphicsDevice, _gameWindow);
+            World = new(Content, GraphicsDevice);
             Camera = World.CurrentLevel.Camera;
             Player = World.CurrentLevel.Player;
-
-            _sidePanel = new(gameWindowWidth, 0, 200, Game1.ScreenHeight);
-
-            TiledMap backsplash = Content.Load<TiledMap>(@"TiledFiles/SidePanel");
             _backpack = World.CurrentLevel.EntityManager.Player.Backpack;
+
+            _sidePanel = new(Game1.ScreenWidth - InfoPanelWidth, 0, InfoPanelWidth, Game1.ScreenHeight);
             _infoPanel = new(_sidePanel, _backpack.Items, GraphicsDevice, backsplash);
 
             CreatePopUpBox();
@@ -63,7 +63,6 @@ namespace SkeletonsAdventure.States
         {
             GraphicsDevice.Clear(Color.DarkCyan);
 
-            GraphicsDevice.Viewport = _gameWindow;
             World.Draw(spriteBatch);
 
             //Draw the sidepanel
@@ -103,41 +102,62 @@ namespace SkeletonsAdventure.States
             World.Update(gameTime);
 
             _infoPanel.Update(_backpack.Items);
+
             CheckUnderMouse(gameTime);
+
+            if (InputHandler.KeyReleased(Keys.I))
+            {
+                if (_infoPanel.Visible == true)
+                    _infoPanel.Visible = false;
+                else if (_infoPanel.Visible == false)
+                    _infoPanel.Visible = true;
+
+                if(_infoPanel.Visible)
+                {
+                    //Camera.Width = Game1.ScreenWidth - InfoPanelWidth;
+                }
+                else
+                {
+                    //Camera.Width = Game1.ScreenWidth;
+                }
+            }
         }
 
         public void CheckUnderMouse(GameTime gameTime)
         {
             _lastMouseState = _mouseState;
             _mouseState = Mouse.GetState();
-            Vector2 mousePos = new(_mouseState.X, _mouseState.Y), 
-                tempV,
-                pos = Vector2.Transform(mousePos, Matrix.Invert(Camera.Transformation)), //Mouse position in the world
-                offset = new(_gameWindow.Width, 0); //Offset because these items are on the sidepanel viewport and their position is relavie to that viewport
+            Vector2 tempV,
+                //Mouse position in the world and their position is relative to that viewport
+                pos = Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(Camera.Transformation)); 
             Rectangle transformedMouseRectangle = new((int)pos.X, (int)pos.Y, 1, 1), 
                 mouseRec = new(_mouseState.X, _mouseState.Y, 1,1),
                 tempR;
             
             itemUnderMouse = null;
 
-            foreach (GameItem item in _infoPanel.Items)
+
+            if (_infoPanel.Visible)
             {
-                //calculate the transformed position so we can find where the items are based on a world position
-                tempV = Vector2.Transform(item.Position, Matrix.Invert(Camera.Transformation)); 
-                tempV += offset; //offset the world position with the width of the game viewport
-                tempR = new((int)tempV.X, (int)tempV.Y, GameItem.Width, GameItem.Height);
-
-                Intersects(transformedMouseRectangle, tempR, item, BoxSource.Panel);
-
-                if(PopUpBox.Visible)
+                foreach (GameItem item in _infoPanel.Items)
                 {
-                    Vector2 tempPopUpPos = Vector2.Transform(PopUpBox.Position, Matrix.Invert(Camera.Transformation));
-                    Rectangle rec = new((int)tempPopUpPos.X, (int)tempPopUpPos.Y, 1, 1);
-                    if(rec.Intersects(tempR))
+                    //calculate the transformed position so we can find where the items are based on a world position
+                    tempV = Vector2.Transform(item.Position, Matrix.Invert(Camera.Transformation));
+                    tempV += new Vector2(_infoPanel.Position.X, 0); //offset the world position with the width of the game viewport
+                    tempR = new((int)tempV.X, (int)tempV.Y, GameItem.Width, GameItem.Height);
+
+                    Intersects(transformedMouseRectangle, tempR, item, BoxSource.Panel);
+
+                    if (PopUpBox.Visible)
+                    {
+                        Vector2 tempPopUpPos = Vector2.Transform(PopUpBox.Position, Matrix.Invert(Camera.Transformation));
+                        Rectangle rec = new((int)tempPopUpPos.X, (int)tempPopUpPos.Y, 1, 1);
+                        if (rec.Intersects(tempR))
+                            itemUnderMouse = item;
+                    }
+                    else if (transformedMouseRectangle.Intersects(tempR))
                         itemUnderMouse = item;
                 }
-                else if (transformedMouseRectangle.Intersects(tempR))
-                    itemUnderMouse = item;
             }
 
             foreach (GameItem item in World.CurrentLevel.EntityManager.DroppedLootManager.Items)
@@ -228,7 +248,7 @@ namespace SkeletonsAdventure.States
                     if (source == BoxSource.Panel)
                         mousePos = Vector2.Transform(mousePos, Camera.Transformation);
 
-                    PopUpBox.Position = mousePos - new Vector2(5,5);
+                    PopUpBox.Position = mousePos;
                     PopUpBox.Visible = true;
                     intersects = true;
                 }

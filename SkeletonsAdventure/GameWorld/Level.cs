@@ -32,9 +32,9 @@ namespace SkeletonsAdventure.GameWorld
         public MinMaxPair EnemyLevels { get; set; }
         private GraphicsDevice GraphicsDevice { get; }
         public GameTime TotalTimeInWorld { get; set; }
-        public Vector2 PlayerStartPosition { get; set; }
-        public Vector2 PlayerEndPosition { get; set; } //location of the exit so if the player comes back to the level this is where they will be placed
-        public Vector2 PlayerRespawnPosition { get; set; }
+        public Vector2 PlayerStartPosition { get; set; } = new(80, 80);
+        public Vector2 PlayerEndPosition { get; set; } = new(80, 80);//location of the exit so if the player comes back to the level this is where they will be placed
+        public Vector2 PlayerRespawnPosition { get; set; } = new(80, 80);
         public ChestManager ChestManager { get; set; }
         public Menu ChestMenu { get; set; }
         public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
@@ -57,8 +57,12 @@ namespace SkeletonsAdventure.GameWorld
             ChestManager = new(tiledMap.GetLayer<TiledMapTileLayer>("ChestLayer"));
             EnterExitLayer = TiledMap.GetLayer<TiledMapObjectLayer>("EnterExitLayer");
 
+            Width = tiledMap.WidthInPixels;
+            Height = tiledMap.HeightInPixels;
+            Name = tiledMap.Name[11..]; //trim "TiledFiles/" from the tiledmap name to use as the level name
+
             //ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(new Chest() { ID = 8 }); //TODO
-            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.GetChestsClone()["BasicChest"]);
+            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
             this.Enemies = Enemies;
 
@@ -71,7 +75,7 @@ namespace SkeletonsAdventure.GameWorld
             //TODO controls are temporary and used for debugging
             title = new Label
             {
-                Text = "Game Screen",
+                Text = "Name",
                 Color = Color.Orange
             };
             title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 20);
@@ -87,8 +91,8 @@ namespace SkeletonsAdventure.GameWorld
                 Texture = GameManager.GamePopUpBoxTexture
             };
 
-            Width = tiledMap.WidthInPixels;
-            Height = tiledMap.HeightInPixels;
+
+            //System.Diagnostics.Debug.WriteLine(tiledMap.Name[11..]);
         }
 
         public void Draw(SpriteBatch spriteBatch)

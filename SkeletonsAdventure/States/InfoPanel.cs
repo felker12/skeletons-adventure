@@ -11,7 +11,10 @@ namespace SkeletonsAdventure.States
     public class InfoPanel
     {
         public List<GameItem> Items { get; set; }
-        public Viewport Viewport { get; set; }
+        public bool Visible { get; set; } = true;
+        public Vector2 Position { get; set; }
+        public TiledMap Backsplash { get; private set; }
+
         private readonly Texture2D _texture;
         private Rectangle _viewportRec;
         private readonly TiledMapRenderer _tiledMapRenderer;
@@ -19,30 +22,34 @@ namespace SkeletonsAdventure.States
         public InfoPanel(Viewport viewport, List<GameItem> items, GraphicsDevice graphicsDevice, TiledMap backsplash)
         {
             Items = items;
-            Viewport = viewport;
             _texture = new(graphicsDevice, 1, 1);
             _texture.SetData([Color.DarkSlateGray]);
-            _viewportRec = new(0, 0, Viewport.Width, Viewport.Height);
+            _viewportRec = new(0, 0, viewport.Width, viewport.Height);
             _tiledMapRenderer = new(graphicsDevice);
             _tiledMapRenderer.LoadMap(backsplash);
+            Backsplash = backsplash;
+            Position = new(viewport.X, viewport.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(_texture, _viewportRec, Color.White);
-            spriteBatch.DrawRectangle(_viewportRec, Color.Black, 2, 0);
-            spriteBatch.End();
-
-            _tiledMapRenderer.Draw();
-
-            spriteBatch.Begin();
-            //Draw the backback items
-            foreach (GameItem item in Items)
+            if (Visible)
             {
-                item.Draw(spriteBatch);
+                //spriteBatch.Begin();
+                //spriteBatch.Draw(_texture, _viewportRec, Color.White);
+                //spriteBatch.DrawRectangle(_viewportRec, Color.Black, 2, 0);
+                //spriteBatch.End();
+
+                _tiledMapRenderer.Draw();
+
+                spriteBatch.Begin();
+                //Draw the backback items
+                foreach (GameItem item in Items)
+                {
+                    item.Draw(spriteBatch);
+                }
+                spriteBatch.End();
             }
-            spriteBatch.End();
         }
 
         public void Update(List<GameItem> items)

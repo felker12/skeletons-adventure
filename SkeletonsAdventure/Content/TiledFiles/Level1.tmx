@@ -136,12 +136,12 @@
  <objectgroup id="7" name="EnterExitLayer">
   <object id="1" name="Exit" x="599.833" y="1185.33" width="82.3333" height="60">
    <properties>
-    <property name="ToLocation" value="testLevel"/>
+    <property name="ToLocation" value="TestLevel"/>
    </properties>
   </object>
-  <object id="2" name="Entrance" x="125.5" y="36.6667" width="82.3333" height="60">
+  <object id="2" name="Entrance" x="128.167" y="39.3334" width="82.3333" height="60">
    <properties>
-    <property name="ToLocation" value="level0"/>
+    <property name="ToLocation" value="Level0"/>
    </properties>
   </object>
  </objectgroup>

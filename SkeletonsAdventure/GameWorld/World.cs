@@ -24,19 +24,17 @@ namespace SkeletonsAdventure.GameWorld
         private TiledMap _tiledMap;
         private readonly ContentManager _content;
         private readonly GraphicsDevice _graphics;
-        private Viewport _gameWindow;
 
-        public World(ContentManager content, GraphicsDevice graphics, Viewport gameWindow)
+        public World(ContentManager content, GraphicsDevice graphics)
         {
             _content = content;
             _graphics = graphics;
-            _gameWindow = gameWindow;
             Initialilze();
         }
 
         public void Initialilze()
         {
-            Camera = new(_gameWindow.Width, _gameWindow.Height);
+            Camera = new(Game1.ScreenWidth, Game1.ScreenHeight);
             Player = new()
             {
                 Position = new(80, 80),
@@ -47,7 +45,7 @@ namespace SkeletonsAdventure.GameWorld
             CreateLevels(_content, _graphics);
 
             //TODO
-            SetCurrentLevel(Levels["level0"], Levels["level0"].PlayerStartPosition);
+            SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             //SetCurrentLevel(Levels["testLevel"], true);
 
             if(CurrentLevel.LevelExit is not null)
@@ -65,26 +63,22 @@ namespace SkeletonsAdventure.GameWorld
 
             Player = CurrentLevel.Player;
 
-            //TODO
-            CurrentLevel.title.Text = "\n" + gameTime.TotalGameTime + 
-                "\n" + TotalTimeInWorld.TotalGameTime + "\n" + CurrentLevel.Width + "\n" + CurrentLevel.Height;
-
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
             {
-                SetCurrentLevel(Levels["level0"], Levels["level0"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad1))
             {
-                SetCurrentLevel(Levels["level1"], Levels["level1"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level1"], Levels["Level1"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad9))
             {
-                SetCurrentLevel(Levels["testLevel"], Levels["testLevel"].PlayerStartPosition);
+                SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad8))
             {
-                SetCurrentLevel(Levels["testing"], Levels["testing"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Testing"], Levels["Testing"].PlayerStartPosition);
             }
             //=======================================================================
         }
@@ -172,46 +166,37 @@ namespace SkeletonsAdventure.GameWorld
         public void CreateLevels(ContentManager content, GraphicsDevice graphics)
         {
             //Test Level
-            _tiledMap = content.Load<TiledMap>("TiledFiles/TestLevel");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/TestLevel");
             Level level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76,76))
             {
-                PlayerStartPosition = new(80, 80),
-                PlayerRespawnPosition = new(80, 80),
-                PlayerEndPosition = new(80,80),
-                Name = "testLevel"
             };
-            Levels.Add("testLevel", level);
+            Levels.Add(level.Name, level);
 
             //Test Level
-            _tiledMap = content.Load<TiledMap>("TiledFiles/Testing");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Testing");
             level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76, 76))
             {
-                PlayerStartPosition = new(80, 80),
-                PlayerRespawnPosition = new(80, 80),
-                PlayerEndPosition = new(80, 80),
-                Name = "testing"
             };
-            Levels.Add("testing", level);
+            Levels.Add(level.Name, level);
 
             //Level 1
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level1");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1");
             level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
             {
-                Name = "level1"
             };
-            Levels.Add("level1", level);
+            Levels.Add(level.Name, level);
 
             //Level 0
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles\Level0");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
             level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
             {
-                Name = "level0"
             };
-            Levels.Add("level0", level);
+            Levels.Add(level.Name, level);
 
             //Initialize Levels
             foreach (Level lvl in Levels.Values)
             {
+                System.Diagnostics.Debug.WriteLine(lvl.TiledMap.Name[11..] + " " + lvl.Name);
                 InitializeLevel(lvl);
             }
         }
@@ -234,13 +219,10 @@ namespace SkeletonsAdventure.GameWorld
                 if (obj.Name == "Exit")
                 {
                     level.LevelExit = new(obj, World.Levels[obj.Properties["ToLocation"]]);
-
                     level.PlayerEndPosition = new((int)obj.Position.X, (int)obj.Position.Y);
                 }
                 if (obj.Name == "Entrance")
                 {
-                    System.Diagnostics.Debug.WriteLine(level.Name);
-
                     if(obj.Properties.TryGetValue("ToLocation", out TiledMapPropertyValue value))
                         level.LevelEntrance = new(obj, World.Levels[value]);
 
@@ -257,7 +239,7 @@ namespace SkeletonsAdventure.GameWorld
         {
             for (int i = 0; i < 6; i++)
             {
-                foreach (GameItem item in GameManager.GetItemsClone().Values)
+                foreach (GameItem item in GameManager.ItemsClone.Values)
                 {
                     Player.Backpack.AddItem(item);
                 }
