@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.Controls;
+using SkeletonsAdventure.GameWorld;
 using System.Xml.Linq;
 
 namespace SkeletonsAdventure.ItemClasses
@@ -22,18 +23,18 @@ namespace SkeletonsAdventure.ItemClasses
         public Label ToolTip { get; set; }
         public string Name => GetItemData().Name;
 
-        public GameItem(BaseItem item, int quantity, SpriteFont font, Texture2D texture, Rectangle source)
+        public GameItem(BaseItem item, int quantity, Texture2D texture)
         {
             BaseItem = item.Clone();
             Image = texture;
-            SourceRectangle = source;
+            SourceRectangle = item.SourceRectangle;
             Type = item.Type;
 
             Quantity = quantity;
             ToolTip = new()
             {
                 Visible = false,
-                SpriteFont = font,
+                SpriteFont = GameManager.ToolTipFont,
                 Color = Color.Aqua
             };
 

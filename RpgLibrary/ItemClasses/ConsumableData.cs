@@ -6,28 +6,21 @@ namespace RpgLibrary.ItemClasses
         public Effect Effect { get; set; }
         public int EffectDuration { get; set; }
         public int EffectBonus { get; set; }
+
         public ConsumableData() : base()
         {
         }
 
+        protected ConsumableData(ConsumableData consumableData) : base(consumableData)
+        {
+            Effect = consumableData.Effect;
+            EffectDuration = consumableData.EffectDuration;
+            EffectBonus = consumableData.EffectBonus;
+        }
+
         public override ConsumableData Clone()
         {
-            return new ConsumableData()
-            {
-                Effect = Effect,
-                EffectBonus = EffectBonus,
-                EffectDuration = EffectBonus,
-                Name = Name,
-                Type = Type,
-                Description = Description,
-                Price = Price,
-                Weight = Weight,
-                Equipped = Equipped,
-                Stackable = Stackable,
-                Consumable = Consumable,
-                Position = Position,
-                Quantity = Quantity
-            };
+            return new(this);
         }
 
         public override string ToString()

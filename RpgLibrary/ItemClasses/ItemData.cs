@@ -14,28 +14,32 @@ namespace RpgLibrary.ItemClasses
         public bool Consumable;
         public Vector2 Position = Vector2.Zero;
         public int Quantity;
+        public Rectangle SourceRectangle;
+        public string TexturePath = string.Empty;
 
         public ItemData()
         {
         }
 
+        protected ItemData(ItemData itemData)
+        {
+            Name = itemData.Name;
+            Type = itemData.Type;
+            Description = itemData.Description;
+            Price = itemData.Price;
+            Weight = itemData.Weight;
+            Equipped = itemData.Equipped;
+            Stackable = itemData.Stackable;
+            Consumable = itemData.Consumable;
+            Position = itemData.Position;
+            Quantity = itemData.Quantity;
+            SourceRectangle = itemData.SourceRectangle;
+            TexturePath = itemData.TexturePath;
+        }
+
         public virtual ItemData Clone()
         {
-            ItemData itemData = new()
-            {
-                Name = Name, 
-                Type = Type,
-                Description = Description,
-                Price = Price,
-                Weight = Weight,
-                Equipped = Equipped,
-                Stackable = Stackable,
-                Consumable = Consumable,
-                Position = Position,
-                Quantity = Quantity
-            };
-
-            return itemData;
+            return new(this);
         }
 
         public override string ToString()
@@ -48,7 +52,8 @@ namespace RpgLibrary.ItemClasses
             toString += Stackable + ", ";
             toString += Consumable + ", ";
             toString += Position.ToString() + ", ";
-            toString += Quantity;
+            toString += Quantity + ", ";
+            toString += SourceRectangle.ToString();
             return toString;
         }
     }

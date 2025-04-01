@@ -9,8 +9,8 @@ namespace RpgLibrary.WorldClasses
     {
         public MinMaxPair MinMaxPair { get; set; } = new();
         public EntityManagerData EntityManagerData { get; set; } = new();
-        public List<ItemData> DroppedItemDatas { get; set; } = [];
-        public List<ChestData> Chests { get; set; } = [];
+        public List<ItemData> DroppedItemDatas { get; set; } = new();
+        public List<ChestData> Chests { get; set; } = new();
 
         public LevelData() { }
 

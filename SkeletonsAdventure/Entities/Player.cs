@@ -14,8 +14,8 @@ namespace SkeletonsAdventure.Entities
     {
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
-        public int TotalXP { get; set; } 
-        public int XPSinceLastLevel { get; set; }
+        public int TotalXP { get; set; } = 0;
+        public int XPSinceLastLevel { get; set; } = 0;
 
         public Player() : base()
         {
@@ -31,8 +31,8 @@ namespace SkeletonsAdventure.Entities
 
         public Player(PlayerData playerData) : base(playerData)
         {
-            TotalXP = 0; //TODO
-            XPSinceLastLevel = 0; //TODO
+            TotalXP = playerData.totalXP;
+            XPSinceLastLevel = playerData.xPSinceLastLevel;
 
             Initialize();
         }
@@ -40,7 +40,7 @@ namespace SkeletonsAdventure.Entities
         public void UpdatePlayerData(PlayerData playerData)
         {
             UpdateEntityData(playerData);
-            //TODO
+
             TotalXP = playerData.totalXP;
             XPSinceLastLevel = playerData.xPSinceLastLevel;
 

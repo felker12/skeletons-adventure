@@ -9,23 +9,16 @@ namespace RpgLibrary.ItemClasses
         public WeaponData() : base()
         {
         }
+
+        protected WeaponData(WeaponData weaponData) : base(weaponData)
+        {
+            NumberHands = weaponData.NumberHands;
+            AttackValue = weaponData.AttackValue;
+        }
+
         public override WeaponData Clone()
         {
-            return new WeaponData()
-            {
-                AttackValue = AttackValue,
-                NumberHands = NumberHands,
-                Name = Name,
-                Type = Type,
-                Description = Description,
-                Price = Price,
-                Weight = Weight,
-                Equipped = Equipped,
-                Stackable = Stackable,
-                Consumable = Consumable,
-                Position = Position,
-                Quantity = Quantity
-            };
+            return new(this);
         }
 
         public override string ToString()

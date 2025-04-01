@@ -10,24 +10,15 @@ namespace RpgLibrary.ItemClasses
         {
         }
 
+        protected ArmorData(ArmorData armorData) : base(armorData)
+        {
+            ArmorLocation = armorData.ArmorLocation;
+            DefenseValue = armorData.DefenseValue;
+        }
 
         public override ArmorData Clone()
         {
-            return new ArmorData()
-            {
-                ArmorLocation = ArmorLocation,
-                DefenseValue = DefenseValue,
-                Name = Name,
-                Type = Type,
-                Description = Description,
-                Price = Price,
-                Weight = Weight,
-                Equipped = Equipped,
-                Stackable = Stackable,
-                Consumable = Consumable,
-                Position = Position,
-                Quantity = Quantity
-            };
+            return new(this);
         }
 
         public override string ToString()

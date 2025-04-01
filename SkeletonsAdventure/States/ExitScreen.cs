@@ -50,7 +50,6 @@ namespace SkeletonsAdventure.States
         public override void Draw(SpriteBatch spriteBatch)
         {
             GraphicsDevice.Clear(Color.MidnightBlue);
-            GraphicsDevice.Viewport = Game.GameViewport;
 
             spriteBatch.Begin();
 

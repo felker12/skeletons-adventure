@@ -9,7 +9,7 @@ namespace RpgLibrary.GameObjectClasses
         public int ID { get; set; } = -1;
         public ChestType ChestType { get; set; }
         public Vector2 Position { get; set; } = new();
-        public List<ItemData> ItemDatas { get; set; } = [];
+        public List<ItemData> ItemDatas { get; set; } = new();
 
         public ChestData() { }
 

@@ -41,12 +41,11 @@ namespace SkeletonsAdventure.GameWorld
                 RespawnPosition = new(80, 80)
             };
 
-            Levels = []; //Clear the levels dictionary 
+            Levels = []; //Clear the levels dictionary. This is needed because the levels are static and will persist between game instances
             CreateLevels(_content, _graphics);
 
             //TODO
             SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
-            //SetCurrentLevel(Levels["testLevel"], true);
 
             if(CurrentLevel.LevelExit is not null)
                 Player.Position = CurrentLevel.LevelExit.ExitPosition - new Vector2(0,20); //TODO
@@ -196,7 +195,6 @@ namespace SkeletonsAdventure.GameWorld
             //Initialize Levels
             foreach (Level lvl in Levels.Values)
             {
-                System.Diagnostics.Debug.WriteLine(lvl.TiledMap.Name[11..] + " " + lvl.Name);
                 InitializeLevel(lvl);
             }
         }
@@ -231,7 +229,7 @@ namespace SkeletonsAdventure.GameWorld
                 }
 
                 rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
-                level.Recs.Add(rec);
+                level.EnterExitLayerObjectRectangles.Add(rec);
             }
         }
 
@@ -245,8 +243,13 @@ namespace SkeletonsAdventure.GameWorld
                 }
             }
 
-            Player.EquippedItems.TryEquipItem(Player.Backpack.Items[1]);
-            Player.EquippedItems.TryEquipItem(Player.Backpack.Items[2]);
+            GameItem Coins = GameManager.ItemsClone["Coins"];
+            Coins.Quantity = 20;
+
+            Player.Backpack.AddItem(Coins);
+
+            Player.EquippedItems.TryEquipItem(Player.Backpack.Items[0]);
+            Player.EquippedItems.TryEquipItem(Player.Backpack.Items[3]);
         }
     }
 }

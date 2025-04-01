@@ -8,7 +8,7 @@ namespace SkeletonsAdventure.Engines
         private readonly static Random rnd = new();
         public static int CalculateDamage(Entity attacker, Entity target)
         {
-            int dmg, num;
+            int dmg, num = 0;
             //add the 1 because the random.Next() will only provide a number less than damage
             dmg = (attacker.attack + attacker.weaponAttack) - (target.defence + target.armourDefence) + 1; 
 
@@ -20,11 +20,6 @@ namespace SkeletonsAdventure.Engines
                     num = rnd.Next(dmg);
                 }
             }
-            else
-                num = 0;
-
-            //TODO
-            //System.Diagnostics.Debug.WriteLine($"attack = {attacker.attack} + defence = {target.defence} = dmg = {num}");
 
             return num;
         }

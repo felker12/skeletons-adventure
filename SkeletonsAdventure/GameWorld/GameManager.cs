@@ -10,6 +10,9 @@ using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
 using RpgLibrary.GameObjectClasses;
+using System.Xml;
+using System.IO;
+using System.Linq;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -38,8 +41,12 @@ namespace SkeletonsAdventure.GameWorld
         {
             Game = game;
             Content = game.Content;
+
             InfoFont = Content.Load<SpriteFont>("Fonts/Font");
+            ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
+
             GraphicsDevice = game.GraphicsDevice;
+
             LoadTextures ();
             CreateItems();
             CreateEnemies();
@@ -109,7 +116,7 @@ namespace SkeletonsAdventure.GameWorld
         {
             SkeletonTexture = Content.Load<Texture2D>(@"Player\SkeletonSpriteSheet");
             SkeletonAttackTexture = Content.Load<Texture2D>(@"Player\SkeletonAttackSprites");
-            SpiderTexture = Content.Load<Texture2D>(@"EntitySprites/spider");
+            SpiderTexture = Content.Load<Texture2D>(@"EntitySprites\spider");
 
             GamePopUpBoxTexture = new(GraphicsDevice, 1, 1);
             GamePopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
@@ -120,41 +127,53 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void CreateItems()
         {
-            WeaponData _weaponData = Content.Load<WeaponData>(@"Items\Weapons\Sword");
-            Weapon _sword = new(_weaponData.Clone());
-            ItemData _coinsData = Content.Load<ItemData>(@"Items\Coins");
-            BaseItem _coins = new(_coinsData.Clone());
-            ArmorData _armorData = Content.Load<ArmorData>(@"Items\Armor\Robes");
-            Armor _armor = new(_armorData.Clone());
-            ConsumableData _consumableData = Content.Load<ConsumableData>(@"Items\Consumables\Bones");
-            Consumable _bones = new(_consumableData.Clone());
+            string[] folders = Directory.GetDirectories(@"Content\Items");
+            string[] names;
+            string filePath;
 
-            Texture2D texture = Content.Load<Texture2D>(@"TileSets/ProjectUtumno_full");
-            ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
-            Rectangle source = new(1952, 1472, 32, 32);
-            GameItem basicSword = new(_sword, 1, ToolTipFont, texture, source);
+            ItemData itemData;
+            BaseItem baseItem;
+            Texture2D itemTexure;
+            GameItem gameItem;
+            Weapon weapon;
+            Armor armor;
+            Consumable consumable;
 
-            source = new(1376, 1280, 32, 32);
-            GameItem coins = new(_coins, 5, ToolTipFont, texture, source);
+            foreach (string folder in folders)
+            {
+                //the name of the folder without extensions and the complete file path
+                names = [.. Directory.GetFiles(folder).Select(fileName => Path.GetFileNameWithoutExtension(fileName))];
 
-            source = new(832, 1216, 32, 32);
-            GameItem basicRobe = new(_armor, 1, ToolTipFont, texture, source);
+                foreach (string name in names)
+                {
+                    filePath = $@"..\{folder}\{name}"; //add the folder name to the path of the folder to get the file path without the extension
+                    itemData = Content.Load<ItemData>(filePath);
+                    baseItem = new(itemData.Clone());
+                    itemTexure = Content.Load<Texture2D>(@$"{baseItem.TexturePath}");
 
-            texture = Content.Load<Texture2D>(@"Items/Bones");
-            source = new(0, 0, 32, 32);
-            GameItem bones = new(_bones, 1, ToolTipFont, texture, source);
+                    //cast the itemData to the correct type
+                    if (itemData is WeaponData weaponData)
+                    {
+                        weapon = new(weaponData.Clone());
+                        baseItem = weapon;
+                    }
+                    else if (itemData is ArmorData armorData)
+                    {
+                        armor = new(armorData.Clone());
+                        baseItem = armor;
+                    }
+                    else if (itemData is ConsumableData consumableData)
+                    {
+                        consumable = new(consumableData.Clone());
+                        baseItem = consumable;
+                    }
 
-            if (Items.ContainsKey(coins.BaseItem.Name) == false)
-                Items.Add(coins.BaseItem.Name, coins);
+                    gameItem = new(baseItem, 1, itemTexure);
 
-            if (Items.ContainsKey(basicSword.BaseItem.Name) == false)
-                Items.Add(basicSword.BaseItem.Name, basicSword);
-
-            if (Items.ContainsKey(basicRobe.BaseItem.Name) == false)
-                Items.Add(basicRobe.BaseItem.Name, basicRobe);
-
-            if (Items.ContainsKey(bones.BaseItem.Name) == false)
-                Items.Add(bones.BaseItem.Name, bones);
+                    if (Items.ContainsKey(gameItem.Name) == false)
+                        Items.Add(gameItem.Name, gameItem);
+                }
+            }
         }
 
         public static void CreateEnemies()
@@ -175,7 +194,6 @@ namespace SkeletonsAdventure.GameWorld
                 items.Add(loot.GetItemData());
             }
 
-
             EntityData entityData = new(null, 20, 2, 9, 0, 5, null, null, 20, false, null)
             {
                 Items = items
@@ -190,7 +208,6 @@ namespace SkeletonsAdventure.GameWorld
             {
                 LootList = loots
             };
-
 
             entityData = new(null, 15, 2, 7, 0, 4, new Vector2(0, 0), new Vector2(0, 0), 15, false, new TimeSpan())
             {
@@ -207,7 +224,6 @@ namespace SkeletonsAdventure.GameWorld
             Enemies.Add("Spider", spider);
         }
 
-
         public static void CreateChests() //TODO
         {
             GameManager.ItemsClone.TryGetValue("Coins", out GameItem Coins);
@@ -218,7 +234,6 @@ namespace SkeletonsAdventure.GameWorld
             loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
             loots.Add(ItemsClone["Sword"]);
-
 
             Chest BasicChest = new()
             {
@@ -231,6 +246,5 @@ namespace SkeletonsAdventure.GameWorld
             if (Chests.ContainsKey(name) == false)
                 Chests.Add(name, BasicChest);
         }
-
     }
 }

@@ -11,5 +11,7 @@
     <Consumable>false</Consumable>
     <Position>0 0</Position>
     <Quantity>1</Quantity>
+    <SourceRectangle>1376 1280 32 32</SourceRectangle>
+    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
   </Asset>
 </XnaContent>

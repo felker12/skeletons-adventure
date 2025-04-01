@@ -11,6 +11,8 @@
     <Consumable>false</Consumable>
     <Position>0 0</Position>
     <Quantity>1</Quantity>
+    <SourceRectangle>1952 1472 32 32</SourceRectangle>
+    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
     <NumberHands>Main</NumberHands>
     <AttackValue>10</AttackValue>
   </Asset>

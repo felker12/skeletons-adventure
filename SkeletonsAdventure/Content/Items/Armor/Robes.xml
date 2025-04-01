@@ -11,6 +11,8 @@
     <Consumable>false</Consumable>
     <Position>0 0</Position>
     <Quantity>1</Quantity>
+    <SourceRectangle>832 1216 32 32</SourceRectangle>
+    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
     <ArmorLocation>Body</ArmorLocation>
     <DefenseValue>2</DefenseValue>
   </Asset>

@@ -90,15 +90,15 @@
 /processorParam:TextureFormat=Color
 /build:Items/Bones3.png
 
-#begin Items/Coins.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:Items/Coins.xml
-
 #begin Items/Consumables/Bones.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:Items/Consumables/Bones.xml
+
+#begin Items/Currency/Coins.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:Items/Currency/Coins.xml
 
 #begin Items/Weapons/Sword.xml
 /importer:XmlImporter

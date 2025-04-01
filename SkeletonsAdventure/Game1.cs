@@ -31,7 +31,6 @@ namespace SkeletonsAdventure
                 PreferredBackBufferHeight = ScreenHeight,
             };
             Graphics.ApplyChanges();
-            //Graphics.GraphicsDevice.Viewport = GameViewport;
 
             IsMouseVisible = true;
 

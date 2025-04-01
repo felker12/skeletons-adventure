@@ -45,7 +45,7 @@ namespace SkeletonsAdventure.GameWorld
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
         private readonly Dictionary<string, Enemy> Enemies = [];
 
-        public List<Rectangle> Recs { get; set; } = []; //TODO
+        public List<Rectangle> EnterExitLayerObjectRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for exits
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
@@ -61,7 +61,6 @@ namespace SkeletonsAdventure.GameWorld
             Height = tiledMap.HeightInPixels;
             Name = tiledMap.Name[11..]; //trim "TiledFiles/" from the tiledmap name to use as the level name
 
-            //ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(new Chest() { ID = 8 }); //TODO
             ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
             this.Enemies = Enemies;
@@ -75,7 +74,7 @@ namespace SkeletonsAdventure.GameWorld
             //TODO controls are temporary and used for debugging
             title = new Label
             {
-                Text = "Name",
+                Text = Name,
                 Color = Color.Orange
             };
             title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 20);
@@ -84,15 +83,13 @@ namespace SkeletonsAdventure.GameWorld
             {
                 title
             };
+            //=================================================================
 
             ChestMenu = new()
             {
                 Visible = false,
                 Texture = GameManager.GamePopUpBoxTexture
             };
-
-
-            //System.Diagnostics.Debug.WriteLine(tiledMap.Name[11..]);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -118,7 +115,7 @@ namespace SkeletonsAdventure.GameWorld
                 ChestMenu.Draw(spriteBatch);
             }
 
-            foreach(Rectangle rec in Recs) //TODO delete this 
+            foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
             {
                 spriteBatch.DrawRectangle(rec, Color.White, 1, 0);
             }
