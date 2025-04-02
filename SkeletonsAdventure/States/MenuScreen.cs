@@ -2,9 +2,9 @@
 using SkeletonsAdventure.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.Data;
 using System.IO;
 using RpgLibrary.WorldClasses;
+using RpgLibrary.DataClasses;
 
 namespace SkeletonsAdventure.States
 {

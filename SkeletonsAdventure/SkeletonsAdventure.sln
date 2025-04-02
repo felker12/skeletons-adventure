@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkeletonsAdventure", "Skele
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgLibrary", "..\RpgLibrary\RpgLibrary.csproj", "{03A25AD1-CCF2-4641-863C-FF86C7D976E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgEditor", "..\RpgEditor\RpgEditor.csproj", "{0CC73D5B-A663-414F-B22A-BEC5C8E7755E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{03A25AD1-CCF2-4641-863C-FF86C7D976E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03A25AD1-CCF2-4641-863C-FF86C7D976E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03A25AD1-CCF2-4641-863C-FF86C7D976E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC73D5B-A663-414F-B22A-BEC5C8E7755E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC73D5B-A663-414F-B22A-BEC5C8E7755E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC73D5B-A663-414F-B22A-BEC5C8E7755E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC73D5B-A663-414F-B22A-BEC5C8E7755E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,14 +1,13 @@
-﻿using System.IO;
-using System.Xml;
+﻿using System.Xml;
 using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
 
-namespace SkeletonsAdventure.Data
+namespace RpgLibrary.DataClasses
 {
-    static class XnaSerializer
+    public static class XnaSerializer
     {
         public static void Serialize<T>(string filename, T data)
         {
-            XmlWriterSettings settings = new XmlWriterSettings
+            XmlWriterSettings settings = new()
             {
                 Indent = true
             };
@@ -20,7 +19,7 @@ namespace SkeletonsAdventure.Data
         public static T Deserialize<T>(string filename)
         {
             T data;
-            using (FileStream stream = new FileStream(filename, FileMode.Open))
+            using (FileStream stream = new(filename, FileMode.Open))
             {
                 using (XmlReader reader = XmlReader.Create(stream))
                 {

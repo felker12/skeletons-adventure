@@ -10,7 +10,6 @@ using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
 using RpgLibrary.GameObjectClasses;
-using System.Xml;
 using System.IO;
 using System.Linq;
 
