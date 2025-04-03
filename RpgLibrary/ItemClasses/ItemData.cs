@@ -49,11 +49,13 @@ namespace RpgLibrary.ItemClasses
             toString += Description + ", ";
             toString += Price + ", ";
             toString += Weight + ", ";
+            toString += Equipped + ", ";
             toString += Stackable + ", ";
             toString += Consumable + ", ";
             toString += Position.ToString() + ", ";
             toString += Quantity + ", ";
-            toString += SourceRectangle.ToString();
+            toString += SourceRectangle.ToString() + ", ";
+            toString += TexturePath;
             return toString;
         }
     }

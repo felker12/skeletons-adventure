@@ -18,8 +18,8 @@ namespace RpgEditor
     public partial class FormMain : Form
     {
         RPG RPG { get; set; } = new();
-
         FormArmor? frmArmor;
+        FormWeapon? frmWeapon;
 
         public static string ItemPath { get; set; } = string.Empty;
         public static string GamePath { get; set; } = string.Empty;
@@ -164,6 +164,12 @@ namespace RpgEditor
             };
             frmArmor.FillListBox();
 
+            frmWeapon ??= new()
+            {
+                MdiParent = this
+            };
+            frmWeapon.FillListBox();
+
             itemsToolStripMenuItem.Enabled = true;
         }
 
@@ -174,7 +180,12 @@ namespace RpgEditor
 
         private void WeaponsToolStripMenuItem_Click(object? sender, EventArgs e)
         {
-
+            frmWeapon ??= new()
+            {
+                MdiParent = this
+            };
+            frmWeapon.Show();
+            frmWeapon.BringToFront();
         }
 
         private void ArmorToolStripMenuItem_Click(object? sender, EventArgs e)

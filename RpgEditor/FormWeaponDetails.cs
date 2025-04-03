@@ -1,58 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RpgLibrary.ItemClasses;
-using Microsoft.Xna.Framework;
 
 namespace RpgEditor
 {
-    public partial class FormArmorDetails : Form
+    public partial class FormWeaponDetails : Form
     {
-        public ArmorData? Armor { get; set; } = null;
-        public FormArmorDetails()
+        public WeaponData? Weapon { get; set; }
+
+        public FormWeaponDetails()
         {
             InitializeComponent();
-
-            this.Load += FormArmorDetails_Load;
-            this.FormClosing += new FormClosingEventHandler(FormArmorDetails_FormClosing);
-            btnOK.Click += new EventHandler(BtnOK_Click);
-            btnCancel.Click += new EventHandler(BtnCancel_Click);
+            this.Load += FormWeaponDetails_Load;
+            this.FormClosing += new FormClosingEventHandler(FormWeaponDetails_FormClosing);
+            btnOK.Click += BtnOK_Click;
+            btnCancel.Click += BtnCancel_Click;
         }
 
-        void FormArmorDetails_Load(object? sender, EventArgs e)
+        void FormWeaponDetails_Load(object? sender, EventArgs e)
         {
-            foreach (ArmorLocation location in Enum.GetValues(typeof(ArmorLocation)))
-                cboArmorLocation.Items.Add(location);
+            foreach (Hands location in Enum.GetValues(typeof(Hands)))
+                cboHands.Items.Add(location);
+            cboHands.SelectedIndex = 0;
 
-            cboArmorLocation.SelectedIndex = 0;
-
-            if (Armor != null)
+            if (Weapon != null)
             {
-                tbName.Text = Armor.Name;
-                tbType.Text = Armor.Type;
-                tbDescription.Text = Armor.Description;
-                mtbPrice.Text = Armor.Price.ToString();
-                nudWeight.Value = (decimal)Armor.Weight;
-                cbEquipped.Checked = Armor.Equipped;
-                cbStackable.Checked = Armor.Stackable;
-                cbConsumable.Checked = Armor.Consumable;
-                mtbPositionX.Text = Armor.Position.X.ToString();
-                mtbPositionY.Text = Armor.Position.Y.ToString();
-                mtbQuantity.Text = Armor.Quantity.ToString();
-                mtbX.Text = Armor.SourceRectangle.X.ToString();
-                mtbY.Text = Armor.SourceRectangle.Y.ToString();
-                mtbWidth.Text = Armor.SourceRectangle.Width.ToString();
-                mtbHeight.Text = Armor.SourceRectangle.Height.ToString();
-                tbPath.Text = Armor.TexturePath;
-                cboArmorLocation.SelectedIndex = (int)Armor.ArmorLocation;
-                mtbDefenseValue.Text = Armor.DefenseValue.ToString();
+                tbName.Text = Weapon.Name;
+                tbType.Text = Weapon.Type;
+                mtbPrice.Text = Weapon.Price.ToString();
+                tbDescription.Text = Weapon.Description;
+                nudWeight.Value = (decimal)Weapon.Weight;
+                cbEquipped.Checked = Weapon.Equipped;
+                cbStackable.Checked = Weapon.Stackable;
+                cbConsumable.Checked = Weapon.Consumable;
+                mtbPositionX.Text = Weapon.Position.X.ToString();
+                mtbPositionY.Text = Weapon.Position.Y.ToString();
+                mtbQuantity.Text = Weapon.Quantity.ToString();
+                mtbX.Text = Weapon.SourceRectangle.X.ToString();
+                mtbY.Text = Weapon.SourceRectangle.Y.ToString();
+                mtbWidth.Text = Weapon.SourceRectangle.Width.ToString();
+                mtbHeight.Text = Weapon.SourceRectangle.Height.ToString();
+                tbPath.Text = Weapon.TexturePath;
+                cboHands.SelectedIndex = (int)Weapon.NumberHands;
+                mtbAttackValue.Text = Weapon.AttackValue.ToString();
             }
         }
-        void FormArmorDetails_FormClosing(object? sender, FormClosingEventArgs e)
+        void FormWeaponDetails_FormClosing(object? sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -76,13 +76,7 @@ namespace RpgEditor
 
             weight = (float)nudWeight.Value;
 
-            if (!int.TryParse(mtbDefenseValue.Text, out int defVal))
-            {
-                MessageBox.Show("Defense value must be an interger value.");
-                return;
-            }
-
-            if(!float.TryParse(mtbPositionX.Text, out float posX))
+            if (!float.TryParse(mtbPositionX.Text, out float posX))
             {
                 MessageBox.Show("Position X value must be a float value.");
                 return;
@@ -94,13 +88,13 @@ namespace RpgEditor
                 return;
             }
 
-            if(!int.TryParse(mtbQuantity.Text, out int quantity))
+            if (!int.TryParse(mtbQuantity.Text, out int quantity))
             {
                 MessageBox.Show("Quantity value must be a float value.");
                 return;
             }
 
-            if(!int.TryParse(mtbPositionX.Text, out int sourcePosX))
+            if (!int.TryParse(mtbPositionX.Text, out int sourcePosX))
             {
                 MessageBox.Show("Position X value must be a float value.");
                 return;
@@ -110,7 +104,7 @@ namespace RpgEditor
                 MessageBox.Show("Position Y value must be a float value.");
                 return;
             }
-            if(!int.TryParse(mtbHeight.Text, out int height))
+            if (!int.TryParse(mtbHeight.Text, out int height))
             {
                 MessageBox.Show("Height value must be a float value.");
                 return;
@@ -121,8 +115,7 @@ namespace RpgEditor
                 return;
             }
 
-
-            Armor = new()
+            Weapon = new WeaponData
             {
                 Name = tbName.Text,
                 Type = tbType.Text,
@@ -136,24 +129,18 @@ namespace RpgEditor
                 Quantity = quantity,
                 SourceRectangle = new Microsoft.Xna.Framework.Rectangle(sourcePosX, sourcePosY, width, height),
                 TexturePath = tbPath.Text,
-                ArmorLocation = (ArmorLocation)cboArmorLocation.SelectedIndex,
-                DefenseValue = defVal
+                NumberHands = (Hands)cboHands.SelectedItem,
+                AttackValue = int.Parse(mtbAttackValue.Text)
             };
 
-            this.FormClosing -= FormArmorDetails_FormClosing;
+            this.FormClosing -= FormWeaponDetails_FormClosing;
             this.Close();
         }
         void BtnCancel_Click(object? sender, EventArgs e)
         {
-            Armor = null;
-            this.FormClosing -= FormArmorDetails_FormClosing;
+            Weapon = null;
+            this.FormClosing -= FormWeaponDetails_FormClosing;
             this.Close();
         }
-
-        private void FormArmorDetails_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

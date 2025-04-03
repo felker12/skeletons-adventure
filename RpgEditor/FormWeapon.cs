@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace RpgEditor
 {
-    public partial class FormArmor : FormDetails
+    public partial class FormWeapon : FormDetails
     {
-        public FormArmor()
+        public FormWeapon()
         {
             InitializeComponent();
 
@@ -21,17 +21,17 @@ namespace RpgEditor
             btnEdit.Click += BtnEdit_Click;
             btnDelete.Click += BtnDelete_Click;
         }
-
         void BtnAdd_Click(object? sender, EventArgs e)
         {
-            using (FormArmorDetails frmArmorDetails = new())
+            using (FormWeaponDetails frmWeaponDetails = new())
             {
-                frmArmorDetails.ShowDialog();
-                if (frmArmorDetails.Armor != null)
+                frmWeaponDetails.ShowDialog();
+                if (frmWeaponDetails.Weapon != null)
                 {
-                    AddArmor(frmArmorDetails.Armor);
+                    AddWeapon(frmWeaponDetails.Weapon);
                 }
             }
+
         }
         void BtnEdit_Click(object? sender, EventArgs e)
         {
@@ -39,25 +39,25 @@ namespace RpgEditor
             {
                 string? detail = lbDetails.SelectedItem.ToString();
 
-                if(detail != null)
+                if (detail != null)
                 {
-                    string[]? parts = detail.Split(',');
+                    string[] parts = detail.Split(',');
                     string entity = parts[0].Trim();
-                    ArmorData? data = ItemDataManager.ArmorData[entity];
-                    ArmorData? newData = null;
-                    using (FormArmorDetails frmArmorData = new FormArmorDetails())
+                    WeaponData? data = ItemDataManager.WeaponData[entity];
+                    WeaponData? newData = null;
+                    using (FormWeaponDetails frmWeaponData = new())
                     {
-                        frmArmorData.Armor = data;
-                        frmArmorData.ShowDialog();
-                        if (frmArmorData.Armor == null)
+                        frmWeaponData.Weapon = data;
+                        frmWeaponData.ShowDialog();
+                        if (frmWeaponData.Weapon == null)
                             return;
-                        if (frmArmorData.Armor.Name == entity)
+                        if (frmWeaponData.Weapon.Name == entity)
                         {
-                            ItemDataManager.ArmorData[entity] = frmArmorData.Armor;
+                            ItemDataManager.WeaponData[entity] = frmWeaponData.Weapon;
                             FillListBox();
                             return;
                         }
-                        newData = frmArmorData.Armor;
+                        newData = frmWeaponData.Weapon;
                     }
                     DialogResult result = MessageBox.Show(
                     "Name has changed. Do you want to add a new entry?",
@@ -67,13 +67,13 @@ namespace RpgEditor
                     MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                         return;
-                    if (ItemDataManager.ArmorData.ContainsKey(newData.Name))
+                    if (ItemDataManager.WeaponData.ContainsKey(newData.Name))
                     {
                         MessageBox.Show("Entry already exists. Use Edit to modify the entry.");
                         return;
                     }
                     lbDetails.Items.Add(newData);
-                    ItemDataManager.ArmorData.Add(newData.Name, newData);
+                    ItemDataManager.WeaponData.Add(newData.Name, newData);
                 }
             }
         }
@@ -87,46 +87,43 @@ namespace RpgEditor
                     return;
 
                 string[] parts = detail.Split(',');
-
                 string entity = parts[0].Trim();
                 DialogResult result = MessageBox.Show(
                 "Are you sure you want to delete " + entity + "?",
 
                 "Delete",
-
                 MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     lbDetails.Items.RemoveAt(lbDetails.SelectedIndex);
-                    ItemDataManager.ArmorData.Remove(entity);
-                    if (File.Exists(FormMain.ItemPath + @"\Armor\" + entity + ".xml"))
-                        File.Delete(FormMain.ItemPath + @"\Armor\" + entity + ".xml");
+                    ItemDataManager.WeaponData.Remove(entity);
+                    if (File.Exists(FormMain.ItemPath + @"\Weapon\" + entity + ".xml"))
+                        File.Delete(FormMain.ItemPath + @"\Weapon\" + entity + ".xml");
                 }
             }
         }
-
         public void FillListBox()
         {
             lbDetails.Items.Clear();
-            foreach (string s in FormDetails.ItemDataManager.ArmorData.Keys)
-                lbDetails.Items.Add(FormDetails.ItemDataManager.ArmorData[s]);
+            foreach (string s in FormDetails.ItemDataManager.WeaponData.Keys)
+                lbDetails.Items.Add(FormDetails.ItemDataManager.WeaponData[s]);
         }
-        private void AddArmor(ArmorData armorData)
+        private void AddWeapon(WeaponData weaponData)
         {
-            if (FormDetails.ItemDataManager.ArmorData.ContainsKey(armorData.Name))
+            if (FormDetails.ItemDataManager.WeaponData.ContainsKey(weaponData.Name))
             {
                 DialogResult result = MessageBox.Show(
-                armorData.Name + " already exists. Overwrite it?",
-                "Existing armor",
+                weaponData.Name + " already exists. Overwrite it?",
+                "Existing weapon",
                 MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                     return;
-                ItemDataManager.ArmorData[armorData.Name] = armorData;
+                ItemDataManager.WeaponData[weaponData.Name] = weaponData;
                 FillListBox();
                 return;
             }
-            ItemDataManager.ArmorData.Add(armorData.Name, armorData);
-            lbDetails.Items.Add(armorData);
+            ItemDataManager.WeaponData.Add(weaponData.Name, weaponData);
+            lbDetails.Items.Add(weaponData);
         }
     }
 }

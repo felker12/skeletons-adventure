@@ -14,7 +14,7 @@ namespace RpgEditor
 {
     public partial class FormDetails : Form
     {
-        public static ItemDataManager? ItemDataManager { get; private set; }
+        public static ItemDataManager ItemDataManager { get; private set; }
         public FormDetails()
         {
             InitializeComponent();
@@ -70,9 +70,8 @@ namespace RpgEditor
                 ArmorData armorData = XnaSerializer.Deserialize<ArmorData>(s);
                 ItemDataManager.ArmorData.Add(armorData.Name, armorData);
 
-
+                //TODO
                 System.Diagnostics.Debug.WriteLine("Armour data " + armorData.ToString());
-                System.Diagnostics.Debug.WriteLine("Armour count1 " + FormDetails.ItemDataManager.ArmorData.Count);
             }
 
             fileNames = Directory.GetFiles(
@@ -82,15 +81,15 @@ namespace RpgEditor
             {
                 WeaponData weaponData = XnaSerializer.Deserialize<WeaponData>(s);
                 ItemDataManager.WeaponData.Add(weaponData.Name, weaponData);
-            }
 
+                //TODO
+                System.Diagnostics.Debug.WriteLine("'Weapon data " + weaponData.ToString());
+            }
+            //TODO
+            System.Diagnostics.Debug.WriteLine("Armour count1 " + FormDetails.ItemDataManager.ArmorData.Count);
+            System.Diagnostics.Debug.WriteLine("Weapon count1 " + FormDetails.ItemDataManager.WeaponData.Count);
 
             //TODO do the same for consumables
         }
-
-
-
-
-
     }
 }
