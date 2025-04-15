@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT1.6166699S</TotalTimeInWorld>
+    <TotalTimeInWorld>PT17.6167019S</TotalTimeInWorld>
     <CurrentLevel>Level0</CurrentLevel>
     <PlayerData>
       <Items />
@@ -12,37 +12,12 @@
       <entityLevel>0</entityLevel>
       <baseXP>1</baseXP>
       <currentHealth>1000000</currentHealth>
-      <position>3202.3013 3639.3013</position>
+      <position>3450.4854 3666.5146</position>
       <respawnPosition>66 67</respawnPosition>
       <isDead>false</isDead>
       <LastDeathTime>PT0S</LastDeathTime>
       <totalXP>0</totalXP>
-      <xPSinceLastLevel>0</xPSinceLastLevel>
       <backpack>
-        <Item>
-          <Name>Coins</Name>
-          <Type>Currency</Type>
-          <Description>Money</Description>
-          <Price>1</Price>
-          <Weight>0</Weight>
-          <Equipped>false</Equipped>
-          <Stackable>true</Stackable>
-          <Consumable>false</Consumable>
-          <Position>32 32</Position>
-          <Quantity>30</Quantity>
-        </Item>
-        <Item>
-          <Name>Sword</Name>
-          <Type>Slashing</Type>
-          <Description>A Sword</Description>
-          <Price>40</Price>
-          <Weight>15</Weight>
-          <Equipped>true</Equipped>
-          <Stackable>false</Stackable>
-          <Consumable>false</Consumable>
-          <Position>64 32</Position>
-          <Quantity>1</Quantity>
-        </Item>
         <Item>
           <Name>Robes</Name>
           <Type>Robes</Type>
@@ -52,8 +27,10 @@
           <Equipped>true</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
-          <Position>96 32</Position>
+          <Position>32 32</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
           <Name>Bones</Name>
@@ -64,8 +41,24 @@
           <Equipped>false</Equipped>
           <Stackable>true</Stackable>
           <Consumable>true</Consumable>
-          <Position>128 32</Position>
+          <Position>64 32</Position>
           <Quantity>6</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
+        </Item>
+        <Item>
+          <Name>Coins</Name>
+          <Type>Currency</Type>
+          <Description>Money</Description>
+          <Price>1</Price>
+          <Weight>0</Weight>
+          <Equipped>false</Equipped>
+          <Stackable>true</Stackable>
+          <Consumable>false</Consumable>
+          <Position>96 32</Position>
+          <Quantity>26</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
           <Name>Sword</Name>
@@ -73,95 +66,111 @@
           <Description>A Sword</Description>
           <Price>40</Price>
           <Weight>15</Weight>
+          <Equipped>true</Equipped>
+          <Stackable>false</Stackable>
+          <Consumable>false</Consumable>
+          <Position>128 32</Position>
+          <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
+        </Item>
+        <Item>
+          <Name>Robes</Name>
+          <Type>Robes</Type>
+          <Description>A Robe</Description>
+          <Price>10</Price>
+          <Weight>5</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>32 64</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Robes</Name>
-          <Type>Robes</Type>
-          <Description>A Robe</Description>
-          <Price>10</Price>
-          <Weight>5</Weight>
+          <Name>Sword</Name>
+          <Type>Slashing</Type>
+          <Description>A Sword</Description>
+          <Price>40</Price>
+          <Weight>15</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>64 64</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Sword</Name>
-          <Type>Slashing</Type>
-          <Description>A Sword</Description>
-          <Price>40</Price>
-          <Weight>15</Weight>
+          <Name>Robes</Name>
+          <Type>Robes</Type>
+          <Description>A Robe</Description>
+          <Price>10</Price>
+          <Weight>5</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>96 64</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Robes</Name>
-          <Type>Robes</Type>
-          <Description>A Robe</Description>
-          <Price>10</Price>
-          <Weight>5</Weight>
+          <Name>Sword</Name>
+          <Type>Slashing</Type>
+          <Description>A Sword</Description>
+          <Price>40</Price>
+          <Weight>15</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>128 64</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Sword</Name>
-          <Type>Slashing</Type>
-          <Description>A Sword</Description>
-          <Price>40</Price>
-          <Weight>15</Weight>
+          <Name>Robes</Name>
+          <Type>Robes</Type>
+          <Description>A Robe</Description>
+          <Price>10</Price>
+          <Weight>5</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>32 96</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Robes</Name>
-          <Type>Robes</Type>
-          <Description>A Robe</Description>
-          <Price>10</Price>
-          <Weight>5</Weight>
+          <Name>Sword</Name>
+          <Type>Slashing</Type>
+          <Description>A Sword</Description>
+          <Price>40</Price>
+          <Weight>15</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>64 96</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
-          <Name>Sword</Name>
-          <Type>Slashing</Type>
-          <Description>A Sword</Description>
-          <Price>40</Price>
-          <Weight>15</Weight>
+          <Name>Robes</Name>
+          <Type>Robes</Type>
+          <Description>A Robe</Description>
+          <Price>10</Price>
+          <Weight>5</Weight>
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>96 96</Position>
           <Quantity>1</Quantity>
-        </Item>
-        <Item>
-          <Name>Robes</Name>
-          <Type>Robes</Type>
-          <Description>A Robe</Description>
-          <Price>10</Price>
-          <Weight>5</Weight>
-          <Equipped>false</Equipped>
-          <Stackable>false</Stackable>
-          <Consumable>false</Consumable>
-          <Position>128 96</Position>
-          <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
           <Name>Sword</Name>
@@ -172,8 +181,10 @@
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
-          <Position>32 128</Position>
+          <Position>128 96</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
         <Item>
           <Name>Robes</Name>
@@ -184,8 +195,24 @@
           <Equipped>false</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
+          <Position>32 128</Position>
+          <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
+        </Item>
+        <Item>
+          <Name>Sword</Name>
+          <Type>Slashing</Type>
+          <Description>A Sword</Description>
+          <Price>40</Price>
+          <Weight>15</Weight>
+          <Equipped>false</Equipped>
+          <Stackable>false</Stackable>
+          <Consumable>false</Consumable>
           <Position>64 128</Position>
           <Quantity>1</Quantity>
+          <SourceRectangle>0 0 0 0</SourceRectangle>
+          <TexturePath></TexturePath>
         </Item>
       </backpack>
     </PlayerData>
@@ -210,8 +237,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -222,8 +251,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -234,8 +265,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -246,8 +279,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
@@ -273,8 +308,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -285,8 +322,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -297,8 +336,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -309,8 +350,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
@@ -336,8 +379,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -348,8 +393,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -360,8 +407,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -372,8 +421,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>EliteSkeleton</type>
@@ -399,8 +450,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -411,8 +464,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -423,8 +478,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -435,8 +492,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Spider</type>
@@ -471,6 +530,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Bones</Name>
@@ -483,6 +544,8 @@
                   <Consumable>true</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Coins</Name>
@@ -495,6 +558,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>10</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Sword</Name>
@@ -507,6 +572,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
               </ItemDatas>
             </Item>
@@ -526,6 +593,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Bones</Name>
@@ -538,6 +607,8 @@
                   <Consumable>true</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Coins</Name>
@@ -550,6 +621,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>10</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Sword</Name>
@@ -562,6 +635,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
               </ItemDatas>
             </Item>
@@ -581,6 +656,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Bones</Name>
@@ -593,6 +670,8 @@
                   <Consumable>true</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Coins</Name>
@@ -605,6 +684,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>10</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Sword</Name>
@@ -617,6 +698,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
               </ItemDatas>
             </Item>
@@ -636,6 +719,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Bones</Name>
@@ -648,6 +733,8 @@
                   <Consumable>true</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Coins</Name>
@@ -660,6 +747,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>10</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
                 <Item>
                   <Name>Sword</Name>
@@ -672,6 +761,8 @@
                   <Consumable>false</Consumable>
                   <Position>0 0</Position>
                   <Quantity>1</Quantity>
+                  <SourceRectangle>0 0 0 0</SourceRectangle>
+                  <TexturePath></TexturePath>
                 </Item>
               </ItemDatas>
             </Item>
@@ -726,8 +817,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -738,8 +831,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -750,8 +845,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -762,18 +859,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>65</entityLevel>
+                <entityLevel>36</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>150</currentHealth>
-                <position>352 106</position>
+                <currentHealth>92</currentHealth>
+                <position>479 106</position>
                 <respawnPosition>256 106</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -789,8 +888,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -801,8 +902,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -813,8 +916,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -825,18 +930,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>92</entityLevel>
+                <entityLevel>23</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>204</currentHealth>
-                <position>320 522</position>
+                <currentHealth>66</currentHealth>
+                <position>479 522</position>
                 <respawnPosition>224 522</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -852,8 +959,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -864,8 +973,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -876,8 +987,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -888,18 +1001,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>46</entityLevel>
+                <entityLevel>1</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>112</currentHealth>
-                <position>160 714</position>
+                <currentHealth>22</currentHealth>
+                <position>479 714</position>
                 <respawnPosition>64 714</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -915,8 +1030,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -927,8 +1044,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -939,8 +1058,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -951,18 +1072,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>0</entityLevel>
+                <entityLevel>3</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>20</currentHealth>
-                <position>128 1034</position>
+                <currentHealth>26</currentHealth>
+                <position>479 1034</position>
                 <respawnPosition>32 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -978,8 +1101,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -990,8 +1115,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1002,8 +1129,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1014,18 +1143,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>87</entityLevel>
+                <entityLevel>85</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>194</currentHealth>
-                <position>384 1034</position>
+                <currentHealth>190</currentHealth>
+                <position>479 1034</position>
                 <respawnPosition>288 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1041,8 +1172,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1053,8 +1186,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1065,8 +1200,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1077,17 +1214,19 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>32</entityLevel>
+                <entityLevel>0</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>84</currentHealth>
+                <currentHealth>20</currentHealth>
                 <position>287 1482</position>
                 <respawnPosition>192 1482</respawnPosition>
                 <isDead>false</isDead>
@@ -1104,8 +1243,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1116,8 +1257,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1128,8 +1271,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1140,18 +1285,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>66</entityLevel>
+                <entityLevel>88</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>152</currentHealth>
-                <position>2016 1738</position>
+                <currentHealth>196</currentHealth>
+                <position>2207 1738</position>
                 <respawnPosition>1920 1738</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1167,8 +1314,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1179,8 +1328,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1191,8 +1342,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1203,18 +1356,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>19</entityLevel>
+                <entityLevel>55</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>58</currentHealth>
-                <position>192 1802</position>
+                <currentHealth>130</currentHealth>
+                <position>447 1802</position>
                 <respawnPosition>96 1802</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1230,8 +1385,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1242,8 +1399,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1254,8 +1413,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1266,18 +1427,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>38</entityLevel>
+                <entityLevel>70</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>96</currentHealth>
-                <position>2304 1802</position>
+                <currentHealth>160</currentHealth>
+                <position>2495 1802</position>
                 <respawnPosition>2208 1802</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1293,8 +1456,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1305,8 +1470,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1317,8 +1484,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1329,18 +1498,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>27</entityLevel>
+                <entityLevel>34</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>74</currentHealth>
-                <position>864 1834</position>
+                <currentHealth>88</currentHealth>
+                <position>1663 1834</position>
                 <respawnPosition>768 1834</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1356,8 +1527,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1368,8 +1541,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1380,8 +1555,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1392,18 +1569,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>51</entityLevel>
+                <entityLevel>47</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>122</currentHealth>
-                <position>320 1898</position>
+                <currentHealth>114</currentHealth>
+                <position>447 1898</position>
                 <respawnPosition>224 1898</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1419,8 +1598,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1431,8 +1612,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1443,8 +1626,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1455,18 +1640,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>10</entityLevel>
+                <entityLevel>95</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>40</currentHealth>
-                <position>1856 2026</position>
+                <currentHealth>210</currentHealth>
+                <position>1887 2026</position>
                 <respawnPosition>1760 2026</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1482,8 +1669,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1494,8 +1683,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1506,8 +1697,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1518,18 +1711,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>11</entityLevel>
+                <entityLevel>46</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>42</currentHealth>
-                <position>2112 2058</position>
+                <currentHealth>112</currentHealth>
+                <position>2239 2058</position>
                 <respawnPosition>2016 2058</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1545,8 +1740,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1557,8 +1754,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1569,8 +1768,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1581,18 +1782,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>78</entityLevel>
+                <entityLevel>35</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>176</currentHealth>
-                <position>768 2186</position>
+                <currentHealth>90</currentHealth>
+                <position>1087 2186</position>
                 <respawnPosition>672 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1608,8 +1811,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1620,8 +1825,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1632,8 +1839,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1644,18 +1853,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>24</entityLevel>
+                <entityLevel>61</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>68</currentHealth>
-                <position>960 2186</position>
+                <currentHealth>142</currentHealth>
+                <position>1087 2186</position>
                 <respawnPosition>864 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1671,8 +1882,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1683,8 +1896,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1695,8 +1910,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1707,18 +1924,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>88</entityLevel>
+                <entityLevel>19</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>196</currentHealth>
-                <position>320 2282</position>
+                <currentHealth>58</currentHealth>
+                <position>383 2282</position>
                 <respawnPosition>224 2282</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1734,8 +1953,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1746,8 +1967,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1758,8 +1981,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1770,18 +1995,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>110</currentHealth>
-                <position>1312 2314</position>
+                <currentHealth>172</currentHealth>
+                <position>1919 2314</position>
                 <respawnPosition>1216 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1797,8 +2024,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1809,8 +2038,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1821,8 +2052,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1833,18 +2066,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>96</entityLevel>
+                <entityLevel>64</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>212</currentHealth>
-                <position>1632 2314</position>
+                <currentHealth>148</currentHealth>
+                <position>1919 2314</position>
                 <respawnPosition>1536 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1860,8 +2095,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1872,8 +2109,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1884,8 +2123,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1896,17 +2137,19 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>57</entityLevel>
+                <entityLevel>82</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>134</currentHealth>
+                <currentHealth>184</currentHealth>
                 <position>2175 2410</position>
                 <respawnPosition>2080 2410</respawnPosition>
                 <isDead>false</isDead>
@@ -1923,8 +2166,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1935,8 +2180,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -1947,8 +2194,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -1959,18 +2208,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>60</entityLevel>
+                <entityLevel>54</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>140</currentHealth>
-                <position>2176 2442</position>
+                <currentHealth>128</currentHealth>
+                <position>2495 2442</position>
                 <respawnPosition>2080 2442</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1986,8 +2237,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -1998,8 +2251,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2010,8 +2265,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2022,18 +2279,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>58</entityLevel>
+                <entityLevel>27</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>136</currentHealth>
-                <position>640 2506</position>
+                <currentHealth>74</currentHealth>
+                <position>1087 2506</position>
                 <respawnPosition>544 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2049,8 +2308,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2061,8 +2322,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2073,8 +2336,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2085,18 +2350,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>20</entityLevel>
+                <entityLevel>21</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>60</currentHealth>
-                <position>960 2506</position>
+                <currentHealth>62</currentHealth>
+                <position>1087 2506</position>
                 <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2112,8 +2379,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2124,8 +2393,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2136,8 +2407,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2148,18 +2421,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>31</entityLevel>
+                <entityLevel>75</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>82</currentHealth>
-                <position>2432 2602</position>
+                <currentHealth>170</currentHealth>
+                <position>2495 2602</position>
                 <respawnPosition>2336 2602</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2175,8 +2450,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2187,8 +2464,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2199,8 +2478,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2211,18 +2492,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>71</entityLevel>
+                <entityLevel>62</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>162</currentHealth>
-                <position>2432 2634</position>
+                <currentHealth>144</currentHealth>
+                <position>2495 2634</position>
                 <respawnPosition>2336 2634</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2238,8 +2521,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2250,8 +2535,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2262,8 +2549,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2274,18 +2563,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>66</entityLevel>
+                <entityLevel>93</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>152</currentHealth>
-                <position>1600 2698</position>
+                <currentHealth>206</currentHealth>
+                <position>1663 2698</position>
                 <respawnPosition>1504 2698</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2301,8 +2592,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2313,8 +2606,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2325,8 +2620,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2337,18 +2634,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>54</entityLevel>
+                <entityLevel>84</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>128</currentHealth>
-                <position>1344 2858</position>
+                <currentHealth>188</currentHealth>
+                <position>1407 2858</position>
                 <respawnPosition>1248 2858</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2364,8 +2663,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2376,8 +2677,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2388,8 +2691,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2400,18 +2705,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>13</entityLevel>
+                <entityLevel>46</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>46</currentHealth>
-                <position>2432 2954</position>
+                <currentHealth>112</currentHealth>
+                <position>2495 2954</position>
                 <respawnPosition>2336 2954</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2427,8 +2734,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2439,8 +2748,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2451,8 +2762,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2463,18 +2776,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>75</entityLevel>
+                <entityLevel>52</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>170</currentHealth>
-                <position>128 2986</position>
+                <currentHealth>124</currentHealth>
+                <position>447 2986</position>
                 <respawnPosition>32 2986</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2490,8 +2805,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2502,8 +2819,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2514,8 +2833,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2526,18 +2847,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>77</entityLevel>
+                <entityLevel>84</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>174</currentHealth>
-                <position>1344 2986</position>
+                <currentHealth>188</currentHealth>
+                <position>1407 2986</position>
                 <respawnPosition>1248 2986</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2553,8 +2876,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2565,8 +2890,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2577,8 +2904,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2589,17 +2918,19 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>14</entityLevel>
+                <entityLevel>73</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>48</currentHealth>
+                <currentHealth>166</currentHealth>
                 <position>640 3018</position>
                 <respawnPosition>640 3018</respawnPosition>
                 <isDead>false</isDead>
@@ -2616,8 +2947,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2628,8 +2961,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2640,8 +2975,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2652,18 +2989,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>90</entityLevel>
+                <entityLevel>14</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>200</currentHealth>
-                <position>1600 3146</position>
+                <currentHealth>48</currentHealth>
+                <position>1663 3146</position>
                 <respawnPosition>1504 3146</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2679,8 +3018,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2691,8 +3032,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2703,8 +3046,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2715,18 +3060,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>87</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>110</currentHealth>
-                <position>1952 3210</position>
+                <currentHealth>194</currentHealth>
+                <position>2175 3210</position>
                 <respawnPosition>1856 3210</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2742,8 +3089,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2754,8 +3103,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2766,8 +3117,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2778,18 +3131,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>56</entityLevel>
+                <entityLevel>66</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>132</currentHealth>
-                <position>2432 3242</position>
+                <currentHealth>152</currentHealth>
+                <position>2495 3242</position>
                 <respawnPosition>2336 3242</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2805,8 +3160,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2817,8 +3174,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2829,8 +3188,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2841,17 +3202,19 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>85</entityLevel>
+                <entityLevel>48</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>190</currentHealth>
+                <currentHealth>116</currentHealth>
                 <position>1119 3466</position>
                 <respawnPosition>1024 3466</respawnPosition>
                 <isDead>false</isDead>
@@ -2868,8 +3231,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2880,8 +3245,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2892,8 +3259,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2904,18 +3273,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>75</entityLevel>
+                <entityLevel>60</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>170</currentHealth>
-                <position>2208 3466</position>
+                <currentHealth>140</currentHealth>
+                <position>2495 3466</position>
                 <respawnPosition>2112 3466</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2931,8 +3302,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -2943,8 +3316,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -2955,8 +3330,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -2967,18 +3344,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>98</entityLevel>
+                <entityLevel>26</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>216</currentHealth>
-                <position>1344 3498</position>
+                <currentHealth>72</currentHealth>
+                <position>1439 3498</position>
                 <respawnPosition>1248 3498</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2994,8 +3373,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -3006,8 +3387,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -3018,8 +3401,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -3030,18 +3415,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>20</entityLevel>
+                <entityLevel>5</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>60</currentHealth>
-                <position>1920 3594</position>
+                <currentHealth>30</currentHealth>
+                <position>1951 3594</position>
                 <respawnPosition>1824 3594</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3057,8 +3444,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -3069,8 +3458,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -3081,8 +3472,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -3093,17 +3486,19 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>49</entityLevel>
+                <entityLevel>63</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>118</currentHealth>
+                <currentHealth>146</currentHealth>
                 <position>1439 3626</position>
                 <respawnPosition>1408 3626</respawnPosition>
                 <isDead>false</isDead>
@@ -3120,8 +3515,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -3132,8 +3529,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -3144,8 +3543,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -3156,18 +3557,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>Skeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>5</entityLevel>
+                <entityLevel>62</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>30</currentHealth>
-                <position>800 3690</position>
+                <currentHealth>144</currentHealth>
+                <position>1119 3690</position>
                 <respawnPosition>704 3690</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3183,8 +3586,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -3195,8 +3600,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -3207,8 +3614,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -3219,18 +3628,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>EliteSkeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>34</entityLevel>
+                <entityLevel>1</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>220</currentHealth>
-                <position>2336 1162</position>
+                <currentHealth>55</currentHealth>
+                <position>2495 1162</position>
                 <respawnPosition>2240 1162</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3246,8 +3657,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2002.394 3273.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Bones</Name>
@@ -3258,8 +3671,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>2017.394 3288.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Coins</Name>
@@ -3270,8 +3685,10 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2032.394 3303.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                   <Item>
                     <Name>Sword</Name>
@@ -3282,18 +3699,20 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>2047.394 3318.6055</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
                   </Item>
                 </Items>
                 <type>EliteSkeleton</type>
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>14</entityLevel>
+                <entityLevel>12</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>120</currentHealth>
-                <position>768 3338</position>
+                <currentHealth>110</currentHealth>
+                <position>927 3338</position>
                 <respawnPosition>672 3338</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>

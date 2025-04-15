@@ -1,0 +1,119 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
+using SkeletonsAdventure.GameMenu;
+using SkeletonsAdventure.GameWorld;
+using System;
+using System.Collections.Generic;
+
+namespace SkeletonsAdventure.Controls
+{
+    public class TabBar
+    {
+        public Dictionary<Tab, BaseMenu> TabMenus { get; set; } = [];
+        public Vector2 Position { get; set; } = new();
+        public SpriteFont SpriteFont { get; set; } = GameManager.ControlFont;
+        public int Width { get; set; } = 100;
+        public int Height { get; set; } = 100;
+        public BaseMenu ActiveMenu { get; set; } = null;
+
+        public event EventHandler TabClicked;
+        protected MouseState _currentMouse, _previousMouse;
+
+        public TabBar()
+        {
+            TabClicked += HandleTabSelected;
+        }
+
+        public void Update()
+        {
+            Vector2 position = new(), spacer = new(5, 0);
+            _previousMouse = _currentMouse;
+            _currentMouse = Mouse.GetState();
+            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+
+            foreach (Tab tab in TabMenus.Keys)
+            {
+                if(tab.Visible)
+                {
+                    tab.Position = Position + position;
+                    position += new Vector2(tab.Width, 0) + spacer;
+                    tab.Update();
+                    if (mouseRectangle.Intersects(tab.Rectangle))
+                    {
+                        if (_currentMouse.LeftButton == ButtonState.Released &&
+                            _previousMouse.LeftButton == ButtonState.Pressed)
+                        {
+                            TabClicked?.Invoke(tab, new EventArgs());
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Tab tab in TabMenus.Keys)
+            {
+                if(tab.Visible)
+                {
+                    tab.Draw(spriteBatch);
+                }
+            }
+        }
+
+        public void HandleTabSelected(object sender, EventArgs e)
+        {
+            Tab tab = (Tab)sender;
+            if (!tab.Active)
+            {
+                SetActiveTab(TabMenus[tab]);
+            }
+        }
+
+        public void AddMenu(BaseMenu menu)
+        {
+            Tab tab = new()
+            {
+                Text = menu.Title,
+                Width = (int)SpriteFont.MeasureString(menu.Title).X,
+                Height = (int)SpriteFont.MeasureString(menu.Title).Y,
+                Visible = true,
+            };
+
+            TabMenus.Add(tab, menu);
+
+            Height = MaxTabHeight();
+        }
+
+        public void SetActiveTab(BaseMenu menu)
+        {
+            foreach (Tab t in TabMenus.Keys)
+            {
+                if (TabMenus[t] == menu)
+                {
+                    t.Active = true;
+                    ActiveMenu = menu;
+                }
+                else
+                {
+                    t.Active = false;
+                }
+            }
+        }
+
+        public int MaxTabHeight()
+        {
+            int maxHeight = 0;
+
+            foreach(Tab tab in TabMenus.Keys)
+            {
+                if (tab.Height > maxHeight)
+                    maxHeight = tab.Height;
+            }
+
+            return maxHeight;
+        }
+    }
+}

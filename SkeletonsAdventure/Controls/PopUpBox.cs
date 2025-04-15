@@ -14,20 +14,7 @@ namespace SkeletonsAdventure.Controls
         public Color Color { get; set; } = Color.White;
         public bool Visible { get; set; } = false;
         public List<Button> Buttons { get; protected set; } = [];
-        public Rectangle Rectangle
-        {
-            get
-            {
-                return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
-            }
-        }
-        Rectangle SourceRectangle //TODO
-        {
-            get
-            {
-                return new Rectangle(0, 0, Width, Height);
-            }
-        }
+        public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
 
         public PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
         {
@@ -43,7 +30,6 @@ namespace SkeletonsAdventure.Controls
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(Texture, Rectangle, SourceRectangle, Color);
             spriteBatch.Draw(Texture, Rectangle, Color);
 
             foreach (Button button in Buttons)
@@ -66,6 +52,31 @@ namespace SkeletonsAdventure.Controls
                     button.Position = Position + offset;
                     offset += new Vector2(0, button.Height);
                 }
+            }
+        }
+
+        public virtual void Update(bool transformMouse, Matrix transformation)
+        {
+            if (VisibleButtonsCount() > 0)
+            {
+                Height = VisibleButtonsHeight() + (int)ButtonOffset.Y * 2;
+                Width = LongestButtonTextLength() + (int)ButtonOffset.X * 2;
+                Vector2 offset = ButtonOffset;
+
+                foreach (Button button in Buttons)
+                {
+                    if (button.Visible)
+                    {
+                        button.Update(transformMouse, transformation);
+                        button.Position = Position + offset;
+                        offset += new Vector2(0, button.Height);
+                    }
+                }
+            }
+            else
+            {
+                Height = 0;
+                Width = 0;
             }
         }
 

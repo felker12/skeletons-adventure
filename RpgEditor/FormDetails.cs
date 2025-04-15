@@ -51,7 +51,6 @@ namespace RpgEditor
             {
                 XnaSerializer.Serialize<WeaponData>(
                 FormMain.ItemPath + @"\Weapon\" + s + ".xml",
-
                 ItemDataManager.WeaponData[s]);
             }
 
@@ -69,9 +68,6 @@ namespace RpgEditor
             {
                 ArmorData armorData = XnaSerializer.Deserialize<ArmorData>(s);
                 ItemDataManager.ArmorData.Add(armorData.Name, armorData);
-
-                //TODO
-                System.Diagnostics.Debug.WriteLine("Armour data " + armorData.ToString());
             }
 
             fileNames = Directory.GetFiles(
@@ -81,13 +77,7 @@ namespace RpgEditor
             {
                 WeaponData weaponData = XnaSerializer.Deserialize<WeaponData>(s);
                 ItemDataManager.WeaponData.Add(weaponData.Name, weaponData);
-
-                //TODO
-                System.Diagnostics.Debug.WriteLine("'Weapon data " + weaponData.ToString());
             }
-            //TODO
-            System.Diagnostics.Debug.WriteLine("Armour count1 " + FormDetails.ItemDataManager.ArmorData.Count);
-            System.Diagnostics.Debug.WriteLine("Weapon count1 " + FormDetails.ItemDataManager.WeaponData.Count);
 
             //TODO do the same for consumables
         }

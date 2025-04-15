@@ -74,12 +74,6 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this
             Info.Text += "\nXP = " + XP;
 
-            //TODO delete this
-            //Info.Text += "\nAttack = " + attack;
-            //Info.Text += "\nDefence = " + defence;
-            //Info.Text += "\nBase Attack = " + baseAttack;
-            //Info.Text += "\nBase Defence = " + baseDefence;
-
             Motion = movement;
 
             int detectX = (int)Position.X - (detectionWidth - Width) /2;

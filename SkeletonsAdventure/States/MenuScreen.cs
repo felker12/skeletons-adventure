@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using RpgLibrary.WorldClasses;
 using RpgLibrary.DataClasses;
+using SkeletonsAdventure.GameWorld;
+using RpgLibrary.MenuClasses;
 
 namespace SkeletonsAdventure.States
 {
@@ -55,38 +57,40 @@ namespace SkeletonsAdventure.States
 
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
-            WorldData worldData = new();
+            WorldData worldData;
+            TabbedMenuData tabbedMenuData;
 
             try
             {
-                string gamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
-                string savePath = Path.GetFullPath(Path.Combine(gamePath, @"..\SaveFiles")); //Directory of the saved files
-                string path = string.Empty;
+                string savePath = GameManager.SavePath;
 
-                if (Directory.Exists(savePath))
-                {
-                    path = savePath + @"\World.xml";
-                    worldData = XnaSerializer.Deserialize<WorldData>(path);
-                }
-                else
+                if (Directory.Exists(savePath) == false)
                 {
                     Directory.CreateDirectory(savePath);
                 }
+
+                worldData = XnaSerializer.Deserialize<WorldData>(savePath + @"\World.xml");
+                tabbedMenuData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\Settings.xml");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+                System.Diagnostics.Debug.WriteLine(ex);//TODO: Handle exception
                 return;
             }
 
-            Game.GameScreen = new(Game, worldData);
+            Game.GameScreen = new(Game, worldData)
+            {
+                //TabbedMenu = new(tabbedMenuData)
+            };
+            Game.GameScreen.TabbedMenu.SetTabbedMenuData(tabbedMenuData);
+
             StateManager.ChangeState(Game.GameScreen);
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             Game.GameScreen = new(Game);
-            GameWorld.World.FillPlayerBackback(); //TODO
+            World.FillPlayerBackback(); //TODO
 
             StateManager.ChangeState(Game.GameScreen);
         }

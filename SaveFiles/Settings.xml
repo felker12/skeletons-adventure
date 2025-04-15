@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:MenuClasses="RpgLibrary.MenuClasses">
+  <Asset Type="MenuClasses:TabbedMenuData">
+    <Title>TabbedMenu</Title>
+    <Visible>true</Visible>
+    <Width>600</Width>
+    <Height>500</Height>
+    <Position>100 100</Position>
+    <TintColor>FFFFFFFF</TintColor>
+    <BackgroundColor>FAAB905B</BackgroundColor>
+    <ActiveMenu>Test</ActiveMenu>
+    <MenuDatas>
+      <Item>
+        <Title>Settings</Title>
+        <Visible>true</Visible>
+        <Width>580</Width>
+        <Height>449</Height>
+        <Position>100 131</Position>
+        <TintColor>FFFFFFFF</TintColor>
+        <BackgroundColor>FA031740</BackgroundColor>
+      </Item>
+      <Item>
+        <Title>Test</Title>
+        <Visible>true</Visible>
+        <Width>580</Width>
+        <Height>449</Height>
+        <Position>100 131</Position>
+        <TintColor>FFFFFFFF</TintColor>
+        <BackgroundColor>FFF5DEB3</BackgroundColor>
+      </Item>
+      <Item>
+        <Title>Test2</Title>
+        <Visible>true</Visible>
+        <Width>580</Width>
+        <Height>449</Height>
+        <Position>100 131</Position>
+        <TintColor>FFFFFFFF</TintColor>
+        <BackgroundColor>FFFFFFF0</BackgroundColor>
+      </Item>
+    </MenuDatas>
+  </Asset>
+</XnaContent>

@@ -10,14 +10,14 @@ namespace SkeletonsAdventure
     public class Game1 : Game
     {
         public GameTime GameTime { get; private set; }
-        public GraphicsDeviceManager Graphics { get; }
+        public static GraphicsDeviceManager Graphics { get; set; }
         public SpriteBatch SpriteBatch { get; private set; }
-        public Viewport GameViewport { get; private set; }
+        public static Viewport GameViewport { get; private set; }
         public GameScreen GameScreen { get; set; }
         public ExitScreen ExitScreen { get; private set; }
         public StateManager StateManager { get; private set; } = new();
-        public static int ScreenWidth { get; } = 1280;
-        public static int ScreenHeight { get; } = 720;
+        public static int ScreenWidth { get; set; } = 1280;
+        public static int ScreenHeight { get; set; } = 720;
         public GameManager GameManager { get; private set; }
 
         public Game1()
@@ -58,6 +58,7 @@ namespace SkeletonsAdventure
 
         protected override void Update(GameTime gameTime)
         {
+
             GameTime = gameTime;
             if (InputHandler.KeyReleased(Keys.Escape) ||
             InputHandler.ButtonDown(Buttons.Back, PlayerIndex.One))

@@ -21,6 +21,10 @@ namespace SkeletonsAdventure.GameWorld
         public static ContentManager Content { get; private set; }
         public static SpriteFont InfoFont { get; private set; }
         public static SpriteFont ToolTipFont { get; private set; }
+        public static SpriteFont ControlFont { get; private set; } 
+
+        public static string GamePath { get; private set; } 
+        public static string SavePath { get; private set; }
 
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
         private static Dictionary<string, GameItem> Items { get; set; } = [];
@@ -31,22 +35,28 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D SkeletonTexture { get; private set; }
         public static Texture2D SkeletonAttackTexture { get; private set; }
         public static Texture2D SpiderTexture { get; private set; }
-        public static Texture2D GamePopUpBoxTexture { get; private set; }
+        public static Texture2D PopUpBoxTexture { get; private set; }
         public static Texture2D DefaultButtonTexture { get; private set; }
+        public static Texture2D GameMenuTexture { get; set; }
 
-        private static GraphicsDevice GraphicsDevice { get; set; }
+        public static GraphicsDevice GraphicsDevice { get; private set; }
+
+        public static List<int> PlayerLevelXPs { get; private set; } = [];
 
         public GameManager(Game1 game)
         {
             Game = game;
             Content = game.Content;
-
-            InfoFont = Content.Load<SpriteFont>("Fonts/Font");
-            ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
-
             GraphicsDevice = game.GraphicsDevice;
 
-            LoadTextures ();
+            GamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
+            SavePath = Path.GetFullPath(Path.Combine(GamePath, @"..\SaveFiles")); //Directory of the saved files
+
+            CreatePlayerLevelXPs();
+
+            LoadFonts();
+            LoadTextures();
+
             CreateItems();
             CreateEnemies();
             CreateChests();
@@ -111,17 +121,74 @@ namespace SkeletonsAdventure.GameWorld
             return enemy;
         }
 
+        public static void CreatePlayerLevelXPs() //TODO
+        {
+            string levelsSavePath = Path.Combine(SavePath, "PlayerLevels.txt");
+
+            if (File.Exists(levelsSavePath))
+            {
+                List<string> lines = [.. File.ReadAllLines(levelsSavePath)];
+
+                foreach (var line in lines)
+                {
+                    string[] parts = line.Split(',');
+                    if (int.TryParse(parts[1], out int xp))
+                    {
+                        PlayerLevelXPs.Add(xp);
+                    }
+                }
+            }
+            else
+            {
+                File.CreateText(levelsSavePath).Close(); //create the file if it doesn't exist
+                string levels = string.Empty;
+
+                for (int i = 0; i < 101; i++)
+                {
+                    if (i == 0)
+                        PlayerLevelXPs.Add(0);
+                    else
+                        PlayerLevelXPs.Add((int)Math.Pow(i + 1, 2) * 20);
+
+                    levels += $"{i},{PlayerLevelXPs[i]}" + Environment.NewLine;
+                }
+
+                File.WriteAllText(levelsSavePath, levels);
+            }
+        }
+
+        public static int GetPlayerLevelAtXP(int XP)
+        {
+            int level = 0;
+
+            foreach(var levelXP in PlayerLevelXPs)
+                if(XP > levelXP)
+                    level = PlayerLevelXPs.IndexOf(levelXP);
+
+            return level;
+        }
+
+        public static void LoadFonts()
+        {
+            InfoFont = Content.Load<SpriteFont>("Fonts/Font");
+            ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
+            ControlFont = Content.Load<SpriteFont>("Fonts/ControlFont");
+        }
+
         public static void LoadTextures()
         {
             SkeletonTexture = Content.Load<Texture2D>(@"Player\SkeletonSpriteSheet");
             SkeletonAttackTexture = Content.Load<Texture2D>(@"Player\SkeletonAttackSprites");
             SpiderTexture = Content.Load<Texture2D>(@"EntitySprites\spider");
 
-            GamePopUpBoxTexture = new(GraphicsDevice, 1, 1);
-            GamePopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
+            PopUpBoxTexture = new(GraphicsDevice, 1, 1);
+            PopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
 
             DefaultButtonTexture = new(GraphicsDevice, 1, 1);
             DefaultButtonTexture.SetData([new Color(83, 105, 140, 230)]);
+
+            GameMenuTexture = new(GraphicsDevice, 1, 1);
+            GameMenuTexture.SetData([new Color(171, 144, 91, 250)]);
         }
 
         public static void CreateItems()

@@ -41,7 +41,8 @@ namespace SkeletonsAdventure.GameWorld
                 RespawnPosition = new(80, 80)
             };
 
-            Levels = []; //Clear the levels dictionary. This is needed because the levels are static and will persist between game instances
+            //Clear the levels dictionary because the levels are static and will persist between game instances
+            Levels = []; 
             CreateLevels(_content, _graphics);
 
             //TODO

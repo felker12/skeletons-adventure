@@ -5,19 +5,19 @@ using System;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class Button : Control
+    public class Button(Texture2D texture, SpriteFont font) : Control
     {
         #region Fields
 
         protected MouseState _currentMouse;
 
-        public SpriteFont Font { get; private set; }
+        public SpriteFont Font { get; private set; } = font;
 
         protected bool _isHovering;
 
         protected MouseState _previousMouse;
 
-        public Texture2D Texture { get; private set; }
+        public Texture2D Texture { get; private set; } = texture;
 
         #endregion
 
@@ -27,10 +27,10 @@ namespace SkeletonsAdventure.Controls
 
         public bool Clicked { get; private set; }
 
-        public Color PenColour { get; set; }
+        public Color PenColour { get; set; } = Color.Black;
 
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int Width { get; set; } = texture.Width;
+        public int Height { get; set; } = texture.Height;
 
 
         public Rectangle Rectangle
@@ -42,19 +42,7 @@ namespace SkeletonsAdventure.Controls
         }
 
         #endregion
-
         #region Methods
-
-        public Button(Texture2D texture, SpriteFont font)
-        {
-            Texture = texture;
-
-            Font = font;
-
-            PenColour = Color.Black;
-            Width = texture.Width;
-            Height = texture.Height;
-        }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -94,8 +82,46 @@ namespace SkeletonsAdventure.Controls
             }
         }
 
+        public void Update(bool transformMouse, Matrix transformation)
+        {
+            _previousMouse = _currentMouse;
+            _currentMouse = Mouse.GetState();
+
+            Vector2 mousePos = new(_currentMouse.X, _currentMouse.Y);
+            Vector2 TransformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
+            Rectangle TransformedMouseRectangle = new((int)TransformedmousePos.X, (int)TransformedmousePos.Y, 1, 1);
+            Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
+            _isHovering = false;
+
+            if (transformMouse == false)
+            {
+                if (mouseRectangle.Intersects(Rectangle))
+                {
+                    _isHovering = true;
+
+                    if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                    {
+                        Click?.Invoke(this, new EventArgs());
+                    }
+                }
+            }
+            else if (transformMouse)
+            {
+                if (TransformedMouseRectangle.Intersects(Rectangle))
+                {
+                    _isHovering = true;
+
+                    if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                    {
+                        Click?.Invoke(this, new EventArgs());
+                    }
+                }
+            }
+        }
+
         public override void HandleInput(PlayerIndex playerIndex)
         {
+            throw new NotImplementedException();
         }
 
         #endregion

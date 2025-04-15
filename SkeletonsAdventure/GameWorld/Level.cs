@@ -36,7 +36,7 @@ namespace SkeletonsAdventure.GameWorld
         public Vector2 PlayerEndPosition { get; set; } = new(80, 80);//location of the exit so if the player comes back to the level this is where they will be placed
         public Vector2 PlayerRespawnPosition { get; set; } = new(80, 80);
         public ChestManager ChestManager { get; set; }
-        public Menu ChestMenu { get; set; }
+        public PopUpBox ChestMenu { get; set; }
         public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
         public LevelExit LevelExit { get; set; } = null;
         public LevelExit LevelEntrance { get; set; } = null;
@@ -88,7 +88,7 @@ namespace SkeletonsAdventure.GameWorld
             ChestMenu = new()
             {
                 Visible = false,
-                Texture = GameManager.GamePopUpBoxTexture
+                Texture = GameManager.PopUpBoxTexture
             };
         }
 
@@ -249,7 +249,7 @@ namespace SkeletonsAdventure.GameWorld
                 Dictionary<string, Button> buttons = [];
                 foreach (GameItem gameItem in chest.Loot.Loots)
                 {
-                    GameButton btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
+                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
 
                     #pragma warning disable IDE0039 // Use local function
                     EventHandler handler = (object sender, EventArgs e) =>
@@ -259,6 +259,7 @@ namespace SkeletonsAdventure.GameWorld
                         chest.Loot.Remove(gameItem);
                     };
                     #pragma warning restore IDE0039 // Use local function
+
                     btn.Click += (object sender, EventArgs e) =>
                     {
                         handler?.Invoke(sender, e);

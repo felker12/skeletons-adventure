@@ -86,8 +86,7 @@ namespace SkeletonsAdventure.Controls
                     selectedControl = 0;
                 if (this[selectedControl].TabStop && this[selectedControl].Enabled)
                 {
-                    if (FocusChanged != null)
-                        FocusChanged(this[selectedControl], null);
+                    FocusChanged?.Invoke(this[selectedControl], null);
                     break;
                 }
             } while (currentControl != selectedControl);
@@ -107,8 +106,7 @@ namespace SkeletonsAdventure.Controls
                     selectedControl = Count - 1;
                 if (this[selectedControl].TabStop && this[selectedControl].Enabled)
                 {
-                    if (FocusChanged != null)
-                        FocusChanged(this[selectedControl], null);
+                    FocusChanged?.Invoke(this[selectedControl], null);
                     break;
                 }
             } while (currentControl != selectedControl);

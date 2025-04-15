@@ -5,6 +5,8 @@ using System;
 using System.IO;
 using RpgLibrary.DataClasses;
 using RpgLibrary.WorldClasses;
+using SkeletonsAdventure.GameWorld;
+using RpgLibrary.MenuClasses;
 
 namespace SkeletonsAdventure.States
 {
@@ -83,18 +85,15 @@ namespace SkeletonsAdventure.States
         {
             try
             {
-                string gamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
-                string savePath = Path.GetFullPath(Path.Combine(gamePath, @"..\SaveFiles")); //Directory of the saved files
+                string savePath = GameManager.SavePath;
 
-                if (Directory.Exists(savePath))
-                {
-                    XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
-                }
-                else
+                if (Directory.Exists(savePath) == false)
                 {
                     Directory.CreateDirectory(savePath);
-                    XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
                 }
+
+                XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
+                XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\Settings.xml", Game.GameScreen.TabbedMenu.GetTabbedMenuData());
             }
             catch (Exception ex)
             {

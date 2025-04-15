@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using SkeletonsAdventure.Engines;
@@ -7,6 +6,7 @@ using SkeletonsAdventure.ItemClasses;
 using RpgLibrary.ItemClasses;
 using Effect = RpgLibrary.ItemClasses.Effect;
 using RpgLibrary.EntityClasses;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -15,7 +15,6 @@ namespace SkeletonsAdventure.Entities
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
         public int TotalXP { get; set; } = 0;
-        public int XPSinceLastLevel { get; set; } = 0;
 
         public Player() : base()
         {
@@ -24,7 +23,6 @@ namespace SkeletonsAdventure.Entities
             baseHealth = 1000000;
 
             TotalXP = 0;
-            XPSinceLastLevel = 0;
 
             Initialize(); 
         }
@@ -32,7 +30,6 @@ namespace SkeletonsAdventure.Entities
         public Player(PlayerData playerData) : base(playerData)
         {
             TotalXP = playerData.totalXP;
-            XPSinceLastLevel = playerData.xPSinceLastLevel;
 
             Initialize();
         }
@@ -42,7 +39,6 @@ namespace SkeletonsAdventure.Entities
             UpdateEntityData(playerData);
 
             TotalXP = playerData.totalXP;
-            XPSinceLastLevel = playerData.xPSinceLastLevel;
 
         }
 
@@ -63,7 +59,6 @@ namespace SkeletonsAdventure.Entities
                 Items = LootList.GetLootListItemData(),
 
                 totalXP = TotalXP,
-                xPSinceLastLevel = XPSinceLastLevel,
                 backpack = Backpack.GetBackpackData()
             };
         }
@@ -105,14 +100,18 @@ namespace SkeletonsAdventure.Entities
 
         public void GainXp(int XpGained)
         {
+            int currentLevel = GameManager.GetPlayerLevelAtXP(TotalXP);
+
             TotalXP += XpGained;
-            XPSinceLastLevel += XpGained;
+            EntityLevel = GameManager.GetPlayerLevelAtXP(TotalXP);
+
+            if (EntityLevel > currentLevel)
+                LevelUP();
         }
 
         public void LevelUP() //TODO
         {
-            XPSinceLastLevel = 0;
-            EntityLevel += 1;
+            System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!");
         }
 
         public void ConsumeItem(GameItem item)

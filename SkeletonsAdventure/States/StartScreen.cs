@@ -2,6 +2,7 @@
 using SkeletonsAdventure.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.States
 {
@@ -54,7 +55,7 @@ namespace SkeletonsAdventure.States
         }
         private void StartLabel_Selected(object sender, EventArgs e)
         {
-            StateManager.ChangeState(new MenuScreen(Game));
+            StateManager.ChangeState(new MenuScreen(GameManager.Game));
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RpgLibrary.MenuClasses;
+using SkeletonsAdventure.GameWorld;
+
+namespace SkeletonsAdventure.Controls
+{
+    public class Tab()
+    {
+        public int Width { get; set; } = 30;
+        public int Height { get; set; } = 30;
+        public Vector2 Position { get; set; } = new();
+        public string Text { get; set; } = "Tab";
+        public Texture2D Texture { get; set; } = GameManager.GameMenuTexture;
+        public SpriteFont SpriteFont { get; set; } = GameManager.ControlFont;
+        public bool Active { get; set; } = false;
+        public bool Visible { get; set; } = false;
+        private Color TintColor { get; set; } = Color.White;
+        public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
+
+        public void Update()
+        {
+            if(Active)
+            {
+                TintColor = Color.Gray;
+            }
+            else
+            {
+               TintColor = Color.White;
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Texture, Rectangle, TintColor);
+
+            if (!string.IsNullOrEmpty(Text))
+            {
+                var x = (Rectangle.X + (Rectangle.Width / 2)) - (SpriteFont.MeasureString(Text).X / 2);
+                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (SpriteFont.MeasureString(Text).Y / 2);
+
+                spriteBatch.DrawString(SpriteFont, Text, new Vector2(x, y), TintColor);
+            }
+        }
+
+        public void ToggleActive()
+        {
+            if (Active == true)
+                Active = false;
+            else if (Active == false)
+                Active = true;
+        }
+
+        public void ToggleVisibility()
+        {
+            if (Visible == true)
+                Visible = false;
+            else if (Visible == false)
+                Visible = true;
+        }
+    }
+}

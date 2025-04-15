@@ -10,6 +10,9 @@ using System;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.GameMenu;
+using System.Collections.Generic;
+using RpgLibrary.MenuClasses;
 
 namespace SkeletonsAdventure.States
 {
@@ -20,14 +23,16 @@ namespace SkeletonsAdventure.States
         private InfoPanel _infoPanel;
         private Backpack _backpack;
         private MouseState _mouseState, _lastMouseState;
-        private GameButton equip, unequip, pickUp, drop, consume;
+        private Button equip, unequip, pickUp, drop, consume;
         private GameItem itemUnderMouse = null;
 
         private BoxSource CurrentSource { get; set; }
         public Camera Camera { get; set; }
         public World World { get; private set; }
         public Player Player { get; set; }
-        public GamePopUpBox PopUpBox { get; private set; }
+        public PopUpBox PopUpBox { get; private set; }
+        public TabbedMenu TabbedMenu { get; set; }
+        public BaseMenu SettingsMenu { get; private set; }
 
         public static int InfoPanelWidth { get; private set; }
 
@@ -40,7 +45,6 @@ namespace SkeletonsAdventure.States
         {
             Initialize();
             World.LoadWorldDataIntoLevels(worldData);
-
         }
 
         public void Initialize()
@@ -57,6 +61,7 @@ namespace SkeletonsAdventure.States
             _infoPanel = new(_sidePanel, _backpack.Items, GraphicsDevice, backsplash);
 
             CreatePopUpBox();
+            CreateTabbedMenu();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -69,9 +74,9 @@ namespace SkeletonsAdventure.States
             GraphicsDevice.Viewport = _sidePanel;
             _infoPanel.Draw(spriteBatch);
 
-            GraphicsDevice.Viewport = Game.GameViewport;
+            GraphicsDevice.Viewport = Game1.GameViewport;
 
-            //Draw the PopUpBox
+            //Draw the PopUpBox //TODO fix this so the if statement isn't needed
             if (PopUpBox.Visible && CurrentSource == BoxSource.Game)
             {
                 spriteBatch.Begin(
@@ -94,48 +99,75 @@ namespace SkeletonsAdventure.States
                 PopUpBox.Draw(spriteBatch);
                 spriteBatch.End();
             }
+
+            TabbedMenu.Draw(spriteBatch);
+            //SettingsMenu.Draw(spriteBatch);
         }
 
         public override void PostUpdate(GameTime gameTime) { }
         public override void Update(GameTime gameTime)
         {
             World.Update(gameTime);
-
             _infoPanel.Update(_backpack.Items);
 
-            CheckUnderMouse(gameTime);
+            CheckUnderMouse();
+            HandleInput();
 
-            if (InputHandler.KeyReleased(Keys.I))
+            //TODO
+            if (_infoPanel.Visible)
+            {
+                //Game1.ScreenWidth = 1280 + InfoPanelWidth;
+                //Camera.Width = Game1.ScreenWidth;
+            }
+            else
+            {
+                //Game1.ScreenWidth = 1280;
+                //Camera.Width = Game1.ScreenWidth;
+            }
+
+            //Game1.Graphics.PreferredBackBufferWidth = Game1.ScreenWidth;
+            //Game1.Graphics.ApplyChanges();
+
+            TabbedMenu.Update(gameTime);
+            //SettingsMenu.Update(gameTime);
+        }
+
+        private void HandleInput()
+        {
+            if (InputHandler.KeyReleased(Keys.B))
             {
                 if (_infoPanel.Visible == true)
                     _infoPanel.Visible = false;
                 else if (_infoPanel.Visible == false)
                     _infoPanel.Visible = true;
+            }
 
-                if(_infoPanel.Visible)
+            if (InputHandler.KeyReleased(Keys.I))
+            {
+                TabbedMenu.ToggleVisibility();
+
+                //System.Diagnostics.Debug.WriteLine(TabbedMenu.GetTabbedMenuData().ToString());//TODO
+                foreach(MenuData menuDatas in TabbedMenu.GetTabbedMenuData().MenuDatas)
                 {
-                    //Camera.Width = Game1.ScreenWidth - InfoPanelWidth;
+                    System.Diagnostics.Debug.WriteLine(menuDatas.ToString());
                 }
-                else
-                {
-                    //Camera.Width = Game1.ScreenWidth;
-                }
+
+                System.Diagnostics.Debug.WriteLine(TabbedMenu.GetTabbedMenuData().MenuDatas.ToString());//TODO
             }
         }
 
-        public void CheckUnderMouse(GameTime gameTime)
+        private void CheckUnderMouse()
         {
             _lastMouseState = _mouseState;
             _mouseState = Mouse.GetState();
             Vector2 tempV,
                 //Mouse position in the world and their position is relative to that viewport
-                pos = Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(Camera.Transformation)); 
-            Rectangle transformedMouseRectangle = new((int)pos.X, (int)pos.Y, 1, 1), 
-                mouseRec = new(_mouseState.X, _mouseState.Y, 1,1),
+                pos = Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(Camera.Transformation));
+            Rectangle transformedMouseRectangle = new((int)pos.X, (int)pos.Y, 1, 1),
+                mouseRec = new(_mouseState.X, _mouseState.Y, 1, 1),
                 tempR;
-            
-            itemUnderMouse = null;
 
+            itemUnderMouse = null;
 
             if (_infoPanel.Visible)
             {
@@ -188,7 +220,7 @@ namespace SkeletonsAdventure.States
                 }
             }
 
-            if(PopUpBox.Visible)
+            if (PopUpBox.Visible)
             {
                 foreach (Button button in PopUpBox.Buttons)
                     button.Visible = false;
@@ -204,9 +236,9 @@ namespace SkeletonsAdventure.States
                 }
                 else if (CurrentSource == BoxSource.Panel)
                 {
-                    if(itemUnderMouse != null)
+                    if (itemUnderMouse != null)
                     {
-                        if(itemUnderMouse.BaseItem.Stackable == false)
+                        if (itemUnderMouse.BaseItem.Stackable == false)
                         {
                             if (itemUnderMouse.BaseItem.Equipped == true)
                                 unequip.Visible = true;
@@ -264,7 +296,7 @@ namespace SkeletonsAdventure.States
             Texture2D texture = GameManager.DefaultButtonTexture;
             SpriteFont font = GameManager.ToolTipFont;
 
-            PopUpBox = new(Vector2.Zero, GameManager.GamePopUpBoxTexture, 100, 100)
+            PopUpBox = new(Vector2.Zero, GameManager.PopUpBoxTexture, 100, 100)
             {
                 Visible = false,
             };
@@ -288,6 +320,64 @@ namespace SkeletonsAdventure.States
             PopUpBox.AddButton(drop, "Drop Item");
         }
 
+        private void CreateTabbedMenu()
+        {
+            //Create the container menu=======================
+            //Texture2D texture = new(GraphicsDevice, 1, 1);
+            //texture.SetData([new Color(171, 144, 91, 250)]);
+            
+
+            Texture2D test = new(GraphicsDevice, 1, 1);
+            test.SetData([Color.White]);
+
+            TabbedMenu = new()
+            {
+                Visible = true,
+                Title = "TabbedMenu",
+            };
+            TabbedMenu.SetBackgroundColor(new Color(171, 144, 91, 250));
+            //=================================================
+
+            //create the child menus for the tabbed menu=======
+            Texture2D texture = new(GraphicsDevice, 1, 1);
+            //texture.SetData([new Color(171,144,91,250)]);
+            texture.SetData([new Color(3, 23, 64, 250)]);
+
+            SettingsMenu = new()
+            {
+                Visible = true,
+                Position = new(800, 300),
+                Title = "Settings",
+            };
+            SettingsMenu.SetBackgroundColor(new Color(3, 23, 64, 250));
+            TabbedMenu.AddMenu(SettingsMenu);
+
+            texture = new(GraphicsDevice, 1, 1);
+            texture.SetData([Color.Wheat]);
+            BaseMenu testMenu = new()
+            {
+                Visible = true,
+                Position = new(800, 300),
+                Title = "Test",
+            };
+            testMenu.SetBackgroundColor(Color.Wheat);
+            TabbedMenu.AddMenu(testMenu);
+
+            texture = new(GraphicsDevice, 1, 1);
+            texture.SetData([Color.Ivory]);
+            BaseMenu testMenu2 = new()
+            {
+                Visible = true,
+                Position = new(800, 300),
+                Title = "Test2",
+            };
+            testMenu2.SetBackgroundColor(Color.Ivory);
+            TabbedMenu.AddMenu(testMenu2);
+
+            TabbedMenu.TabBar.SetActiveTab(SettingsMenu);
+            //=================================================
+        }
+
         private void Consume_Click(object sender, EventArgs e)
         {
             if (itemUnderMouse != null && itemUnderMouse.BaseItem is Consumable)
@@ -306,7 +396,7 @@ namespace SkeletonsAdventure.States
 
         private void PickUp_Click(object sender, System.EventArgs e)
         {
-            if(itemUnderMouse != null && _backpack.AddItem(itemUnderMouse) == true)
+            if (itemUnderMouse != null && _backpack.AddItem(itemUnderMouse) == true)
                 World.CurrentLevel.EntityManager.DroppedLootManager.ItemToRemove.Add(itemUnderMouse);
         }
 
