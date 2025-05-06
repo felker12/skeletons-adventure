@@ -1,42 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:MenuClasses="RpgLibrary.MenuClasses">
-  <Asset Type="MenuClasses:TabbedMenuData">
-    <Title>TabbedMenu</Title>
-    <Visible>true</Visible>
-    <Width>600</Width>
-    <Height>500</Height>
-    <Position>100 100</Position>
-    <TintColor>FFFFFFFF</TintColor>
-    <BackgroundColor>FAAB905B</BackgroundColor>
-    <ActiveMenu>Test</ActiveMenu>
-    <MenuDatas>
-      <Item>
-        <Title>Settings</Title>
+  <Asset Type="MenuClasses:MenuManagerData">
+    <Menus>
+      <Item Type="MenuClasses:TabbedMenuData">
+        <Title>TabbedMenu</Title>
         <Visible>true</Visible>
-        <Width>580</Width>
-        <Height>449</Height>
-        <Position>100 131</Position>
+        <Width>600</Width>
+        <Height>500</Height>
+        <Position>100 100</Position>
         <TintColor>FFFFFFFF</TintColor>
-        <BackgroundColor>FA031740</BackgroundColor>
+        <BackgroundColor>FAAB905B</BackgroundColor>
+        <ActiveMenu>Settings</ActiveMenu>
+        <MenuDatas>
+          <Item>
+            <Title>Settings</Title>
+            <Visible>true</Visible>
+            <Width>580</Width>
+            <Height>449</Height>
+            <Position>100 131</Position>
+            <TintColor>FFFFFFFF</TintColor>
+            <BackgroundColor>FA031740</BackgroundColor>
+          </Item>
+          <Item>
+            <Title>Test</Title>
+            <Visible>true</Visible>
+            <Width>580</Width>
+            <Height>449</Height>
+            <Position>100 131</Position>
+            <TintColor>FFFFFFFF</TintColor>
+            <BackgroundColor>FFF5DEB3</BackgroundColor>
+          </Item>
+          <Item>
+            <Title>Test2</Title>
+            <Visible>true</Visible>
+            <Width>580</Width>
+            <Height>449</Height>
+            <Position>100 131</Position>
+            <TintColor>FFFFFFFF</TintColor>
+            <BackgroundColor>FFFFFFF0</BackgroundColor>
+          </Item>
+        </MenuDatas>
       </Item>
       <Item>
-        <Title>Test</Title>
-        <Visible>true</Visible>
-        <Width>580</Width>
-        <Height>449</Height>
-        <Position>100 131</Position>
+        <Title>Backpack</Title>
+        <Visible>false</Visible>
+        <Width>200</Width>
+        <Height>200</Height>
+        <Position>1088 0</Position>
         <TintColor>FFFFFFFF</TintColor>
-        <BackgroundColor>FFF5DEB3</BackgroundColor>
+        <BackgroundColor>FFFFFFFF</BackgroundColor>
       </Item>
-      <Item>
-        <Title>Test2</Title>
-        <Visible>true</Visible>
-        <Width>580</Width>
-        <Height>449</Height>
-        <Position>100 131</Position>
-        <TintColor>FFFFFFFF</TintColor>
-        <BackgroundColor>FFFFFFF0</BackgroundColor>
-      </Item>
-    </MenuDatas>
+    </Menus>
   </Asset>
 </XnaContent>

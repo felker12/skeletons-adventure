@@ -88,8 +88,8 @@ namespace SkeletonsAdventure.Entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.DrawRectangle(DetectionArea, Color.Aqua, 1, 0); //TODO
-            spriteBatch.DrawRectangle(AttackArea, Color.Red, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(DetectionArea, Color.Aqua, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(AttackArea, Color.Red, 1, 0); //TODO
         }
 
         public override Enemy Clone()

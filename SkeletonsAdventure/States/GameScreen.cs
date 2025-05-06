@@ -20,7 +20,6 @@ namespace SkeletonsAdventure.States
     public class GameScreen : State
     {
         private Viewport _sidePanel;
-        private InfoPanel _infoPanel;
         private Backpack _backpack;
         private MouseState _mouseState, _lastMouseState;
         private Button equip, unequip, pickUp, drop, consume;
@@ -30,11 +29,12 @@ namespace SkeletonsAdventure.States
         public Camera Camera { get; set; }
         public World World { get; private set; }
         public Player Player { get; set; }
+        public List<BaseMenu> Menus { get; set; } = [];
         public PopUpBox PopUpBox { get; private set; }
         public TabbedMenu TabbedMenu { get; set; }
         public BaseMenu SettingsMenu { get; private set; }
-
-        public static int InfoPanelWidth { get; private set; }
+        public InfoPanel InfoPanel { get; set; }
+        private static int InfoPanelWidth { get; set; }
 
         public GameScreen(Game1 game) : base(game)
         {
@@ -58,10 +58,12 @@ namespace SkeletonsAdventure.States
             _backpack = World.CurrentLevel.EntityManager.Player.Backpack;
 
             _sidePanel = new(Game1.ScreenWidth - InfoPanelWidth, 0, InfoPanelWidth, Game1.ScreenHeight);
-            _infoPanel = new(_sidePanel, _backpack.Items, GraphicsDevice, backsplash);
+            InfoPanel = new(_sidePanel, _backpack.Items, GraphicsDevice, backsplash);
 
             CreatePopUpBox();
             CreateTabbedMenu();
+
+            Menus = [TabbedMenu, InfoPanel];
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -72,7 +74,7 @@ namespace SkeletonsAdventure.States
 
             //Draw the sidepanel
             GraphicsDevice.Viewport = _sidePanel;
-            _infoPanel.Draw(spriteBatch);
+            InfoPanel.Draw(spriteBatch);
 
             GraphicsDevice.Viewport = Game1.GameViewport;
 
@@ -101,20 +103,19 @@ namespace SkeletonsAdventure.States
             }
 
             TabbedMenu.Draw(spriteBatch);
-            //SettingsMenu.Draw(spriteBatch);
         }
 
         public override void PostUpdate(GameTime gameTime) { }
         public override void Update(GameTime gameTime)
         {
             World.Update(gameTime);
-            _infoPanel.Update(_backpack.Items);
+            InfoPanel.Update(_backpack.Items);
 
             CheckUnderMouse();
             HandleInput();
 
             //TODO
-            if (_infoPanel.Visible)
+            if (InfoPanel.Visible)
             {
                 //Game1.ScreenWidth = 1280 + InfoPanelWidth;
                 //Camera.Width = Game1.ScreenWidth;
@@ -136,10 +137,10 @@ namespace SkeletonsAdventure.States
         {
             if (InputHandler.KeyReleased(Keys.B))
             {
-                if (_infoPanel.Visible == true)
-                    _infoPanel.Visible = false;
-                else if (_infoPanel.Visible == false)
-                    _infoPanel.Visible = true;
+                if (InfoPanel.Visible == true)
+                    InfoPanel.Visible = false;
+                else if (InfoPanel.Visible == false)
+                    InfoPanel.Visible = true;
             }
 
             if (InputHandler.KeyReleased(Keys.I))
@@ -169,13 +170,13 @@ namespace SkeletonsAdventure.States
 
             itemUnderMouse = null;
 
-            if (_infoPanel.Visible)
+            if (InfoPanel.Visible)
             {
-                foreach (GameItem item in _infoPanel.Items)
+                foreach (GameItem item in InfoPanel.Items)
                 {
                     //calculate the transformed position so we can find where the items are based on a world position
                     tempV = Vector2.Transform(item.Position, Matrix.Invert(Camera.Transformation));
-                    tempV += new Vector2(_infoPanel.Position.X, 0); //offset the world position with the width of the game viewport
+                    tempV += new Vector2(InfoPanel.Position.X, 0); //offset the world position with the width of the game viewport
                     tempR = new((int)tempV.X, (int)tempV.Y, GameItem.Width, GameItem.Height);
 
                     Intersects(transformedMouseRectangle, tempR, item, BoxSource.Panel);

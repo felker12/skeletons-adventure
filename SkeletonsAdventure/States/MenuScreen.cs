@@ -7,6 +7,8 @@ using RpgLibrary.WorldClasses;
 using RpgLibrary.DataClasses;
 using SkeletonsAdventure.GameWorld;
 using RpgLibrary.MenuClasses;
+using SkeletonsAdventure.GameMenu;
+using Assimp.Configs;
 
 namespace SkeletonsAdventure.States
 {
@@ -58,19 +60,19 @@ namespace SkeletonsAdventure.States
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
             WorldData worldData;
-            TabbedMenuData tabbedMenuData;
+            //TabbedMenuData tabbedMenuData;
+            MenuManagerData menuManagerData;
 
             try
             {
                 string savePath = GameManager.SavePath;
 
                 if (Directory.Exists(savePath) == false)
-                {
                     Directory.CreateDirectory(savePath);
-                }
 
                 worldData = XnaSerializer.Deserialize<WorldData>(savePath + @"\World.xml");
-                tabbedMenuData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\Settings.xml");
+                //tabbedMenuData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\Settings.xml");
+                menuManagerData = XnaSerializer.Deserialize<MenuManagerData>(savePath + @"\Settings.xml");
             }
             catch (Exception ex)
             {
@@ -78,13 +80,35 @@ namespace SkeletonsAdventure.States
                 return;
             }
 
-            Game.GameScreen = new(Game, worldData)
-            {
-                //TabbedMenu = new(tabbedMenuData)
-            };
-            Game.GameScreen.TabbedMenu.SetTabbedMenuData(tabbedMenuData);
+            //Update the game with the saved information
+            Game.GameScreen = new(Game, worldData);
+            UpdateMenusFromSave(menuManagerData);
 
+            //return to the game screen
             StateManager.ChangeState(Game.GameScreen);
+        }
+
+        public void UpdateMenusFromSave(MenuManagerData menuManagerData)
+        {
+            foreach (MenuData menuData in menuManagerData.Menus)
+            {
+                foreach(BaseMenu gameMenu in Game.GameScreen.Menus)
+                {
+                    if(menuData.Title == gameMenu.Title)
+                    {
+                        if (menuData is TabbedMenuData tabbedMenuData && gameMenu is TabbedMenu tabbedMenu)
+                        {
+                            //update tabbed menus from loaded data
+                            tabbedMenu.SetMenuData(tabbedMenuData);
+                        }
+                        else if (menuData is not null)
+                        {
+                            //update regular menus from loaded data
+                            gameMenu.SetMenuData(menuData);
+                        }
+                    }
+                }
+            }
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)

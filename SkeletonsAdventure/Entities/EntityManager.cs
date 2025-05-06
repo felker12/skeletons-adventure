@@ -39,7 +39,7 @@ namespace SkeletonsAdventure.Entities
 
             foreach (Entity entity in Entities)
             {
-                if(entity.isDead == false)
+                if(entity.IsDead == false)
                 {
                     entity.Draw(spriteBatch);
                 }
@@ -54,7 +54,7 @@ namespace SkeletonsAdventure.Entities
         {
             foreach (var entity in Entities)
             {
-                if (entity.isDead == false)
+                if (entity.IsDead == false)
                 {
                     entity.Update(gameTime);
 
@@ -66,11 +66,11 @@ namespace SkeletonsAdventure.Entities
                     if (entity.Health < 1)
                     {
                         entity.EntityDied(totalTimeInWorld);
-                        entity.isDead = true;
+                        entity.IsDead = true;
                         DroppedLootManager.Add(entity.LootList, entity.Position);
                     }
                 }
-                else if (entity.isDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.respawnTime))
+                else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.respawnTime))
                 {
                     entity.Respawn();
                 }
@@ -116,7 +116,7 @@ namespace SkeletonsAdventure.Entities
         {
             foreach (Entity entity in Entities)
             {
-                if (entity is Enemy enemy && enemy.isDead == false)
+                if (entity is Enemy enemy && enemy.IsDead == false)
                 {
                     //if the player is close then go to the player
                     if (enemy.DetectionArea.Intersects(Player.GetRectangle))
@@ -151,7 +151,7 @@ namespace SkeletonsAdventure.Entities
             if (entity.Motion != Vector2.Zero)
             {
                 pos += entity.Motion;
-                entity.isCollidingBoundary = false;
+                entity.IsCollidingBoundary = false;
 
                 ushort tx = (ushort)(pos.X / tiledMap.TileWidth),
                     ty = (ushort)(pos.Y / tiledMap.TileHeight),
@@ -165,27 +165,27 @@ namespace SkeletonsAdventure.Entities
                 if (mapCollisionLayer.TryGetTile(tx, ty, out TiledMapTile? tile))
                 {
                     if (!tile.Value.IsBlank)
-                        entity.isCollidingBoundary = true;
+                        entity.IsCollidingBoundary = true;
 
-                    else if (entity.isCollidingBoundary == false)
+                    else if (entity.IsCollidingBoundary == false)
                     {
                         if (mapCollisionLayer.TryGetTile(tx2, ty2, out tile) && (!tile.Value.IsBlank))
-                            entity.isCollidingBoundary = true;
-                        else if (entity.isCollidingBoundary == false)
+                            entity.IsCollidingBoundary = true;
+                        else if (entity.IsCollidingBoundary == false)
                             if (mapCollisionLayer.TryGetTile(tx, ty2, out tile) && (!tile.Value.IsBlank))
-                                entity.isCollidingBoundary = true;
-                            else if (entity.isCollidingBoundary == false)
+                                entity.IsCollidingBoundary = true;
+                            else if (entity.IsCollidingBoundary == false)
                                 if (mapCollisionLayer.TryGetTile(tx2, ty, out tile) && (!tile.Value.IsBlank))
-                                    entity.isCollidingBoundary = true;
-                                else if (entity.isCollidingBoundary == false)
+                                    entity.IsCollidingBoundary = true;
+                                else if (entity.IsCollidingBoundary == false)
                                     if (mapCollisionLayer.TryGetTile(tx, ty3, out tile) && (!tile.Value.IsBlank))
-                                        entity.isCollidingBoundary = true;
-                                    else if (entity.isCollidingBoundary == false)
+                                        entity.IsCollidingBoundary = true;
+                                    else if (entity.IsCollidingBoundary == false)
                                         if (mapCollisionLayer.TryGetTile(tx2, ty3, out tile) && (!tile.Value.IsBlank))
-                                            entity.isCollidingBoundary = true;
+                                            entity.IsCollidingBoundary = true;
                     }
                 }
-                if (entity.isCollidingBoundary == false)
+                if (entity.IsCollidingBoundary == false)
                     entity.Position = pos;
             }
         }

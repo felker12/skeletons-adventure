@@ -30,6 +30,26 @@ namespace RpgLibrary.EntityClasses
             LastDeathTime = lastDeathTime;
         }
 
+        public EntityData(EntityData entityData)
+        {
+            SetEntityData(entityData);
+        }
+
+        public void SetEntityData(EntityData entityData)
+        {
+            type = entityData.type;
+            baseHealth = entityData.baseHealth;
+            baseDefence = entityData.baseDefence;
+            baseAttack = entityData.baseAttack;
+            entityLevel = entityData.entityLevel;
+            baseXP = entityData.baseXP;
+            position = entityData.position;
+            respawnPosition = entityData.respawnPosition;
+            currentHealth = entityData.currentHealth;
+            isDead = entityData.isDead;
+            LastDeathTime = entityData.LastDeathTime;
+        }
+
         public virtual EntityData Clone()
         {
             EntityData data = new(type, baseHealth, baseDefence, baseAttack, entityLevel, baseXP,

@@ -13,17 +13,8 @@ namespace SkeletonsAdventure.GameObjects
         public List<Chest> Chests { get; set; } = [];
         public TiledMapTileLayer TiledMapTileLayer { get; set; } = mapChestLayer;
 
-        public void Update()
-        {
-            foreach(Chest chest in Chests)
-            {
-                chest.Update();
-            }
-        }
-
         public void Draw(SpriteBatch spriteBatch)
         {
-            //TODO
             foreach(Chest chest in Chests)
             {
                 chest.Draw(spriteBatch);

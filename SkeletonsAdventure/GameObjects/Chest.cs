@@ -24,17 +24,12 @@ namespace SkeletonsAdventure.GameObjects
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawRectangle(DetectionArea, Color.White, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(DetectionArea, Color.White, 1, 0); //TODO
 
             if (Info.Visible)
             {
                 Info.Draw(spriteBatch); 
             }
-        }
-
-        public void Update()
-        {
-            //TODO
         }
 
         public Chest()
@@ -56,18 +51,9 @@ namespace SkeletonsAdventure.GameObjects
             Loot = loot;
         }
 
-        public Chest(ChestData chestData) //TODO probably wont use this method
-        {
-            Loot.Loots = GameManager.LoadGameItemsFromItemData(chestData.ItemDatas);
-            ID = chestData.ID;
-            ChestType = chestData.ChestType;
-        }
-
         public Chest Clone()
         {
-            return new(this)
-            {
-            };
+            return new(this);
         }
 
         public ChestData GetChestData()

@@ -39,25 +39,12 @@ namespace SkeletonsAdventure.Entities
             UpdateEntityData(playerData);
 
             TotalXP = playerData.totalXP;
-
         }
 
         public PlayerData GetPlayerData()
         {
-            return new PlayerData()
+            return new(GetEntityData())
             {
-                type = type,
-                baseHealth = baseHealth,
-                baseDefence = baseDefence,
-                baseAttack = baseAttack,
-                currentHealth = Health,
-                position = Position,
-                respawnPosition = RespawnPosition,
-                baseXP = baseXP,
-                entityLevel = EntityLevel,
-                isDead = isDead,
-                Items = LootList.GetLootListItemData(),
-
                 totalXP = TotalXP,
                 backpack = Backpack.GetBackpackData()
             };
@@ -71,7 +58,7 @@ namespace SkeletonsAdventure.Entities
             maxHealth = baseHealth;
             defence = baseDefence;
             attack = baseAttack;
-            speed = 6;
+            Speed = 6;
             
             Backpack = new();
             EquippedItems = new();
@@ -185,7 +172,7 @@ namespace SkeletonsAdventure.Entities
             if (motion != Vector2.Zero)
             {
                 motion.Normalize();
-                motion *= speed;
+                motion *= Speed;
             }
 
             Motion = motion;

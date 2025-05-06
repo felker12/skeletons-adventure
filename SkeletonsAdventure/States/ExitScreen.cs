@@ -7,6 +7,8 @@ using RpgLibrary.DataClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.GameWorld;
 using RpgLibrary.MenuClasses;
+using SkeletonsAdventure.GameMenu;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.States
 {
@@ -92,8 +94,18 @@ namespace SkeletonsAdventure.States
                     Directory.CreateDirectory(savePath);
                 }
 
+                MenuManagerData menuManagerData = new();
+                foreach (BaseMenu baseMenu in Game.GameScreen.Menus)
+                {
+                    if(baseMenu is TabbedMenu tabbedMenu)
+                        menuManagerData.Menus.Add(tabbedMenu.GetTabbedMenuData());
+                    else if (baseMenu is not null)
+                        menuManagerData.Menus.Add(baseMenu.GetMenuData());
+                }
+
                 XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
-                XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\Settings.xml", Game.GameScreen.TabbedMenu.GetTabbedMenuData());
+                //XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\Settings.xml", Game.GameScreen.TabbedMenu.GetTabbedMenuData());
+                XnaSerializer.Serialize<MenuManagerData>(savePath + @"\Settings.xml", menuManagerData);
             }
             catch (Exception ex)
             {

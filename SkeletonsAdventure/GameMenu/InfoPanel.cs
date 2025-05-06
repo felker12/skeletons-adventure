@@ -6,32 +6,32 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 
-namespace SkeletonsAdventure.States
+namespace SkeletonsAdventure.GameMenu
 {
-    public class InfoPanel
+    public class InfoPanel : BaseMenu
     {
         public List<GameItem> Items { get; set; }
-        public bool Visible { get; set; } = true;
-        public Vector2 Position { get; set; }
         public TiledMap Backsplash { get; private set; }
 
-        private readonly Texture2D _texture;
         private Rectangle _viewportRec;
         private readonly TiledMapRenderer _tiledMapRenderer;
 
         public InfoPanel(Viewport viewport, List<GameItem> items, GraphicsDevice graphicsDevice, TiledMap backsplash)
         {
             Items = items;
-            _texture = new(graphicsDevice, 1, 1);
-            _texture.SetData([Color.DarkSlateGray]);
+            Texture = new(graphicsDevice, 1, 1);
+            Texture.SetData([Color.DarkSlateGray]);
             _viewportRec = new(0, 0, viewport.Width, viewport.Height);
             _tiledMapRenderer = new(graphicsDevice);
             _tiledMapRenderer.LoadMap(backsplash);
             Backsplash = backsplash;
             Position = new(viewport.X, viewport.Y);
+
+            Visible = true;
+            Title = "Backpack";
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (Visible)
             {

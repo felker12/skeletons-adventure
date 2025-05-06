@@ -72,9 +72,9 @@ namespace SkeletonsAdventure.GameMenu
             }
         }
 
-        public void SetTabbedMenuData(TabbedMenuData tabbedMenuData)
+        public void SetMenuData(TabbedMenuData tabbedMenuData)
         {
-            SetMenuData(tabbedMenuData);
+            base.SetMenuData(tabbedMenuData);
             BaseMenu activeMenu = null;
 
             foreach (MenuData menuData in tabbedMenuData.MenuDatas)

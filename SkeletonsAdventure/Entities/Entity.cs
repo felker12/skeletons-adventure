@@ -14,17 +14,22 @@ namespace SkeletonsAdventure.Entities
         public int maxHealth, defence, attack, weaponAttack, armourDefence, respawnTime;
         public Texture2D basicAttackTexture;
         public TimeSpan lastDeathTime;
-        public bool isDead = false;
         public Vector2 RespawnPosition = Vector2.Zero;
-        public string type = string.Empty;
+        public string type { get; set; } = string.Empty;
+
         public static int AttackDelay { get; } = 800;  //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
         public int XP { get; set; } //Xp gained for killing the entity
         public int Health { get; set; }
+        public float Speed { get; set; }
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
+        public bool IsColliding { get; set; } = false;
+        public bool IsCollidingBoundary { get; set; } = false;
+        public int CollisionCount { get; set; }
+        public bool IsDead { get; set; } = false;
 
         public Entity() : base()
         {
@@ -56,6 +61,9 @@ namespace SkeletonsAdventure.Entities
             maxHealth = baseHealth;
             defence = baseDefence;
             attack = baseAttack;
+
+            CollisionCount = 0;
+            Speed = 1.5f;
             respawnTime = 3;
             lastDeathTime = new();
             XP = baseXP;
@@ -70,6 +78,11 @@ namespace SkeletonsAdventure.Entities
             AttackManager.Update(gameTime);
 
             base.Update(gameTime);
+
+            if (IsColliding)
+                SpriteColor = Color.Red;
+            else
+                SpriteColor = DefaultColor;
 
             if (CollisionCount > 0)
             {
@@ -102,7 +115,7 @@ namespace SkeletonsAdventure.Entities
                 respawnPosition = RespawnPosition,
                 baseXP = baseXP,
                 entityLevel = EntityLevel,
-                isDead = isDead,
+                isDead = IsDead,
                 LastDeathTime = lastDeathTime,
                 Items = LootList.GetLootListItemData()
             };
@@ -117,7 +130,7 @@ namespace SkeletonsAdventure.Entities
             baseXP = entityData.baseXP;
             EntityLevel = entityData.entityLevel;
             Health = entityData.currentHealth;
-            isDead = entityData.isDead;
+            IsDead = entityData.isDead;
             if (entityData.position != null)
             {
                 Position = (Vector2)entityData.position;
@@ -137,13 +150,13 @@ namespace SkeletonsAdventure.Entities
             Health = maxHealth;
             Position = RespawnPosition;
             Motion = Vector2.Zero;
-            isDead = false;
+            IsDead = false;
             AttackManager.ClearAttacks();
         }
 
         public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works
         {
-            isDead = true;
+            IsDead = true;
             lastDeathTime = gameTime.TotalGameTime;
             Motion = Vector2.Zero;
             AttackManager.ClearAttacks();

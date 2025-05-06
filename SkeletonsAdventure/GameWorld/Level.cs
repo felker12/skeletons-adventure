@@ -117,7 +117,7 @@ namespace SkeletonsAdventure.GameWorld
 
             foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
             {
-                spriteBatch.DrawRectangle(rec, Color.White, 1, 0);
+                spriteBatch.DrawRectangle(rec, Color.White, 1, 0); //used to see where the hitboxes are for the exits
             }
 
             spriteBatch.End();
@@ -135,7 +135,6 @@ namespace SkeletonsAdventure.GameWorld
 
             TotalTimeInWorld = totalTimeInWorld;
 
-            ChestManager.Update();//TODO is this needed?
             CheckIfPlayerNearChest();
             ChestMenu.Update(true, Camera.Transformation);
 

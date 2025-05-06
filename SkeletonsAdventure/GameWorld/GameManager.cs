@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using RpgLibrary.GameObjectClasses;
 using System.IO;
 using System.Linq;
+using SkeletonsAdventure.GameMenu;
 
 namespace SkeletonsAdventure.GameWorld
 {

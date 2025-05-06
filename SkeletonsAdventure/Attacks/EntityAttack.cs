@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using SkeletonsAdventure.Entities;
 using System;
 using SkeletonsAdventure.Animations;
-using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended;
 
 namespace SkeletonsAdventure.Attacks
@@ -24,10 +23,9 @@ namespace SkeletonsAdventure.Attacks
             Texture = texture;
             AttackLength = 300; //length the attack animation is drawn on the screen in milliseconds
             AttackOffset = new();
-            Frame = new();
             Source = source;
 
-            //TODO
+            //TODO draw the info with a different color for the player
             if(source is Player)
             {
                 Info.Color = Color.Cyan;
@@ -53,7 +51,7 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0);
+            //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
             spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
             Info.Draw(spriteBatch);
@@ -61,8 +59,6 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
-            GetRectangle = new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
-
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
 
