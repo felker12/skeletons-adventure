@@ -54,11 +54,8 @@ namespace SkeletonsAdventure.Entities
 
         public Vector2 LockToMap(Vector2 position)
         {
-            return new()
-            {
-                X = MathHelper.Clamp(position.X, 0, World.CurrentLevel.Width - Width),
-                Y = MathHelper.Clamp(position.Y, 0, World.CurrentLevel.Height - Height)
-            };
+            return new(MathHelper.Clamp(position.X, 0, World.CurrentLevel.Width - Width),
+                MathHelper.Clamp(position.Y, 0, World.CurrentLevel.Height - Height));
         }
     }
 }
