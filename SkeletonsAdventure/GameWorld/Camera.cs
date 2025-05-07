@@ -9,13 +9,7 @@ namespace SkeletonsAdventure.GameWorld
         public Vector2 Position = new();
         public int Width { get; set; } = screenW;
         public int Height { get; set; } = screenH;
-        public Matrix Transformation
-        {
-            get
-            {
-                return Matrix.CreateTranslation(new Vector3(-Position, 0f));
-            }
-        }
+        public Matrix Transformation => Matrix.CreateTranslation(new Vector3(-Position, 0f));
 
         public void Update(Vector2 playerPosition)
         {

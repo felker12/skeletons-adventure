@@ -17,6 +17,7 @@ namespace SkeletonsAdventure.GameMenu
 
             TabBar.Width = Width;
             TabBar.Height = TabBar.MaxTabHeight();
+            TabBar.Position = Position;
         }
 
         public TabbedMenu(TabbedMenuData tabbedMenuData) : base(tabbedMenuData)
@@ -45,7 +46,6 @@ namespace SkeletonsAdventure.GameMenu
 
             if (Visible)
             {
-                TabBar.Position = Position;
                 TabBar.Update();
 
                 if(TabBar.ActiveMenu != null)

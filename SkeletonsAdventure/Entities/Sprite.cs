@@ -42,7 +42,7 @@ namespace SkeletonsAdventure.Entities
         public virtual void Update(GameTime gameTime)
         {
             Position = LockToMap(Position);
-            Info.Position = LockToMap(Position - new Vector2(0, 60));
+            Info.Position = LockToMap(Position - new Vector2(0, 80));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

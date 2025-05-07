@@ -46,10 +46,11 @@ namespace SkeletonsAdventure.GameWorld
             CreateLevels(_content, _graphics);
 
             //TODO
-            SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
+            //SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
+            SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
 
-            if(CurrentLevel.LevelExit is not null)
-                Player.Position = CurrentLevel.LevelExit.ExitPosition - new Vector2(0,20); //TODO
+            //if (CurrentLevel.LevelExit is not null)
+               // Player.Position = CurrentLevel.LevelExit.ExitPosition - new Vector2(0,20); //TODO
 
             TotalTimeInWorld = new();
         }
@@ -167,28 +168,28 @@ namespace SkeletonsAdventure.GameWorld
         {
             //Test Level
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/TestLevel");
-            Level level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76,76))
+            Level level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(76,76))
             {
             };
             Levels.Add(level.Name, level);
 
             //Test Level
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Testing");
-            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(76, 76))
+            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76))
             {
             };
             Levels.Add(level.Name, level);
 
             //Level 1
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1");
-            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
+            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100))
             {
             };
             Levels.Add(level.Name, level);
 
             //Level 0
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
-            level = new(graphics, _tiledMap, GameManager.GetEnemiesClone(), new MinMaxPair(0, 100))
+            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100))
             {
             };
             Levels.Add(level.Name, level);

@@ -10,7 +10,7 @@ namespace SkeletonsAdventure.Engines
         {
             int dmg, num = 0;
             //add the 1 because the random.Next() will only provide a number less than damage
-            dmg = (attacker.attack + attacker.weaponAttack) - (target.defence + target.armourDefence) + 1; 
+            dmg = (attacker.Attack + attacker.weaponAttack) - (target.Defence + target.armourDefence) + 1; 
 
             if (dmg > 0)
             {

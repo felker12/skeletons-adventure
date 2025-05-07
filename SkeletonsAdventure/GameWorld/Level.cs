@@ -176,7 +176,7 @@ namespace SkeletonsAdventure.GameWorld
                     if(enemy.GetType().Name == entityData.type)
                     {
                         dynamic en = Activator.CreateInstance(enemy.GetType(), entityData);
-                        en.SetEnemyLevel(EnemyLevels);
+                        en.SetEnemyLevel(entityData.entityLevel);
                         en.UpdateEntityData(entityData);
                         en.LootList.Add(GameManager.LoadGameItemsFromItemData(entityData.Items));
 

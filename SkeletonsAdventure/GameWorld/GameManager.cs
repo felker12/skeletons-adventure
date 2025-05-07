@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using RpgLibrary.GameObjectClasses;
 using System.IO;
 using System.Linq;
-using SkeletonsAdventure.GameMenu;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -23,6 +22,7 @@ namespace SkeletonsAdventure.GameWorld
         public static SpriteFont InfoFont { get; private set; }
         public static SpriteFont ToolTipFont { get; private set; }
         public static SpriteFont ControlFont { get; private set; } 
+        public static SpriteFont StatusBarFont { get; private set; }
 
         public static string GamePath { get; private set; } 
         public static string SavePath { get; private set; }
@@ -32,6 +32,7 @@ namespace SkeletonsAdventure.GameWorld
         private static Dictionary<string, Chest> Chests { get; set; } = [];
         public static Dictionary<string, Chest> ChestsClone => GetChestsClone();
         public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
+        public static Dictionary<string, Enemy> EnemiesClone => GetEnemiesClone();
 
         public static Texture2D SkeletonTexture { get; private set; }
         public static Texture2D SkeletonAttackTexture { get; private set; }
@@ -39,6 +40,8 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D PopUpBoxTexture { get; private set; }
         public static Texture2D DefaultButtonTexture { get; private set; }
         public static Texture2D GameMenuTexture { get; set; }
+        public static Texture2D BackpackBackground { get; set; }
+        public static Texture2D StatusBarTexture { get; set; }
 
         public static GraphicsDevice GraphicsDevice { get; private set; }
 
@@ -91,7 +94,7 @@ namespace SkeletonsAdventure.GameWorld
             return item;
         }
 
-        public static Dictionary<string, GameItem> GetItemsClone()
+        private static Dictionary<string, GameItem> GetItemsClone()
         {
             Dictionary<string, GameItem> items = [];
 
@@ -101,7 +104,7 @@ namespace SkeletonsAdventure.GameWorld
             return items;
         }
 
-        public static Dictionary<string, Chest> GetChestsClone()
+        private static Dictionary<string, Chest> GetChestsClone()
         {
             Dictionary<string, Chest> chests = [];
 
@@ -112,7 +115,7 @@ namespace SkeletonsAdventure.GameWorld
         }
 
 
-        public static Dictionary<string, Enemy> GetEnemiesClone()
+        private static Dictionary<string, Enemy> GetEnemiesClone()
         {
             Dictionary<string, Enemy> enemy = [];
 
@@ -122,11 +125,11 @@ namespace SkeletonsAdventure.GameWorld
             return enemy;
         }
 
-        public static void CreatePlayerLevelXPs() //TODO
+        public static void CreatePlayerLevelXPs() //TODO adjust the xp as needed
         {
             string levelsSavePath = Path.Combine(SavePath, "PlayerLevels.txt");
 
-            if (File.Exists(levelsSavePath))
+            if (File.Exists(levelsSavePath)) //If the file exists load the data
             {
                 List<string> lines = [.. File.ReadAllLines(levelsSavePath)];
 
@@ -169,11 +172,17 @@ namespace SkeletonsAdventure.GameWorld
             return level;
         }
 
+        public static int GetLevelXPAtLevel(int level)
+        {
+            return PlayerLevelXPs[level];
+        }
+
         public static void LoadFonts()
         {
             InfoFont = Content.Load<SpriteFont>("Fonts/Font");
             ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
             ControlFont = Content.Load<SpriteFont>("Fonts/ControlFont");
+            StatusBarFont = Content.Load<SpriteFont>("Fonts/StatusBarFont");
         }
 
         public static void LoadTextures()
@@ -190,6 +199,11 @@ namespace SkeletonsAdventure.GameWorld
 
             GameMenuTexture = new(GraphicsDevice, 1, 1);
             GameMenuTexture.SetData([new Color(171, 144, 91, 250)]);
+
+            BackpackBackground = Content.Load<Texture2D>(@"TiledFiles/BackpackBackground");
+
+            StatusBarTexture = new(GraphicsDevice, 1, 1);
+            StatusBarTexture.SetData([Color.White]);
         }
 
         public static void CreateItems()

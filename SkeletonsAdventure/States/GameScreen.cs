@@ -12,15 +12,13 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
 using System.Collections.Generic;
-using RpgLibrary.MenuClasses;
+using SharpFont.Cache;
 
 namespace SkeletonsAdventure.States
 {
     enum BoxSource { Game, Panel }
     public class GameScreen : State
     {
-        private Viewport _sidePanel;
-        private Backpack _backpack;
         private MouseState _mouseState, _lastMouseState;
         private Button equip, unequip, pickUp, drop, consume;
         private GameItem itemUnderMouse = null;
@@ -33,9 +31,10 @@ namespace SkeletonsAdventure.States
         public PopUpBox PopUpBox { get; private set; }
         public TabbedMenu TabbedMenu { get; set; }
         public BaseMenu SettingsMenu { get; private set; }
-        public InfoPanel InfoPanel { get; set; }
-        private static int InfoPanelWidth { get; set; }
-
+        public BackpackMenu BackpackMenu { get; set; }
+        private StatusBar HealthBar { get; set; }
+        private StatusBar ManaBar { get; set; }
+        private StatusBar XPProgress { get; set; }
         public GameScreen(Game1 game) : base(game)
         {
             Initialize();
@@ -49,21 +48,67 @@ namespace SkeletonsAdventure.States
 
         public void Initialize()
         {
-            TiledMap backsplash = Content.Load<TiledMap>(@"TiledFiles/SidePanel");
-            InfoPanelWidth = backsplash.WidthInPixels;
-
             World = new(Content, GraphicsDevice);
             Camera = World.CurrentLevel.Camera;
             Player = World.CurrentLevel.Player;
-            _backpack = World.CurrentLevel.EntityManager.Player.Backpack;
 
-            _sidePanel = new(Game1.ScreenWidth - InfoPanelWidth, 0, InfoPanelWidth, Game1.ScreenHeight);
-            InfoPanel = new(_sidePanel, _backpack.Items, GraphicsDevice, backsplash);
+            /*
+            TiledMap backsplash = Content.Load<TiledMap>(@"TiledFiles/SidePanel");
+            InfoPanel = new(_backpack.Items, GraphicsDevice, backsplash);
+            InfoPanel.Position = new(Game1.ScreenWidth - InfoPanel.Width);
+            InfoPanel.Width = 400;
+            InfoPanel.Height = 400;
+            InfoPanel.SetBackgroundColor(Color.SlateGray);
+            */
 
             CreatePopUpBox();
             CreateTabbedMenu();
 
-            Menus = [TabbedMenu, InfoPanel];
+            BackpackMenu = new()
+            {
+                Visible = true,
+            };
+
+            Menus = [TabbedMenu, BackpackMenu /*InfoPanel*/];
+
+            HealthBar = new()
+            {
+                Width = (int)(Game1.ScreenWidth * .75),
+                Height = 18,
+                BorderColor = Color.Black,
+                BorderWidth = 2,
+                BarColor = Color.Firebrick,
+                TextVisible = true,
+                Transparency = 0.33f,
+            };
+            ManaBar = new()
+            {
+                Width = HealthBar.Width,
+                Height = HealthBar.Height,
+                BorderColor = Color.Black,
+                BarColor = Color.Blue,
+                BorderWidth = 2,
+                TextVisible = true,
+                Transparency = 0.33f,
+            };
+            XPProgress = new()
+            {
+                Width = HealthBar.Width,
+                Height = HealthBar.Height,
+                BorderColor = Color.Black,
+                BarColor = Color.DarkSlateGray,
+                BorderWidth = 2,
+                TextVisible = true,
+                Transparency = 0.33f,
+            };
+
+            HealthBar.Position = new(Game1.ScreenWidth / 2 - HealthBar.Width / 2,
+                    Game1.ScreenHeight - HealthBar.Height - HealthBar.BorderWidth - 
+                    ManaBar.Height - ManaBar.BorderWidth - 
+                    XPProgress.Height - XPProgress.BorderWidth);
+
+            ManaBar.Position = HealthBar.Position + new Vector2(0, HealthBar.Height + HealthBar.BorderWidth);
+            XPProgress.Position = ManaBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -71,90 +116,83 @@ namespace SkeletonsAdventure.States
             GraphicsDevice.Clear(Color.DarkCyan);
 
             World.Draw(spriteBatch);
+            foreach (BaseMenu menu in Menus)
+                menu.Draw(spriteBatch);
 
-            //Draw the sidepanel
-            GraphicsDevice.Viewport = _sidePanel;
-            InfoPanel.Draw(spriteBatch);
+            spriteBatch.Begin(
+                SpriteSortMode.Immediate,
+                BlendState.AlphaBlend,
+                SamplerState.PointClamp,
+                null,
+                null,
+                null,
+                Camera.Transformation);
 
-            GraphicsDevice.Viewport = Game1.GameViewport;
-
-            //Draw the PopUpBox //TODO fix this so the if statement isn't needed
-            if (PopUpBox.Visible && CurrentSource == BoxSource.Game)
+            if (CurrentSource == BoxSource.Game && PopUpBox.Visible)
             {
-                spriteBatch.Begin(
-                    SpriteSortMode.Immediate,
-                    BlendState.AlphaBlend,
-                    SamplerState.PointClamp,
-                    null,
-                    null,
-                    null,
-                    Camera.Transformation);
-
                 PopUpBox.Draw(spriteBatch);
-
-                spriteBatch.End();
             }
 
-            if (PopUpBox.Visible && CurrentSource == BoxSource.Panel)
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            if (CurrentSource == BoxSource.Panel && PopUpBox.Visible)
             {
-                spriteBatch.Begin();
                 PopUpBox.Draw(spriteBatch);
-                spriteBatch.End();
             }
 
-            TabbedMenu.Draw(spriteBatch);
+            HealthBar.Draw(spriteBatch);
+            ManaBar.Draw(spriteBatch);
+            XPProgress.Draw(spriteBatch);
+
+            spriteBatch.End();
+
         }
 
         public override void PostUpdate(GameTime gameTime) { }
         public override void Update(GameTime gameTime)
         {
             World.Update(gameTime);
-            InfoPanel.Update(_backpack.Items);
+
+            int lvlXP = GameManager.GetLevelXPAtLevel(Player.EntityLevel);
+            int nextLvlXP = GameManager.GetLevelXPAtLevel(Player.EntityLevel + 1);
+            int playerXPToLevel = nextLvlXP - lvlXP;
+            int playerXPSinceLastLevel = Player.TotalXP - lvlXP;
+
+            HealthBar.UpdateStatusBar(Player.Health, Player.MaxHealth, HealthBar.Position);
+            ManaBar.UpdateStatusBar(Player.Mana, Player.MaxMana, ManaBar.Position);
+            XPProgress.UpdateStatusBar(playerXPSinceLastLevel, playerXPToLevel, XPProgress.Position);
+
+
+            BackpackMenu.Update(World.CurrentLevel.EntityManager.Player.Backpack.Items);
+
+            foreach (BaseMenu menu in Menus)
+                menu.Update(gameTime);
 
             CheckUnderMouse();
             HandleInput();
-
-            //TODO
-            if (InfoPanel.Visible)
-            {
-                //Game1.ScreenWidth = 1280 + InfoPanelWidth;
-                //Camera.Width = Game1.ScreenWidth;
-            }
-            else
-            {
-                //Game1.ScreenWidth = 1280;
-                //Camera.Width = Game1.ScreenWidth;
-            }
-
-            //Game1.Graphics.PreferredBackBufferWidth = Game1.ScreenWidth;
-            //Game1.Graphics.ApplyChanges();
-
-            TabbedMenu.Update(gameTime);
-            //SettingsMenu.Update(gameTime);
         }
 
         private void HandleInput()
         {
             if (InputHandler.KeyReleased(Keys.B))
             {
-                if (InfoPanel.Visible == true)
-                    InfoPanel.Visible = false;
-                else if (InfoPanel.Visible == false)
-                    InfoPanel.Visible = true;
+                BackpackMenu.ToggleVisibility();
             }
 
             if (InputHandler.KeyReleased(Keys.I))
             {
                 TabbedMenu.ToggleVisibility();
-
-                //System.Diagnostics.Debug.WriteLine(TabbedMenu.GetTabbedMenuData().ToString());//TODO
-                foreach(MenuData menuDatas in TabbedMenu.GetTabbedMenuData().MenuDatas)
-                {
-                    System.Diagnostics.Debug.WriteLine(menuDatas.ToString());
-                }
-
-                System.Diagnostics.Debug.WriteLine(TabbedMenu.GetTabbedMenuData().MenuDatas.ToString());//TODO
             }
+
+            if(InputHandler.KeyReleased(Keys.V)) //TODO
+            {
+                HealthBar.ToggleVisibility();
+                ManaBar.ToggleVisibility();
+                XPProgress.ToggleVisibility();
+            }
+
         }
 
         private void CheckUnderMouse()
@@ -170,25 +208,24 @@ namespace SkeletonsAdventure.States
 
             itemUnderMouse = null;
 
-            if (InfoPanel.Visible)
+            if (BackpackMenu.Visible)
             {
-                foreach (GameItem item in InfoPanel.Items)
+                foreach (GameItem item in BackpackMenu.Items)
                 {
                     //calculate the transformed position so we can find where the items are based on a world position
                     tempV = Vector2.Transform(item.Position, Matrix.Invert(Camera.Transformation));
-                    tempV += new Vector2(InfoPanel.Position.X, 0); //offset the world position with the width of the game viewport
+                    tempV += new Vector2(BackpackMenu.Position.X, 0); //offset the world position with the width of the game viewport
                     tempR = new((int)tempV.X, (int)tempV.Y, GameItem.Width, GameItem.Height);
 
-                    Intersects(transformedMouseRectangle, tempR, item, BoxSource.Panel);
+                    Intersects(mouseRec, item.ItemRectangle, item, BoxSource.Panel);
 
                     if (PopUpBox.Visible)
                     {
-                        Vector2 tempPopUpPos = Vector2.Transform(PopUpBox.Position, Matrix.Invert(Camera.Transformation));
-                        Rectangle rec = new((int)tempPopUpPos.X, (int)tempPopUpPos.Y, 1, 1);
-                        if (rec.Intersects(tempR))
+                        Rectangle rec = new((int)PopUpBox.Position.X, (int)PopUpBox.Position.Y, 1, 1);
+                        if (rec.Intersects(item.ItemRectangle))
                             itemUnderMouse = item;
                     }
-                    else if (transformedMouseRectangle.Intersects(tempR))
+                    else if (mouseRec.Intersects(item.ItemRectangle))
                         itemUnderMouse = item;
                 }
             }
@@ -277,10 +314,6 @@ namespace SkeletonsAdventure.States
                     CurrentSource = source;
                     Vector2 mousePos = new(mouseRec.X, mouseRec.Y);
 
-                    //if its in the panel find the correct postion on the screen 
-                    if (source == BoxSource.Panel)
-                        mousePos = Vector2.Transform(mousePos, Camera.Transformation);
-
                     PopUpBox.Position = mousePos;
                     PopUpBox.Visible = true;
                     intersects = true;
@@ -333,17 +366,13 @@ namespace SkeletonsAdventure.States
 
             TabbedMenu = new()
             {
-                Visible = true,
+                Visible = false,
                 Title = "TabbedMenu",
             };
             TabbedMenu.SetBackgroundColor(new Color(171, 144, 91, 250));
             //=================================================
 
             //create the child menus for the tabbed menu=======
-            Texture2D texture = new(GraphicsDevice, 1, 1);
-            //texture.SetData([new Color(171,144,91,250)]);
-            texture.SetData([new Color(3, 23, 64, 250)]);
-
             SettingsMenu = new()
             {
                 Visible = true,
@@ -353,7 +382,7 @@ namespace SkeletonsAdventure.States
             SettingsMenu.SetBackgroundColor(new Color(3, 23, 64, 250));
             TabbedMenu.AddMenu(SettingsMenu);
 
-            texture = new(GraphicsDevice, 1, 1);
+            Texture2D texture = new(GraphicsDevice, 1, 1);
             texture.SetData([Color.Wheat]);
             BaseMenu testMenu = new()
             {
@@ -391,13 +420,13 @@ namespace SkeletonsAdventure.States
             {
                 Player.EquippedItems.TryUnequipItem(itemUnderMouse);
                 World.CurrentLevel.EntityManager.DroppedLootManager.Add(itemUnderMouse, Player.Position - new Vector2(60, 40));
-                _backpack.RemoveItem(itemUnderMouse);
+                Player.Backpack.RemoveItem(itemUnderMouse);
             }
         }
 
         private void PickUp_Click(object sender, System.EventArgs e)
         {
-            if (itemUnderMouse != null && _backpack.AddItem(itemUnderMouse) == true)
+            if (itemUnderMouse != null && Player.Backpack.AddItem(itemUnderMouse) == true)
                 World.CurrentLevel.EntityManager.DroppedLootManager.ItemToRemove.Add(itemUnderMouse);
         }
 

@@ -10,7 +10,6 @@ namespace SkeletonsAdventure.Entities
 {
     public class Enemy : Entity
     {
-        private Vector2 movement;
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
         public Rectangle DetectionArea, AttackArea;
         public bool IsElite { get; set; } = false;
@@ -46,22 +45,22 @@ namespace SkeletonsAdventure.Entities
 
         private void EnemyStatAdjustmentForLevel()
         {
-            Health = baseHealth + EntityLevel * 2;
-            maxHealth = baseHealth + EntityLevel * 2;
-            defence = baseDefence + EntityLevel * 2;
-            attack = baseAttack + EntityLevel * 2;
+            MaxHealth = baseHealth + EntityLevel * 2;
+            Health = MaxHealth;
+            Defence = baseDefence + EntityLevel * 2;
+            Attack = baseAttack + EntityLevel * 2;
             XP = baseXP + EntityLevel * 2;
 
             if(IsElite)
             {
                 int healthBonus =(int)(Health * 1.5);
-                int Bonus = (int)Math.Ceiling((double)defence / 4);
+                int Bonus = (int)Math.Ceiling((double)Defence / 4);
 
                 Health += healthBonus;
-                maxHealth += healthBonus;
+                MaxHealth += healthBonus;
 
-                defence += Bonus;
-                attack += Bonus;
+                Defence += Bonus;
+                Attack += Bonus;
                 DefaultColor = new Color(Color.Black, 255);
                 SpriteColor = DefaultColor;
                 XP *= 2;
@@ -74,8 +73,6 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this
             Info.Text += "\nXP = " + XP;
 
-            Motion = movement;
-
             int detectX = (int)Position.X - (detectionWidth - Width) /2;
             int detectY = (int)Position.Y - (detectionHeight - Height) / 2;
             DetectionArea = new(detectX, detectY, detectionWidth, detectionHeight);
@@ -83,6 +80,9 @@ namespace SkeletonsAdventure.Entities
             detectX = (int)Position.X - Width;
             detectY = (int)Position.Y - Width;
             AttackArea = new(detectX, detectY, Width * 3, Height + Width * 2);
+
+
+            Info.Text += "\nMax Health = " + MaxHealth;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -105,13 +105,15 @@ namespace SkeletonsAdventure.Entities
         public override void Respawn()
         { 
             ResetSquare();
-            movement = Vector2.Zero;
+            Motion = Vector2.Zero;
             SetEnemyLevel(LevelRange);
             base.Respawn();
         }
 
         public void WalkInSquare()
         {
+            Vector2 movement = Vector2.Zero;
+
             if (x < walkDistance)
             {
                 movement.Y = 0;
@@ -145,6 +147,8 @@ namespace SkeletonsAdventure.Entities
                     }
                 }
             }
+
+            Motion = movement;
         }
 
         public void ResetSquare()

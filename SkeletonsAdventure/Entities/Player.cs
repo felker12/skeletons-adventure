@@ -8,6 +8,8 @@ using Effect = RpgLibrary.ItemClasses.Effect;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.GameWorld;
 
+using System;
+
 namespace SkeletonsAdventure.Entities
 {
     public class Player : Entity
@@ -15,30 +17,56 @@ namespace SkeletonsAdventure.Entities
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
         public int TotalXP { get; set; } = 0;
+        public int Mana { get; set; }
+        public int BaseMana { get; set; }
+        public int MaxMana { get; set; }
+        public int StatusPoints { get; set; } = 0;
+        public StatusBar ManaBar { get; set; } = new();
+        public float XPModifier { get; set; } = 1.0f; //TODO
+
+        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
+        
 
         public Player() : base()
         {
-            baseAttack = 400; //TODO;
+            baseAttack = 400; //TODO correct the values
             baseDefence = 6;
-            baseHealth = 1000000;
-
+            baseHealth = 10000;
             TotalXP = 0;
 
             Initialize(); 
         }
 
-        public Player(PlayerData playerData) : base(playerData)
+        private void Initialize()
         {
-            TotalXP = playerData.totalXP;
+            respawnTime = 0;
+            Health = baseHealth;
+            MaxHealth = baseHealth;
+            Defence = baseDefence;
+            Attack = baseAttack;
+            Speed = 6; //TODO
 
-            Initialize();
+            BaseMana = 10;
+            MaxMana = BaseMana;
+            Mana = BaseMana;
+
+            Backpack = new();
+            EquippedItems = new();
+
+            ManaBar.BarColor = Color.Blue;
+
+            //TODO delete this line
+            Info.Color = Color.Aqua;
         }
-
         public void UpdatePlayerData(PlayerData playerData)
         {
             UpdateEntityData(playerData);
 
             TotalXP = playerData.totalXP;
+            BaseMana = playerData.baseMana;
+            Mana = playerData.mana;
+            MaxMana = playerData.maxMana;
+            StatusPoints = playerData.statusPoints;
         }
 
         public PlayerData GetPlayerData()
@@ -46,59 +74,85 @@ namespace SkeletonsAdventure.Entities
             return new(GetEntityData())
             {
                 totalXP = TotalXP,
+                baseMana = BaseMana,
+                mana = Mana,
+                maxMana = MaxMana,
+                statusPoints = StatusPoints,
                 backpack = Backpack.GetBackpackData()
             };
-        }
-
-
-        private void Initialize()
-        {
-            respawnTime = 0;
-            Health = baseHealth;
-            maxHealth = baseHealth;
-            defence = baseDefence;
-            attack = baseAttack;
-            Speed = 6;
-            
-            Backpack = new();
-            EquippedItems = new();
-
-            //TODO delete this line
-            Info.Color = Color.Aqua;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            ManaBar.Draw(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
             UpdatePlayerMotion();
+
             base.Update(gameTime);
+            HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
+            ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0,ManaBar.Height + ManaBar.BorderWidth + 2));
+
             Backpack.Update();
             CheckInput(gameTime);
 
-            Info.Text += "\nXP = " + TotalXP;
 
-            attack = baseAttack + EquippedItems.EquippedItemsAttackBonus();
-            defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus();
+            Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel;
+            Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
+            MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
+
+            //TODO delete this
+            Info.Text += $"\nXP = {TotalXP}";
+            //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
         }
 
         public void GainXp(int XpGained)
         {
             int currentLevel = GameManager.GetPlayerLevelAtXP(TotalXP);
 
-            TotalXP += XpGained;
+            TotalXP += (int)(XpGained * XPModifier);
+
             EntityLevel = GameManager.GetPlayerLevelAtXP(TotalXP);
 
             if (EntityLevel > currentLevel)
-                LevelUP();
+            {
+                while(currentLevel < EntityLevel) //perform the levelUp event for every level gained
+                {
+                    LevelUP();
+                    currentLevel++;
+                }
+                System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!\nYou now have {StatusPoints} Status Points"); //TODO delete this
+
+                PlayerStatAdjustmentForLevel();
+
+                System.Diagnostics.Debug.WriteLine($"Attack = {Attack}\nDefence = {Defence}");
+
+
+                int lvlXP = GameManager.GetLevelXPAtLevel(EntityLevel);
+                int nextLvlXP = GameManager.GetLevelXPAtLevel(EntityLevel + 1);
+                System.Diagnostics.Debug.WriteLine($"Current lvl xp = {lvlXP} and next lvl xp = {nextLvlXP}\n" +
+                    $"xp to go = {nextLvlXP - TotalXP}");
+            }
         }
 
         public void LevelUP() //TODO
         {
-            System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!");
+            StatusPoints += 2;
+            Health = MaxHealth;
+            Mana = MaxMana;
+        }
+
+        private void PlayerStatAdjustmentForLevel()
+        {
+            //TODO
+            int levelModifier = EntityLevel * 2;
+
+            bonusAttackFromLevel = levelModifier;
+            bonusDefenceFromLevel = levelModifier;
+            bonusHealthFromLevel = levelModifier * 10;
         }
 
         public void ConsumeItem(GameItem item)
@@ -112,12 +166,12 @@ namespace SkeletonsAdventure.Entities
                     {
                         case Effect.Heal:
 
-                            if(Health != maxHealth)
+                            if(Health != MaxHealth)
                             {
-                                if (Health + consumable.EffectBonus < maxHealth)
+                                if (Health + consumable.EffectBonus < MaxHealth)
                                     Health += consumable.EffectBonus;
                                 else
-                                    Health = maxHealth;
+                                    Health = MaxHealth;
 
                                 item.Quantity -= 1;
                                 if (item.Quantity == 0)

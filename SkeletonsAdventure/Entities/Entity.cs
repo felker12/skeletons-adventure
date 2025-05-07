@@ -10,18 +10,22 @@ namespace SkeletonsAdventure.Entities
 {
     public class Entity : AnimatedSprite
     {
-        public int baseDefence, baseAttack, baseHealth, baseXP;
-        public int maxHealth, defence, attack, weaponAttack, armourDefence, respawnTime;
+        public int baseDefence, baseAttack, baseHealth, baseXP, weaponAttack, armourDefence, respawnTime;
         public Texture2D basicAttackTexture;
         public TimeSpan lastDeathTime;
         public Vector2 RespawnPosition = Vector2.Zero;
-        public string type { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public StatusBar HealthBar = new();
 
         public static int AttackDelay { get; } = 800;  //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
         public int XP { get; set; } //Xp gained for killing the entity
+        public int MaxHealth { get; set; }
         public int Health { get; set; }
+
+        public int Defence { get; set; }
+        public int Attack { get; set; }
         public float Speed { get; set; }
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
@@ -53,14 +57,14 @@ namespace SkeletonsAdventure.Entities
 
         private void Initialize()
         {
-            type = this.GetType().Name;
+            Type = this.GetType().Name;
             weaponAttack = 0;
             armourDefence = 0;
             AttackManager = new(this);
             Health = baseHealth;
-            maxHealth = baseHealth;
-            defence = baseDefence;
-            attack = baseAttack;
+            MaxHealth = baseHealth;
+            Defence = baseDefence;
+            Attack = baseAttack;
 
             CollisionCount = 0;
             Speed = 1.5f;
@@ -79,6 +83,7 @@ namespace SkeletonsAdventure.Entities
 
             base.Update(gameTime);
 
+
             if (IsColliding)
                 SpriteColor = Color.Red;
             else
@@ -92,6 +97,9 @@ namespace SkeletonsAdventure.Entities
             else
                 IsColliding = false;
 
+            Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
+            HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
+
             //TODO
             Info.Text = Health.ToString();
             Info.Text += "\nLevel = " + EntityLevel;
@@ -99,6 +107,7 @@ namespace SkeletonsAdventure.Entities
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            HealthBar.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
@@ -106,7 +115,7 @@ namespace SkeletonsAdventure.Entities
         {
             return new EntityData()
             {
-                type = type,
+                type = Type,
                 baseHealth = baseHealth,
                 baseDefence = baseDefence,
                 baseAttack = baseAttack,
@@ -123,7 +132,7 @@ namespace SkeletonsAdventure.Entities
 
         public void UpdateEntityData(EntityData entityData)
         {
-            type = entityData.type;
+            Type = entityData.type;
             baseHealth = entityData.baseHealth;
             baseAttack = entityData.baseAttack;
             baseDefence = entityData.baseDefence;
@@ -131,6 +140,7 @@ namespace SkeletonsAdventure.Entities
             EntityLevel = entityData.entityLevel;
             Health = entityData.currentHealth;
             IsDead = entityData.isDead;
+
             if (entityData.position != null)
             {
                 Position = (Vector2)entityData.position;
@@ -147,7 +157,7 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void Respawn()
         {
-            Health = maxHealth;
+            Health = MaxHealth;
             Position = RespawnPosition;
             Motion = Vector2.Zero;
             IsDead = false;

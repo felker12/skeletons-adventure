@@ -8,7 +8,6 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.GameWorld;
 using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.GameMenu;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.States
 {
@@ -40,7 +39,7 @@ namespace SkeletonsAdventure.States
 
             menuLabel = new LinkLabel
             {
-                Text = "Press to save and retrun to menu screen",
+                Text = "Press to save and return to menu screen",
                 Color = Color.White,
                 TabStop = true,
                 HasFocus = true
@@ -104,7 +103,6 @@ namespace SkeletonsAdventure.States
                 }
 
                 XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
-                //XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\Settings.xml", Game.GameScreen.TabbedMenu.GetTabbedMenuData());
                 XnaSerializer.Serialize<MenuManagerData>(savePath + @"\Settings.xml", menuManagerData);
             }
             catch (Exception ex)
