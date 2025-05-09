@@ -11,7 +11,7 @@ namespace SkeletonsAdventure.Controls
 {
     public class TabBar
     {
-        public Dictionary<Tab, BaseMenu> TabMenus { get; set; } = [];
+        public Dictionary<Tab, BaseMenu> TabMenus { get; private set; } = [];
         public Vector2 Position { get; set; } = new();
         public SpriteFont SpriteFont { get; set; } = GameManager.ControlFont;
         public int Width { get; set; } = 100;
@@ -42,12 +42,17 @@ namespace SkeletonsAdventure.Controls
                     tab.Update();
                     if (mouseRectangle.Intersects(tab.Rectangle))
                     {
+                        tab.IsHovering = true;
+
                         if (_currentMouse.LeftButton == ButtonState.Released &&
                             _previousMouse.LeftButton == ButtonState.Pressed)
                         {
                             TabClicked?.Invoke(tab, new EventArgs());
                         }
                     }
+                    else
+                        tab.IsHovering = false;
+
                 }
             }
         }
@@ -114,6 +119,25 @@ namespace SkeletonsAdventure.Controls
             }
 
             return maxHeight;
+        }
+
+        public void SetAllTabsTextures(Texture2D texture)
+        {
+            foreach (Tab tab in TabMenus.Keys)
+            {
+                tab.Texture = texture;
+            }
+        }
+
+        public void SetAllTabsColors(Color color)
+        {
+            Texture2D background = new(GameManager.GraphicsDevice, 1, 1);
+            background.SetData([color]);
+
+            foreach (Tab tab in TabMenus.Keys)
+            {
+                tab.Texture = background;
+            }
         }
     }
 }

@@ -42,13 +42,15 @@ namespace SkeletonsAdventure.Entities
         public virtual void Update(GameTime gameTime)
         {
             Position = LockToMap(Position);
-            Info.Position = LockToMap(Position - new Vector2(0, 80));
+            Info.Text = string.Empty; //Set the text back to empty before adding something to it (like from a child class)
+            Info.Position = LockToMap(Position - new Vector2(0, 100));
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
             //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+
             Info.Draw(spriteBatch);
         }
 

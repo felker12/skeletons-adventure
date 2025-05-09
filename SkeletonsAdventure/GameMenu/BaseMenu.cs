@@ -9,7 +9,7 @@ namespace SkeletonsAdventure.GameMenu
 {
     public class BaseMenu
     {
-        protected ControlManager ControlManager { get; set; } = new(GameManager.ControlFont);
+        public ControlManager ControlManager { get; set; } = new(GameManager.ControlFont);
         protected ContentManager Content { get; set; } = GameManager.Content;
         protected GraphicsDevice GraphicsDevice { get; set; } = GameManager.GraphicsDevice;
         protected PlayerIndex PlayerIndexInControl { get; set; } = PlayerIndex.One;
@@ -21,7 +21,9 @@ namespace SkeletonsAdventure.GameMenu
         public Texture2D Texture { get; set; } = GameManager.GameMenuTexture;
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
         public Color TintColor { get; set; } = Color.White;
-        public Color BackgroundColor { get; private set; } = Color.White;
+
+        //This is just used to save the background color used by the SetBackgroundColor method to color the texture
+        protected Color BackgroundColor { get; private set; } = Color.White; 
         public string Title { get; set; } = "Menu";
 
         public BaseMenu()
@@ -53,6 +55,7 @@ namespace SkeletonsAdventure.GameMenu
             if (Visible)
                 ControlManager.Update(gameTime, PlayerIndexInControl);
         }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Visible)

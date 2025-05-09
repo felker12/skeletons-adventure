@@ -16,8 +16,8 @@ namespace SkeletonsAdventure.States
     {
         public MenuScreen(Game1 game) : base(game)
         {
-            var buttonTexture = Content.Load<Texture2D>("Controls/Button");
-            var buttonFont = Content.Load<SpriteFont>("Fonts/Font");
+            var buttonTexture = GameManager.ButtonTexture;
+            var buttonFont = GameManager.InfoFont;
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {

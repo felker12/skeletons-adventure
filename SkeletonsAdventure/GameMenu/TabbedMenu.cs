@@ -11,7 +11,7 @@ namespace SkeletonsAdventure.GameMenu
 
         public TabbedMenu() : base()
         {
-            Position = new Vector2(100, 100);
+            Position = new Vector2(0,0);
             Width = 600;
             Height = 500;
 
@@ -47,13 +47,14 @@ namespace SkeletonsAdventure.GameMenu
             if (Visible)
             {
                 TabBar.Update();
+                TabBar.Position = Position;
 
-                if(TabBar.ActiveMenu != null)
+                if (TabBar.ActiveMenu != null)
                 {
                     TabBar.ActiveMenu.Position = TabBar.Position + new Vector2(0, TabBar.Height);
                     TabBar.ActiveMenu.Update(gameTime);
-                    TabBar.ActiveMenu.Width = Width - 20;
-                    TabBar.ActiveMenu.Height = Height - TabBar.Height - 20;
+                    TabBar.ActiveMenu.Width = Width;
+                    TabBar.ActiveMenu.Height = Height - TabBar.Height;
                 }
             }
         }
@@ -65,7 +66,7 @@ namespace SkeletonsAdventure.GameMenu
                 spriteBatch.Begin();
                 spriteBatch.Draw(Texture, Rectangle, TintColor);
                 TabBar.Draw(spriteBatch);
-                //ControlManager.Draw(spriteBatch);
+                ControlManager.Draw(spriteBatch);
                 spriteBatch.End();
 
                 TabBar.ActiveMenu?.Draw(spriteBatch);

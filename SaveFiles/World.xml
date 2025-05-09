@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT13.4666936S</TotalTimeInWorld>
-    <CurrentLevel>Level0</CurrentLevel>
+    <TotalTimeInWorld>PT1.1166689S</TotalTimeInWorld>
+    <CurrentLevel>TestLevel</CurrentLevel>
     <PlayerData>
       <Items />
       <type>Player</type>
@@ -12,8 +12,8 @@
       <entityLevel>0</entityLevel>
       <baseXP>1</baseXP>
       <currentHealth>10000</currentHealth>
-      <position>66 67</position>
-      <respawnPosition>66 67</respawnPosition>
+      <position>266 164</position>
+      <respawnPosition>266 92</respawnPosition>
       <isDead>false</isDead>
       <LastDeathTime>PT0S</LastDeathTime>
       <totalXP>0</totalXP>
@@ -296,7 +296,7 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>172</currentHealth>
-                <position>477 458</position>
+                <position>387 458</position>
                 <respawnPosition>320 458</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -367,7 +367,7 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>172</currentHealth>
-                <position>893 458</position>
+                <position>803 458</position>
                 <respawnPosition>736 458</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -438,7 +438,7 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>430</currentHealth>
-                <position>957 778</position>
+                <position>867 778</position>
                 <respawnPosition>800 778</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -509,7 +509,7 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>4</baseXP>
                 <currentHealth>167</currentHealth>
-                <position>765 288</position>
+                <position>675 288</position>
                 <respawnPosition>608 288</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -873,11 +873,153 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>82</entityLevel>
+                <entityLevel>23</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>184</currentHealth>
-                <position>479 301</position>
+                <currentHealth>66</currentHealth>
+                <position>256 106</position>
                 <respawnPosition>256 106</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>42</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>104</currentHealth>
+                <position>224 522</position>
+                <respawnPosition>224 522</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>77</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>174</currentHealth>
+                <position>64 714</position>
+                <respawnPosition>64 714</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
               </Item>
@@ -947,149 +1089,7 @@
                 <entityLevel>62</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>144</currentHealth>
-                <position>479 717</position>
-                <respawnPosition>224 522</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>9</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>38</currentHealth>
-                <position>479 809</position>
-                <respawnPosition>64 714</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>55</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>130</currentHealth>
-                <position>479 1193</position>
+                <position>32 1034</position>
                 <respawnPosition>32 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1157,10 +1157,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>23</entityLevel>
+                <entityLevel>85</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>66</currentHealth>
-                <position>479 1193</position>
+                <currentHealth>190</currentHealth>
+                <position>288 1034</position>
                 <respawnPosition>288 1034</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1228,11 +1228,437 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>33</entityLevel>
+                <entityLevel>62</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>86</currentHealth>
-                <position>479 1577</position>
+                <currentHealth>144</currentHealth>
+                <position>192 1482</position>
                 <respawnPosition>192 1482</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>64</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>148</currentHealth>
+                <position>1920 1738</position>
+                <respawnPosition>1920 1738</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>78</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>176</currentHealth>
+                <position>96 1802</position>
+                <respawnPosition>96 1802</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>30</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>80</currentHealth>
+                <position>2208 1802</position>
+                <respawnPosition>2208 1802</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>60</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>140</currentHealth>
+                <position>768 1834</position>
+                <respawnPosition>768 1834</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>52</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>124</currentHealth>
+                <position>224 1898</position>
+                <respawnPosition>224 1898</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>52</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>124</currentHealth>
+                <position>1760 2026</position>
+                <respawnPosition>1760 2026</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
               </Item>
@@ -1302,433 +1728,7 @@
                 <entityLevel>89</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>198</currentHealth>
-                <position>2376 1933</position>
-                <respawnPosition>1920 1738</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>10</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>40</currentHealth>
-                <position>447 1997</position>
-                <respawnPosition>96 1802</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>18</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>56</currentHealth>
-                <position>2495 1997</position>
-                <respawnPosition>2208 1802</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>3</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>26</currentHealth>
-                <position>1224 1993</position>
-                <respawnPosition>768 1834</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>28</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>76</currentHealth>
-                <position>447 2057</position>
-                <respawnPosition>224 1898</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>68</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>156</currentHealth>
-                <position>1919 2185</position>
-                <respawnPosition>1760 2026</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>83</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>186</currentHealth>
-                <position>2239 2121</position>
+                <position>2016 2058</position>
                 <respawnPosition>2016 2058</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1796,10 +1796,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>84</entityLevel>
+                <entityLevel>78</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>188</currentHealth>
-                <position>1087 2377</position>
+                <currentHealth>176</currentHealth>
+                <position>672 2186</position>
                 <respawnPosition>672 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1867,10 +1867,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>17</entityLevel>
+                <entityLevel>94</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>54</currentHealth>
-                <position>1087 2381</position>
+                <currentHealth>208</currentHealth>
+                <position>864 2186</position>
                 <respawnPosition>864 2186</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -1938,10 +1938,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>67</entityLevel>
+                <entityLevel>31</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>154</currentHealth>
-                <position>383 2441</position>
+                <currentHealth>82</currentHealth>
+                <position>224 2282</position>
                 <respawnPosition>224 2282</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2012,7 +2012,7 @@
                 <entityLevel>58</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>136</currentHealth>
-                <position>1672 2409</position>
+                <position>1216 2314</position>
                 <respawnPosition>1216 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2080,10 +2080,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>14</entityLevel>
+                <entityLevel>35</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>48</currentHealth>
-                <position>1919 2409</position>
+                <currentHealth>90</currentHealth>
+                <position>1536 2314</position>
                 <respawnPosition>1536 2314</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2151,10 +2151,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>80</entityLevel>
+                <entityLevel>39</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>180</currentHealth>
-                <position>2375 2569</position>
+                <currentHealth>98</currentHealth>
+                <position>2080 2410</position>
                 <respawnPosition>2080 2410</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -2222,153 +2222,11 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>1</entityLevel>
+                <entityLevel>29</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>22</currentHealth>
-                <position>2495 2637</position>
+                <currentHealth>78</currentHealth>
+                <position>2080 2442</position>
                 <respawnPosition>2080 2442</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>81</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>182</currentHealth>
-                <position>1000 2633</position>
-                <respawnPosition>544 2506</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>6</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>32</currentHealth>
-                <position>1087 2633</position>
-                <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
               </Item>
@@ -2438,8 +2296,8 @@
                 <entityLevel>82</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>184</currentHealth>
-                <position>2495 2797</position>
-                <respawnPosition>2336 2602</respawnPosition>
+                <position>544 2506</position>
+                <respawnPosition>544 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
               </Item>
@@ -2506,508 +2364,11 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>98</entityLevel>
+                <entityLevel>80</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>216</currentHealth>
-                <position>2495 2829</position>
-                <respawnPosition>2336 2634</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>32</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>84</currentHealth>
-                <position>1663 2893</position>
-                <respawnPosition>1504 2698</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>98</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>216</currentHealth>
-                <position>1407 3053</position>
-                <respawnPosition>1248 2858</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>56</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>132</currentHealth>
-                <position>2495 3149</position>
-                <respawnPosition>2336 2954</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>18</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>56</currentHealth>
-                <position>447 3113</position>
-                <respawnPosition>32 2986</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>22</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>64</currentHealth>
-                <position>1407 3181</position>
-                <respawnPosition>1248 2986</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>49</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>118</currentHealth>
-                <position>640 3018</position>
-                <respawnPosition>640 3018</respawnPosition>
-                <isDead>false</isDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item>
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                  <Item>
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath></TexturePath>
-                  </Item>
-                </Items>
-                <type>Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>90</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>200</currentHealth>
-                <position>1663 3341</position>
-                <respawnPosition>1504 3146</respawnPosition>
+                <currentHealth>180</currentHealth>
+                <position>864 2506</position>
+                <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
               </Item>
@@ -3077,7 +2438,646 @@
                 <entityLevel>100</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>220</currentHealth>
-                <position>2175 3305</position>
+                <position>2336 2602</position>
+                <respawnPosition>2336 2602</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>0</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>20</currentHealth>
+                <position>2336 2634</position>
+                <respawnPosition>2336 2634</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>97</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>214</currentHealth>
+                <position>1504 2698</position>
+                <respawnPosition>1504 2698</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>75</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>170</currentHealth>
+                <position>1248 2858</position>
+                <respawnPosition>1248 2858</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>85</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>190</currentHealth>
+                <position>2336 2954</position>
+                <respawnPosition>2336 2954</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>1</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>22</currentHealth>
+                <position>32 2986</position>
+                <respawnPosition>32 2986</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>77</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>174</currentHealth>
+                <position>1248 2986</position>
+                <respawnPosition>1248 2986</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>57</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>134</currentHealth>
+                <position>640 3018</position>
+                <respawnPosition>640 3018</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>61</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>142</currentHealth>
+                <position>1504 3146</position>
+                <respawnPosition>1504 3146</respawnPosition>
+                <isDead>false</isDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item>
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                  <Item>
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>0 0</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath></TexturePath>
+                  </Item>
+                </Items>
+                <type>Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>57</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>134</currentHealth>
+                <position>1856 3210</position>
                 <respawnPosition>1856 3210</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3145,10 +3145,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>40</entityLevel>
+                <entityLevel>27</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>100</currentHealth>
-                <position>2495 3437</position>
+                <currentHealth>74</currentHealth>
+                <position>2336 3242</position>
                 <respawnPosition>2336 3242</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3216,10 +3216,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>78</entityLevel>
+                <entityLevel>7</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>176</currentHealth>
-                <position>1119 3661</position>
+                <currentHealth>34</currentHealth>
+                <position>1024 3466</position>
                 <respawnPosition>1024 3466</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3287,10 +3287,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>22</entityLevel>
+                <entityLevel>72</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>64</currentHealth>
-                <position>2495 3593</position>
+                <currentHealth>164</currentHealth>
+                <position>2112 3466</position>
                 <respawnPosition>2112 3466</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3358,10 +3358,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>8</entityLevel>
+                <entityLevel>13</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>36</currentHealth>
-                <position>1639 3693</position>
+                <currentHealth>46</currentHealth>
+                <position>1248 3498</position>
                 <respawnPosition>1248 3498</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3429,10 +3429,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>50</entityLevel>
+                <entityLevel>32</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>120</currentHealth>
-                <position>2143 3753</position>
+                <currentHealth>84</currentHealth>
+                <position>1824 3594</position>
                 <respawnPosition>1824 3594</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3503,7 +3503,7 @@
                 <entityLevel>2</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>24</currentHealth>
-                <position>1639 3753</position>
+                <position>1408 3626</position>
                 <respawnPosition>1408 3626</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3571,10 +3571,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>58</entityLevel>
+                <entityLevel>64</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>136</currentHealth>
-                <position>1119 3753</position>
+                <currentHealth>148</currentHealth>
+                <position>704 3690</position>
                 <respawnPosition>704 3690</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3642,10 +3642,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>26</entityLevel>
+                <entityLevel>75</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>180</currentHealth>
-                <position>2495 1357</position>
+                <currentHealth>425</currentHealth>
+                <position>2240 1162</position>
                 <respawnPosition>2240 1162</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -3713,10 +3713,10 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>8</entityLevel>
+                <entityLevel>88</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>90</currentHealth>
-                <position>927 3533</position>
+                <currentHealth>490</currentHealth>
+                <position>672 3338</position>
                 <respawnPosition>672 3338</respawnPosition>
                 <isDead>false</isDead>
                 <LastDeathTime>PT0S</LastDeathTime>

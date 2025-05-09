@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.GameWorld;
-using MonoGame.Extended.Tiled;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Entities;
@@ -12,7 +11,6 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
 using System.Collections.Generic;
-using SharpFont.Cache;
 
 namespace SkeletonsAdventure.States
 {
@@ -29,12 +27,11 @@ namespace SkeletonsAdventure.States
         public Player Player { get; set; }
         public List<BaseMenu> Menus { get; set; } = [];
         public PopUpBox PopUpBox { get; private set; }
-        public TabbedMenu TabbedMenu { get; set; }
-        public BaseMenu SettingsMenu { get; private set; }
         public BackpackMenu BackpackMenu { get; set; }
         private StatusBar HealthBar { get; set; }
         private StatusBar ManaBar { get; set; }
         private StatusBar XPProgress { get; set; }
+
         public GameScreen(Game1 game) : base(game)
         {
             Initialize();
@@ -52,63 +49,15 @@ namespace SkeletonsAdventure.States
             Camera = World.CurrentLevel.Camera;
             Player = World.CurrentLevel.Player;
 
-            /*
-            TiledMap backsplash = Content.Load<TiledMap>(@"TiledFiles/SidePanel");
-            InfoPanel = new(_backpack.Items, GraphicsDevice, backsplash);
-            InfoPanel.Position = new(Game1.ScreenWidth - InfoPanel.Width);
-            InfoPanel.Width = 400;
-            InfoPanel.Height = 400;
-            InfoPanel.SetBackgroundColor(Color.SlateGray);
-            */
-
             CreatePopUpBox();
-            CreateTabbedMenu();
 
             BackpackMenu = new()
             {
                 Visible = true,
             };
 
-            Menus = [TabbedMenu, BackpackMenu /*InfoPanel*/];
-
-            HealthBar = new()
-            {
-                Width = (int)(Game1.ScreenWidth * .75),
-                Height = 18,
-                BorderColor = Color.Black,
-                BorderWidth = 2,
-                BarColor = Color.Firebrick,
-                TextVisible = true,
-                Transparency = 0.33f,
-            };
-            ManaBar = new()
-            {
-                Width = HealthBar.Width,
-                Height = HealthBar.Height,
-                BorderColor = Color.Black,
-                BarColor = Color.Blue,
-                BorderWidth = 2,
-                TextVisible = true,
-                Transparency = 0.33f,
-            };
-            XPProgress = new()
-            {
-                Width = HealthBar.Width,
-                Height = HealthBar.Height,
-                BorderColor = Color.Black,
-                BarColor = Color.DarkSlateGray,
-                BorderWidth = 2,
-                TextVisible = true,
-                Transparency = 0.33f,
-            };
-
-            HealthBar.Position = new(Game1.ScreenWidth / 2 - HealthBar.Width / 2,
-                    Game1.ScreenHeight - HealthBar.Height - HealthBar.BorderWidth - 
-                    ManaBar.Height - ManaBar.BorderWidth - 
-                    XPProgress.Height - XPProgress.BorderWidth);
-
-            ManaBar.Position = HealthBar.Position + new Vector2(0, HealthBar.Height + HealthBar.BorderWidth);
-            XPProgress.Position = ManaBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth);
+            Menus = [BackpackMenu];//TODO add more menus here when made
+            CreateStatusBars();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -116,6 +65,7 @@ namespace SkeletonsAdventure.States
             GraphicsDevice.Clear(Color.DarkCyan);
 
             World.Draw(spriteBatch);
+
             foreach (BaseMenu menu in Menus)
                 menu.Draw(spriteBatch);
 
@@ -164,7 +114,6 @@ namespace SkeletonsAdventure.States
             ManaBar.UpdateStatusBar(Player.Mana, Player.MaxMana, ManaBar.Position);
             XPProgress.UpdateStatusBar(playerXPSinceLastLevel, playerXPToLevel, XPProgress.Position);
 
-
             BackpackMenu.Update(World.CurrentLevel.EntityManager.Player.Backpack.Items);
 
             foreach (BaseMenu menu in Menus)
@@ -176,14 +125,9 @@ namespace SkeletonsAdventure.States
 
         private void HandleInput()
         {
-            if (InputHandler.KeyReleased(Keys.B))
-            {
-                BackpackMenu.ToggleVisibility();
-            }
-
             if (InputHandler.KeyReleased(Keys.I))
             {
-                TabbedMenu.ToggleVisibility();
+                BackpackMenu.ToggleVisibility();
             }
 
             if(InputHandler.KeyReleased(Keys.V)) //TODO
@@ -354,59 +298,48 @@ namespace SkeletonsAdventure.States
             PopUpBox.AddButton(drop, "Drop Item");
         }
 
-        private void CreateTabbedMenu()
+        private void CreateStatusBars()
         {
-            //Create the container menu=======================
-            //Texture2D texture = new(GraphicsDevice, 1, 1);
-            //texture.SetData([new Color(171, 144, 91, 250)]);
-            
-
-            Texture2D test = new(GraphicsDevice, 1, 1);
-            test.SetData([Color.White]);
-
-            TabbedMenu = new()
+            HealthBar = new()
             {
-                Visible = false,
-                Title = "TabbedMenu",
+                Width = (int)(Game1.ScreenWidth * .75),
+                Height = 18,
+                BorderColor = Color.Black,
+                BorderWidth = 2,
+                BarColor = Color.Firebrick,
+                TextVisible = true,
+                Transparency = 0.33f,
             };
-            TabbedMenu.SetBackgroundColor(new Color(171, 144, 91, 250));
-            //=================================================
-
-            //create the child menus for the tabbed menu=======
-            SettingsMenu = new()
+            ManaBar = new()
             {
-                Visible = true,
-                Position = new(800, 300),
-                Title = "Settings",
+                Width = HealthBar.Width,
+                Height = HealthBar.Height,
+                BorderColor = Color.Black,
+                BarColor = Color.Blue,
+                BorderWidth = 2,
+                TextVisible = true,
+                Transparency = 0.33f,
             };
-            SettingsMenu.SetBackgroundColor(new Color(3, 23, 64, 250));
-            TabbedMenu.AddMenu(SettingsMenu);
-
-            Texture2D texture = new(GraphicsDevice, 1, 1);
-            texture.SetData([Color.Wheat]);
-            BaseMenu testMenu = new()
+            XPProgress = new()
             {
-                Visible = true,
-                Position = new(800, 300),
-                Title = "Test",
+                Width = HealthBar.Width,
+                Height = HealthBar.Height,
+                BorderColor = Color.Black,
+                BarColor = Color.DarkSlateGray,
+                BorderWidth = 2,
+                TextVisible = true,
+                Transparency = 0.33f,
             };
-            testMenu.SetBackgroundColor(Color.Wheat);
-            TabbedMenu.AddMenu(testMenu);
 
-            texture = new(GraphicsDevice, 1, 1);
-            texture.SetData([Color.Ivory]);
-            BaseMenu testMenu2 = new()
-            {
-                Visible = true,
-                Position = new(800, 300),
-                Title = "Test2",
-            };
-            testMenu2.SetBackgroundColor(Color.Ivory);
-            TabbedMenu.AddMenu(testMenu2);
+            HealthBar.Position = new(Game1.ScreenWidth / 2 - HealthBar.Width / 2,
+                    Game1.ScreenHeight - HealthBar.Height - HealthBar.BorderWidth -
+                    ManaBar.Height - ManaBar.BorderWidth -
+                    XPProgress.Height - XPProgress.BorderWidth);
 
-            TabbedMenu.TabBar.SetActiveTab(SettingsMenu);
-            //=================================================
+            ManaBar.Position = HealthBar.Position + new Vector2(0, HealthBar.Height + HealthBar.BorderWidth);
+            XPProgress.Position = ManaBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth);
         }
+
 
         private void Consume_Click(object sender, EventArgs e)
         {

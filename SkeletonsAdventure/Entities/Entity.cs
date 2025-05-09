@@ -23,7 +23,6 @@ namespace SkeletonsAdventure.Entities
         public int XP { get; set; } //Xp gained for killing the entity
         public int MaxHealth { get; set; }
         public int Health { get; set; }
-
         public int Defence { get; set; }
         public int Attack { get; set; }
         public float Speed { get; set; }
@@ -101,7 +100,6 @@ namespace SkeletonsAdventure.Entities
             HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
 
             //TODO
-            Info.Text = Health.ToString();
             Info.Text += "\nLevel = " + EntityLevel;
         }
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Controls
@@ -17,6 +16,7 @@ namespace SkeletonsAdventure.Controls
         public bool Visible { get; set; } = false;
         private Color TintColor { get; set; } = Color.White;
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
+        public bool IsHovering { get; set; } = false;
 
         public void Update()
         {
@@ -26,7 +26,10 @@ namespace SkeletonsAdventure.Controls
             }
             else
             {
-               TintColor = Color.White;
+                if (IsHovering)
+                    TintColor = Color.LightGray;
+                else
+                    TintColor = Color.White;
             }
         }
 

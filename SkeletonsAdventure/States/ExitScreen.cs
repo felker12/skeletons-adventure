@@ -13,41 +13,24 @@ namespace SkeletonsAdventure.States
 {
     public class ExitScreen : State
     {
-        readonly Label title;
-        readonly LinkLabel startLabel, menuLabel;
+        private SettingsMenu SettingsMenu { get; set; }
 
         public ExitScreen(Game1 game) : base(game)
         {
-            title = new Label
+            SettingsMenu = new()
             {
-                Text = "The Adventures of The Skeleton",
-                Color = Color.White
+                Position = new(0, 0),
+                Visible = true,
+                Width = Game1.ScreenWidth,
+                Height = Game1.ScreenHeight,
             };
-            title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 30);
-            ControlManager.Add(title);
+            SettingsMenu.TabBar.Width = Game1.ScreenWidth;
+            SettingsMenu.SetBackgroundColor(Color.MidnightBlue);
+            SettingsMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
 
-            startLabel = new LinkLabel
-            {
-                Text = "Press ENTER to return to the game and save",
-                Color = Color.White,
-                TabStop = true,
-                HasFocus = true
-            };
-            startLabel.Position = new Vector2(Game1.ScreenWidth / 2 - startLabel.SpriteFont.MeasureString(startLabel.Text).X / 2, 350);
-            startLabel.Selected += new EventHandler(StartLabel_Selected);
-            ControlManager.Add(startLabel);
-
-            menuLabel = new LinkLabel
-            {
-                Text = "Press to save and return to menu screen",
-                Color = Color.White,
-                TabStop = true,
-                HasFocus = true
-            };
-            menuLabel.Position = new Vector2(Game1.ScreenWidth / 2 - menuLabel.SpriteFont.MeasureString(menuLabel.Text).X / 2, 
-                startLabel.Position.Y + startLabel.SpriteFont.MeasureString(startLabel.Text).Y + 20);
-            menuLabel.Selected += MenuLabel_Selected;
-            ControlManager.Add(menuLabel);
+            //Add event handlers to the controls in the Settings Menu
+            SettingsMenu.StartLabel.Selected += StartLabel_Selected;
+            SettingsMenu.MenuLabel.Selected += MenuLabel_Selected;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -59,6 +42,8 @@ namespace SkeletonsAdventure.States
             ControlManager.Draw(spriteBatch);
 
             spriteBatch.End();
+
+            SettingsMenu.Draw(spriteBatch);
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -68,6 +53,7 @@ namespace SkeletonsAdventure.States
         public override void Update(GameTime gameTime)
         {
             ControlManager.Update(gameTime, playerIndexInControl);
+            SettingsMenu.Update(gameTime);
         }
 
         private void MenuLabel_Selected(object sender, EventArgs e)
@@ -107,6 +93,7 @@ namespace SkeletonsAdventure.States
             }
             catch (Exception ex)
             {
+                //TODO handle exception
                 System.Diagnostics.Debug.WriteLine(ex);
                 return;
             }

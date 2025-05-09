@@ -2,45 +2,6 @@
 <XnaContent xmlns:MenuClasses="RpgLibrary.MenuClasses">
   <Asset Type="MenuClasses:MenuManagerData">
     <Menus>
-      <Item Type="MenuClasses:TabbedMenuData">
-        <Title>TabbedMenu</Title>
-        <Visible>false</Visible>
-        <Width>600</Width>
-        <Height>500</Height>
-        <Position>100 100</Position>
-        <TintColor>FFFFFFFF</TintColor>
-        <BackgroundColor>FAAB905B</BackgroundColor>
-        <ActiveMenu>Settings</ActiveMenu>
-        <MenuDatas>
-          <Item>
-            <Title>Settings</Title>
-            <Visible>true</Visible>
-            <Width>200</Width>
-            <Height>200</Height>
-            <Position>100 100</Position>
-            <TintColor>FFFFFFFF</TintColor>
-            <BackgroundColor>FA031740</BackgroundColor>
-          </Item>
-          <Item>
-            <Title>Test</Title>
-            <Visible>true</Visible>
-            <Width>200</Width>
-            <Height>200</Height>
-            <Position>100 131</Position>
-            <TintColor>FFFFFFFF</TintColor>
-            <BackgroundColor>FFF5DEB3</BackgroundColor>
-          </Item>
-          <Item>
-            <Title>Test2</Title>
-            <Visible>true</Visible>
-            <Width>200</Width>
-            <Height>200</Height>
-            <Position>100 131</Position>
-            <TintColor>FFFFFFFF</TintColor>
-            <BackgroundColor>FFFFFFF0</BackgroundColor>
-          </Item>
-        </MenuDatas>
-      </Item>
       <Item>
         <Title>Backpack</Title>
         <Visible>true</Visible>

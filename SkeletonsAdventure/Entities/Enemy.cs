@@ -80,9 +80,6 @@ namespace SkeletonsAdventure.Entities
             detectX = (int)Position.X - Width;
             detectY = (int)Position.Y - Width;
             AttackArea = new(detectX, detectY, Width * 3, Height + Width * 2);
-
-
-            Info.Text += "\nMax Health = " + MaxHealth;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

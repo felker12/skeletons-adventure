@@ -42,6 +42,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D GameMenuTexture { get; set; }
         public static Texture2D BackpackBackground { get; set; }
         public static Texture2D StatusBarTexture { get; set; }
+        public static Texture2D ButtonTexture { get; set; }
 
         public static GraphicsDevice GraphicsDevice { get; private set; }
 
@@ -204,6 +205,8 @@ namespace SkeletonsAdventure.GameWorld
 
             StatusBarTexture = new(GraphicsDevice, 1, 1);
             StatusBarTexture.SetData([Color.White]);
+
+            ButtonTexture = Content.Load<Texture2D>("Controls/Button");
         }
 
         public static void CreateItems()
