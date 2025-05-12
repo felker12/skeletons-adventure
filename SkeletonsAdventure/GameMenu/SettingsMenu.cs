@@ -18,6 +18,8 @@ namespace SkeletonsAdventure.GameMenu
         private Texture2D buttonTexture = GameManager.ButtonTexture;
         private SpriteFont buttonFont = GameManager.InfoFont;
 
+        public Button SaveGameButton { get; set; }
+
         public SettingsMenu() : base()
         {
             Visible = false;
@@ -103,6 +105,13 @@ namespace SkeletonsAdventure.GameMenu
             };
             Menu4.SetBackgroundColor(Color.MidnightBlue);
             AddMenu(Menu4);
+
+            SaveGameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(300, 200),
+                Text = "Save Game",
+            };
+            Menu4.ControlManager.Add(SaveGameButton);
 
             //Set the Active tab to the default active tab
             TabBar.SetActiveTab(SaveMenu);

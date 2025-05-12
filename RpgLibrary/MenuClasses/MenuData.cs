@@ -30,8 +30,8 @@ namespace RpgLibrary.MenuClasses
             toString += $"Width: {Width}, ";
             toString += $"Height: {Height}, ";
             toString += $"Position: {Position}, ";
-            toString += $"TintColor: {TintColor},";
-            toString += $"BackgroundColor: {BackgroundColor}";
+            toString += $"TintColor: {TintColor}, ";
+            toString += $"BackgroundColor: {BackgroundColor}, ";
             return toString;
         }
     }

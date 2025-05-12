@@ -9,7 +9,6 @@ namespace SkeletonsAdventure
 {
     public class Game1 : Game
     {
-        public GameTime GameTime { get; private set; }
         public static GraphicsDeviceManager Graphics { get; set; }
         public SpriteBatch SpriteBatch { get; private set; }
         public static Viewport GameViewport { get; private set; }
@@ -48,7 +47,7 @@ namespace SkeletonsAdventure
 
             //TODO
             //StateManager.CurrentState = new StartScreen(this);
-            StateManager.CurrentState = new MenuScreen(this);
+            StateManager.ChangeState(new MenuScreen(this));
             //StateManager.CurrentState = GameScreen;
         }
 
@@ -58,15 +57,13 @@ namespace SkeletonsAdventure
 
         protected override void Update(GameTime gameTime)
         {
-
-            GameTime = gameTime;
             if (InputHandler.KeyReleased(Keys.Escape) ||
             InputHandler.ButtonDown(Buttons.Back, PlayerIndex.One))
             {
                 if (StateManager.CurrentState == GameScreen) 
-                    StateManager.CurrentState = ExitScreen;
+                    StateManager.ChangeState(ExitScreen);
                 else if (StateManager.CurrentState == ExitScreen) 
-                    StateManager.CurrentState = GameScreen;
+                    StateManager.ChangeState(GameScreen);
                 else 
                     Exit();
             }

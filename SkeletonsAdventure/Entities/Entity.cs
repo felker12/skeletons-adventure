@@ -20,6 +20,7 @@ namespace SkeletonsAdventure.Entities
         public static int AttackDelay { get; } = 800;  //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
+        public int ID { get; protected set; } = 0;
         public int XP { get; set; } //Xp gained for killing the entity
         public int MaxHealth { get; set; }
         public int Health { get; set; }
@@ -50,7 +51,6 @@ namespace SkeletonsAdventure.Entities
         public Entity(EntityData entityData) : base()
         {
             UpdateEntityData(entityData);
-
             Initialize();
         }
 
@@ -73,7 +73,7 @@ namespace SkeletonsAdventure.Entities
             LootList = new LootList();
             BasicAttackColor = Color.White;
             basicAttackTexture = GameManager.SkeletonAttackTexture;
-            EntityAttack = new(basicAttackTexture, this);
+            EntityAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
         }
 
         public override void Update(GameTime gameTime)
@@ -113,6 +113,7 @@ namespace SkeletonsAdventure.Entities
         {
             return new EntityData()
             {
+                id = ID,
                 type = Type,
                 baseHealth = baseHealth,
                 baseDefence = baseDefence,
@@ -123,13 +124,14 @@ namespace SkeletonsAdventure.Entities
                 baseXP = baseXP,
                 entityLevel = EntityLevel,
                 isDead = IsDead,
-                LastDeathTime = lastDeathTime,
+                lastDeathTime = lastDeathTime,
                 Items = LootList.GetLootListItemData()
             };
         }
 
         public void UpdateEntityData(EntityData entityData)
         {
+            ID = entityData.id;
             Type = entityData.type;
             baseHealth = entityData.baseHealth;
             baseAttack = entityData.baseAttack;
@@ -147,9 +149,9 @@ namespace SkeletonsAdventure.Entities
             {
                 RespawnPosition = (Vector2)entityData.respawnPosition;
             }
-            if (entityData.LastDeathTime != null)
+            if (entityData.lastDeathTime != null)
             {
-                lastDeathTime = (TimeSpan)entityData.LastDeathTime;
+                lastDeathTime = (TimeSpan)entityData.lastDeathTime;
             }
         }
 

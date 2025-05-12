@@ -61,7 +61,8 @@ namespace SkeletonsAdventure.States
         {
             WorldData worldData;
             //TabbedMenuData tabbedMenuData;
-            MenuManagerData menuManagerData;
+            MenuManagerData gameScreenMenuData;
+            TabbedMenuData exitScreenData;
 
             try
             {
@@ -71,8 +72,8 @@ namespace SkeletonsAdventure.States
                     Directory.CreateDirectory(savePath);
 
                 worldData = XnaSerializer.Deserialize<WorldData>(savePath + @"\World.xml");
-                //tabbedMenuData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\Settings.xml");
-                menuManagerData = XnaSerializer.Deserialize<MenuManagerData>(savePath + @"\Settings.xml");
+                gameScreenMenuData = XnaSerializer.Deserialize<MenuManagerData>(savePath + @"\GameScreenMenuData.xml");
+                exitScreenData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\ExitScreenData.xml");
             }
             catch (Exception ex)
             {
@@ -82,7 +83,10 @@ namespace SkeletonsAdventure.States
 
             //Update the game with the saved information
             Game.GameScreen = new(Game, worldData);
-            UpdateMenusFromSave(menuManagerData);
+            UpdateMenusFromSave(gameScreenMenuData);
+            Game.ExitScreen.SetSettingsMenuData(exitScreenData);
+
+            System.Diagnostics.Debug.WriteLine("ExitScreenData: " + exitScreenData); //TODO
 
             //return to the game screen
             StateManager.ChangeState(Game.GameScreen);

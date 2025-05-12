@@ -13,7 +13,6 @@ namespace SkeletonsAdventure.Attacks
         public List<EntityAttack> Attacks { get; private set; } = [];
         public TimeSpan lastAttackTime = new(0, 0, 0, 0);
         private bool _attacked = false;
-        //private readonly DamageEngine _dmgEngine = new(); //TODO?
 
         public void Draw(SpriteBatch spriteBatch)
         {

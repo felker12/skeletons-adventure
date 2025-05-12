@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:AttackData="RpgLibrary.AttackData">
+  <Asset Type="AttackData:AttackData">
+    <AttackLength>300</AttackLength>
+    <StartTime>PT0S</StartTime>
+    <Duration>PT0S</Duration>
+    <AttackOffset>0 0</AttackOffset>
+  </Asset>
+</XnaContent>

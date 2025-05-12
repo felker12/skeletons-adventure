@@ -97,7 +97,6 @@ namespace SkeletonsAdventure.States
             XPProgress.Draw(spriteBatch);
 
             spriteBatch.End();
-
         }
 
         public override void PostUpdate(GameTime gameTime) { }
@@ -197,9 +196,7 @@ namespace SkeletonsAdventure.States
             if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
             {
                 if (itemUnderMouse != null && transformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
-                {
                     PickUp_Click(null, new EventArgs());
-                }
             }
 
             if (PopUpBox.Visible)
@@ -310,6 +307,7 @@ namespace SkeletonsAdventure.States
                 TextVisible = true,
                 Transparency = 0.33f,
             };
+
             ManaBar = new()
             {
                 Width = HealthBar.Width,
@@ -320,6 +318,7 @@ namespace SkeletonsAdventure.States
                 TextVisible = true,
                 Transparency = 0.33f,
             };
+
             XPProgress = new()
             {
                 Width = HealthBar.Width,
@@ -331,6 +330,7 @@ namespace SkeletonsAdventure.States
                 Transparency = 0.33f,
             };
 
+            //Position the status bars
             HealthBar.Position = new(Game1.ScreenWidth / 2 - HealthBar.Width / 2,
                     Game1.ScreenHeight - HealthBar.Height - HealthBar.BorderWidth -
                     ManaBar.Height - ManaBar.BorderWidth -
@@ -347,7 +347,7 @@ namespace SkeletonsAdventure.States
                 Player.ConsumeItem(itemUnderMouse);
         }
 
-        private void Drop_Click(object sender, System.EventArgs e)
+        private void Drop_Click(object sender, EventArgs e)
         {
             if (itemUnderMouse != null)
             {
@@ -357,18 +357,18 @@ namespace SkeletonsAdventure.States
             }
         }
 
-        private void PickUp_Click(object sender, System.EventArgs e)
+        private void PickUp_Click(object sender, EventArgs e)
         {
             if (itemUnderMouse != null && Player.Backpack.AddItem(itemUnderMouse) == true)
                 World.CurrentLevel.EntityManager.DroppedLootManager.ItemToRemove.Add(itemUnderMouse);
         }
 
-        private void Unequip_Click(object sender, System.EventArgs e)
+        private void Unequip_Click(object sender, EventArgs e)
         {
             Player.EquippedItems.TryUnequipItem(itemUnderMouse);
         }
 
-        private void Equip_Click(object sender, System.EventArgs e)
+        private void Equip_Click(object sender, EventArgs e)
         {
             Player.EquippedItems.TryEquipItem(itemUnderMouse);
         }

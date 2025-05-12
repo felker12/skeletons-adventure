@@ -10,7 +10,6 @@ namespace SkeletonsAdventure.Entities
     {
         public Spider(EntityData entityData) : base(entityData)
         {
-            ID = 4126;
             Texture = GameManager.SpiderTexture;
             SetFrames(6, 32, 32, 0, 32);
             BasicAttackColor = Color.Gray;

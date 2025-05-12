@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:EntityClasses="RpgLibrary.EntityClasses">
+  <Asset Type="EntityClasses:EntityData">
+    <Items />
+    <id>836</id>
+    <type Null="true" />
+    <baseHealth>20</baseHealth>
+    <baseDefence>2</baseDefence>
+    <baseAttack>9</baseAttack>
+    <entityLevel>0</entityLevel>
+    <baseXP>5</baseXP>
+    <currentHealth>20</currentHealth>
+    <position Null="true" />
+    <respawnPosition Null="true" />
+    <isDead>false</isDead>
+    <lastDeathTime Null="true" />
+  </Asset>
+</XnaContent>

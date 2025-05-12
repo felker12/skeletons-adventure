@@ -4,6 +4,8 @@ using SkeletonsAdventure.Entities;
 using System;
 using SkeletonsAdventure.Animations;
 using MonoGame.Extended;
+using RpgLibrary.AttackData;
+using CppNet;
 
 namespace SkeletonsAdventure.Attacks
 {
@@ -12,11 +14,10 @@ namespace SkeletonsAdventure.Attacks
         public int AttackLength { get; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan Duration { get; set; }
+        public Vector2 AttackOffset { get; set; }
         public bool HasHit { get; set; } = false;
         public bool CanHit { get; set; } = true;
         public Entity Source { get; }
-
-        public Vector2 AttackOffset { get; set; }
 
         public EntityAttack(Texture2D texture, Entity source) : base()
         {
@@ -24,14 +25,6 @@ namespace SkeletonsAdventure.Attacks
             AttackLength = 300; //length the attack animation is drawn on the screen in milliseconds
             AttackOffset = new();
             Source = source;
-
-            //TODO draw the info with a different color for the player
-            if(source is Player)
-            {
-                Info.Color = Color.Cyan;
-            }
-            else
-                Info.Color = new Color(255,81, 89, 255);
         }
 
         public EntityAttack(Texture2D texture, Entity source, int attackLength) : base()
@@ -43,10 +36,38 @@ namespace SkeletonsAdventure.Attacks
             Source = source;
         }
 
+        public EntityAttack(EntityAttack attack) : base()
+        {
+            Texture = attack.Texture;
+            AttackLength = attack.AttackLength;
+            AttackOffset = attack.AttackOffset;
+            Frame = attack.Frame;
+            Source = attack.Source;
+            Position = attack.Position;
+            SpriteColor = attack.SpriteColor;
+            Info.Color = attack.Info.Color;
+        }
+
+        public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
+        {
+            AttackLength = attackData.AttackLength;
+            StartTime = attackData.StartTime;
+            Duration = attackData.Duration;
+            AttackOffset = attackData.AttackOffset;
+
+            Texture = texture;
+            Source = source;
+        }
+
         public EntityAttack Clone()
         {
             EntityAttack attack = new(Texture, Source);
             return attack;
+        }
+
+        public EntityAttack Clone(EntityAttack attack)
+        {
+            return new EntityAttack(attack);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -63,9 +84,26 @@ namespace SkeletonsAdventure.Attacks
                 Duration = gameTime.TotalGameTime - StartTime;
 
             Info.Position = Position + new Vector2(1,1);
+
+            //TODO draw the info with a different color for the player
+            if (Source is Player)
+                Info.Color = Color.Cyan;
+            else
+                Info.Color = new Color(255, 81, 89, 255);
         }
 
-        //Overide this with the corret offset parameters based on the type of the entity calling the method 
+        public virtual AttackData GetAttackData() 
+        {
+            return new()
+            {
+                AttackLength = AttackLength,
+                StartTime = StartTime,
+                Duration = Duration,
+                AttackOffset = AttackOffset,
+            };
+        }
+
+        //TODO Overide this with the corret offset parameters based on the type of the entity calling the method 
         public virtual void Offset()
         {
             if (Source.CurrentAnimation == AnimationKey.Up)

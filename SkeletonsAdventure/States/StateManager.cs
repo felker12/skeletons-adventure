@@ -5,7 +5,7 @@ namespace SkeletonsAdventure.States
 {
     public class StateManager()
     {
-        public State CurrentState { get; set; }
+        public State CurrentState { get; private set; }
         private State _nextState;
 
         public void ChangeState(State state)

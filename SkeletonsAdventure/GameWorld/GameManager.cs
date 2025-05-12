@@ -12,21 +12,23 @@ using System.Collections.Generic;
 using RpgLibrary.GameObjectClasses;
 using System.IO;
 using System.Linq;
+using RpgLibrary.AttackData;
 
 namespace SkeletonsAdventure.GameWorld
 {
     public class GameManager
     {
-        public static Game1 Game { get; private set; }
-        public static ContentManager Content { get; private set; }
+        //SpriteFonts
         public static SpriteFont InfoFont { get; private set; }
         public static SpriteFont ToolTipFont { get; private set; }
         public static SpriteFont ControlFont { get; private set; } 
         public static SpriteFont StatusBarFont { get; private set; }
 
+        //Strings
         public static string GamePath { get; private set; } 
         public static string SavePath { get; private set; }
 
+        //Dictionaries
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
         private static Dictionary<string, GameItem> Items { get; set; } = [];
         private static Dictionary<string, Chest> Chests { get; set; } = [];
@@ -34,6 +36,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
         public static Dictionary<string, Enemy> EnemiesClone => GetEnemiesClone();
 
+        //Textures
         public static Texture2D SkeletonTexture { get; private set; }
         public static Texture2D SkeletonAttackTexture { get; private set; }
         public static Texture2D SpiderTexture { get; private set; }
@@ -44,8 +47,13 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D StatusBarTexture { get; set; }
         public static Texture2D ButtonTexture { get; set; }
 
-        public static GraphicsDevice GraphicsDevice { get; private set; }
+        //Attacks
+        public static AttackData BasicAttackData { get; set; }
 
+        //Miscellaneous Variables
+        public static Game1 Game { get; private set; }
+        public static GraphicsDevice GraphicsDevice { get; private set; }
+        public static ContentManager Content { get; private set; }
         public static List<int> PlayerLevelXPs { get; private set; } = [];
 
         public GameManager(Game1 game)
@@ -61,6 +69,7 @@ namespace SkeletonsAdventure.GameWorld
 
             LoadFonts();
             LoadTextures();
+            LoadAttacks();
 
             CreateItems();
             CreateEnemies();
@@ -178,7 +187,7 @@ namespace SkeletonsAdventure.GameWorld
             return PlayerLevelXPs[level];
         }
 
-        public static void LoadFonts()
+        private static void LoadFonts()
         {
             InfoFont = Content.Load<SpriteFont>("Fonts/Font");
             ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
@@ -186,11 +195,11 @@ namespace SkeletonsAdventure.GameWorld
             StatusBarFont = Content.Load<SpriteFont>("Fonts/StatusBarFont");
         }
 
-        public static void LoadTextures()
+        private static void LoadTextures()
         {
-            SkeletonTexture = Content.Load<Texture2D>(@"Player\SkeletonSpriteSheet");
-            SkeletonAttackTexture = Content.Load<Texture2D>(@"Player\SkeletonAttackSprites");
-            SpiderTexture = Content.Load<Texture2D>(@"EntitySprites\spider");
+            SkeletonTexture = Content.Load<Texture2D>(@"Player/SkeletonSpriteSheet");
+            SkeletonAttackTexture = Content.Load<Texture2D>(@"Player/SkeletonAttackSprites");
+            SpiderTexture = Content.Load<Texture2D>(@"EntitySprites/spider");
 
             PopUpBoxTexture = new(GraphicsDevice, 1, 1);
             PopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
@@ -209,9 +218,14 @@ namespace SkeletonsAdventure.GameWorld
             ButtonTexture = Content.Load<Texture2D>("Controls/Button");
         }
 
-        public static void CreateItems()
+        private static void LoadAttacks()
         {
-            string[] folders = Directory.GetDirectories(@"Content\Items");
+            BasicAttackData = Content.Load<AttackData>(@"AttackData/BasicAttack");
+        }
+
+        private static void CreateItems()
+        {
+            string[] folders = Directory.GetDirectories(@"Content/Items");
             string[] names;
             string filePath;
 
@@ -260,17 +274,20 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
-        public static void CreateEnemies()
+        private static void CreateEnemies()
         {
+            //set the quantiy of the stackable items
             GameItem Coins = ItemsClone["Coins"];
             Coins.Quantity = 10;
 
+            //Create the loot list
             LootList loots = new();
             loots.Add(ItemsClone["Robes"]);
             loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
             loots.Add(ItemsClone["Sword"]);
 
+            //populate the loot list with the items the entity will be carrying
             List<ItemData> items = [];
 
             foreach (var loot in loots.Loots)
@@ -278,7 +295,8 @@ namespace SkeletonsAdventure.GameWorld
                 items.Add(loot.GetItemData());
             }
 
-            EntityData entityData = new(null, 20, 2, 9, 0, 5, null, null, 20, false, null)
+            //Create the entities from the data
+            EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"))
             {
                 Items = items
             };
@@ -293,7 +311,7 @@ namespace SkeletonsAdventure.GameWorld
                 LootList = loots
             };
 
-            entityData = new(null, 15, 2, 7, 0, 4, new Vector2(0, 0), new Vector2(0, 0), 15, false, new TimeSpan())
+            entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"))
             {
                 Items = items
             };
@@ -303,12 +321,13 @@ namespace SkeletonsAdventure.GameWorld
                 LootList = loots
             };
 
+            //Add the entities to the dictionary
             Enemies.Add("Skeleton", skeleton);
             Enemies.Add("Elite Skeleton", eliteSkeleton);
             Enemies.Add("Spider", spider);
         }
 
-        public static void CreateChests() //TODO
+        private static void CreateChests() //TODO
         {
             GameManager.ItemsClone.TryGetValue("Coins", out GameItem Coins);
             Coins.Quantity = 10;

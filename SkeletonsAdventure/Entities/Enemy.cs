@@ -15,7 +15,6 @@ namespace SkeletonsAdventure.Entities
         public bool IsElite { get; set; } = false;
 
         private MinMaxPair LevelRange { get; set; } = new(0, 0);
-        public int ID { get; protected set; } = 0;
 
         public Enemy(EntityData entityData) : base(entityData)
         {

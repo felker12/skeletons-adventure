@@ -8,7 +8,6 @@ namespace SkeletonsAdventure.Entities
     {
         public Skeleton(EntityData entityData) : base(entityData)
         {
-            ID = 836;
         }
 
         public override Skeleton Clone()
