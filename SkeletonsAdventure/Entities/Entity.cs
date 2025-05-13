@@ -5,8 +5,8 @@ using System;
 using SkeletonsAdventure.ItemLoot;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.GameWorld;
-using CppNet;
 using SkeletonsAdventure.Animations;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -31,10 +31,9 @@ namespace SkeletonsAdventure.Entities
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
-        public bool IsColliding { get; set; } = false;
         public bool IsCollidingBoundary { get; set; } = false;
-        public int CollisionCount { get; set; }
         public bool IsDead { get; set; } = false;
+        public List<EntityAttack> AttacksHitBy { get; set; } = [];
 
         public Entity() : base()
         {
@@ -66,7 +65,6 @@ namespace SkeletonsAdventure.Entities
             Defence = baseDefence;
             Attack = baseAttack;
 
-            CollisionCount = 0;
             respawnTime = 3;
             lastDeathTime = new();
             XP = baseXP;
@@ -82,25 +80,21 @@ namespace SkeletonsAdventure.Entities
 
             base.Update(gameTime);
 
-
-            if (IsColliding)
-                SpriteColor = Color.Red;
-            else
-                SpriteColor = DefaultColor;
-
-            if (CollisionCount > 0)
+            if(AttacksHitBy.Count > 0)
             {
-                IsColliding = true;
-                CollisionCount = 0;
+                SpriteColor = Color.Red;
             }
             else
-                IsColliding = false;
+            {
+                SpriteColor = DefaultColor;
+            }
 
             Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
             HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
 
             //TODO
-            Info.Text += "\nLevel = " + EntityLevel;
+            Info.Text += "\nLevel = " + EntityLevel +
+                $"\nAttacks hit by: {AttacksHitBy.Count}";
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -180,11 +174,6 @@ namespace SkeletonsAdventure.Entities
                 diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
                 if (diffMilliseconds > entityAttack.AttackCoolDownLength)
                 {
-
-                    //entityAttack.Motion = new(1, 0);
-                    //entityAttack.Motion.Normalize();
-                    //entityAttack.Motion *= Speed;
-
                     AttackManager.AddAttack(entityAttack.PerformAttack(gameTime, BasicAttackColor));
                     entityAttack.LastAttackTime = gameTime.TotalGameTime;
                 }

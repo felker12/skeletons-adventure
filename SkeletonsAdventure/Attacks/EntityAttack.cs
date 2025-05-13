@@ -18,7 +18,7 @@ namespace SkeletonsAdventure.Attacks
         public bool CanHit { get; set; } = true;
         public Entity Source { get; protected set; }
         public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
-        public float DamageModifier { get; set; } 
+        public float DamageModifier { get; set; }
 
         public EntityAttack(EntityAttack attack) : base()
         {
@@ -70,7 +70,7 @@ namespace SkeletonsAdventure.Attacks
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
 
-            Info.Position = Position + new Vector2(1,1);
+            Info.Position = Position + new Vector2(1, 1);
 
             //TODO draw the info with a different color for the player
             if (Source is Player)
@@ -95,7 +95,7 @@ namespace SkeletonsAdventure.Attacks
             return attack;
         }
 
-        public virtual AttackData GetAttackData() 
+        public virtual AttackData GetAttackData()
         {
             return new()
             {
@@ -106,7 +106,8 @@ namespace SkeletonsAdventure.Attacks
                 LastAttackTime = LastAttackTime,
                 AttackCoolDownLength = AttackCoolDownLength,
                 Speed = Speed,
-                DamageModifier = DamageModifier,            };
+                DamageModifier = DamageModifier,
+            };
         }
 
         //TODO Overide this with the corret offset parameters based on the type of the entity calling the method 
@@ -140,6 +141,14 @@ namespace SkeletonsAdventure.Attacks
                 AttackOffset = new(Source.Width, 0);
                 Frame = new(20, 80, Width, Height);
             }
+        }
+
+        public bool AttackTimedOut()
+        {
+            if(Duration.TotalMilliseconds > AttackLength)
+                return true;
+
+            return false;
         }
     }
 }

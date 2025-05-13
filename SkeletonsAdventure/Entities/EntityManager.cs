@@ -6,6 +6,7 @@ using System;
 using SkeletonsAdventure.ItemLoot;
 using SkeletonsAdventure.ItemClasses;
 using RpgLibrary.EntityClasses;
+using SkeletonsAdventure.Attacks;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -40,9 +41,7 @@ namespace SkeletonsAdventure.Entities
             foreach (Entity entity in Entities)
             {
                 if(entity.IsDead == false)
-                {
                     entity.Draw(spriteBatch);
-                }
             }
 
             //draw the attacks after the entities so the attacks are always on top
@@ -59,6 +58,7 @@ namespace SkeletonsAdventure.Entities
                     entity.Update(gameTime);
 
                     entity.AttackManager.CheckAttackHit(Entities);
+                    entity.AttackManager.ClearOldAttacks(Entities);
 
                     if (entity == Player)
                         PickUpLoot();
@@ -74,8 +74,27 @@ namespace SkeletonsAdventure.Entities
                 {
                     entity.Respawn();
                 }
+
+                List<EntityAttack> toRemove = [];
+                foreach (Entity otherEntity in Entities)
+                {
+                    if (entity != otherEntity) //make sure we are not checking the same entity
+                        foreach (EntityAttack atk in entity.AttacksHitBy)
+                        {
+                            if (atk.AttackTimedOut())
+                                toRemove.Add(atk); //remove any timed out attacks
+                            else if (otherEntity.IsDead && atk.Source == otherEntity)
+                                toRemove.Add(atk); //remove any attacks that were caused by an enemy that is now dead
+                        }
+                }
+
+                //remove the attacks that need to be removed
+                foreach (EntityAttack atk in toRemove)
+                {
+                    entity.AttacksHitBy.Remove(atk);
+                }
             }
-            
+
             CheckIfEnemyDetectPlayer(gameTime);
             DroppedLootManager.Update();
         }
@@ -89,13 +108,8 @@ namespace SkeletonsAdventure.Entities
         {
             foreach(GameItem item in DroppedLootManager.Items)
             {
-                if (Player.GetRectangle.Intersects(item.ItemRectangle))
-                {
-                    if (Player.Backpack.AddItem(item) == true)
-                    {
-                        DroppedLootManager.ItemToRemove.Add(item);
-                    }
-                }
+                if (Player.GetRectangle.Intersects(item.ItemRectangle) && Player.Backpack.AddItem(item) == true)
+                    DroppedLootManager.ItemToRemove.Add(item);
             }
         }
 
@@ -123,10 +137,12 @@ namespace SkeletonsAdventure.Entities
                     {
                         enemy.Motion = Vector2.Zero; //Stops any motion caused by another method
 
+                        //if the enemy detects the player then move towerds the player
                         if (!enemy.GetRectangle.Intersects(Player.GetRectangle))
                             enemy.PathToPoint(Player);
                         else
                             enemy.FaceTarget(Player);
+
                         //attack the player if the player is close enough
                         if (enemy.AttackArea.Intersects(Player.GetRectangle))
                         {

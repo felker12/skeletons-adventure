@@ -136,6 +136,12 @@ namespace SkeletonsAdventure.States
                 XPProgress.ToggleVisibility();
             }
 
+            if (InputHandler.KeyReleased(Keys.Q))
+            {
+
+                //TODO
+                //System.Diagnostics.Debug.WriteLine(World.CurrentLevel.EntityManager.Entities.Count);
+            }
         }
 
         private void CheckUnderMouse()

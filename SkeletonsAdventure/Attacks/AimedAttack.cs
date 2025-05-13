@@ -10,9 +10,6 @@ namespace SkeletonsAdventure.Attacks
     public class AimedAttack : EntityAttack
     {
 
-
-
-
         public AimedAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
             Initialize();
@@ -23,24 +20,16 @@ namespace SkeletonsAdventure.Attacks
 
         }
 
-
         private void Initialize()
         {
             //TODO
             Frame = new Rectangle(0, 0, 32, 32);
         }
 
-        //public override AimedAttack Clone()
-        //{
-        //    AimedAttack attack = new(GetAttackData(), Texture, Source);
-        //    return attack;
-        //}
-
         public override AimedAttack Clone()
         {
             return new AimedAttack(this);
         }
-
 
         public override void Draw(SpriteBatch spriteBatch)
         {

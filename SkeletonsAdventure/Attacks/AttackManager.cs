@@ -15,6 +15,8 @@ namespace SkeletonsAdventure.Attacks
 
         private bool _attacked = false;
 
+        public List<EntityAttack> ToRemove = [];
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var attack in Attacks)
@@ -23,15 +25,17 @@ namespace SkeletonsAdventure.Attacks
 
         public void Update(GameTime gameTime)
         {
-            List<EntityAttack> toRemove = [];
+            ToRemove = [];
             foreach (var attack in Attacks)
             {
                 attack.Update(gameTime);
-                if (attack.Duration.TotalMilliseconds > attack.AttackLength)
-                    toRemove.Add(attack);
+                if (attack.AttackTimedOut())
+                {
+                    ToRemove.Add(attack);
+                }
             }
 
-            foreach (var atk in toRemove)
+            foreach (var atk in ToRemove)
             {
                 RemoveAttack(atk);
             }
@@ -66,19 +70,23 @@ namespace SkeletonsAdventure.Attacks
             {
                 foreach (var entity in entities)
                 {
-                    if (SourceEntity != entity) //makes sure the entity cannot attack itself
+                    if (entity.AttacksHitBy.Contains(attack) is false) //prevents an attack from hitting an opponent multiple times
                     {
-                        if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
-                        else if (entity.GetRectangle.Intersects(attack.GetRectangle))
+                        if (SourceEntity != entity) //makes sure the entity cannot attack itself
                         {
-                            entity.CollisionCount = 1;
-                            if (attack.CanHit == true)
+                            if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
+                            else if (entity.GetRectangle.Intersects(attack.GetRectangle))
                             {
-                                attack.HasHit = true;
+                                if (entity.AttacksHitBy.Contains(attack) is false)
+                                {
+                                    entity.AttacksHitBy.Add(attack);
+                                }
+
                                 int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
                                 attack.Info.Text += dmg;
                                 entity.Health -= dmg;
-                                if (entity.Health < 1 && SourceEntity is Player player) //If the etity dies give xp to the player that killed it
+
+                                if (entity.Health < 1 && SourceEntity is Player player) //If the entity dies give xp to the player that killed it
                                 {
                                     player.GainXp(entity.XP);
                                 }
@@ -87,12 +95,22 @@ namespace SkeletonsAdventure.Attacks
                     }
                 }
             }
+        }
 
-            foreach (var attack in Attacks) //prevents the same attack from hitting an enemy multiple times
+        public void ClearOldAttacks(List<Entity> entities)
+        {
+            foreach (var attack in Attacks)
             {
-                if (attack.HasHit)
-                { 
-                    attack.CanHit = false; 
+                foreach (var entity in entities)
+                {
+                    foreach (var atk in entity.AttacksHitBy)
+                    {
+                        if (atk.AttackTimedOut())
+                        {
+                            entity.AttacksHitBy.Remove(atk);
+                            break;
+                        }
+                    }
                 }
             }
         }

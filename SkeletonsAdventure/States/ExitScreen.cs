@@ -60,9 +60,7 @@ namespace SkeletonsAdventure.States
             try
             {
                 if (Directory.Exists(savePath) == false)
-                {
                     Directory.CreateDirectory(savePath);
-                }
 
                 MenuManagerData GameScreenMenuData = new();
                 foreach (BaseMenu baseMenu in Game.GameScreen.Menus)
@@ -77,14 +75,6 @@ namespace SkeletonsAdventure.States
                 XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", Game.GameScreen.World.GetWorldData());
                 XnaSerializer.Serialize<MenuManagerData>(savePath + @"\GameScreenMenuData.xml", GameScreenMenuData);
                 XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\ExitScreenData.xml", SettingsMenu.GetTabbedMenuData());
-
-                //TODO
-                //XnaSerializer.Serialize<EntityAttack>(savePath + @"\BasicAttack.xml", new(GameManager.SkeletonAttackTexture, Game.GameScreen.Player));
-                FireBall fireBall = new(GameManager.FireBallData, GameManager.FireBallTexture, Game.GameScreen.Player)
-                {
-                    DamageModifier = 1.5f
-                };
-                XnaSerializer.Serialize<AttackData>(savePath + @"\FireBall.xml", fireBall.GetAttackData());
             }
             catch (Exception ex)
             {
