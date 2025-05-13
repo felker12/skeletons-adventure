@@ -129,7 +129,11 @@ namespace SkeletonsAdventure.Entities
                             enemy.FaceTarget(Player);
                         //attack the player if the player is close enough
                         if (enemy.AttackArea.Intersects(Player.GetRectangle))
-                            enemy.BasicAttack(gameTime);
+                        {
+                            //TODO: add logic for other types of attacks (probably move this logic to the enemy)
+                            //so there can be attacks based on what the enemy is
+                            enemy.PerformAttack(gameTime, enemy.EntityAttack); 
+                        }
                     }
                     else //if no player in sight do something
                         enemy.WalkInSquare();

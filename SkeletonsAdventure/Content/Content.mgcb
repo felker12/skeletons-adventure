@@ -21,6 +21,35 @@
 /processor:PassThroughProcessor
 /build:AttackData/BasicAttack.xml
 
+#begin AttackData/FireBall.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:AttackData/FireBall.xml
+
+#begin AttackSprites/FireBall_01.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AttackSprites/FireBall_01.png
+
+#begin AttackSprites/FireBallSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AttackSprites/FireBallSpriteSheet.png
+
 #begin Controls/Button.png
 /importer:TextureImporter
 /processor:TextureProcessor

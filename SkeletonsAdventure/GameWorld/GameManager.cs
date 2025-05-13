@@ -36,19 +36,28 @@ namespace SkeletonsAdventure.GameWorld
         public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
         public static Dictionary<string, Enemy> EnemiesClone => GetEnemiesClone();
 
-        //Textures
+        //=====Textures=====
+        //Entity Textures
         public static Texture2D SkeletonTexture { get; private set; }
-        public static Texture2D SkeletonAttackTexture { get; private set; }
         public static Texture2D SpiderTexture { get; private set; }
+
+        //Attack Textures
+        public static Texture2D SkeletonAttackTexture { get; private set; }
+        public static Texture2D FireBallTexture { get; private set; }
+
+        //UI Textures
         public static Texture2D PopUpBoxTexture { get; private set; }
         public static Texture2D DefaultButtonTexture { get; private set; }
         public static Texture2D GameMenuTexture { get; set; }
         public static Texture2D BackpackBackground { get; set; }
         public static Texture2D StatusBarTexture { get; set; }
         public static Texture2D ButtonTexture { get; set; }
+        //==========
+
 
         //Attacks
         public static AttackData BasicAttackData { get; set; }
+        public static AttackData FireBallData { get; set; }
 
         //Miscellaneous Variables
         public static Game1 Game { get; private set; }
@@ -200,6 +209,7 @@ namespace SkeletonsAdventure.GameWorld
             SkeletonTexture = Content.Load<Texture2D>(@"Player/SkeletonSpriteSheet");
             SkeletonAttackTexture = Content.Load<Texture2D>(@"Player/SkeletonAttackSprites");
             SpiderTexture = Content.Load<Texture2D>(@"EntitySprites/spider");
+            FireBallTexture = Content.Load<Texture2D>(@"AttackSprites/FireBall_01");
 
             PopUpBoxTexture = new(GraphicsDevice, 1, 1);
             PopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
@@ -221,6 +231,7 @@ namespace SkeletonsAdventure.GameWorld
         private static void LoadAttacks()
         {
             BasicAttackData = Content.Load<AttackData>(@"AttackData/BasicAttack");
+            FireBallData = Content.Load<AttackData>(@"AttackData/FireBall");
         }
 
         private static void CreateItems()

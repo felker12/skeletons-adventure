@@ -11,7 +11,8 @@ namespace SkeletonsAdventure.Attacks
     {
         public Entity SourceEntity { get; set; } = entity;
         public List<EntityAttack> Attacks { get; private set; } = [];
-        public TimeSpan lastAttackTime = new(0, 0, 0, 0);
+        public TimeSpan LastAttackTime { get; set; } = new(0, 0, 0, 0);
+
         private bool _attacked = false;
 
         public void Draw(SpriteBatch spriteBatch)
@@ -37,7 +38,7 @@ namespace SkeletonsAdventure.Attacks
 
             if (_attacked)
             {
-                lastAttackTime = gameTime.TotalGameTime;
+                LastAttackTime = gameTime.TotalGameTime;
                 _attacked = false;
             }
         }
@@ -74,7 +75,7 @@ namespace SkeletonsAdventure.Attacks
                             if (attack.CanHit == true)
                             {
                                 attack.HasHit = true;
-                                int dmg = DamageEngine.CalculateDamage(SourceEntity, entity);
+                                int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
                                 attack.Info.Text += dmg;
                                 entity.Health -= dmg;
                                 if (entity.Health < 1 && SourceEntity is Player player) //If the etity dies give xp to the player that killed it
@@ -90,7 +91,9 @@ namespace SkeletonsAdventure.Attacks
             foreach (var attack in Attacks) //prevents the same attack from hitting an enemy multiple times
             {
                 if (attack.HasHit)
-                    attack.CanHit = false;
+                { 
+                    attack.CanHit = false; 
+                }
             }
         }
     }

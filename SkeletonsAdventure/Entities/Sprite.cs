@@ -16,6 +16,7 @@ namespace SkeletonsAdventure.Entities
         public Color SpriteColor { get; set; }
         public Vector2 Position { get; set; } = new();
         public Vector2 Motion { get; set; } = new();
+        public float Speed { get; set; } = 1.5f;
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
 

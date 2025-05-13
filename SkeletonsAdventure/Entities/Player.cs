@@ -9,6 +9,7 @@ using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.GameWorld;
 
 using System;
+using SkeletonsAdventure.Attacks;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -23,9 +24,9 @@ namespace SkeletonsAdventure.Entities
         public int StatusPoints { get; set; } = 0;
         public StatusBar ManaBar { get; set; } = new();
         public float XPModifier { get; set; } = 1.0f; //TODO
+        public FireBall FireBall { get; set; }
 
         private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
-        
 
         public Player() : base()
         {
@@ -57,6 +58,8 @@ namespace SkeletonsAdventure.Entities
 
             //TODO delete this line
             Info.Color = Color.Aqua;
+
+            FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
         }
         public void UpdatePlayerData(PlayerData playerData)
         {
@@ -91,13 +94,13 @@ namespace SkeletonsAdventure.Entities
         public override void Update(GameTime gameTime)
         {
             UpdatePlayerMotion();
+            CheckInput(gameTime);
 
             base.Update(gameTime);
             HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
             ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0,ManaBar.Height + ManaBar.BorderWidth + 2));
 
             Backpack.Update();
-            CheckInput(gameTime);
 
 
             Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel;
@@ -124,17 +127,18 @@ namespace SkeletonsAdventure.Entities
                     LevelUP();
                     currentLevel++;
                 }
-                System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!\nYou now have {StatusPoints} Status Points"); //TODO delete this
+                //TODO detete
+                //System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!\nYou now have {StatusPoints} Status Points"); //TODO delete this
 
                 PlayerStatAdjustmentForLevel();
 
-                System.Diagnostics.Debug.WriteLine($"Attack = {Attack}\nDefence = {Defence}");
+                //TODO delete this testing code
+                //System.Diagnostics.Debug.WriteLine($"Attack = {Attack}\nDefence = {Defence}");
 
-
-                int lvlXP = GameManager.GetLevelXPAtLevel(EntityLevel);
-                int nextLvlXP = GameManager.GetLevelXPAtLevel(EntityLevel + 1);
-                System.Diagnostics.Debug.WriteLine($"Current lvl xp = {lvlXP} and next lvl xp = {nextLvlXP}\n" +
-                    $"xp to go = {nextLvlXP - TotalXP}");
+                //int lvlXP = GameManager.GetLevelXPAtLevel(EntityLevel);
+                //int nextLvlXP = GameManager.GetLevelXPAtLevel(EntityLevel + 1);
+                //System.Diagnostics.Debug.WriteLine($"Current lvl xp = {lvlXP} and next lvl xp = {nextLvlXP}\n" +
+                //    $"xp to go = {nextLvlXP - TotalXP}");
             }
         }
 
@@ -194,7 +198,13 @@ namespace SkeletonsAdventure.Entities
             if (InputHandler.KeyReleased(Keys.E) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                BasicAttack(gameTime);
+                PerformAttack(gameTime, EntityAttack);
+            }
+            if (InputHandler.KeyReleased(Keys.D1) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+                //FireBall_Attack(gameTime);
+                PerformMovingAttack(gameTime, FireBall);
             }
         }
 
@@ -235,6 +245,16 @@ namespace SkeletonsAdventure.Entities
         public override void Respawn()
         {
             base.Respawn();
+        }
+
+
+        public void GetLine()
+        {
+
+
+
+
+
         }
     }
 }

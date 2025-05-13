@@ -1,9 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RpgLibrary.AttackData
 {
@@ -13,16 +8,23 @@ namespace RpgLibrary.AttackData
         public TimeSpan StartTime { get; set; }
         public TimeSpan Duration { get; set; }
         public Vector2 AttackOffset { get; set; }
+        public TimeSpan LastAttackTime { get; set; }
+        public int AttackCoolDownLength { get; set; }
+        public float Speed { get; set; }
+        public float DamageModifier { get; set; }
 
         public AttackData() { }
-
 
         public override string ToString()
         {
             return $"Attack Length: {AttackLength}, " +
                 $"Start Time: {StartTime}, " +
-                $"Duration: {Duration}, " + 
-                $"Attack Offset: {AttackOffset}, ";
+                $"Duration: {Duration}, " +
+                $"Attack Offset: {AttackOffset}, " +
+                $"Last Attack Time: {LastAttackTime}, " +
+                $"Attack Cool Down Length: {AttackCoolDownLength}, " +
+                $"Speed: {Speed}, " + 
+                $"Damage Modifier: {DamageModifier} ";
         }
     }
 }

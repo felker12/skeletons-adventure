@@ -5,6 +5,8 @@ using System;
 using SkeletonsAdventure.ItemLoot;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.GameWorld;
+using CppNet;
+using SkeletonsAdventure.Animations;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -17,7 +19,7 @@ namespace SkeletonsAdventure.Entities
         public string Type { get; set; } = string.Empty;
         public StatusBar HealthBar = new();
 
-        public static int AttackDelay { get; } = 800;  //length of the delay between attacks in milliseconds
+        public int AttackCoolDownLength { get; protected set; }  //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
         public int ID { get; protected set; } = 0;
@@ -26,7 +28,6 @@ namespace SkeletonsAdventure.Entities
         public int Health { get; set; }
         public int Defence { get; set; }
         public int Attack { get; set; }
-        public float Speed { get; set; }
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
@@ -66,7 +67,6 @@ namespace SkeletonsAdventure.Entities
             Attack = baseAttack;
 
             CollisionCount = 0;
-            Speed = 1.5f;
             respawnTime = 3;
             lastDeathTime = new();
             XP = baseXP;
@@ -172,17 +172,48 @@ namespace SkeletonsAdventure.Entities
             AttackManager.ClearAttacks();
         }
 
-        public virtual void BasicAttack(GameTime gameTime)
+        public virtual void PerformAttack(GameTime gameTime, EntityAttack entityAttack)
         {
-            if (gameTime.TotalGameTime - AttackManager.lastAttackTime > new TimeSpan(0, 0, 0, 0, AttackDelay))
+            int diffMilliseconds = (int)(gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds;
+            if (diffMilliseconds > AttackCoolDownLength)
             {
-                EntityAttack attack = EntityAttack.Clone();
-                attack.StartTime = gameTime.TotalGameTime;
-                attack.Offset();
-                attack.Position = this.Position + attack.AttackOffset;
-                attack.DefaultColor = BasicAttackColor;
-                attack.SpriteColor = attack.DefaultColor;
-                AttackManager.AddAttack(attack);
+                diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
+                if (diffMilliseconds > entityAttack.AttackCoolDownLength)
+                {
+
+                    //entityAttack.Motion = new(1, 0);
+                    //entityAttack.Motion.Normalize();
+                    //entityAttack.Motion *= Speed;
+
+                    AttackManager.AddAttack(entityAttack.PerformAttack(gameTime, BasicAttackColor));
+                    entityAttack.LastAttackTime = gameTime.TotalGameTime;
+                }
+            }
+        }
+
+        public virtual void PerformMovingAttack(GameTime gameTime, EntityAttack entityAttack)
+        {
+            int diffMilliseconds = (int)(gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds;
+            if (diffMilliseconds > AttackCoolDownLength)
+            {
+                diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
+                if (diffMilliseconds > entityAttack.AttackCoolDownLength)
+                {
+                    if (CurrentAnimation == AnimationKey.Up)
+                        entityAttack.Motion = new(0, -1);
+                    else if (CurrentAnimation == AnimationKey.Down)
+                        entityAttack.Motion = new(0, 1);
+                    if (CurrentAnimation == AnimationKey.Left)
+                        entityAttack.Motion = new(-1, 0);
+                    else if (CurrentAnimation == AnimationKey.Right)
+                        entityAttack.Motion = new(1, 0);
+
+                    entityAttack.Motion.Normalize();
+                    entityAttack.Motion *= entityAttack.Speed;
+
+                    AttackManager.AddAttack(entityAttack.PerformAttack(gameTime, BasicAttackColor));
+                    entityAttack.LastAttackTime = gameTime.TotalGameTime;
+                }
             }
         }
 

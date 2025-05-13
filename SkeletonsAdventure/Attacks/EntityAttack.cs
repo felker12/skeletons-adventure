@@ -3,38 +3,22 @@ using Microsoft.Xna.Framework;
 using SkeletonsAdventure.Entities;
 using System;
 using SkeletonsAdventure.Animations;
-using MonoGame.Extended;
 using RpgLibrary.AttackData;
-using CppNet;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class EntityAttack : Sprite
+    public class EntityAttack : AnimatedSprite
     {
-        public int AttackLength { get; }
+        public int AttackLength { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan Duration { get; set; }
+        public TimeSpan LastAttackTime { get; set; }
         public Vector2 AttackOffset { get; set; }
         public bool HasHit { get; set; } = false;
         public bool CanHit { get; set; } = true;
-        public Entity Source { get; }
-
-        public EntityAttack(Texture2D texture, Entity source) : base()
-        {
-            Texture = texture;
-            AttackLength = 300; //length the attack animation is drawn on the screen in milliseconds
-            AttackOffset = new();
-            Source = source;
-        }
-
-        public EntityAttack(Texture2D texture, Entity source, int attackLength) : base()
-        {
-            Texture = texture;
-            AttackLength = attackLength; //length the attack animation is drawn on the screen in milliseconds
-            AttackOffset = new();
-            Frame = new();
-            Source = source;
-        }
+        public Entity Source { get; protected set; }
+        public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
+        public float DamageModifier { get; set; } 
 
         public EntityAttack(EntityAttack attack) : base()
         {
@@ -46,6 +30,11 @@ namespace SkeletonsAdventure.Attacks
             Position = attack.Position;
             SpriteColor = attack.SpriteColor;
             Info.Color = attack.Info.Color;
+            LastAttackTime = attack.LastAttackTime;
+            AttackCoolDownLength = attack.AttackCoolDownLength;
+            Motion = attack.Motion;
+            Speed = attack.Speed;
+            DamageModifier = attack.DamageModifier;
         }
 
         public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
@@ -54,20 +43,18 @@ namespace SkeletonsAdventure.Attacks
             StartTime = attackData.StartTime;
             Duration = attackData.Duration;
             AttackOffset = attackData.AttackOffset;
+            LastAttackTime = attackData.LastAttackTime;
+            AttackCoolDownLength = attackData.AttackCoolDownLength;
+            Speed = attackData.Speed;
+            DamageModifier = attackData.DamageModifier;
 
             Texture = texture;
             Source = source;
         }
 
-        public EntityAttack Clone()
+        public virtual EntityAttack Clone()
         {
-            EntityAttack attack = new(Texture, Source);
-            return attack;
-        }
-
-        public EntityAttack Clone(EntityAttack attack)
-        {
-            return new EntityAttack(attack);
+            return new EntityAttack(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -90,6 +77,22 @@ namespace SkeletonsAdventure.Attacks
                 Info.Color = Color.Cyan;
             else
                 Info.Color = new Color(255, 81, 89, 255);
+
+            Position += Motion;
+        }
+
+        public virtual EntityAttack PerformAttack(GameTime gameTime, Color attackColor)
+        {
+            EntityAttack attack = Clone();
+            attack.StartTime = gameTime.TotalGameTime;
+            attack.Offset();
+            attack.Position = Source.Position + attack.AttackOffset;
+            attack.DefaultColor = attackColor;
+            attack.SpriteColor = attack.DefaultColor;
+            attack.Motion = Motion;
+            attack.Speed = Speed;
+
+            return attack;
         }
 
         public virtual AttackData GetAttackData() 
@@ -100,7 +103,10 @@ namespace SkeletonsAdventure.Attacks
                 StartTime = StartTime,
                 Duration = Duration,
                 AttackOffset = AttackOffset,
-            };
+                LastAttackTime = LastAttackTime,
+                AttackCoolDownLength = AttackCoolDownLength,
+                Speed = Speed,
+                DamageModifier = DamageModifier,            };
         }
 
         //TODO Overide this with the corret offset parameters based on the type of the entity calling the method 
