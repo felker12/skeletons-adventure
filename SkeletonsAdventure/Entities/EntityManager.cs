@@ -160,7 +160,10 @@ namespace SkeletonsAdventure.Entities
         public void CheckEntityBoundaryCollisions(TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             foreach (Entity entity in Entities)
-                CheckCollision(entity, tiledMap, mapCollisionLayer);
+            {
+                if(entity.CanMove)
+                    CheckCollision(entity, tiledMap, mapCollisionLayer);
+            }
         }
 
         private static void CheckCollision(Entity entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
@@ -170,7 +173,7 @@ namespace SkeletonsAdventure.Entities
 
             if (entity.Motion != Vector2.Zero)
             {
-                pos += entity.Motion;
+                pos += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
                 entity.IsCollidingBoundary = false;
 
                 ushort tx = (ushort)(pos.X / tiledMap.TileWidth),
@@ -206,7 +209,7 @@ namespace SkeletonsAdventure.Entities
                     }
                 }
                 if (entity.IsCollidingBoundary == false)
-                    entity.Position = pos;
+                    entity.Position += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
             }
         }
     }

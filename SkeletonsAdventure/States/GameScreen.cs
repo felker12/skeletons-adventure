@@ -11,6 +11,7 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
 using System.Collections.Generic;
+using SkeletonsAdventure.GameUI;
 
 namespace SkeletonsAdventure.States
 {
@@ -31,6 +32,8 @@ namespace SkeletonsAdventure.States
         private StatusBar HealthBar { get; set; }
         private StatusBar ManaBar { get; set; }
         private StatusBar XPProgress { get; set; }
+
+        private FPSCounter FPS { get; set; } = new();
 
         public GameScreen(Game1 game) : base(game)
         {
@@ -96,6 +99,12 @@ namespace SkeletonsAdventure.States
             ManaBar.Draw(spriteBatch);
             XPProgress.Draw(spriteBatch);
 
+            FPS.Draw(spriteBatch, GameManager.InfoFont, new(10,10), Color.MonoGameOrange);
+
+
+            //spriteBatch.Draw(GameManager.IcePillarTexture, new Vector2(50, 50), new Rectangle(0, 0, GameManager.IcePillarTexture.Width, GameManager.IcePillarTexture.Height), Color.White);
+
+
             spriteBatch.End();
         }
 
@@ -120,6 +129,8 @@ namespace SkeletonsAdventure.States
 
             CheckUnderMouse();
             HandleInput();
+
+            FPS.Update(gameTime);
         }
 
         private void HandleInput()

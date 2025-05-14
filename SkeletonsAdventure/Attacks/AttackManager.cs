@@ -84,7 +84,7 @@ namespace SkeletonsAdventure.Attacks
                         if (SourceEntity != entity) //makes sure the entity cannot attack itself
                         {
                             if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
-                            else if (entity.GetRectangle.Intersects(attack.GetRectangle))
+                            else if (entity.GetRectangle.Intersects(attack.DamageHitBox))
                             {
                                 if (entity.AttacksHitBy.Contains(attack) is false)
                                 {

@@ -26,6 +26,11 @@
 /processor:PassThroughProcessor
 /build:AttackData/FireBall.xml
 
+#begin AttackData/IcePillar.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:AttackData/IcePillar.xml
+
 #begin AttackSprites/FireBall_01.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -62,7 +67,7 @@
 /processorParam:TextureFormat=Color
 /build:AttackSprites/FireBallSpriteSheet.png
 
-#begin AttackSprites/FireBallSpriteSheet.png
+#begin AttackSprites/IcePillar.PNG
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -72,7 +77,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:AttackSprites/FireBallSpriteSheet.png
+/build:AttackSprites/IcePillar.PNG
 
 #begin Controls/Button.png
 /importer:TextureImporter

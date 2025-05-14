@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+using SkeletonsAdventure.GameWorld;
 
-namespace SkeletonsAdventure.GameWorld
+namespace SkeletonsAdventure.GameUI
 {
     public class StatusBar()
     {

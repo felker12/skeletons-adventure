@@ -50,7 +50,7 @@ namespace SkeletonsAdventure.Entities
             //TODO Add frames for angles
             if (Motion != Vector2.Zero)
             {
-                if (Motion.X > 0)
+                if (Motion.X >= 0)
                 {
                     if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
                         CurrentAnimation = AnimationKey.Right;
@@ -68,15 +68,8 @@ namespace SkeletonsAdventure.Entities
                     else if (Motion.Y < 0)
                         CurrentAnimation = AnimationKey.Up;
                 }
-                else if (Motion.X == 0)
-                {
-                    if (Motion.Y > 0)
-                        CurrentAnimation = AnimationKey.Down;
-                    else if (Motion.Y < 0)
-                        CurrentAnimation = AnimationKey.Up;
-                }
 
-                    IsAnimating = true;
+                IsAnimating = true;
             }
             else
                 IsAnimating = false;

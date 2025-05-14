@@ -45,6 +45,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D SkeletonAttackTexture { get; private set; }
         public static Texture2D FireBallTexture { get; private set; }
         public static Texture2D FireBallTexture2 { get; private set; }
+        public static Texture2D IcePillarTexture { get; private set; }
 
         //UI Textures
         public static Texture2D PopUpBoxTexture { get; private set; }
@@ -59,6 +60,7 @@ namespace SkeletonsAdventure.GameWorld
         //Attacks
         public static AttackData BasicAttackData { get; set; }
         public static AttackData FireBallData { get; set; }
+        public static AttackData IcePillarData { get; set; }
 
         //Miscellaneous Variables
         public static Game1 Game { get; private set; }
@@ -212,6 +214,7 @@ namespace SkeletonsAdventure.GameWorld
             SpiderTexture = Content.Load<Texture2D>(@"EntitySprites/spider");
             FireBallTexture = Content.Load<Texture2D>(@"AttackSprites/FireBall_01");
             FireBallTexture2 = Content.Load<Texture2D>(@"AttackSprites/FireBallSpriteSheet");
+            IcePillarTexture = Content.Load<Texture2D>(@"AttackSprites/IcePillar");
 
             PopUpBoxTexture = new(GraphicsDevice, 1, 1);
             PopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
@@ -234,6 +237,7 @@ namespace SkeletonsAdventure.GameWorld
         {
             BasicAttackData = Content.Load<AttackData>(@"AttackData/BasicAttack");
             FireBallData = Content.Load<AttackData>(@"AttackData/FireBall");
+            IcePillarData = Content.Load<AttackData>(@"AttackData/IcePillar");
         }
 
         private static void CreateItems()

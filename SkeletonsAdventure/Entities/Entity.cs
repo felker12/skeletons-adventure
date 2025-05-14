@@ -1,11 +1,14 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using SkeletonsAdventure.Attacks;
-using System;
-using SkeletonsAdventure.ItemLoot;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.ECS;
 using RpgLibrary.EntityClasses;
-using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.Animations;
+using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.GameUI;
+using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.ItemLoot;
+using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
@@ -38,6 +41,7 @@ namespace SkeletonsAdventure.Entities
         public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public bool HealthBarVisible { get; set; } = true;
         public TimeSpan LastTimeAttacked { get; set; }
+        public bool CanMove { get; set; } = true; //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
 
         public Entity() : base()
         {
@@ -97,7 +101,7 @@ namespace SkeletonsAdventure.Entities
 
             //TODO
             Info.Text += "\nLevel = " + EntityLevel;
-            Info.Text += "\nLast Attacked = " + LastTimeAttacked;
+            //Info.Text += "\nLast Attacked = " + LastTimeAttacked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -192,7 +196,7 @@ namespace SkeletonsAdventure.Entities
                     entityAttack.Motion.Normalize();
                     entityAttack.Motion *= entityAttack.Speed;
                 }
-                entityAttack.SetUpAttack(gameTime, BasicAttackColor);
+                entityAttack.SetUpAttack(gameTime, BasicAttackColor, Position);
 
                 AttackManager.AddAttack(entityAttack, gameTime);
             }
@@ -253,27 +257,27 @@ namespace SkeletonsAdventure.Entities
 
             if (distance.X > -Width/2 && distance.Y >= 0)
             {
-                CurrentAnimation = Animations.AnimationKey.Left;
+                CurrentAnimation = AnimationKey.Left;
                 if (distance.Y > Width * .75)
-                    CurrentAnimation = Animations.AnimationKey.Up;
+                    CurrentAnimation = AnimationKey.Up;
             }
             else if (distance.X <= -Width/2 && distance.Y >= 0)
             {
-                CurrentAnimation = Animations.AnimationKey.Right;
+                CurrentAnimation = AnimationKey.Right;
                 if (distance.Y > Width * .75)
-                    CurrentAnimation = Animations.AnimationKey.Up;
+                    CurrentAnimation = AnimationKey.Up;
             }
             else if (distance.X >= -Width / 4 && distance.Y < 0)
             {
-                CurrentAnimation = Animations.AnimationKey.Left;
+                CurrentAnimation = AnimationKey.Left;
                 if (distance.Y < -Height - Height / 4)
-                    CurrentAnimation = Animations.AnimationKey.Down;
+                    CurrentAnimation = AnimationKey.Down;
             }
             else if (distance.X <= -Width / 2 && distance.Y < 0)
             {
-                CurrentAnimation = Animations.AnimationKey.Right;
+                CurrentAnimation = AnimationKey.Right;
                 if (distance.Y < -Height  -Height / 4)
-                    CurrentAnimation = Animations.AnimationKey.Down;
+                    CurrentAnimation = AnimationKey.Down;
             }
         }
     }

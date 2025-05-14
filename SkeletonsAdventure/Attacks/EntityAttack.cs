@@ -20,6 +20,7 @@ namespace SkeletonsAdventure.Attacks
         public float DamageModifier { get; set; }
         public int ManaCost { get; set; }
         public bool AnimatedAttack { get; set; } = false; //TODO
+        public Rectangle DamageHitBox { get; set; }
 
         public EntityAttack(EntityAttack attack) : base()
         {
@@ -37,6 +38,8 @@ namespace SkeletonsAdventure.Attacks
             Speed = attack.Speed;
             DamageModifier = attack.DamageModifier;
             ManaCost = attack.ManaCost;
+
+            DamageHitBox = GetRectangle;
         }
 
         public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
@@ -53,6 +56,8 @@ namespace SkeletonsAdventure.Attacks
 
             Texture = texture;
             Source = source;
+
+            DamageHitBox = GetRectangle;
         }
 
         public virtual EntityAttack Clone()
@@ -63,6 +68,7 @@ namespace SkeletonsAdventure.Attacks
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
             spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
             Info.Draw(spriteBatch);
@@ -84,31 +90,16 @@ namespace SkeletonsAdventure.Attacks
             else
                 Info.Color = new Color(255, 81, 89, 255);
 
-            Position += Motion;
+            Position += Motion * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
+
+            DamageHitBox = GetRectangle;
         }
 
-        //TODO delete
-        public virtual EntityAttack PerformAttack(GameTime gameTime, Color attackColor)
-        {
-            EntityAttack attack = Clone();
-            attack.StartTime = gameTime.TotalGameTime;
-            //attack.Offset();
-            attack.Position = Source.Position + attack.AttackOffset;
-            attack.DefaultColor = attackColor;
-            attack.SpriteColor = attack.DefaultColor;
-            attack.Motion = Motion;
-            attack.Speed = Speed;
-            attack.DamageModifier = DamageModifier;
-            attack.ManaCost = ManaCost;
-
-            return attack;
-        }
-
-        public virtual void SetUpAttack(GameTime gameTime, Color attackColor)
+        public virtual void SetUpAttack(GameTime gameTime, Color attackColor, Vector2 originPosition)
         {
             StartTime = gameTime.TotalGameTime;
             Offset();
-            Position = Source.Position + AttackOffset;
+            Position = originPosition + AttackOffset;
             DefaultColor = attackColor;
             SpriteColor = DefaultColor;
             LastAttackTime = gameTime.TotalGameTime;
@@ -119,7 +110,6 @@ namespace SkeletonsAdventure.Attacks
         {
             return ((gameTime.TotalGameTime - LastAttackTime).TotalMilliseconds < AttackCoolDownLength);
         }
-
 
         public virtual AttackData GetAttackData()
         {
@@ -181,7 +171,6 @@ namespace SkeletonsAdventure.Attacks
         public void MoveToPosition(Vector2 target)
         {
             Motion = Vector2.Normalize(target - Position) * Speed;
-            System.Diagnostics.Debug.WriteLine(Motion);
         }
     }
 }
