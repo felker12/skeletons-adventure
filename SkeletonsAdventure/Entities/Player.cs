@@ -1,15 +1,15 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
-using SkeletonsAdventure.Engines;
-using SkeletonsAdventure.ItemClasses;
-using RpgLibrary.ItemClasses;
-using Effect = RpgLibrary.ItemClasses.Effect;
+using MonoGame.Extended;
 using RpgLibrary.EntityClasses;
-using SkeletonsAdventure.GameWorld;
-
-using System;
+using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.ItemClasses;
+using System;
+using Effect = RpgLibrary.ItemClasses.Effect;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -28,6 +28,8 @@ namespace SkeletonsAdventure.Entities
 
         private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
 
+        private bool AimVisible { get; set; } = false;
+
         public Player() : base()
         {
             baseAttack = 400; //TODO correct the values
@@ -40,7 +42,7 @@ namespace SkeletonsAdventure.Entities
 
         private void Initialize()
         {
-            respawnTime = 0;
+            RespawnTime = 0;
             Health = baseHealth;
             MaxHealth = baseHealth;
             Defence = baseDefence;
@@ -89,6 +91,12 @@ namespace SkeletonsAdventure.Entities
         {
             base.Draw(spriteBatch);
             ManaBar.Draw(spriteBatch);
+            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+
+            if (AimVisible)
+            {
+                spriteBatch.DrawLine(GetMousePosition(), GetPlayerCenter(), Color.White, 1);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -204,7 +212,13 @@ namespace SkeletonsAdventure.Entities
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
                 //FireBall_Attack(gameTime);
-                PerformMovingAttack(gameTime, FireBall);
+                PerformAttack(gameTime, FireBall);
+            }
+            if (InputHandler.KeyReleased(Keys.D2) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+                //FireBall_Attack(gameTime);
+                PerformAimedAttack(gameTime, FireBall);
             }
         }
 
@@ -247,14 +261,72 @@ namespace SkeletonsAdventure.Entities
             base.Respawn();
         }
 
-
-        public void GetLine()
+        public virtual void PerformAimedAttack(GameTime gameTime, ShootingAttack entityAttack)
         {
+            if (AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
+            {
+                //TODO
+                //ToggleBool(AimVisible);
+                if (AimVisible == true)
+                { 
+                    AimVisible = false;
 
+                    //TODO
 
+                    Vector2 difference = GetPlayerCenter() - GetMousePosition();
+                    Vector2 motion = Vector2.Zero;
 
+                    if(difference.X > 0)
+                    {
+                        motion.X = -1;
+                    }
+                    else if(difference.X < 0)
+                    {
+                        motion.X = 1;
+                    }
+                    if (difference.Y > 0)
+                    {
+                        motion.Y = -1;
+                    }
+                    else if (difference.Y < 0)
+                    {
+                        motion.Y = 1;
+                    }
 
+                    motion.Normalize();
+                    motion *= Speed;
 
+                    entityAttack.Motion = motion;
+                    entityAttack.SetUpAttack(gameTime, BasicAttackColor);
+
+                    AttackManager.AddAttack(entityAttack, gameTime);
+
+                    System.Diagnostics.Debug.WriteLine($"Do attack\nDifference = {difference}");
+                }
+                else
+                {
+                    AimVisible = true;
+                }
+            }
+        }
+
+        public Vector2 GetPlayerCenter()
+        {
+            return Position + new Vector2(Width / 2, Height / 2);
+        }
+
+        public static Vector2 GetMousePosition()
+        {
+            MouseState _mouseState = Mouse.GetState();
+            return Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(GameManager.Game.GameScreen.Camera.Transformation));
+        }
+
+        public static void ToggleBool(bool toggleVariable)
+        {
+            if (toggleVariable == true)
+                toggleVariable = false;
+            else
+                toggleVariable = true;
         }
     }
 }

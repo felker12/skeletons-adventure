@@ -7,7 +7,7 @@ using RpgLibrary.AttackData;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class FireBall : AimedAttack
+    public class FireBall : ShootingAttack
     {
 
 

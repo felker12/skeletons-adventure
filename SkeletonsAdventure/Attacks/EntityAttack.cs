@@ -4,6 +4,7 @@ using SkeletonsAdventure.Entities;
 using System;
 using SkeletonsAdventure.Animations;
 using RpgLibrary.AttackData;
+using MonoGame.Extended;
 
 namespace SkeletonsAdventure.Attacks
 {
@@ -14,8 +15,6 @@ namespace SkeletonsAdventure.Attacks
         public TimeSpan Duration { get; set; }
         public TimeSpan LastAttackTime { get; set; }
         public Vector2 AttackOffset { get; set; }
-        public bool HasHit { get; set; } = false;
-        public bool CanHit { get; set; } = true;
         public Entity Source { get; protected set; }
         public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
         public float DamageModifier { get; set; }
@@ -59,7 +58,7 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
             spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
             Info.Draw(spriteBatch);
@@ -81,6 +80,7 @@ namespace SkeletonsAdventure.Attacks
             Position += Motion;
         }
 
+        //TODO delete
         public virtual EntityAttack PerformAttack(GameTime gameTime, Color attackColor)
         {
             EntityAttack attack = Clone();
@@ -94,6 +94,23 @@ namespace SkeletonsAdventure.Attacks
 
             return attack;
         }
+
+        public virtual void SetUpAttack(GameTime gameTime, Color attackColor)
+        {
+            StartTime = gameTime.TotalGameTime;
+            Offset();
+            Position = Source.Position + AttackOffset;
+            DefaultColor = attackColor;
+            SpriteColor = DefaultColor;
+            LastAttackTime = gameTime.TotalGameTime;
+            Info.Text = string.Empty;
+        }
+
+        public bool IsOnCooldown(GameTime gameTime)
+        {
+            return ((gameTime.TotalGameTime - LastAttackTime).TotalMilliseconds < AttackCoolDownLength);
+        }
+
 
         public virtual AttackData GetAttackData()
         {
@@ -147,7 +164,6 @@ namespace SkeletonsAdventure.Attacks
         {
             if(Duration.TotalMilliseconds > AttackLength)
                 return true;
-
             return false;
         }
     }

@@ -12,14 +12,15 @@ namespace SkeletonsAdventure.Entities
 {
     public class Entity : AnimatedSprite
     {
-        public int baseDefence, baseAttack, baseHealth, baseXP, weaponAttack, armourDefence, respawnTime;
+        public int baseDefence, baseAttack, baseHealth, baseXP, weaponAttack, armourDefence;
         public Texture2D basicAttackTexture;
         public TimeSpan lastDeathTime;
         public Vector2 RespawnPosition = Vector2.Zero;
         public string Type { get; set; } = string.Empty;
         public StatusBar HealthBar = new();
 
-        public int AttackCoolDownLength { get; protected set; }  //length of the delay between attacks in milliseconds
+        //TODO load the cooldown length from the entity data instead of being hard coded
+        public int AttackCoolDownLength { get; protected set; } = 600; //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
         public int ID { get; protected set; } = 0;
@@ -28,6 +29,7 @@ namespace SkeletonsAdventure.Entities
         public int Health { get; set; }
         public int Defence { get; set; }
         public int Attack { get; set; }
+        public int RespawnTime { get; set; } //time in seconds until the entity respawns
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
@@ -65,7 +67,7 @@ namespace SkeletonsAdventure.Entities
             Defence = baseDefence;
             Attack = baseAttack;
 
-            respawnTime = 3;
+            RespawnTime = 3;
             lastDeathTime = new();
             XP = baseXP;
             LootList = new LootList();
@@ -81,20 +83,15 @@ namespace SkeletonsAdventure.Entities
             base.Update(gameTime);
 
             if(AttacksHitBy.Count > 0)
-            {
                 SpriteColor = Color.Red;
-            }
             else
-            {
                 SpriteColor = DefaultColor;
-            }
 
             Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
             HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
 
             //TODO
-            Info.Text += "\nLevel = " + EntityLevel +
-                $"\nAttacks hit by: {AttacksHitBy.Count}";
+            Info.Text += "\nLevel = " + EntityLevel;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -168,25 +165,10 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void PerformAttack(GameTime gameTime, EntityAttack entityAttack)
         {
-            int diffMilliseconds = (int)(gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds;
-            if (diffMilliseconds > AttackCoolDownLength)
+            if(AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
             {
-                diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
-                if (diffMilliseconds > entityAttack.AttackCoolDownLength)
-                {
-                    AttackManager.AddAttack(entityAttack.PerformAttack(gameTime, BasicAttackColor));
-                    entityAttack.LastAttackTime = gameTime.TotalGameTime;
-                }
-            }
-        }
-
-        public virtual void PerformMovingAttack(GameTime gameTime, EntityAttack entityAttack)
-        {
-            int diffMilliseconds = (int)(gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds;
-            if (diffMilliseconds > AttackCoolDownLength)
-            {
-                diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
-                if (diffMilliseconds > entityAttack.AttackCoolDownLength)
+                //if the attack has speed it will move. If not it will  be stationary
+                if (entityAttack.Speed > 0)
                 {
                     if (CurrentAnimation == AnimationKey.Up)
                         entityAttack.Motion = new(0, -1);
@@ -199,10 +181,24 @@ namespace SkeletonsAdventure.Entities
 
                     entityAttack.Motion.Normalize();
                     entityAttack.Motion *= entityAttack.Speed;
-
-                    AttackManager.AddAttack(entityAttack.PerformAttack(gameTime, BasicAttackColor));
-                    entityAttack.LastAttackTime = gameTime.TotalGameTime;
                 }
+                entityAttack.SetUpAttack(gameTime, BasicAttackColor);
+
+                AttackManager.AddAttack(entityAttack, gameTime);
+            }
+        }
+
+        public bool AttackingIsOnCoolDown(GameTime gameTime)
+        {
+            return ((gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds < AttackCoolDownLength);
+        }
+
+        public virtual void CheckIfAttackIsOffCooldown(GameTime gameTime, EntityAttack entityAttack)
+        {
+            int diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
+            if (diffMilliseconds > entityAttack.AttackCoolDownLength)
+            {
+
             }
         }
 

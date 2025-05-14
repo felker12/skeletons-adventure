@@ -7,15 +7,16 @@ using SkeletonsAdventure.Animations;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class AimedAttack : EntityAttack
+    public class ShootingAttack : EntityAttack
     {
+        public bool Aiming { get; set; } = false;   
 
-        public AimedAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
+        public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
             Initialize();
         }
 
-        public AimedAttack(AimedAttack attack) : base(attack)
+        public ShootingAttack(ShootingAttack attack) : base(attack)
         {
 
         }
@@ -26,9 +27,9 @@ namespace SkeletonsAdventure.Attacks
             Frame = new Rectangle(0, 0, 32, 32);
         }
 
-        public override AimedAttack Clone()
+        public override ShootingAttack Clone()
         {
-            return new AimedAttack(this);
+            return new ShootingAttack(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -46,25 +47,24 @@ namespace SkeletonsAdventure.Attacks
         {
             Width = 32;
             Height = 32;
-            AttackOffset = new(-6, -Height);
             Frame = new(0, 0, Width, Height);
 
-
+            //TODO center the attackprojectile on the entity for the up and down animations
             if (Source.CurrentAnimation == AnimationKey.Up)
             {
-                AttackOffset = new(-6, -Height);
+                AttackOffset = new(0, -Height);
             }
             else if (Source.CurrentAnimation == AnimationKey.Down)
             {
-                AttackOffset = new(-6, Source.Height);
+                AttackOffset = new(0, Source.Height);
             }
             if (Source.CurrentAnimation == AnimationKey.Left)
             {
-                AttackOffset = new(-Source.Width, 0);
+                AttackOffset = new(-Source.Width, Source.Height / 2 - Height / 2);
             }
             else if (Source.CurrentAnimation == AnimationKey.Right)
             {
-                AttackOffset = new(Source.Width, 0);
+                AttackOffset = new(Source.Width, Source.Height / 2 - Height / 2);
             }
         }
     }

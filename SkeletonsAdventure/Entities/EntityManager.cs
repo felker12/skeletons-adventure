@@ -70,7 +70,7 @@ namespace SkeletonsAdventure.Entities
                         DroppedLootManager.Add(entity.LootList, entity.Position);
                     }
                 }
-                else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.respawnTime))
+                else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.RespawnTime))
                 {
                     entity.Respawn();
                 }

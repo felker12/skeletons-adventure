@@ -47,9 +47,11 @@ namespace SkeletonsAdventure.Attacks
             }
         }
 
-        public void AddAttack(EntityAttack atk)
+        public void AddAttack(EntityAttack atk, GameTime gameTime)
         {
             Attacks.Add(atk);
+            LastAttackTime = gameTime.TotalGameTime;
+            //atk.LastAttackTime = gameTime.TotalGameTime;
             _attacked = true;
         }
 
@@ -70,6 +72,8 @@ namespace SkeletonsAdventure.Attacks
             {
                 foreach (var entity in entities)
                 {
+                    if(entity.IsDead)
+                        continue;//prevents attacking dead enemies
                     if (entity.AttacksHitBy.Contains(attack) is false) //prevents an attack from hitting an opponent multiple times
                     {
                         if (SourceEntity != entity) //makes sure the entity cannot attack itself
