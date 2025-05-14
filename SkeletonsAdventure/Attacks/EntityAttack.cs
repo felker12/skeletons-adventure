@@ -19,6 +19,7 @@ namespace SkeletonsAdventure.Attacks
         public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
         public float DamageModifier { get; set; }
         public int ManaCost { get; set; }
+        public bool AnimatedAttack { get; set; } = false; //TODO
 
         public EntityAttack(EntityAttack attack) : base()
         {
@@ -69,6 +70,9 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
+            if (AnimatedAttack)
+                base.Update(gameTime);
+
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
 
@@ -88,7 +92,7 @@ namespace SkeletonsAdventure.Attacks
         {
             EntityAttack attack = Clone();
             attack.StartTime = gameTime.TotalGameTime;
-            attack.Offset();
+            //attack.Offset();
             attack.Position = Source.Position + attack.AttackOffset;
             attack.DefaultColor = attackColor;
             attack.SpriteColor = attack.DefaultColor;
@@ -177,6 +181,7 @@ namespace SkeletonsAdventure.Attacks
         public void MoveToPosition(Vector2 target)
         {
             Motion = Vector2.Normalize(target - Position) * Speed;
+            System.Diagnostics.Debug.WriteLine(Motion);
         }
     }
 }

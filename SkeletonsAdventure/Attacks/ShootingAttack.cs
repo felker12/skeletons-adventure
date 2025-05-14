@@ -9,8 +9,6 @@ namespace SkeletonsAdventure.Attacks
 {
     public class ShootingAttack : EntityAttack
     {
-        public bool Aiming { get; set; } = false;   
-
         public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
             Initialize();
@@ -51,25 +49,6 @@ namespace SkeletonsAdventure.Attacks
 
             //start the attack at the center of the entity
             AttackOffset = new(Source.Width / 2 - Width / 2, Source.Height / 2 - Height / 2);
-
-
-            //TODO center the attackprojectile on the entity for the up and down animations
-            //if (Source.CurrentAnimation == AnimationKey.Up)
-            //{
-            //    AttackOffset = new(0, -Height);
-            //}
-            //else if (Source.CurrentAnimation == AnimationKey.Down)
-            //{
-            //    AttackOffset = new(0, Source.Height);
-            //}
-            //if (Source.CurrentAnimation == AnimationKey.Left)
-            //{
-            //    AttackOffset = new(-Source.Width, Source.Height / 2 - Height / 2);
-            //}
-            //else if (Source.CurrentAnimation == AnimationKey.Right)
-            //{
-            //    AttackOffset = new(Source.Width, Source.Height / 2 - Height / 2);
-            //}
         }
     }
 }

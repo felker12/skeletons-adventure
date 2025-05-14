@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Animations;
-using Microsoft.Xna.Framework.Content;
+using System;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -46,18 +47,36 @@ namespace SkeletonsAdventure.Entities
 
             UpdateFrame();
 
+            //TODO Add frames for angles
             if (Motion != Vector2.Zero)
             {
-                if (Motion.Y > 0)
-                    CurrentAnimation = AnimationKey.Down;
-                else if (Motion.Y < 0)
-                    CurrentAnimation = AnimationKey.Up;
                 if (Motion.X > 0)
-                    CurrentAnimation = AnimationKey.Right;
+                {
+                    if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
+                        CurrentAnimation = AnimationKey.Right;
+                    else if (Motion.Y > 0)
+                        CurrentAnimation = AnimationKey.Down;
+                    else if (Motion.Y < 0)
+                        CurrentAnimation = AnimationKey.Up;
+                }
                 else if (Motion.X < 0)
-                    CurrentAnimation = AnimationKey.Left;
+                {
+                    if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
+                        CurrentAnimation = AnimationKey.Left;
+                    else if (Motion.Y > 0)
+                        CurrentAnimation = AnimationKey.Down;
+                    else if (Motion.Y < 0)
+                        CurrentAnimation = AnimationKey.Up;
+                }
+                else if (Motion.X == 0)
+                {
+                    if (Motion.Y > 0)
+                        CurrentAnimation = AnimationKey.Down;
+                    else if (Motion.Y < 0)
+                        CurrentAnimation = AnimationKey.Up;
+                }
 
-                IsAnimating = true;
+                    IsAnimating = true;
             }
             else
                 IsAnimating = false;
@@ -70,7 +89,7 @@ namespace SkeletonsAdventure.Entities
             base.Draw(spriteBatch);
         }
 
-        public Dictionary<AnimationKey, SpriteAnimation> CreateAnimations(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
+        private Dictionary<AnimationKey, SpriteAnimation> CreateAnimations(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
         {
             Dictionary<AnimationKey, SpriteAnimation> _Animations = [];
             Width = frameWidth;

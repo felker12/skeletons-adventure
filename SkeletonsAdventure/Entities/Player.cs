@@ -26,9 +26,9 @@ namespace SkeletonsAdventure.Entities
         public StatusBar ManaBar { get; set; } = new();
         public float XPModifier { get; set; } = 1.0f; //TODO
         public FireBall FireBall { get; set; }
+        public FireBall FireBall2 { get; set; }
         public bool ManaBarVisible { get; set; } = true;
-
-        private bool AimVisible { get; set; } = false;
+        public bool AimVisible { get; set; } = false;
 
         public Player() : base()
         {
@@ -62,6 +62,10 @@ namespace SkeletonsAdventure.Entities
             Info.Color = Color.Aqua;
 
             FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
+            //TODO
+            FireBall.AnimatedAttack = false;
+
+            FireBall2 ??= new(GameManager.FireBallData, GameManager.FireBallTexture2, this);
 
             //TODO
             HealthBarVisible = false;
@@ -112,11 +116,14 @@ namespace SkeletonsAdventure.Entities
             CheckInput(gameTime);
 
             base.Update(gameTime);
-            HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
-            ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0,ManaBar.Height + ManaBar.BorderWidth + 2));
 
+            if(ManaBarVisible)
+            {
+                HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
+                ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2));
+            }
+            
             Backpack.Update();
-
 
             Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel;
             Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
@@ -125,6 +132,7 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this
             Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
+            Info.Text += $"\nMotion = {Motion}";
         }
 
         public void GainXp(int XpGained)
@@ -142,18 +150,8 @@ namespace SkeletonsAdventure.Entities
                     LevelUP();
                     currentLevel++;
                 }
-                //TODO detete
-                //System.Diagnostics.Debug.WriteLine($"Leveled Up to Level {EntityLevel}!\nYou now have {StatusPoints} Status Points"); //TODO delete this
 
                 PlayerStatAdjustmentForLevel();
-
-                //TODO delete this testing code
-                //System.Diagnostics.Debug.WriteLine($"Attack = {Attack}\nDefence = {Defence}");
-
-                //int lvlXP = GameManager.GetLevelXPAtLevel(EntityLevel);
-                //int nextLvlXP = GameManager.GetLevelXPAtLevel(EntityLevel + 1);
-                //System.Diagnostics.Debug.WriteLine($"Current lvl xp = {lvlXP} and next lvl xp = {nextLvlXP}\n" +
-                //    $"xp to go = {nextLvlXP - TotalXP}");
             }
         }
 
@@ -224,7 +222,7 @@ namespace SkeletonsAdventure.Entities
             if (InputHandler.KeyReleased(Keys.D2) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformAimedAttack(gameTime, FireBall);
+                PerformAimedAttack(gameTime, FireBall2, GetMousePosition());
             }
         }
 
@@ -267,7 +265,7 @@ namespace SkeletonsAdventure.Entities
             base.Respawn();
         }
 
-        public virtual void PerformAimedAttack(GameTime gameTime, ShootingAttack entityAttack)
+        public virtual void PerformAimedAttack(GameTime gameTime, ShootingAttack entityAttack, Vector2 targetPosition)
         {
             if (AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
             {
@@ -281,7 +279,7 @@ namespace SkeletonsAdventure.Entities
                         Mana -= entityAttack.ManaCost;
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor);
-                    entityAttack.MoveToPosition(GetMousePosition());
+                    entityAttack.MoveToPosition(targetPosition);
 
                     AttackManager.AddAttack(entityAttack, gameTime);
                 }

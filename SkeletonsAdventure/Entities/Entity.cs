@@ -89,8 +89,11 @@ namespace SkeletonsAdventure.Entities
             else
                 SpriteColor = DefaultColor;
 
-            Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
-            HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
+            if(HealthBarVisible)
+            {
+                Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
+                HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
+            }
 
             //TODO
             Info.Text += "\nLevel = " + EntityLevel;
@@ -198,15 +201,6 @@ namespace SkeletonsAdventure.Entities
         public bool AttackingIsOnCoolDown(GameTime gameTime)
         {
             return ((gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds < AttackCoolDownLength);
-        }
-
-        public virtual void CheckIfAttackIsOffCooldown(GameTime gameTime, EntityAttack entityAttack)
-        {
-            int diffMilliseconds = (int)(gameTime.TotalGameTime - entityAttack.LastAttackTime).TotalMilliseconds;
-            if (diffMilliseconds > entityAttack.AttackCoolDownLength)
-            {
-
-            }
         }
 
         public virtual Entity Clone()

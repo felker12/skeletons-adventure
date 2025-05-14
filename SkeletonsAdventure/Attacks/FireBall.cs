@@ -10,7 +10,6 @@ namespace SkeletonsAdventure.Attacks
     public class FireBall : ShootingAttack
     {
 
-
         public FireBall(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
             Initialize();
@@ -23,7 +22,12 @@ namespace SkeletonsAdventure.Attacks
 
         private void Initialize()
         {
+            AnimatedAttack = true;
 
+            Width = 32;
+            Height = 28;
+
+            SetFrames(3, Width, Height, 0, Height);
         }
 
         public override FireBall Clone()
@@ -41,6 +45,11 @@ namespace SkeletonsAdventure.Attacks
             base.Update(gameTime);
         }
 
-
+        //TODO Overide this with the corret offset parameters based on the type of the entity calling the method 
+        public override void Offset()
+        {
+            //start the attack at the center of the entity
+            AttackOffset = new(Source.Width / 2 - Width / 2, Source.Height / 2 - Height / 2);
+        }
     }
 }

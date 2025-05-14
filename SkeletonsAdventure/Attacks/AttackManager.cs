@@ -44,6 +44,11 @@ namespace SkeletonsAdventure.Attacks
             {
                 LastAttackTime = gameTime.TotalGameTime;
                 _attacked = false;
+
+                if(SourceEntity is Player player)
+                {
+                    player.AimVisible = false;
+                }
             }
         }
 
