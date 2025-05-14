@@ -57,7 +57,7 @@ namespace SkeletonsAdventure.Entities
                 {
                     entity.Update(gameTime);
 
-                    entity.AttackManager.CheckAttackHit(Entities);
+                    entity.AttackManager.CheckAttackHit(Entities, gameTime); //TODO: this might have to be changed to totalTimeInWorld instead later
                     entity.AttackManager.ClearOldAttacks(Entities);
 
                     if (entity == Player)

@@ -36,6 +36,8 @@ namespace SkeletonsAdventure.Entities
         public bool IsCollidingBoundary { get; set; } = false;
         public bool IsDead { get; set; } = false;
         public List<EntityAttack> AttacksHitBy { get; set; } = [];
+        public bool HealthBarVisible { get; set; } = true;
+        public TimeSpan LastTimeAttacked { get; set; }
 
         public Entity() : base()
         {
@@ -92,11 +94,14 @@ namespace SkeletonsAdventure.Entities
 
             //TODO
             Info.Text += "\nLevel = " + EntityLevel;
+            Info.Text += "\nLast Attacked = " + LastTimeAttacked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            HealthBar.Draw(spriteBatch);
+            if(HealthBarVisible)
+                HealthBar.Draw(spriteBatch);
+
             base.Draw(spriteBatch);
         }
 
@@ -133,17 +138,11 @@ namespace SkeletonsAdventure.Entities
             IsDead = entityData.isDead;
 
             if (entityData.position != null)
-            {
                 Position = (Vector2)entityData.position;
-            }
             if (entityData.respawnPosition != null)
-            {
                 RespawnPosition = (Vector2)entityData.respawnPosition;
-            }
             if (entityData.lastDeathTime != null)
-            {
                 lastDeathTime = (TimeSpan)entityData.lastDeathTime;
-            }
         }
 
         public virtual void Respawn()
@@ -167,6 +166,14 @@ namespace SkeletonsAdventure.Entities
         {
             if(AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
             {
+                if(this is Player player)
+                {
+                    if(player.Mana < entityAttack.ManaCost)
+                        return;
+                    else
+                        player.Mana -= entityAttack.ManaCost;
+                }
+
                 //if the attack has speed it will move. If not it will  be stationary
                 if (entityAttack.Speed > 0)
                 {

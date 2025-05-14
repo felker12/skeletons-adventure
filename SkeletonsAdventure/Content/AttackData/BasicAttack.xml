@@ -9,5 +9,6 @@
     <AttackCoolDownLength>800</AttackCoolDownLength>
     <Speed>0</Speed>
     <DamageModifier>1</DamageModifier>
+    <ManaCost>0</ManaCost>
   </Asset>
 </XnaContent>

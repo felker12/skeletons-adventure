@@ -8,13 +8,14 @@ using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using System;
 using Effect = RpgLibrary.ItemClasses.Effect;
 
 namespace SkeletonsAdventure.Entities
 {
     public class Player : Entity
     {
+        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
+
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
         public int TotalXP { get; set; } = 0;
@@ -25,8 +26,7 @@ namespace SkeletonsAdventure.Entities
         public StatusBar ManaBar { get; set; } = new();
         public float XPModifier { get; set; } = 1.0f; //TODO
         public FireBall FireBall { get; set; }
-
-        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
+        public bool ManaBarVisible { get; set; } = true;
 
         private bool AimVisible { get; set; } = false;
 
@@ -62,6 +62,10 @@ namespace SkeletonsAdventure.Entities
             Info.Color = Color.Aqua;
 
             FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
+
+            //TODO
+            HealthBarVisible = false;
+            ManaBarVisible = false;
         }
         public void UpdatePlayerData(PlayerData playerData)
         {
@@ -90,7 +94,10 @@ namespace SkeletonsAdventure.Entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            ManaBar.Draw(spriteBatch);
+            
+            if(ManaBarVisible)
+                ManaBar.Draw(spriteBatch);
+
             spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
 
             if (AimVisible)
@@ -203,6 +210,7 @@ namespace SkeletonsAdventure.Entities
 
         public void CheckInput(GameTime gameTime)
         {
+            //TODO properly handle controller input
             if (InputHandler.KeyReleased(Keys.E) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
@@ -211,13 +219,11 @@ namespace SkeletonsAdventure.Entities
             if (InputHandler.KeyReleased(Keys.D1) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                //FireBall_Attack(gameTime);
                 PerformAttack(gameTime, FireBall);
             }
             if (InputHandler.KeyReleased(Keys.D2) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                //FireBall_Attack(gameTime);
                 PerformAimedAttack(gameTime, FireBall);
             }
         }
@@ -265,48 +271,22 @@ namespace SkeletonsAdventure.Entities
         {
             if (AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
             {
-                //TODO
-                //ToggleBool(AimVisible);
                 if (AimVisible == true)
                 { 
-                    AimVisible = false;
+                    AimVisible = false; 
+                    
+                    if (Mana < entityAttack.ManaCost)
+                        return;
+                    else
+                        Mana -= entityAttack.ManaCost;
 
-                    //TODO
-
-                    Vector2 difference = GetPlayerCenter() - GetMousePosition();
-                    Vector2 motion = Vector2.Zero;
-
-                    if(difference.X > 0)
-                    {
-                        motion.X = -1;
-                    }
-                    else if(difference.X < 0)
-                    {
-                        motion.X = 1;
-                    }
-                    if (difference.Y > 0)
-                    {
-                        motion.Y = -1;
-                    }
-                    else if (difference.Y < 0)
-                    {
-                        motion.Y = 1;
-                    }
-
-                    motion.Normalize();
-                    motion *= Speed;
-
-                    entityAttack.Motion = motion;
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor);
+                    entityAttack.MoveToPosition(GetMousePosition());
 
                     AttackManager.AddAttack(entityAttack, gameTime);
-
-                    System.Diagnostics.Debug.WriteLine($"Do attack\nDifference = {difference}");
                 }
                 else
-                {
                     AimVisible = true;
-                }
             }
         }
 
@@ -319,14 +299,6 @@ namespace SkeletonsAdventure.Entities
         {
             MouseState _mouseState = Mouse.GetState();
             return Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(GameManager.Game.GameScreen.Camera.Transformation));
-        }
-
-        public static void ToggleBool(bool toggleVariable)
-        {
-            if (toggleVariable == true)
-                toggleVariable = false;
-            else
-                toggleVariable = true;
         }
     }
 }

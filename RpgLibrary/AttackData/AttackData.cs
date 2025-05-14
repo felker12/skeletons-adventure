@@ -12,6 +12,7 @@ namespace RpgLibrary.AttackData
         public int AttackCoolDownLength { get; set; }
         public float Speed { get; set; }
         public float DamageModifier { get; set; }
+        public int ManaCost { get; set; }
 
         public AttackData() { }
 
@@ -23,8 +24,9 @@ namespace RpgLibrary.AttackData
                 $"Attack Offset: {AttackOffset}, " +
                 $"Last Attack Time: {LastAttackTime}, " +
                 $"Attack Cool Down Length: {AttackCoolDownLength}, " +
-                $"Speed: {Speed}, " + 
-                $"Damage Modifier: {DamageModifier} ";
+                $"Speed: {Speed}, " +
+                $"Damage Modifier: {DamageModifier}, " +
+                $"Mana Cost: {ManaCost} ";
         }
     }
 }

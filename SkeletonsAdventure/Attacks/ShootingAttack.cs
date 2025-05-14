@@ -49,23 +49,27 @@ namespace SkeletonsAdventure.Attacks
             Height = 32;
             Frame = new(0, 0, Width, Height);
 
+            //start the attack at the center of the entity
+            AttackOffset = new(Source.Width / 2 - Width / 2, Source.Height / 2 - Height / 2);
+
+
             //TODO center the attackprojectile on the entity for the up and down animations
-            if (Source.CurrentAnimation == AnimationKey.Up)
-            {
-                AttackOffset = new(0, -Height);
-            }
-            else if (Source.CurrentAnimation == AnimationKey.Down)
-            {
-                AttackOffset = new(0, Source.Height);
-            }
-            if (Source.CurrentAnimation == AnimationKey.Left)
-            {
-                AttackOffset = new(-Source.Width, Source.Height / 2 - Height / 2);
-            }
-            else if (Source.CurrentAnimation == AnimationKey.Right)
-            {
-                AttackOffset = new(Source.Width, Source.Height / 2 - Height / 2);
-            }
+            //if (Source.CurrentAnimation == AnimationKey.Up)
+            //{
+            //    AttackOffset = new(0, -Height);
+            //}
+            //else if (Source.CurrentAnimation == AnimationKey.Down)
+            //{
+            //    AttackOffset = new(0, Source.Height);
+            //}
+            //if (Source.CurrentAnimation == AnimationKey.Left)
+            //{
+            //    AttackOffset = new(-Source.Width, Source.Height / 2 - Height / 2);
+            //}
+            //else if (Source.CurrentAnimation == AnimationKey.Right)
+            //{
+            //    AttackOffset = new(Source.Width, Source.Height / 2 - Height / 2);
+            //}
         }
     }
 }

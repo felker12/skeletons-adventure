@@ -18,6 +18,7 @@ namespace SkeletonsAdventure.Attacks
         public Entity Source { get; protected set; }
         public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
         public float DamageModifier { get; set; }
+        public int ManaCost { get; set; }
 
         public EntityAttack(EntityAttack attack) : base()
         {
@@ -34,6 +35,7 @@ namespace SkeletonsAdventure.Attacks
             Motion = attack.Motion;
             Speed = attack.Speed;
             DamageModifier = attack.DamageModifier;
+            ManaCost = attack.ManaCost;
         }
 
         public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
@@ -46,6 +48,7 @@ namespace SkeletonsAdventure.Attacks
             AttackCoolDownLength = attackData.AttackCoolDownLength;
             Speed = attackData.Speed;
             DamageModifier = attackData.DamageModifier;
+            ManaCost = attackData.ManaCost;
 
             Texture = texture;
             Source = source;
@@ -91,6 +94,8 @@ namespace SkeletonsAdventure.Attacks
             attack.SpriteColor = attack.DefaultColor;
             attack.Motion = Motion;
             attack.Speed = Speed;
+            attack.DamageModifier = DamageModifier;
+            attack.ManaCost = ManaCost;
 
             return attack;
         }
@@ -124,6 +129,7 @@ namespace SkeletonsAdventure.Attacks
                 AttackCoolDownLength = AttackCoolDownLength,
                 Speed = Speed,
                 DamageModifier = DamageModifier,
+                ManaCost = ManaCost,
             };
         }
 
@@ -165,6 +171,12 @@ namespace SkeletonsAdventure.Attacks
             if(Duration.TotalMilliseconds > AttackLength)
                 return true;
             return false;
+        }
+
+        //TODO
+        public void MoveToPosition(Vector2 target)
+        {
+            Motion = Vector2.Normalize(target - Position) * Speed;
         }
     }
 }

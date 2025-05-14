@@ -65,7 +65,7 @@ namespace SkeletonsAdventure.Attacks
             Attacks.Clear();
         }
         
-        public void CheckAttackHit(List<Entity> entities)
+        public void CheckAttackHit(List<Entity> entities, GameTime gameTime)
         {
             //check to see if the attack hit an entity
             foreach (var attack in Attacks)
@@ -89,6 +89,7 @@ namespace SkeletonsAdventure.Attacks
                                 int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
                                 attack.Info.Text += dmg;
                                 entity.Health -= dmg;
+                                entity.LastTimeAttacked = gameTime.TotalGameTime;
 
                                 if (entity.Health < 1 && SourceEntity is Player player) //If the entity dies give xp to the player that killed it
                                 {
