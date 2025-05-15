@@ -10,6 +10,7 @@ using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -36,12 +37,10 @@ namespace SkeletonsAdventure.Entities
         public LootList LootList { get; set; }
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
-        public bool IsCollidingBoundary { get; set; } = false;
         public bool IsDead { get; set; } = false;
         public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public bool HealthBarVisible { get; set; } = true;
         public TimeSpan LastTimeAttacked { get; set; }
-        public bool CanMove { get; set; } = true; //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
 
         public Entity() : base()
         {
@@ -80,6 +79,7 @@ namespace SkeletonsAdventure.Entities
             BasicAttackColor = Color.White;
             basicAttackTexture = GameManager.SkeletonAttackTexture;
             EntityAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -88,12 +88,14 @@ namespace SkeletonsAdventure.Entities
 
             base.Update(gameTime);
 
-            if(AttacksHitBy.Count > 0)
+            if((gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds < 200 && LastTimeAttacked != TimeSpan.Zero) //Timespan.Zero check makes sure it isn't true when the game starts
+            {
                 SpriteColor = Color.Red;
+            }
             else
                 SpriteColor = DefaultColor;
 
-            if(HealthBarVisible)
+            if (HealthBarVisible)
             {
                 Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
                 HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
@@ -101,7 +103,7 @@ namespace SkeletonsAdventure.Entities
 
             //TODO
             Info.Text += "\nLevel = " + EntityLevel;
-            //Info.Text += "\nLast Attacked = " + LastTimeAttacked;
+            //Info.Text += "\nLast Attacked = " + (gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

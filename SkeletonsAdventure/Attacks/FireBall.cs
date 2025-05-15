@@ -22,8 +22,6 @@ namespace SkeletonsAdventure.Attacks
 
         private void Initialize()
         {
-            AnimatedAttack = true;
-
             Width = 32;
             Height = 28;
 

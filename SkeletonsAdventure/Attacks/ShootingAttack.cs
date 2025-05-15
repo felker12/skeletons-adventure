@@ -4,6 +4,7 @@ using SkeletonsAdventure.Entities;
 using System;
 using Microsoft.Xna.Framework;
 using SkeletonsAdventure.Animations;
+using MonoGame.Extended;
 
 namespace SkeletonsAdventure.Attacks
 {
@@ -33,6 +34,8 @@ namespace SkeletonsAdventure.Attacks
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+
+            spriteBatch.DrawLine(StartPosition + new Vector2(Width / 2, Height / 2), GetCenter(), Color.Aquamarine, 1);
         }
 
         public override void Update(GameTime gameTime)

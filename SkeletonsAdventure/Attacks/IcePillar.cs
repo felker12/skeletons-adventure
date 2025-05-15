@@ -19,13 +19,10 @@ namespace SkeletonsAdventure.Attacks
 
         private void Initialize()
         {
-            AnimatedAttack = false;
-
             Width = Texture.Width;
             Height = Texture.Height;
 
             Frame = new(0, 0, Texture.Width, Texture.Height);
-            //SetFrames(3, Width, Height, 0, Height);
 
             DamageHitBox = new((int)Position.X + 40, (int)Position.Y, 32, Texture.Height);
         }

@@ -31,6 +31,7 @@ namespace SkeletonsAdventure.Attacks
                 attack.Update(gameTime);
                 if (attack.AttackTimedOut())
                 {
+                    attack.AttackVisible = false;
                     ToRemove.Add(attack);
                 }
             }
@@ -54,6 +55,10 @@ namespace SkeletonsAdventure.Attacks
 
         public void AddAttack(EntityAttack atk, GameTime gameTime)
         {
+            atk.StartPosition = atk.Position;
+
+
+
             Attacks.Add(atk);
             LastAttackTime = gameTime.TotalGameTime;
             //atk.LastAttackTime = gameTime.TotalGameTime;
@@ -62,6 +67,8 @@ namespace SkeletonsAdventure.Attacks
 
         public void RemoveAttack(EntityAttack atk)
         {
+            atk.Position = Vector2.Zero;
+            atk.AttackVisible = true;
             Attacks.Remove(atk);
         }
 
@@ -75,35 +82,37 @@ namespace SkeletonsAdventure.Attacks
             //check to see if the attack hit an entity
             foreach (var attack in Attacks)
             {
-                foreach (var entity in entities)
+                if(attack.AttackVisible)
                 {
-                    if(entity.IsDead)
-                        continue;//prevents attacking dead enemies
-                    if (entity.AttacksHitBy.Contains(attack) is false) //prevents an attack from hitting an opponent multiple times
+                    foreach (var entity in entities)
                     {
-                        if (SourceEntity != entity) //makes sure the entity cannot attack itself
+                        if (entity.IsDead)
+                            continue;//prevents attacking dead enemies
+                        if (entity.AttacksHitBy.Contains(attack) is false) //prevents an attack from hitting an opponent multiple times
                         {
-                            if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
-                            else if (entity.GetRectangle.Intersects(attack.DamageHitBox))
+                            if (SourceEntity != entity) //makes sure the entity cannot attack itself
                             {
-                                if (entity.AttacksHitBy.Contains(attack) is false)
+                                if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
+                                else if (entity.GetRectangle.Intersects(attack.DamageHitBox))
                                 {
                                     entity.AttacksHitBy.Add(attack);
-                                }
 
-                                int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
-                                attack.Info.Text += dmg;
-                                entity.Health -= dmg;
-                                entity.LastTimeAttacked = gameTime.TotalGameTime;
+                                    int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
+                                    attack.Info.Text += dmg;
+                                    entity.Health -= dmg;
 
-                                if (entity.Health < 1 && SourceEntity is Player player) //If the entity dies give xp to the player that killed it
-                                {
-                                    player.GainXp(entity.XP);
+                                    entity.LastTimeAttacked = gameTime.TotalGameTime;
+
+                                    if (entity.Health < 1 && SourceEntity is Player player) //If the entity dies give xp to the player that killed it
+                                    {
+                                        player.GainXp(entity.XP);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                
             }
         }
 

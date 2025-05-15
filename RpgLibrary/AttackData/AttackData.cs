@@ -13,6 +13,7 @@ namespace RpgLibrary.AttackData
         public float Speed { get; set; }
         public float DamageModifier { get; set; }
         public int ManaCost { get; set; }
+        public int AttackDelay { get; set; }
 
         public AttackData() { }
 
@@ -26,7 +27,8 @@ namespace RpgLibrary.AttackData
                 $"Attack Cool Down Length: {AttackCoolDownLength}, " +
                 $"Speed: {Speed}, " +
                 $"Damage Modifier: {DamageModifier}, " +
-                $"Mana Cost: {ManaCost} ";
+                $"Mana Cost: {ManaCost}, " +
+                $"AttackDelay: {AttackDelay} ";
         }
     }
 }

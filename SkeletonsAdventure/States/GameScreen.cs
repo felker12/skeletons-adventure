@@ -99,10 +99,8 @@ namespace SkeletonsAdventure.States
             ManaBar.Draw(spriteBatch);
             XPProgress.Draw(spriteBatch);
 
-            FPS.Draw(spriteBatch, GameManager.InfoFont, new(10,10), Color.MonoGameOrange);
+            //FPS.Draw(spriteBatch, GameManager.InfoFont, new(10,10), Color.MonoGameOrange);
 
-
-            //spriteBatch.Draw(GameManager.IcePillarTexture, new Vector2(50, 50), new Rectangle(0, 0, GameManager.IcePillarTexture.Width, GameManager.IcePillarTexture.Height), Color.White);
 
 
             spriteBatch.End();
@@ -130,7 +128,7 @@ namespace SkeletonsAdventure.States
             CheckUnderMouse();
             HandleInput();
 
-            FPS.Update(gameTime);
+            //FPS.Update(gameTime);
         }
 
         private void HandleInput()

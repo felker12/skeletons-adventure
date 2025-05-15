@@ -19,6 +19,8 @@ namespace SkeletonsAdventure.Entities
         public float Speed { get; set; } = 1.5f;
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
+        public bool IsCollidingBoundary { get; set; } = false;
+        public bool CanMove { get; set; } = true; //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
 
         public Sprite()
         {
@@ -59,6 +61,11 @@ namespace SkeletonsAdventure.Entities
         {
             return new(MathHelper.Clamp(position.X, 0, World.CurrentLevel.Width - Width),
                 MathHelper.Clamp(position.Y, 0, World.CurrentLevel.Height - Height));
+        }
+
+        public Vector2 GetCenter()
+        {
+            return Position + new Vector2(Width / 2, Height / 2);
         }
     }
 }

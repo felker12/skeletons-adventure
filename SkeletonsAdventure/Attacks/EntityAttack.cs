@@ -5,6 +5,7 @@ using System;
 using SkeletonsAdventure.Animations;
 using RpgLibrary.AttackData;
 using MonoGame.Extended;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Attacks
 {
@@ -21,11 +22,15 @@ namespace SkeletonsAdventure.Attacks
         public int ManaCost { get; set; }
         public bool AnimatedAttack { get; set; } = false; //TODO
         public Rectangle DamageHitBox { get; set; }
+        public int AttackDelay { get; set; }
+        public bool AttackVisible { get; set; } = true;
+        public Vector2 StartPosition { get; set; } = new();
 
         public EntityAttack(EntityAttack attack) : base()
         {
             Texture = attack.Texture;
             AttackLength = attack.AttackLength;
+            StartTime = attack.StartTime;
             AttackOffset = attack.AttackOffset;
             Frame = attack.Frame;
             Source = attack.Source;
@@ -38,8 +43,10 @@ namespace SkeletonsAdventure.Attacks
             Speed = attack.Speed;
             DamageModifier = attack.DamageModifier;
             ManaCost = attack.ManaCost;
+            AttackDelay = attack.AttackDelay;
+            AnimatedAttack = attack.AnimatedAttack;
 
-            DamageHitBox = GetRectangle;
+            Initialize();
         }
 
         public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
@@ -53,11 +60,23 @@ namespace SkeletonsAdventure.Attacks
             Speed = attackData.Speed;
             DamageModifier = attackData.DamageModifier;
             ManaCost = attackData.ManaCost;
+            AttackDelay = attackData.AttackDelay;
 
             Texture = texture;
             Source = source;
 
+            Initialize();
+        }
+        
+        private void Initialize()
+        {
             DamageHitBox = GetRectangle;
+
+            if(AttackDelay > 0)
+            {
+                AttackVisible = false;
+            }
+
         }
 
         public virtual EntityAttack Clone()
@@ -67,31 +86,47 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
-            spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
-            spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+            if (AttackVisible is false)
+            {
+                spriteBatch.Draw(GameManager.AttackAreaTexture, new Vector2(DamageHitBox.X, DamageHitBox.Y), DamageHitBox, Color.White * 0.5f); //TODO
+            }
 
-            Info.Draw(spriteBatch);
+            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+
+            if (AttackVisible)
+            {
+                spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+                spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
+
+                Info.Draw(spriteBatch);
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (AnimatedAttack)
-                base.Update(gameTime);
-
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
 
-            Info.Position = Position + new Vector2(1, 1);
+            if (AttackVisible is false && Duration.TotalMilliseconds > AttackDelay)
+            {
+                AttackVisible = true;
+            }
+            else if (AttackVisible)
+            {
+                if (AnimatedAttack)
+                    base.Update(gameTime);
 
-            //TODO draw the info with a different color for the player
-            if (Source is Player)
-                Info.Color = Color.Cyan;
-            else
-                Info.Color = new Color(255, 81, 89, 255);
+                Info.Position = Position + new Vector2(1, 1);
 
-            Position += Motion * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
+                //draw the info with a different color for the player //TODO: delete this
+                if (Source is Player)
+                    Info.Color = Color.Cyan;
+                else
+                    Info.Color = new Color(255, 81, 89, 255);
 
+            }
+
+            //Position += Motion * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
             DamageHitBox = GetRectangle;
         }
 
@@ -104,6 +139,12 @@ namespace SkeletonsAdventure.Attacks
             SpriteColor = DefaultColor;
             LastAttackTime = gameTime.TotalGameTime;
             Info.Text = string.Empty;
+
+            //TODO is this needed?
+            if(AttackDelay == 0)
+            {
+                AttackVisible = true;
+            }
         }
 
         public bool IsOnCooldown(GameTime gameTime)
@@ -171,6 +212,24 @@ namespace SkeletonsAdventure.Attacks
         public void MoveToPosition(Vector2 target)
         {
             Motion = Vector2.Normalize(target - Position) * Speed;
+        }
+
+        public override string ToString()
+        {
+            string ToString = 
+            $"Attack Length: {AttackLength}, " +
+            $"Start Time: {StartTime}, " +
+            $"Duration: {Duration}, " +
+            $"Attack Offset: {AttackOffset}, " +
+            $"Last Attack Time: {LastAttackTime}, " +
+            $"Attack Cool Down Length: {AttackCoolDownLength}, " +
+            $"Speed: {Speed}, " +
+            $"Damage Modifier: {DamageModifier}, " +
+            $"Mana Cost: {ManaCost}, " +
+            $"AttackDelay: {AttackDelay}, " +
+            $"Visible: {AttackVisible}";
+
+            return ToString;
         }
     }
 }

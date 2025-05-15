@@ -163,13 +163,20 @@ namespace SkeletonsAdventure.Entities
             {
                 if(entity.CanMove)
                     CheckCollision(entity, tiledMap, mapCollisionLayer);
+
+                foreach(EntityAttack entityAttack in entity.AttackManager.Attacks)
+                {
+                    if (entityAttack.CanMove)
+                        CheckCollision(entityAttack, tiledMap, mapCollisionLayer);
+                }
             }
         }
 
-        private static void CheckCollision(Entity entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
+        private static void CheckCollision(Sprite entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             Vector2 pos = entity.Position;
             Rectangle rec = entity.GetRectangle;
+
 
             if (entity.Motion != Vector2.Zero)
             {

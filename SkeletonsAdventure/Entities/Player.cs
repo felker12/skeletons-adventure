@@ -68,7 +68,7 @@ namespace SkeletonsAdventure.Entities
             IcePillar ??= new(GameManager.IcePillarData, GameManager.IcePillarTexture, this);
 
             //TODO
-            FireBall.AnimatedAttack = false;
+            FireBall2.AnimatedAttack = true;
 
             //TODO
             HealthBarVisible = false;
@@ -105,12 +105,10 @@ namespace SkeletonsAdventure.Entities
             if(ManaBarVisible)
                 ManaBar.Draw(spriteBatch);
 
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
 
             if (AimVisible)
-            {
                 spriteBatch.DrawLine(GetMousePosition(), GetPlayerCenter(), Color.White, 1);
-            }
         }
 
         public override void Update(GameTime gameTime)
@@ -311,7 +309,7 @@ namespace SkeletonsAdventure.Entities
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor, targetPosition);
 
-                    AttackManager.AddAttack(entityAttack, gameTime);
+                    AttackManager.AddAttack(entityAttack.Clone(), gameTime);
                 }
                 else
                     AimVisible = true;

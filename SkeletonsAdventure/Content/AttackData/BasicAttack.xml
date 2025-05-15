@@ -10,5 +10,6 @@
     <Speed>0</Speed>
     <DamageModifier>1</DamageModifier>
     <ManaCost>0</ManaCost>
+    <AttackDelay>0</AttackDelay>
   </Asset>
 </XnaContent>
