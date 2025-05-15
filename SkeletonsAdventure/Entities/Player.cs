@@ -115,10 +115,9 @@ namespace SkeletonsAdventure.Entities
         {
             UpdatePlayerMotion();
             CheckInput(gameTime);
+            base.Update(gameTime); //keep the update call after updating motion
 
-            base.Update(gameTime);
-
-            if(ManaBarVisible)
+            if (ManaBarVisible)
             {
                 HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
                 ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2));
@@ -133,7 +132,7 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this
             Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
-            //Info.Text += $"\nMotion = {Motion}";
+            Info.Text += $"\nMotion = {Motion}";
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
         }
 

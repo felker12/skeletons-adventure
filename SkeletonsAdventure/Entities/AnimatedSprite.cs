@@ -21,19 +21,19 @@ namespace SkeletonsAdventure.Entities
             SetFrames(3, 32, 54, 0, 64); //This is the default which is used by the skeleton spritesheet
         }
 
-        public void SetFrames(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
+        protected void SetFrames(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
         {
             _animations = [];
             CloneAnimations(CreateAnimations(frameCount, frameWidth, frameHeight, xOffset, yOffset));
             UpdateFrame();
         }
 
-        public void UpdateFrame()
+        protected void UpdateFrame()
         {
             Frame = _animations[CurrentAnimation].CurrentFrameRect;
         }
 
-        public void CloneAnimations(Dictionary<AnimationKey, SpriteAnimation> animation)
+        protected void CloneAnimations(Dictionary<AnimationKey, SpriteAnimation> animation)
         {
             foreach (AnimationKey key in animation.Keys)
                 _animations.Add(key, (SpriteAnimation)animation[key].Clone());
@@ -46,33 +46,7 @@ namespace SkeletonsAdventure.Entities
                 _animations[CurrentAnimation].Update(gameTime);
 
             UpdateFrame();
-
-            //TODO Add frames for angles
-            if (Motion != Vector2.Zero)
-            {
-                if (Motion.X >= 0)
-                {
-                    if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
-                        CurrentAnimation = AnimationKey.Right;
-                    else if (Motion.Y > 0)
-                        CurrentAnimation = AnimationKey.Down;
-                    else if (Motion.Y < 0)
-                        CurrentAnimation = AnimationKey.Up;
-                }
-                else if (Motion.X < 0)
-                {
-                    if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
-                        CurrentAnimation = AnimationKey.Left;
-                    else if (Motion.Y > 0)
-                        CurrentAnimation = AnimationKey.Down;
-                    else if (Motion.Y < 0)
-                        CurrentAnimation = AnimationKey.Up;
-                }
-
-                IsAnimating = true;
-            }
-            else
-                IsAnimating = false;
+            UpdateCurrentAnimation();
 
             base.Update(gameTime);
         }
@@ -80,6 +54,49 @@ namespace SkeletonsAdventure.Entities
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        protected void UpdateCurrentAnimation()
+        {
+            //TODO Add frames for angles
+            if (Motion != Vector2.Zero)
+            {
+                if (Math.Abs(Motion.X) == Math.Abs(Motion.Y)) //Diagonal movements
+                {
+                    //Could be simplified to just checking the X value. But I will leave it as is in the event I add diagonal animations
+                    if (Motion.Y > 0) 
+                    {
+                        if (Motion.X > 0)
+                            CurrentAnimation = AnimationKey.Right;
+                        else if (Motion.X < 0)
+                            CurrentAnimation = AnimationKey.Left;
+                    }
+                    else if (Motion.Y < 0)
+                    {
+                        if (Motion.X > 0)
+                            CurrentAnimation = AnimationKey.Right;
+                        else if (Motion.X < 0)
+                            CurrentAnimation = AnimationKey.Left;
+                    }
+                }
+                else if (Motion.X >= 0)
+                {
+                    if (Motion.X != 0)
+                        CurrentAnimation = AnimationKey.Right;
+                    else if (Motion.Y <= 0)
+                        CurrentAnimation = AnimationKey.Up;
+                    else if (Motion.Y >= 0)
+                        CurrentAnimation = AnimationKey.Down;
+                }
+                else if (Motion.X < 0)
+                {
+                    CurrentAnimation = AnimationKey.Left;
+                }
+
+                IsAnimating = true;
+            }
+            else
+                IsAnimating = false;
         }
 
         private Dictionary<AnimationKey, SpriteAnimation> CreateAnimations(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)

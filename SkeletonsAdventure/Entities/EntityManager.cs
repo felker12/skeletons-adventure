@@ -7,6 +7,7 @@ using SkeletonsAdventure.ItemLoot;
 using SkeletonsAdventure.ItemClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -172,51 +173,72 @@ namespace SkeletonsAdventure.Entities
             }
         }
 
-        private static void CheckCollision(Sprite entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
+        private static void CheckCollision(AnimatedSprite entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             Vector2 pos = entity.Position;
             Rectangle rec = entity.GetRectangle;
-
+            int width = tiledMap.TileWidth;
+            int height = tiledMap.TileHeight;
 
             if (entity.Motion != Vector2.Zero)
             {
+                Vector2 motion = entity.Motion;
+
+                List<ushort> collisionPointsX = [(ushort)(pos.X / width), 
+                    (ushort)((pos.X + rec.Width) / width),
+                    (ushort)((pos.X + rec.Width/2) / width)];
+
+                List<ushort> collisionPointsY = [(ushort)(pos.Y / height),
+                    (ushort)((pos.Y + rec.Height) / height), 
+                    (ushort)((pos.Y + rec.Height/2) / height)];
+
                 pos += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
-                entity.IsCollidingBoundary = false;
+                List<ushort> collisionPointsX2 = [(ushort)(pos.X / width),
+                    (ushort)((pos.X + rec.Width) / width),
+                    (ushort)((pos.X + rec.Width/2) / width)];
 
-                ushort tx = (ushort)(pos.X / tiledMap.TileWidth),
-                    ty = (ushort)(pos.Y / tiledMap.TileHeight),
-                    tx2 = (ushort)((pos.X + rec.Width) / tiledMap.TileWidth),
-                    ty2 = (ushort)((pos.Y + rec.Height) / tiledMap.TileHeight),
-                    //tx3 = (ushort)((pos.X + rec.Height/2) / tiledMap.TileHeight),
-                    ty3 = (ushort)((pos.Y + rec.Height/2) / tiledMap.TileHeight);
+                List<ushort> collisionPointsY2 = [(ushort)(pos.Y / height),
+                    (ushort)((pos.Y + rec.Height) / height),
+                    (ushort)((pos.Y + rec.Height/2) / height)];
 
-
-                //Check if any corner or half way point of the entity is colliding with the collision layer
-                if (mapCollisionLayer.TryGetTile(tx, ty, out TiledMapTile? tile))
+                foreach (ushort pointX in collisionPointsX)
                 {
-                    if (!tile.Value.IsBlank)
-                        entity.IsCollidingBoundary = true;
-
-                    else if (entity.IsCollidingBoundary == false)
+                    foreach (ushort pointY in collisionPointsY2)
                     {
-                        if (mapCollisionLayer.TryGetTile(tx2, ty2, out tile) && (!tile.Value.IsBlank))
-                            entity.IsCollidingBoundary = true;
-                        else if (entity.IsCollidingBoundary == false)
-                            if (mapCollisionLayer.TryGetTile(tx, ty2, out tile) && (!tile.Value.IsBlank))
-                                entity.IsCollidingBoundary = true;
-                            else if (entity.IsCollidingBoundary == false)
-                                if (mapCollisionLayer.TryGetTile(tx2, ty, out tile) && (!tile.Value.IsBlank))
-                                    entity.IsCollidingBoundary = true;
-                                else if (entity.IsCollidingBoundary == false)
-                                    if (mapCollisionLayer.TryGetTile(tx, ty3, out tile) && (!tile.Value.IsBlank))
-                                        entity.IsCollidingBoundary = true;
-                                    else if (entity.IsCollidingBoundary == false)
-                                        if (mapCollisionLayer.TryGetTile(tx2, ty3, out tile) && (!tile.Value.IsBlank))
-                                            entity.IsCollidingBoundary = true;
+                        if (mapCollisionLayer.TryGetTile(pointX, pointY, out TiledMapTile? tile))
+                        {
+                            if (!tile.Value.IsBlank)
+                            {
+                                motion.Y = 0;
+                                break;
+                            }
+                        }
                     }
                 }
-                if (entity.IsCollidingBoundary == false)
-                    entity.Position += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
+                foreach (ushort pointX in collisionPointsX2)
+                {
+                    foreach (ushort pointY in collisionPointsY)
+                    {
+                        if (mapCollisionLayer.TryGetTile(pointX, pointY, out TiledMapTile? tile))
+                        {
+                            if (!tile.Value.IsBlank)
+                            {
+                                motion.X = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+                //Fixes animation bug where the player walks wrong way when colliding with a wall to the north or south
+                if (entity is Entity)
+                {
+                    //entity.UpdateCurrentAnimation(motion);
+                }
+
+                //apply the motion to the sprite if its not colliding
+                entity.Motion = motion;
+                entity.Position += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
+
             }
         }
     }

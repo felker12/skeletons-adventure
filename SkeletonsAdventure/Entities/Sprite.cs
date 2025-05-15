@@ -19,7 +19,6 @@ namespace SkeletonsAdventure.Entities
         public float Speed { get; set; } = 1.5f;
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
-        public bool IsCollidingBoundary { get; set; } = false;
         public bool CanMove { get; set; } = true; //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
 
         public Sprite()

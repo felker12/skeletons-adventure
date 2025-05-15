@@ -85,7 +85,6 @@ namespace SkeletonsAdventure.Entities
         public override void Update(GameTime gameTime)
         {
             AttackManager.Update(gameTime);
-
             base.Update(gameTime);
 
             if((gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds < 200 && LastTimeAttacked != TimeSpan.Zero) //Timespan.Zero check makes sure it isn't true when the game starts

@@ -126,7 +126,6 @@ namespace SkeletonsAdventure.Attacks
 
             }
 
-            //Position += Motion * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
             DamageHitBox = GetRectangle;
         }
 
