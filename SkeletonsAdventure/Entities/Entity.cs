@@ -10,7 +10,6 @@ using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -184,23 +183,27 @@ namespace SkeletonsAdventure.Entities
 
                 //if the attack has speed it will move. If not it will  be stationary
                 if (entityAttack.Speed > 0)
-                {
-                    if (CurrentAnimation == AnimationKey.Up)
-                        entityAttack.Motion = new(0, -1);
-                    else if (CurrentAnimation == AnimationKey.Down)
-                        entityAttack.Motion = new(0, 1);
-                    if (CurrentAnimation == AnimationKey.Left)
-                        entityAttack.Motion = new(-1, 0);
-                    else if (CurrentAnimation == AnimationKey.Right)
-                        entityAttack.Motion = new(1, 0);
+                    SetEntityAttackMotion(entityAttack);
 
-                    entityAttack.Motion.Normalize();
-                    entityAttack.Motion *= entityAttack.Speed;
-                }
                 entityAttack.SetUpAttack(gameTime, BasicAttackColor, Position);
 
-                AttackManager.AddAttack(entityAttack, gameTime);
+                AttackManager.AddAttack(entityAttack.Clone(), gameTime);
             }
+        }
+
+        private void SetEntityAttackMotion(EntityAttack entityAttack)
+        {
+            if (CurrentAnimation == AnimationKey.Up)
+                entityAttack.Motion = new(0, -1);
+            else if (CurrentAnimation == AnimationKey.Down)
+                entityAttack.Motion = new(0, 1);
+            if (CurrentAnimation == AnimationKey.Left)
+                entityAttack.Motion = new(-1, 0);
+            else if (CurrentAnimation == AnimationKey.Right)
+                entityAttack.Motion = new(1, 0);
+
+            entityAttack.Motion.Normalize();
+            entityAttack.Motion *= entityAttack.Speed;
         }
 
         public bool AttackingIsOnCoolDown(GameTime gameTime)
@@ -256,7 +259,7 @@ namespace SkeletonsAdventure.Entities
             distance.X = (int)distance.X;
             distance.Y = (int)distance.Y;
 
-            if (distance.X > -Width/2 && distance.Y >= 0)
+            if (distance.X > -Width/2 && distance.Y >= 0) //TODO update if adding diagonal animations
             {
                 CurrentAnimation = AnimationKey.Left;
                 if (distance.Y > Width * .75)

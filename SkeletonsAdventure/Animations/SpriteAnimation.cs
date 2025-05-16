@@ -54,7 +54,7 @@ namespace SkeletonsAdventure.Animations
         private SpriteAnimation(SpriteAnimation animation)
         {
             this.frames = animation.frames;
-            FramesPerSecond = 5;
+            FramesPerSecond = animation.FramesPerSecond;
         }
 
         //Methods
@@ -75,7 +75,7 @@ namespace SkeletonsAdventure.Animations
 
         public object Clone()
         {
-            SpriteAnimation animationClone = new SpriteAnimation(this)
+            SpriteAnimation animationClone = new(this)
             {
                 frameWidth = this.frameWidth,
                 frameHeight = this.frameHeight

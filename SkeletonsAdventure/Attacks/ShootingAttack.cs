@@ -1,29 +1,24 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.AttackData;
 using SkeletonsAdventure.Entities;
-using System;
 using Microsoft.Xna.Framework;
-using SkeletonsAdventure.Animations;
 using MonoGame.Extended;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Attacks
 {
     public class ShootingAttack : EntityAttack
     {
+        public List<Vector2> PathPoints = [];
+        public Vector2 TargetPosition { get; set; }
+
         public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
-            Initialize();
         }
 
         public ShootingAttack(ShootingAttack attack) : base(attack)
         {
-
-        }
-
-        private void Initialize()
-        {
-            //TODO
-            Frame = new Rectangle(0, 0, 32, 32);
+            PathPoints = [];
         }
 
         public override ShootingAttack Clone()
@@ -35,12 +30,34 @@ namespace SkeletonsAdventure.Attacks
         {
             base.Draw(spriteBatch);
 
-            spriteBatch.DrawLine(StartPosition + new Vector2(Width / 2, Height / 2), GetCenter(), Color.Aquamarine, 1);
+            DrawPath(spriteBatch);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (AttackVisible) //TODO test this still
+            {
+                MoveToPosition(TargetPosition);
+            }
+            else
+                Motion = Vector2.Zero;
+
+
+
+
+
+            if (Duration.TotalMilliseconds % 50 < 1)
+                PathPoints.Add(GetCenter());
+        }
+
+        private void DrawPath(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawLine(StartPosition + new Vector2(Width / 2, Height / 2), PathPoints[0], Color.Aquamarine, 1);
+
+            for (int i = 0; i < PathPoints.Count - 1; i++)
+                spriteBatch.DrawLine(PathPoints[i], PathPoints[i + 1], Color.Aquamarine, 1);
         }
 
         //TODO Overide this with the corret offset parameters based on the type of the entity calling the method 

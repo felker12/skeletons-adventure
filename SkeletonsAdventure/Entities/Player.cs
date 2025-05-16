@@ -29,6 +29,7 @@ namespace SkeletonsAdventure.Entities
         public FireBall FireBall { get; set; }
         public FireBall FireBall2 { get; set; }
         public IcePillar IcePillar { get; set; }
+        public IcePillar IcePillar2 { get; set; }
         public bool ManaBarVisible { get; set; } = true;
         public bool AimVisible { get; set; } = false;
 
@@ -51,7 +52,7 @@ namespace SkeletonsAdventure.Entities
             Attack = baseAttack;
             Speed = 6; //TODO
 
-            BaseMana = 10;
+            BaseMana = 1000; //TODO
             MaxMana = BaseMana;
             Mana = BaseMana;
 
@@ -63,9 +64,15 @@ namespace SkeletonsAdventure.Entities
             //TODO delete this line
             Info.Color = Color.Aqua;
 
+            InitializeAttacks();
+        }
+
+        private void InitializeAttacks()
+        {
             FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
             FireBall2 ??= new(GameManager.FireBallData, GameManager.FireBallTexture2, this);
             IcePillar ??= new(GameManager.IcePillarData, GameManager.IcePillarTexture, this);
+            IcePillar2 ??= new(GameManager.IcePillarData, GameManager.IcePillarSpriteSheetTexture, this, 62, 62);
 
             //TODO
             FireBall2.AnimatedAttack = true;
@@ -73,7 +80,12 @@ namespace SkeletonsAdventure.Entities
             //TODO
             HealthBarVisible = false;
             ManaBarVisible = false;
+
+            //TODO
+            IcePillar2.AnimatedAttack = true;
+            IcePillar2.SetFrames(4, 62, 62, 0, 62);
         }
+
         public void UpdatePlayerData(PlayerData playerData)
         {
             UpdateEntityData(playerData);
@@ -113,7 +125,9 @@ namespace SkeletonsAdventure.Entities
 
         public override void Update(GameTime gameTime)
         {
-            UpdatePlayerMotion();
+            if(CanMove)
+                UpdatePlayerMotion();
+
             CheckInput(gameTime);
             base.Update(gameTime); //keep the update call after updating motion
 
@@ -130,9 +144,9 @@ namespace SkeletonsAdventure.Entities
             MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
 
             //TODO delete this
-            Info.Text += $"\nXP = {TotalXP}";
+            //Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
-            Info.Text += $"\nMotion = {Motion}";
+            //Info.Text += $"\nMotion = {Motion}";
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
         }
 
@@ -230,6 +244,11 @@ namespace SkeletonsAdventure.Entities
             {
                 PerformPopUpAttack(gameTime, IcePillar, GetMousePosition());
             }
+            if (InputHandler.KeyReleased(Keys.D4) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+                PerformPopUpAttack(gameTime, IcePillar2, GetMousePosition());
+            }
         }
 
         private void UpdatePlayerMotion()
@@ -284,9 +303,16 @@ namespace SkeletonsAdventure.Entities
                         Mana -= entityAttack.ManaCost;
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor, Position);
-                    entityAttack.MoveToPosition(targetPosition);
 
-                    AttackManager.AddAttack(entityAttack, gameTime);
+                    //entityAttack.MoveToPosition(targetPosition);
+                    entityAttack.TargetPosition = targetPosition;
+
+                    entityAttack.PathPoints = [];
+
+                    ShootingAttack clone = entityAttack.Clone();
+                    clone.SetUpAttack(gameTime, BasicAttackColor, Position);
+
+                    AttackManager.AddAttack(entityAttack, gameTime); //TODO
                 }
                 else
                     AimVisible = true;
@@ -307,6 +333,7 @@ namespace SkeletonsAdventure.Entities
                         Mana -= entityAttack.ManaCost;
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor, targetPosition);
+                    entityAttack.PathPoints = [];
 
                     AttackManager.AddAttack(entityAttack.Clone(), gameTime);
                 }

@@ -55,13 +55,8 @@ namespace SkeletonsAdventure.Attacks
 
         public void AddAttack(EntityAttack atk, GameTime gameTime)
         {
-            atk.StartPosition = atk.Position;
-
-
-
             Attacks.Add(atk);
             LastAttackTime = gameTime.TotalGameTime;
-            //atk.LastAttackTime = gameTime.TotalGameTime;
             _attacked = true;
         }
 

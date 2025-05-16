@@ -17,7 +17,7 @@ namespace SkeletonsAdventure.Attacks
         public TimeSpan LastAttackTime { get; set; }
         public Vector2 AttackOffset { get; set; }
         public Entity Source { get; protected set; }
-        public int AttackCoolDownLength { get; protected set; } = 800;  //length of the delay between attacks in milliseconds
+        public int AttackCoolDownLength { get; protected set; } //length of the delay between attacks in milliseconds
         public float DamageModifier { get; set; }
         public int ManaCost { get; set; }
         public bool AnimatedAttack { get; set; } = false; //TODO
@@ -45,6 +45,7 @@ namespace SkeletonsAdventure.Attacks
             ManaCost = attack.ManaCost;
             AttackDelay = attack.AttackDelay;
             AnimatedAttack = attack.AnimatedAttack;
+            StartPosition = attack.StartPosition;
 
             Initialize();
         }
@@ -72,11 +73,10 @@ namespace SkeletonsAdventure.Attacks
         {
             DamageHitBox = GetRectangle;
 
-            if(AttackDelay > 0)
+            if (AttackDelay > 0)
             {
                 AttackVisible = false;
             }
-
         }
 
         public virtual EntityAttack Clone()
@@ -87,16 +87,15 @@ namespace SkeletonsAdventure.Attacks
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (AttackVisible is false)
-            {
                 spriteBatch.Draw(GameManager.AttackAreaTexture, new Vector2(DamageHitBox.X, DamageHitBox.Y), DamageHitBox, Color.White * 0.5f); //TODO
-            }
 
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
 
             if (AttackVisible)
             {
-                spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+                spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+
                 spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
+                spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
                 Info.Draw(spriteBatch);
             }
@@ -104,6 +103,34 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
+            //if(AnimatedAttack is false)
+            //    DamageHitBox = GetRectangle;
+
+            //if (StartTime > TimeSpan.Zero)
+            //    Duration = gameTime.TotalGameTime - StartTime;
+
+            //if (AttackVisible is false && Duration.TotalMilliseconds > AttackDelay)
+            //{
+            //    AttackVisible = true;
+
+            //    if (AnimatedAttack)
+            //        base.Update(gameTime);
+            //}
+
+            //if (AttackVisible)
+            //{
+            //    Info.Position = Position + new Vector2(1, 1);
+
+            //    //draw the info with a different color for the player //TODO: delete this
+            //    if (Source is Player)
+            //        Info.Color = Color.Cyan;
+            //    else
+            //        Info.Color = new Color(255, 81, 89, 255);
+            //}
+
+
+            DamageHitBox = new((int)Position.X, (int)Position.Y, Frame.Width, Frame.Height);
+
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
 
@@ -111,10 +138,13 @@ namespace SkeletonsAdventure.Attacks
             {
                 AttackVisible = true;
             }
-            else if (AttackVisible)
+
+            if (AttackVisible)
             {
                 if (AnimatedAttack)
+                {
                     base.Update(gameTime);
+                }
 
                 Info.Position = Position + new Vector2(1, 1);
 
@@ -123,10 +153,13 @@ namespace SkeletonsAdventure.Attacks
                     Info.Color = Color.Cyan;
                 else
                     Info.Color = new Color(255, 81, 89, 255);
-
             }
 
-            DamageHitBox = GetRectangle;
+            ////Prevent the source from moving during an attack with a build up
+            //if (Duration.TotalMilliseconds > AttackDelay)
+            //    Source.CanMove = true;
+            //else
+            //    Source.CanMove = false;
         }
 
         public virtual void SetUpAttack(GameTime gameTime, Color attackColor, Vector2 originPosition)
@@ -138,11 +171,25 @@ namespace SkeletonsAdventure.Attacks
             SpriteColor = DefaultColor;
             LastAttackTime = gameTime.TotalGameTime;
             Info.Text = string.Empty;
+            StartPosition = Position;
+
+            DamageHitBox = GetRectangle;
 
             //TODO is this needed?
-            if(AttackDelay == 0)
+            if (AttackDelay == 0)
             {
                 AttackVisible = true;
+            }
+
+            if (AnimatedAttack is false)
+            {
+                Width = Texture.Width;
+                Height = Texture.Height;
+            }
+            else
+            {
+                Width = 32;
+                Height = 32;
             }
         }
 

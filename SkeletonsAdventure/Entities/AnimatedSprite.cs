@@ -9,19 +9,20 @@ namespace SkeletonsAdventure.Entities
 {
     public class AnimatedSprite : Sprite
     {
-        private Dictionary<AnimationKey, SpriteAnimation> _animations;
-        private bool IsAnimating { get; set; }
+        protected Dictionary<AnimationKey, SpriteAnimation> _animations;
+
+
         //Get/Set
+        protected bool IsAnimating { get; set; }
         public AnimationKey CurrentAnimation { get; set; }
 
         //Constructors
-
         public AnimatedSprite() : base()
         {
             SetFrames(3, 32, 54, 0, 64); //This is the default which is used by the skeleton spritesheet
         }
 
-        protected void SetFrames(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
+        public void SetFrames(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
         {
             _animations = [];
             CloneAnimations(CreateAnimations(frameCount, frameWidth, frameHeight, xOffset, yOffset));

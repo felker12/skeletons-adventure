@@ -7,7 +7,6 @@ using SkeletonsAdventure.ItemLoot;
 using SkeletonsAdventure.ItemClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SkeletonsAdventure.Entities
 {

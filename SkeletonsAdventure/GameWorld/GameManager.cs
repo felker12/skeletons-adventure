@@ -47,6 +47,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D FireBallTexture { get; private set; }
         public static Texture2D FireBallTexture2 { get; private set; }
         public static Texture2D IcePillarTexture { get; private set; }
+        public static Texture2D IcePillarSpriteSheetTexture { get; private set; }
 
         //UI Textures
         public static Texture2D PopUpBoxTexture { get; private set; }
@@ -216,6 +217,7 @@ namespace SkeletonsAdventure.GameWorld
             FireBallTexture = Content.Load<Texture2D>(@"AttackSprites/FireBall_01");
             FireBallTexture2 = Content.Load<Texture2D>(@"AttackSprites/FireBallSpriteSheet");
             IcePillarTexture = Content.Load<Texture2D>(@"AttackSprites/IcePillar");
+            IcePillarSpriteSheetTexture = Content.Load<Texture2D>(@"AttackSprites/IcePillarSpriteSheet");
 
             AttackAreaTexture = new(GraphicsDevice, 1, 1);
             AttackAreaTexture.SetData([new Color(153, 29, 20, 250)]);
