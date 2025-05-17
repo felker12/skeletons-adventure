@@ -9,8 +9,7 @@ namespace SkeletonsAdventure.Attacks
 {
     public class ShootingAttack : EntityAttack
     {
-        public List<Vector2> PathPoints = [];
-        public Vector2 TargetPosition { get; set; }
+        public List<Vector2> PathPoints { get; set; } = [];
 
         public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
@@ -35,18 +34,8 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
+
             base.Update(gameTime);
-
-            if (AttackVisible) //TODO test this still
-            {
-                MoveToPosition(TargetPosition);
-            }
-            else
-                Motion = Vector2.Zero;
-
-
-
-
 
             if (Duration.TotalMilliseconds % 50 < 1)
                 PathPoints.Add(GetCenter());
@@ -64,11 +53,17 @@ namespace SkeletonsAdventure.Attacks
         public override void Offset()
         {
             Width = 32;
-            Height = 32;
+            Height = 28;
             Frame = new(0, 0, Width, Height);
 
             //start the attack at the center of the entity
             AttackOffset = new(Source.Width / 2 - Width / 2, Source.Height / 2 - Height / 2);
+        }
+
+        //TODO
+        public void MoveInPositionDirection(Vector2 target)
+        {
+            Motion = Vector2.Normalize(target - GetCenter()) * Speed;
         }
     }
 }

@@ -231,7 +231,7 @@ namespace SkeletonsAdventure.Entities
                 //Fixes animation bug where the player walks wrong way when colliding with a wall to the north or south
                 if (entity is Entity)
                 {
-                    //entity.UpdateCurrentAnimation(motion);
+                    //entity.UpdateCurrentAnimation(motion); //TODO
                 }
 
                 //apply the motion to the sprite if its not colliding

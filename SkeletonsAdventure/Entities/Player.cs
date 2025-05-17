@@ -303,14 +303,7 @@ namespace SkeletonsAdventure.Entities
                         Mana -= entityAttack.ManaCost;
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor, Position);
-
-                    //entityAttack.MoveToPosition(targetPosition);
-                    entityAttack.TargetPosition = targetPosition;
-
-                    entityAttack.PathPoints = [];
-
-                    ShootingAttack clone = entityAttack.Clone();
-                    clone.SetUpAttack(gameTime, BasicAttackColor, Position);
+                    entityAttack.MoveInPositionDirection(targetPosition);
 
                     AttackManager.AddAttack(entityAttack, gameTime); //TODO
                 }
@@ -333,7 +326,6 @@ namespace SkeletonsAdventure.Entities
                         Mana -= entityAttack.ManaCost;
 
                     entityAttack.SetUpAttack(gameTime, BasicAttackColor, targetPosition);
-                    entityAttack.PathPoints = [];
 
                     AttackManager.AddAttack(entityAttack.Clone(), gameTime);
                 }

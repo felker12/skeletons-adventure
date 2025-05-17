@@ -55,6 +55,11 @@ namespace SkeletonsAdventure.Attacks
 
         public void AddAttack(EntityAttack atk, GameTime gameTime)
         {
+            if (atk is ShootingAttack shootingAtk)
+                shootingAtk.PathPoints = [];
+
+            atk.InitialMotion = atk.Motion;
+
             Attacks.Add(atk);
             LastAttackTime = gameTime.TotalGameTime;
             _attacked = true;
@@ -113,17 +118,14 @@ namespace SkeletonsAdventure.Attacks
 
         public void ClearOldAttacks(List<Entity> entities)
         {
-            foreach (var attack in Attacks)
+            foreach (var entity in entities)
             {
-                foreach (var entity in entities)
+                foreach (var atk in entity.AttacksHitBy)
                 {
-                    foreach (var atk in entity.AttacksHitBy)
+                    if (atk.AttackTimedOut())
                     {
-                        if (atk.AttackTimedOut())
-                        {
-                            entity.AttacksHitBy.Remove(atk);
-                            break;
-                        }
+                        entity.AttacksHitBy.Remove(atk);
+                        break;
                     }
                 }
             }

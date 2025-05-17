@@ -48,11 +48,15 @@ namespace SkeletonsAdventure.Attacks
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            if (AnimatedAttack && Duration.TotalMilliseconds > AttackDelay)
-                AnimatePillar();
-
-            if(AnimatedAttack is false)
+            
+            if (AnimatedAttack)
+            {
+                if(Duration.TotalMilliseconds > AttackDelay)
+                    AnimatePillar();
+                else
+                    DamageHitBox = new((int)Position.X + Width / 4, (int)(Position.Y), Width / 2, Height);
+            }
+            else
                 DamageHitBox = new((int)Position.X + Width / 4, (int)(Position.Y), Width / 2, Height);
         }
 

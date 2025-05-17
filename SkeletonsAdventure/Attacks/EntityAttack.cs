@@ -25,9 +25,12 @@ namespace SkeletonsAdventure.Attacks
         public int AttackDelay { get; set; }
         public bool AttackVisible { get; set; } = true;
         public Vector2 StartPosition { get; set; } = new();
+        public Vector2 InitialMotion { get; set; }
 
         public EntityAttack(EntityAttack attack) : base()
         {
+            Width = attack.Width;
+            Height = attack.Height;
             Texture = attack.Texture;
             AttackLength = attack.AttackLength;
             StartTime = attack.StartTime;
@@ -46,6 +49,7 @@ namespace SkeletonsAdventure.Attacks
             AttackDelay = attack.AttackDelay;
             AnimatedAttack = attack.AnimatedAttack;
             StartPosition = attack.StartPosition;
+            DamageHitBox = attack.DamageHitBox;
 
             Initialize();
         }
@@ -71,7 +75,7 @@ namespace SkeletonsAdventure.Attacks
         
         private void Initialize()
         {
-            DamageHitBox = GetRectangle;
+            DamageHitBox = new((int)Position.X, (int)Position.Y, Width, Height);
 
             if (AttackDelay > 0)
             {
@@ -88,6 +92,8 @@ namespace SkeletonsAdventure.Attacks
         {
             if (AttackVisible is false)
                 spriteBatch.Draw(GameManager.AttackAreaTexture, new Vector2(DamageHitBox.X, DamageHitBox.Y), DamageHitBox, Color.White * 0.5f); //TODO
+             
+            //TODO if popup attack draw the correct hitbox for the attack if the hit box size isn't the whole texture
 
 
             if (AttackVisible)
@@ -103,33 +109,7 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
-            //if(AnimatedAttack is false)
-            //    DamageHitBox = GetRectangle;
-
-            //if (StartTime > TimeSpan.Zero)
-            //    Duration = gameTime.TotalGameTime - StartTime;
-
-            //if (AttackVisible is false && Duration.TotalMilliseconds > AttackDelay)
-            //{
-            //    AttackVisible = true;
-
-            //    if (AnimatedAttack)
-            //        base.Update(gameTime);
-            //}
-
-            //if (AttackVisible)
-            //{
-            //    Info.Position = Position + new Vector2(1, 1);
-
-            //    //draw the info with a different color for the player //TODO: delete this
-            //    if (Source is Player)
-            //        Info.Color = Color.Cyan;
-            //    else
-            //        Info.Color = new Color(255, 81, 89, 255);
-            //}
-
-
-            DamageHitBox = new((int)Position.X, (int)Position.Y, Frame.Width, Frame.Height);
+            DamageHitBox = new((int)Position.X, (int)Position.Y, Width, Height);
 
             if (StartTime > TimeSpan.Zero)
                 Duration = gameTime.TotalGameTime - StartTime;
@@ -137,29 +117,32 @@ namespace SkeletonsAdventure.Attacks
             if (AttackVisible is false && Duration.TotalMilliseconds > AttackDelay)
             {
                 AttackVisible = true;
+                Motion = InitialMotion;
+            }
+            if(AttackVisible is false)
+            { 
+                Motion = Vector2.Zero;
             }
 
             if (AttackVisible)
             {
                 if (AnimatedAttack)
-                {
                     base.Update(gameTime);
-                }
 
                 Info.Position = Position + new Vector2(1, 1);
 
-                //draw the info with a different color for the player //TODO: delete this
+               //draw the info with a different color for the player //TODO: delete this
                 if (Source is Player)
                     Info.Color = Color.Cyan;
                 else
                     Info.Color = new Color(255, 81, 89, 255);
             }
 
-            ////Prevent the source from moving during an attack with a build up
-            //if (Duration.TotalMilliseconds > AttackDelay)
-            //    Source.CanMove = true;
-            //else
-            //    Source.CanMove = false;
+            //Prevent the source from moving during an attack with a build up
+            if (Duration.TotalMilliseconds > AttackDelay)
+                Source.CanMove = true;
+            else
+                Source.CanMove = false;
         }
 
         public virtual void SetUpAttack(GameTime gameTime, Color attackColor, Vector2 originPosition)
@@ -173,24 +156,7 @@ namespace SkeletonsAdventure.Attacks
             Info.Text = string.Empty;
             StartPosition = Position;
 
-            DamageHitBox = GetRectangle;
-
-            //TODO is this needed?
-            if (AttackDelay == 0)
-            {
-                AttackVisible = true;
-            }
-
-            if (AnimatedAttack is false)
-            {
-                Width = Texture.Width;
-                Height = Texture.Height;
-            }
-            else
-            {
-                Width = 32;
-                Height = 32;
-            }
+            DamageHitBox = new((int)Position.X, (int)Position.Y, Width, Height);
         }
 
         public bool IsOnCooldown(GameTime gameTime)
@@ -254,15 +220,10 @@ namespace SkeletonsAdventure.Attacks
             return false;
         }
 
-        //TODO
-        public void MoveToPosition(Vector2 target)
-        {
-            Motion = Vector2.Normalize(target - Position) * Speed;
-        }
-
         public override string ToString()
         {
             string ToString = 
+            $"Position: {Position}, " + 
             $"Attack Length: {AttackLength}, " +
             $"Start Time: {StartTime}, " +
             $"Duration: {Duration}, " +
@@ -273,7 +234,10 @@ namespace SkeletonsAdventure.Attacks
             $"Damage Modifier: {DamageModifier}, " +
             $"Mana Cost: {ManaCost}, " +
             $"AttackDelay: {AttackDelay}, " +
-            $"Visible: {AttackVisible}";
+            $"Visible: {AttackVisible}, " + 
+            $"Motion: {Motion}, " +
+            $"DamageHitBox: {DamageHitBox}, " +
+            $"Rectangle: {GetRectangle}, ";
 
             return ToString;
         }
