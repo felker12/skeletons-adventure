@@ -9,6 +9,7 @@ using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
+using System;
 using Effect = RpgLibrary.ItemClasses.Effect;
 
 namespace SkeletonsAdventure.Entities
@@ -30,6 +31,7 @@ namespace SkeletonsAdventure.Entities
         public FireBall FireBall2 { get; set; }
         public IcePillar IcePillar { get; set; }
         public IcePillar IcePillar2 { get; set; }
+        public IceBullet IceBullet { get; set; } 
         public bool ManaBarVisible { get; set; } = true;
         public bool AimVisible { get; set; } = false;
 
@@ -73,6 +75,7 @@ namespace SkeletonsAdventure.Entities
             FireBall2 ??= new(GameManager.FireBallData, GameManager.FireBallTexture2, this);
             IcePillar ??= new(GameManager.IcePillarData, GameManager.IcePillarTexture, this);
             IcePillar2 ??= new(GameManager.IcePillarData, GameManager.IcePillarSpriteSheetTexture, this, 62, 62);
+            IceBullet ??= new(GameManager.IceBulletData, GameManager.IceBulletTexture, this);
 
             //TODO
             FireBall2.AnimatedAttack = true;
@@ -143,10 +146,18 @@ namespace SkeletonsAdventure.Entities
             Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
             MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
 
+
+
+            //TODO
+            Vector2 motion = CalculateReducedMotion(Motion);
+
             //TODO delete this
             //Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
-            //Info.Text += $"\nMotion = {Motion}";
+            Info.Text += $"\nMotion = {Motion}"; 
+            Info.Text += $"\nMotion reduced = {motion}";
+            Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
+
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
         }
 
@@ -248,6 +259,11 @@ namespace SkeletonsAdventure.Entities
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
                 PerformPopUpAttack(gameTime, IcePillar2, GetMousePosition());
+            }
+            if (InputHandler.KeyReleased(Keys.D5) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+                PerformAimedAttack(gameTime, IceBullet, GetMousePosition());
             }
         }
 

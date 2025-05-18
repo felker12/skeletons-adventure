@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Assimp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Animations;
@@ -59,40 +60,15 @@ namespace SkeletonsAdventure.Entities
 
         protected void UpdateCurrentAnimation()
         {
+            Vector2 motion = CalculateReducedMotion(Motion);
+
             //TODO Add frames for angles
-            if (Motion != Vector2.Zero)
+            if (motion != Vector2.Zero)
             {
-                if (Math.Abs(Motion.X) == Math.Abs(Motion.Y)) //Diagonal movements
-                {
-                    //Could be simplified to just checking the X value. But I will leave it as is in the event I add diagonal animations
-                    if (Motion.Y > 0) 
-                    {
-                        if (Motion.X > 0)
-                            CurrentAnimation = AnimationKey.Right;
-                        else if (Motion.X < 0)
-                            CurrentAnimation = AnimationKey.Left;
-                    }
-                    else if (Motion.Y < 0)
-                    {
-                        if (Motion.X > 0)
-                            CurrentAnimation = AnimationKey.Right;
-                        else if (Motion.X < 0)
-                            CurrentAnimation = AnimationKey.Left;
-                    }
-                }
-                else if (Motion.X >= 0)
-                {
-                    if (Motion.X != 0)
-                        CurrentAnimation = AnimationKey.Right;
-                    else if (Motion.Y <= 0)
-                        CurrentAnimation = AnimationKey.Up;
-                    else if (Motion.Y >= 0)
-                        CurrentAnimation = AnimationKey.Down;
-                }
-                else if (Motion.X < 0)
-                {
-                    CurrentAnimation = AnimationKey.Left;
-                }
+                //TODO   
+                //Add a check for the angle of the motion vector to determine which animation to use
+
+
 
                 IsAnimating = true;
             }
@@ -116,6 +92,47 @@ namespace SkeletonsAdventure.Entities
             _Animations.Add(AnimationKey.Up, animation);
 
             return _Animations;
+        }
+
+        public static Vector2 CalculateReducedMotion(Vector2 Motion)
+        {
+            Vector2 motion = Vector2.Zero;
+
+            if (Motion != Vector2.Zero)
+            {
+                if (Motion.X != 0 && Motion.Y != 0)
+                {
+                    if (Math.Abs(Motion.X) > Math.Abs(Motion.Y))
+                    {
+                        if (Math.Abs(Motion.X) > 1)
+                            motion = new(Motion.X / Math.Abs(Motion.X), Motion.Y / Math.Abs(Motion.X));
+                        else
+                            motion = Motion;
+                    }
+                    else
+                    {
+                        if (Math.Abs(Motion.Y) > 1)
+                            motion = new(Motion.X / Math.Abs(Motion.Y), Motion.Y / Math.Abs(Motion.Y));
+                        else
+                            motion = Motion;
+                    }
+                }
+                else if (Motion.X != 0 && Motion.Y == 0)
+                {
+                    if (Math.Abs(Motion.X) > 1)
+                        motion = new(Motion.X / Math.Abs(Motion.X), Motion.Y);
+                    else
+                        motion = Motion;
+                }
+                else if (Motion.X == 0 && Motion.Y != 0)
+                {
+                    if (Math.Abs(Motion.Y) > 1)
+                        motion = new(Motion.X, Motion.Y / Math.Abs(Motion.Y));
+                    else motion = Motion;
+                }
+            }
+
+            return motion;
         }
     }
 }

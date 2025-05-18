@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Assimp;
 using Microsoft.Xna.Framework;
-using SkeletonsAdventure.Entities;
-using System;
-using SkeletonsAdventure.Animations;
-using RpgLibrary.AttackData;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using RpgLibrary.AttackData;
+using SkeletonsAdventure.Animations;
+using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
+using System;
 
 namespace SkeletonsAdventure.Attacks
 {
@@ -102,6 +103,7 @@ namespace SkeletonsAdventure.Attacks
 
                 spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
                 spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+                //spriteBatch.Draw(Texture, Position, Frame, SpriteColor, 0f, GetCenter(), 1.0f, SpriteEffects.None, 0f);
 
                 Info.Draw(spriteBatch);
             }

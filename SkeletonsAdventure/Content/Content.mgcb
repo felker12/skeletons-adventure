@@ -26,6 +26,11 @@
 /processor:PassThroughProcessor
 /build:AttackData/FireBall.xml
 
+#begin AttackData/IceBullet.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:AttackData/IceBullet.xml
+
 #begin AttackData/IcePillar.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -43,18 +48,6 @@
 /processorParam:TextureFormat=Color
 /build:AttackSprites/FireBall_01.png
 
-#begin AttackSprites/FireBallSpriteSheet_OG.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:AttackSprites/FireBallSpriteSheet_OG.png
-
 #begin AttackSprites/FireBallSpriteSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -66,6 +59,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:AttackSprites/FireBallSpriteSheet.png
+
+#begin AttackSprites/IceBullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:AttackSprites/IceBullet.png
 
 #begin AttackSprites/IcePillar.PNG
 /importer:TextureImporter
