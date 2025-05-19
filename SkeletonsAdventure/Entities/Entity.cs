@@ -10,6 +10,7 @@ using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
+using static Assimp.Metadata;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -40,6 +41,7 @@ namespace SkeletonsAdventure.Entities
         public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public bool HealthBarVisible { get; set; } = true;
         public TimeSpan LastTimeAttacked { get; set; }
+        public Vector2 PositionLastAttackedFrom { get; set; }
 
         public Entity() : base()
         {
@@ -86,10 +88,9 @@ namespace SkeletonsAdventure.Entities
             AttackManager.Update(gameTime);
             base.Update(gameTime);
 
-            if((gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds < 200 && LastTimeAttacked != TimeSpan.Zero) //Timespan.Zero check makes sure it isn't true when the game starts
-            {
+            //Timespan.Zero check makes sure it isn't true when the game starts
+            if ((gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds < 200 && LastTimeAttacked != TimeSpan.Zero) 
                 SpriteColor = Color.Red;
-            }
             else
                 SpriteColor = DefaultColor;
 
@@ -98,6 +99,10 @@ namespace SkeletonsAdventure.Entities
                 Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
                 HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
             }
+
+
+
+
 
             //TODO
             Info.Text += "\nLevel = " + EntityLevel;
@@ -150,6 +155,29 @@ namespace SkeletonsAdventure.Entities
                 RespawnPosition = (Vector2)entityData.respawnPosition;
             if (entityData.lastDeathTime != null)
                 lastDeathTime = (TimeSpan)entityData.lastDeathTime;
+        }
+
+        public virtual Entity Clone()
+        {
+            Entity entity = new(GetEntityData())
+            {
+                Position = Position,
+                EntityLevel = this.EntityLevel,
+                SpriteColor = this.SpriteColor
+            };
+            return entity;
+        }
+
+        public virtual void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        {
+            AttacksHitBy.Add(attack);
+
+            int dmg = (int)(DamageEngine.CalculateDamage(attack.Source, this) * attack.DamageModifier);
+            attack.Info.Text += dmg;
+            Health -= dmg;
+
+            LastTimeAttacked = gameTime.TotalGameTime;
+            PositionLastAttackedFrom = attack.Source.GetCenter();
         }
 
         public virtual void Respawn()
@@ -211,33 +239,21 @@ namespace SkeletonsAdventure.Entities
             return ((gameTime.TotalGameTime - AttackManager.LastAttackTime).TotalMilliseconds < AttackCoolDownLength);
         }
 
-        public virtual Entity Clone()
-        {
-            Entity entity = new(GetEntityData())
-            {
-                Position = Position,
-                EntityLevel = this.EntityLevel,
-                SpriteColor = this.SpriteColor
-            };
-            return entity;
-        }
-
-        public virtual void PathToPoint(Entity target)
+        public virtual void PathToPoint(Vector2 target)
         {
             Vector2 movement = new(0,0);
-            Vector2 targetLocation = target.Position;
 
-            if ((int)targetLocation.Y > (int)Position.Y)
+            if ((int)target.Y > (int)Position.Y)
                 movement.Y = 1;
-            else if ((int)targetLocation.Y < (int)Position.Y)
+            else if ((int)target.Y < (int)Position.Y)
                 movement.Y = -1;
-            else if ((int)targetLocation.Y == (int)Position.Y)
+            else if ((int)target.Y == (int)Position.Y)
                 movement.Y = 0;
-            if ((int)targetLocation.X > (int)Position.X)
+            if ((int)target.X > (int)Position.X)
                 movement.X = 1;
-            else if ((int)targetLocation.X < (int)Position.X)
+            else if ((int)target.X < (int)Position.X)
                 movement.X = -1;
-            else if ((int)targetLocation.X == (int)Position.X)
+            else if ((int)target.X == (int)Position.X)
                 movement.X = 0;
 
             if (movement != Vector2.Zero)

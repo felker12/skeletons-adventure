@@ -19,7 +19,13 @@ namespace SkeletonsAdventure.Entities
         public float Speed { get; set; } = 1.5f;
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
-        public bool CanMove { get; set; } = true; //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
+        public float RotationAngle { get; set; } = 0.0f;
+        public float Scale { get; set; } = 1.0f;
+
+
+
+        //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
+        public bool CanMove { get; set; } = true; 
 
         public Sprite()
         {
@@ -50,7 +56,11 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+            Vector2 FrameCenter = new(Frame.Width / 2, Frame.Height / 2);
+
+            spriteBatch.Draw(Texture, Position + FrameCenter, Frame, SpriteColor, RotationAngle, FrameCenter, Scale, SpriteEffects.None, 1);
+            //spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+
             //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
 
             Info.Draw(spriteBatch);

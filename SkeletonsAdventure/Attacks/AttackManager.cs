@@ -95,18 +95,7 @@ namespace SkeletonsAdventure.Attacks
                                 if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
                                 else if (entity.GetRectangle.Intersects(attack.DamageHitBox))
                                 {
-                                    entity.AttacksHitBy.Add(attack);
-
-                                    int dmg = (int)(DamageEngine.CalculateDamage(SourceEntity, entity) * attack.DamageModifier);
-                                    attack.Info.Text += dmg;
-                                    entity.Health -= dmg;
-
-                                    entity.LastTimeAttacked = gameTime.TotalGameTime;
-
-                                    if (entity.Health < 1 && SourceEntity is Player player) //If the entity dies give xp to the player that killed it
-                                    {
-                                        player.GainXp(entity.XP);
-                                    }
+                                    entity.GetHitByAttack(attack, gameTime);
                                 }
                             }
                         }

@@ -1,12 +1,13 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
-using System;
-using SkeletonsAdventure.ItemLoot;
-using SkeletonsAdventure.ItemClasses;
+using MonoGame.Extended.Timers;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.ItemClasses;
+using SkeletonsAdventure.ItemLoot;
+using System;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -133,29 +134,58 @@ namespace SkeletonsAdventure.Entities
                 if (entity is Enemy enemy && enemy.IsDead == false)
                 {
                     //if the player is close then go to the player
-                    if (enemy.DetectionArea.Intersects(Player.GetRectangle))
+                    if (CheckForPlayer(enemy))
                     {
-                        enemy.Motion = Vector2.Zero; //Stops any motion caused by another method
+                        enemy.AutoAttack(Player, gameTime);
+                    }
+                    //if the enemy has attacked by an out of sight enemy then move to the point the enemy was at when  
+                    else if(enemy.LastTimeAttacked.TotalMilliseconds != 0 
+                        && gameTime.TotalGameTime.TotalMilliseconds - enemy.LastTimeAttacked.TotalMilliseconds < 6000
+                        && enemy.CheckedLastAtackArea == false)
+                    {
+                        //if the enemy detects player on way then mark area checked so the enemy doesn't keep moving towards that point if the player gets away
+                        if (CheckForPlayer(enemy)) 
+                            enemy.CheckedLastAtackArea = true;
 
-                        //if the enemy detects the player then move towerds the player
-                        if (!enemy.GetRectangle.Intersects(Player.GetRectangle))
-                            enemy.PathToPoint(Player);
-                        else
-                            enemy.FaceTarget(Player);
-
-                        //attack the player if the player is close enough
-                        if (enemy.AttackArea.Intersects(Player.GetRectangle))
+                        if (enemy.GetRectangle.Intersects(new((int)enemy.PositionLastAttackedFrom.X, (int)enemy.PositionLastAttackedFrom.Y, 1, 1)))
                         {
-                            //TODO: add logic for other types of attacks (probably move this logic to the enemy)
-                            //so there can be attacks based on what the enemy is
-                            enemy.PerformAttack(gameTime, enemy.EntityAttack); 
+                            enemy.CheckedLastAtackArea = true;
+                            if (CheckForPlayer(enemy))
+                                enemy.AutoAttack(Player, gameTime);
+                            else
+                                enemy.WalkInSquare();
                         }
+                        else
+                            enemy.PathToPoint(enemy.PositionLastAttackedFrom);
                     }
                     else //if no player in sight do something
                         enemy.WalkInSquare();
                 }
             }
         }
+
+        public bool CheckForPlayer(Enemy enemy)
+        {
+            bool playerInRange = false;
+
+            if (enemy.DetectionArea.Intersects(Player.GetRectangle))
+            {
+                playerInRange = true;
+            }
+
+            enemy.Motion = Vector2.Zero; //Stops any motion caused by another method
+
+            //if the enemy detects the player then move towerds the player
+            if (!enemy.GetRectangle.Intersects(Player.GetRectangle))
+                enemy.PathToPoint(Player.Position);
+            else
+                enemy.FaceTarget(Player);
+
+            return playerInRange;
+        }
+
+
+
 
         public void CheckEntityBoundaryCollisions(TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {

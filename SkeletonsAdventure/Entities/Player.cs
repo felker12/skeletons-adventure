@@ -16,7 +16,10 @@ namespace SkeletonsAdventure.Entities
 {
     public class Player : Entity
     {
-        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, bonusHealthFromLevel = 0;
+        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, 
+            bonusHealthFromLevel = 0, bonusManaFromLevel = 0,
+            levelModifier = 0;
+        private bool justLeveled = false;
 
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
@@ -145,6 +148,14 @@ namespace SkeletonsAdventure.Entities
             Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel;
             Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
             MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
+            MaxMana = BaseMana + bonusManaFromLevel; //TODO maybe allow gear to provide a mana bonus
+
+            if(justLeveled)
+            {
+                Mana = MaxMana;
+                Health = MaxHealth;
+                justLeveled = false;
+            }
 
             //TODO delete this
             //Info.Text += $"\nXP = {TotalXP}";
@@ -153,6 +164,11 @@ namespace SkeletonsAdventure.Entities
             //Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
 
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
+        }
+
+        public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        {
+            base.GetHitByAttack(attack, gameTime);
         }
 
         public void GainXp(int XpGained)
@@ -165,31 +181,30 @@ namespace SkeletonsAdventure.Entities
 
             if (EntityLevel > currentLevel)
             {
-                while(currentLevel < EntityLevel) //perform the levelUp event for every level gained
-                {
-                    LevelUP();
-                    currentLevel++;
-                }
-
                 PlayerStatAdjustmentForLevel();
+                while (currentLevel < EntityLevel) //perform the levelUp event for every level gained
+                {
+                    currentLevel++;
+                    LevelUP();
+                }
             }
         }
 
         public void LevelUP() //TODO
         {
             StatusPoints += 2;
-            Health = MaxHealth;
-            Mana = MaxMana;
+            justLeveled = true;
         }
 
         private void PlayerStatAdjustmentForLevel()
         {
             //TODO
-            int levelModifier = EntityLevel * 2;
+            levelModifier = EntityLevel * 2;
 
             bonusAttackFromLevel = levelModifier;
             bonusDefenceFromLevel = levelModifier;
             bonusHealthFromLevel = levelModifier * 10;
+            bonusManaFromLevel = levelModifier * 10;
         }
 
         public void ConsumeItem(GameItem item)

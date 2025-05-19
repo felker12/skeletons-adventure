@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using MonoGame.Extended;
-using RpgLibrary.EntityClasses;
 using RpgLibrary.DataClasses;
+using RpgLibrary.EntityClasses;
+using SkeletonsAdventure.Attacks;
 using System;
 
 namespace SkeletonsAdventure.Entities
@@ -11,10 +11,17 @@ namespace SkeletonsAdventure.Entities
     public class Enemy : Entity
     {
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
-        public Rectangle DetectionArea, AttackArea;
-        public bool IsElite { get; set; } = false;
 
+        public bool IsElite { get; set; } = false;
         private MinMaxPair LevelRange { get; set; } = new(0, 0);
+        public bool CheckedLastAtackArea { get; set; } = false;
+        public Rectangle DetectionArea => new((int)Position.X - (detectionWidth - Width) / 2,
+            (int)Position.Y - (detectionHeight - Height) / 2, detectionWidth, detectionHeight);
+        public Rectangle AttackArea => new((int)Position.X - Width,
+            (int)Position.Y - Width, Width * 3, Height + Width * 2);
+
+
+        //public Rectangle DetectionArea, AttackArea;
 
         public Enemy(EntityData entityData) : base(entityData)
         {
@@ -68,17 +75,16 @@ namespace SkeletonsAdventure.Entities
         }
         public override void Update(GameTime gameTime)
         {
+            //Hide health bar when entity hasn't been attacked in a while
+            if (LastTimeAttacked.TotalMilliseconds != 0 && gameTime.TotalGameTime.TotalMilliseconds - LastTimeAttacked.TotalMilliseconds < 6000)
+                HealthBarVisible = true;
+            else
+                HealthBarVisible = false;
+
             base.Update(gameTime);
+
             //TODO delete this
             Info.Text += "\nXP = " + XP;
-
-            int detectX = (int)Position.X - (detectionWidth - Width) /2;
-            int detectY = (int)Position.Y - (detectionHeight - Height) / 2;
-            DetectionArea = new(detectX, detectY, detectionWidth, detectionHeight);
-
-            detectX = (int)Position.X - Width;
-            detectY = (int)Position.Y - Width;
-            AttackArea = new(detectX, detectY, Width * 3, Height + Width * 2);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -98,12 +104,39 @@ namespace SkeletonsAdventure.Entities
             return enemy;
         }
 
+        public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        {
+            base.GetHitByAttack(attack, gameTime);
+
+            if (gameTime.TotalGameTime.TotalMilliseconds - LastTimeAttacked.TotalMilliseconds > 6000)
+            {
+                ResetSquare();
+                CheckedLastAtackArea = false;
+            }
+
+            if (Health < 1 && attack.Source is Player player) //If the entity dies give xp to the player that killed it
+            {
+                player.GainXp(XP);
+            }
+        }
+
         public override void Respawn()
         { 
             ResetSquare();
             Motion = Vector2.Zero;
             SetEnemyLevel(LevelRange);
             base.Respawn();
+        }
+
+        public void AutoAttack(Player player, GameTime gameTime)
+        {
+            //attack the player if the player is close enough
+            if (AttackArea.Intersects(player.GetRectangle))
+            {
+                //TODO: add logic for other types of attacks (probably move this logic to the enemy)
+                //so there can be attacks based on what the enemy is
+                PerformAttack(gameTime, EntityAttack);
+            }
         }
 
         public void WalkInSquare()

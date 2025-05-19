@@ -100,9 +100,13 @@ namespace SkeletonsAdventure.Attacks
             if (AttackVisible)
             {
                 spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
-
                 spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
-                spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
+
+
+                Vector2 FrameCenter = new(Frame.Width / 2, Frame.Height / 2);
+
+                spriteBatch.Draw(Texture, Position + FrameCenter, Frame, SpriteColor, RotationAngle, FrameCenter, Scale, SpriteEffects.None, 1);
+                //spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
                 //spriteBatch.Draw(Texture, Position, Frame, SpriteColor, 0f, GetCenter(), 1.0f, SpriteEffects.None, 0f);
 
                 Info.Draw(spriteBatch);

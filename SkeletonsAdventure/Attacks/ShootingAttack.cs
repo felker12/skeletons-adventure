@@ -12,6 +12,8 @@ namespace SkeletonsAdventure.Attacks
     {
         public List<Vector2> PathPoints { get; set; } = [];
 
+        private bool IsFirstFrame { get; set; } = true;
+
         public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
         }
@@ -35,7 +37,6 @@ namespace SkeletonsAdventure.Attacks
 
         public override void Update(GameTime gameTime)
         {
-
             base.Update(gameTime);
 
             if (Duration.TotalMilliseconds % 50 < 1)
@@ -44,7 +45,7 @@ namespace SkeletonsAdventure.Attacks
 
         private void DrawPath(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawLine(StartPosition + new Vector2(Width / 2, Height / 2), PathPoints[0], Color.Aquamarine, 1);
+            //spriteBatch.DrawLine(StartPosition + new Vector2(Width / 2, Height / 2), PathPoints[0], Color.Aquamarine, 1);
 
             for (int i = 0; i < PathPoints.Count - 1; i++)
                 spriteBatch.DrawLine(PathPoints[i], PathPoints[i + 1], Color.Aquamarine, 1);
@@ -65,6 +66,26 @@ namespace SkeletonsAdventure.Attacks
         public void MoveInPositionDirection(Vector2 target)
         {
             Motion = Vector2.Normalize(target - GetCenter()) * Speed;
+        }
+
+        public void SetRotationBasedOffMotion()
+        {
+            // Angle in radians
+            float angleRadians = (float)Math.Atan2(Motion.Y, Motion.X);
+            //Previous angle
+            float PreviousRotationAngle = RotationAngle;
+
+            //if the angle changes and is stopped by something keep the rotation the same
+            if (angleRadians == 0 && PreviousRotationAngle != 0)
+            {
+                if (Motion != Vector2.Zero)
+                    RotationAngle = angleRadians;
+            }
+            else
+                RotationAngle = angleRadians;
+
+            if (RotationAngle != angleRadians)
+                RotationAngle = PreviousRotationAngle;
         }
     }
 }
