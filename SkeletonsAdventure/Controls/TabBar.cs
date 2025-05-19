@@ -13,7 +13,7 @@ namespace SkeletonsAdventure.Controls
     {
         public Dictionary<Tab, BaseMenu> TabMenus { get; private set; } = [];
         public Vector2 Position { get; set; } = new();
-        public SpriteFont SpriteFont { get; set; } = GameManager.ControlFont;
+        public SpriteFont SpriteFont { get; set; } = GameManager.Arial20;
         public int Width { get; set; } = 100;
         public int Height { get; set; } = 100;
         public BaseMenu ActiveMenu { get; set; } = null;

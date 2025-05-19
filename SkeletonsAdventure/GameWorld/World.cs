@@ -229,7 +229,7 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void FillPlayerBackback() //TODO this is for testing
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 26; i++)
             {
                 foreach (GameItem item in GameManager.ItemsClone.Values)
                 {

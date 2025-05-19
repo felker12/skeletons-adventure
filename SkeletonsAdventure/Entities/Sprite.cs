@@ -41,7 +41,7 @@ namespace SkeletonsAdventure.Entities
                 Text = "",
                 Position = new Vector2(Position.X, Position.Y),
                 Color = Color.White,
-                SpriteFont = GameManager.InfoFont
+                SpriteFont = GameManager.Arial12
             };
 
             Frame = new(0, 0, Width, Height);

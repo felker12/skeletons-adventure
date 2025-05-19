@@ -19,10 +19,10 @@ namespace SkeletonsAdventure.GameWorld
     public class GameManager
     {
         //SpriteFonts
-        public static SpriteFont InfoFont { get; private set; }
-        public static SpriteFont ToolTipFont { get; private set; }
-        public static SpriteFont ControlFont { get; private set; } 
-        public static SpriteFont StatusBarFont { get; private set; }
+        public static SpriteFont Arial10 { get; private set; }
+        public static SpriteFont Arial12 { get; private set; }
+        public static SpriteFont Arial14 { get; private set; }
+        public static SpriteFont Arial20 { get; private set; } 
 
         //Strings
         public static string GamePath { get; private set; } 
@@ -205,10 +205,10 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void LoadFonts()
         {
-            InfoFont = Content.Load<SpriteFont>("Fonts/Font");
-            ToolTipFont = Content.Load<SpriteFont>("Fonts/ItemToolTipFont");
-            ControlFont = Content.Load<SpriteFont>("Fonts/ControlFont");
-            StatusBarFont = Content.Load<SpriteFont>("Fonts/StatusBarFont");
+            Arial10 = Content.Load<SpriteFont>("Fonts/Arial10");
+            Arial12 = Content.Load<SpriteFont>("Fonts/Arial12");
+            Arial14 = Content.Load<SpriteFont>("Fonts/Arial14");
+            Arial20 = Content.Load<SpriteFont>("Fonts/Arial20");
         }
 
         private static void LoadTextures()

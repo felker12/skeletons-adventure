@@ -16,7 +16,7 @@ namespace SkeletonsAdventure.GameMenu
         public LinkLabel MenuLabel { get; set; }
 
         private Texture2D buttonTexture = GameManager.ButtonTexture;
-        private SpriteFont buttonFont = GameManager.InfoFont;
+        private SpriteFont buttonFont = GameManager.Arial12;
 
         public Button SaveGameButton { get; set; }
 

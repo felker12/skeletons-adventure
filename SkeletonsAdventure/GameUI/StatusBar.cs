@@ -62,8 +62,8 @@ namespace SkeletonsAdventure.GameUI
                 // Draw the text
                 if(TextVisible)
                 {
-                    var textPosition = new Vector2(Position.X + Width / 2 - GameManager.StatusBarFont.MeasureString(statusBarText).X / 2, Position.Y + Height / 2 - GameManager.StatusBarFont.MeasureString(statusBarText).Y / 2);
-                    spriteBatch.DrawString(GameManager.StatusBarFont, statusBarText, textPosition, Color.White * Transparency);
+                    var textPosition = new Vector2(Position.X + Width / 2 - GameManager.Arial10.MeasureString(statusBarText).X / 2, Position.Y + Height / 2 - GameManager.Arial10.MeasureString(statusBarText).Y / 2);
+                    spriteBatch.DrawString(GameManager.Arial10, statusBarText, textPosition, Color.White * Transparency);
                 }
 
             }

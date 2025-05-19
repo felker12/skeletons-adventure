@@ -17,7 +17,7 @@ namespace SkeletonsAdventure.States
         public MenuScreen(Game1 game) : base(game)
         {
             var buttonTexture = GameManager.ButtonTexture;
-            var buttonFont = GameManager.InfoFont;
+            var buttonFont = GameManager.Arial12;
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -130,7 +130,7 @@ namespace SkeletonsAdventure.States
 
         public override void Update(GameTime gameTime)
         {
-            ControlManager.Update(gameTime, playerIndexInControl);
+            ControlManager.Update(gameTime, PlayerIndexInControl);
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)

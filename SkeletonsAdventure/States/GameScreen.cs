@@ -284,7 +284,7 @@ namespace SkeletonsAdventure.States
         public void CreatePopUpBox()
         {
             Texture2D texture = GameManager.DefaultButtonTexture;
-            SpriteFont font = GameManager.ToolTipFont;
+            SpriteFont font = GameManager.Arial10;
 
             PopUpBox = new(Vector2.Zero, GameManager.PopUpBoxTexture, 100, 100)
             {

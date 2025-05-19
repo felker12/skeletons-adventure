@@ -51,7 +51,7 @@ namespace SkeletonsAdventure.States
 
         public override void Update(GameTime gameTime)
         {
-            ControlManager.Update(gameTime, playerIndexInControl);
+            ControlManager.Update(gameTime, PlayerIndexInControl);
         }
         private void StartLabel_Selected(object sender, EventArgs e)
         {

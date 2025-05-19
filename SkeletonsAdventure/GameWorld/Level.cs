@@ -15,7 +15,6 @@ using SkeletonsAdventure.GameObjects;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
 using MonoGame.Extended;
-using SkeletonsAdventure.Attacks;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -119,7 +118,13 @@ namespace SkeletonsAdventure.GameWorld
             foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
             {
                 spriteBatch.DrawRectangle(rec, Color.White, 1, 0); //used to see where the hitboxes are for the exits
+                
             }
+
+            if(LevelEntrance is not null && LevelEntrance.ExitTextVisible)
+                spriteBatch.DrawString(GameManager.Arial12, LevelEntrance.ExitText, LevelEntrance.ExitPosition, Color.White);
+            if (LevelExit is not null && LevelExit.ExitTextVisible)
+                spriteBatch.DrawString(GameManager.Arial12, LevelExit.ExitText, LevelExit.ExitPosition, Color.White);
 
             spriteBatch.End();
         }
@@ -239,7 +244,7 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
         
-        private void ChestOpened(Chest chest)
+        private void ChestOpened(Chest chest) //TODO handle not taking items from chest if backpack is full
         {
             if (ChestMenu.Visible == false && chest.Info.Visible == true)
             {
@@ -249,14 +254,16 @@ namespace SkeletonsAdventure.GameWorld
                 Dictionary<string, Button> buttons = [];
                 foreach (GameItem gameItem in chest.Loot.Loots)
                 {
-                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.ToolTipFont);
+                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10);
 
                     #pragma warning disable IDE0039 // Use local function
                     EventHandler handler = (object sender, EventArgs e) =>
                     {
-                        btn.Visible = false;
-                        Player.Backpack.AddItem(gameItem);
-                        chest.Loot.Remove(gameItem);
+                        if(Player.Backpack.AddItem(gameItem))
+                        {
+                            btn.Visible = false;
+                            chest.Loot.Remove(gameItem);
+                        }
                     };
                     #pragma warning restore IDE0039 // Use local function
 
@@ -286,12 +293,16 @@ namespace SkeletonsAdventure.GameWorld
         {
             if (exit.ExitArea.Intersects(Player.GetRectangle))
             {
-                if (InputHandler.KeyReleased(Keys.R) ||
-                            InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
+                exit.ExitTextVisible = true;
+
+                if (InputHandler.KeyReleased(Keys.R) 
+                    || InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
                 {
                     World.SetCurrentLevel(exit.NextLevel, targetPosition);
                 }
             }
+            else
+                exit.ExitTextVisible = false;
         }
     }
 }

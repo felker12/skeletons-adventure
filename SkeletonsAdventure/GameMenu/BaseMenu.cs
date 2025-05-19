@@ -9,7 +9,7 @@ namespace SkeletonsAdventure.GameMenu
 {
     public class BaseMenu
     {
-        public ControlManager ControlManager { get; set; } = new(GameManager.ControlFont);
+        public ControlManager ControlManager { get; set; } = new(GameManager.Arial20);
         protected ContentManager Content { get; set; } = GameManager.Content;
         protected GraphicsDevice GraphicsDevice { get; set; } = GameManager.GraphicsDevice;
         protected PlayerIndex PlayerIndexInControl { get; set; } = PlayerIndex.One;

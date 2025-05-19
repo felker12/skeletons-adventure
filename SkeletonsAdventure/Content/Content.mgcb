@@ -130,33 +130,33 @@
 /processorParam:TextureFormat=Color
 /build:EntitySprites/spider.png
 
-#begin Fonts/ControlFont.spritefont
+#begin Fonts/Arial10.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/ControlFont.spritefont
+/build:Fonts/Arial10.spritefont
 
-#begin Fonts/Font.spritefont
+#begin Fonts/Arial12.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/Font.spritefont
+/build:Fonts/Arial12.spritefont
 
-#begin Fonts/ItemToolTipFont.spritefont
+#begin Fonts/Arial14.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/ItemToolTipFont.spritefont
+/build:Fonts/Arial14.spritefont
 
-#begin Fonts/StatusBarFont.spritefont
+#begin Fonts/Arial20.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/StatusBarFont.spritefont
+/build:Fonts/Arial20.spritefont
 
 #begin Items/Armor/Robes.xml
 /importer:XmlImporter

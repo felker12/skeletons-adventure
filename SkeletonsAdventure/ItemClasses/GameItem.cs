@@ -34,7 +34,7 @@ namespace SkeletonsAdventure.ItemClasses
             ToolTip = new()
             {
                 Visible = false,
-                SpriteFont = GameManager.ToolTipFont,
+                SpriteFont = GameManager.Arial10,
                 Color = Color.Aqua
             };
 

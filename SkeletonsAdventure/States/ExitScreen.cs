@@ -91,7 +91,7 @@ namespace SkeletonsAdventure.States
 
         public override void Update(GameTime gameTime)
         {
-            ControlManager.Update(gameTime, playerIndexInControl);
+            ControlManager.Update(gameTime, PlayerIndexInControl);
             SettingsMenu.Update(gameTime);
         }
 

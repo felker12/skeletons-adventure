@@ -10,7 +10,7 @@ namespace SkeletonsAdventure.GameObjects
 {
     public class Chest
     {
-        public ChestType ChestType {get; set;}
+        public ChestType ChestType {get; set; } //TODO add different types of chests
         public LootList Loot { get; set; } = new();
         public Vector2 Position { get; set; } = new();
         public int ID { get; set; } = -1;
@@ -19,7 +19,7 @@ namespace SkeletonsAdventure.GameObjects
         {
             Text = "Press R to open",
             Visible = false,
-            SpriteFont = GameManager.InfoFont
+            SpriteFont = GameManager.Arial12
         };
 
         public void Draw(SpriteBatch spriteBatch)
