@@ -116,7 +116,7 @@ namespace SkeletonsAdventure.Attacks
             }
         }
 
-        public void ClearOldAttacks(List<Entity> entities)
+        public static void ClearOldAttacks(List<Entity> entities)
         {
             foreach (var entity in entities)
             {

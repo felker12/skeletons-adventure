@@ -1,6 +1,4 @@
-﻿using Assimp;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Animations;
 using System;
@@ -65,11 +63,7 @@ namespace SkeletonsAdventure.Entities
             //TODO Add frames for angles
             if (motion != Vector2.Zero)
             {
-                //TODO   
-                //Add a check for the angle of the motion vector to determine which animation to use
-
-
-
+                SetCurrentAnimationBasedOffMotion(motion);
                 IsAnimating = true;
             }
             else
@@ -92,6 +86,36 @@ namespace SkeletonsAdventure.Entities
             _Animations.Add(AnimationKey.Up, animation);
 
             return _Animations;
+        }
+
+        protected void SetCurrentAnimationBasedOffMotion(Vector2 motion)
+        {
+            //TODO   
+            //Left movement
+            if (motion.X == -1 && motion.Y >= -.5 && motion.Y <= .5)
+                CurrentAnimation = AnimationKey.Left;
+            //Right movement
+            else if (motion.X == 1 && motion.Y >= -.5 && motion.Y <= .5)
+                CurrentAnimation = AnimationKey.Right;
+            //Down movement
+            else if (motion.Y == 1 && motion.X >= -.5 && motion.X <= .5)
+                CurrentAnimation = AnimationKey.Down;
+            //Up movement
+            else if (motion.Y == -1 && motion.X >= -.5 && motion.X <= .5)
+                CurrentAnimation = AnimationKey.Up;
+            //=================Diagonal=================== //TODO change to diagonal movements if diagonals are added
+            //Top left
+            else if (motion.X < -.5 && motion.Y < -.5)
+                CurrentAnimation = AnimationKey.Left;
+            //Bottom left
+            else if (motion.X < -.5 && motion.Y > .5)
+                CurrentAnimation = AnimationKey.Left;
+            //Top Right
+            else if (motion.X > .5 && motion.Y < -.5)
+                CurrentAnimation = AnimationKey.Right;
+            //Bottom right
+            else if (motion.X > .5 && motion.Y > .5)
+                CurrentAnimation = AnimationKey.Right;
         }
 
         public static Vector2 CalculateReducedMotion(Vector2 Motion)

@@ -121,12 +121,10 @@ namespace SkeletonsAdventure.Attacks
                 AttackVisible = true;
                 Motion = InitialMotion;
             }
-            if(AttackVisible is false)
-            { 
-                Motion = Vector2.Zero;
-            }
 
-            if (AttackVisible)
+            if(AttackVisible is false)
+                Motion = Vector2.Zero;
+            else if (AttackVisible)
             {
                 if (AnimatedAttack)
                     base.Update(gameTime);

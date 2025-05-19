@@ -58,7 +58,7 @@ namespace SkeletonsAdventure.Entities
                     entity.Update(gameTime);
 
                     entity.AttackManager.CheckAttackHit(Entities, gameTime); //TODO: this might have to be changed to totalTimeInWorld instead later
-                    entity.AttackManager.ClearOldAttacks(Entities);
+                    AttackManager.ClearOldAttacks(Entities);
 
                     if (entity == Player)
                         PickUpLoot();
@@ -228,16 +228,10 @@ namespace SkeletonsAdventure.Entities
                         }
                     }
                 }
-                //Fixes animation bug where the player walks wrong way when colliding with a wall to the north or south
-                if (entity is Entity)
-                {
-                    //entity.UpdateCurrentAnimation(motion); //TODO
-                }
 
                 //apply the motion to the sprite if its not colliding
                 entity.Motion = motion;
                 entity.Position += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
-
             }
         }
     }

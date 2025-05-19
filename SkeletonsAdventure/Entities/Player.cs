@@ -146,17 +146,11 @@ namespace SkeletonsAdventure.Entities
             Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
             MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
 
-
-
-            //TODO
-            Vector2 motion = CalculateReducedMotion(Motion);
-
             //TODO delete this
             //Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
-            Info.Text += $"\nMotion = {Motion}"; 
-            Info.Text += $"\nMotion reduced = {motion}";
-            Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
+            //Info.Text += $"\nMotion = {Motion}"; 
+            //Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
 
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
         }

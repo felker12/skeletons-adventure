@@ -40,12 +40,6 @@ namespace SkeletonsAdventure.Attacks
 
             if (Duration.TotalMilliseconds % 50 < 1)
                 PathPoints.Add(GetCenter());
-
-            //TODO
-
-            Vector2 motion = AnimatedSprite.CalculateReducedMotion(Motion);
-                
-            System.Diagnostics.Debug.WriteLine($"Motion: {Motion}, Motion Reduced: {motion}, Current Animation: {CurrentAnimation}");
         }
 
         private void DrawPath(SpriteBatch spriteBatch)
