@@ -52,6 +52,7 @@ namespace RpgLibrary.EntityClasses
             currentHealth = entityData.currentHealth;
             isDead = entityData.isDead;
             lastDeathTime = entityData.lastDeathTime;
+            Items = entityData.Items;
         }
 
         public virtual EntityData Clone()
@@ -59,7 +60,6 @@ namespace RpgLibrary.EntityClasses
             EntityData data = new(id, type, baseHealth, baseDefence, baseAttack, entityLevel, baseXP,
                 position, respawnPosition, currentHealth, isDead, lastDeathTime)
             {
-                Items = Items
             };
             return data;
         }

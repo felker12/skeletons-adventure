@@ -21,6 +21,23 @@ namespace SkeletonsAdventure.Entities
             SetFrames(3, 32, 54, 0, 64); //This is the default which is used by the skeleton spritesheet
         }
 
+        //Methods
+        public override void Update(GameTime gameTime)
+        {
+            if (IsAnimating)
+                _animations[CurrentAnimation].Update(gameTime);
+
+            UpdateFrame();
+            UpdateCurrentAnimation();
+
+            base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
+
         public void SetFrames(int frameCount, int frameWidth, int frameHeight, int xOffset, int yOffset)
         {
             _animations = [];
@@ -37,23 +54,6 @@ namespace SkeletonsAdventure.Entities
         {
             foreach (AnimationKey key in animation.Keys)
                 _animations.Add(key, (SpriteAnimation)animation[key].Clone());
-        }
-
-        //Methods
-        public override void Update(GameTime gameTime)
-        {
-            if (IsAnimating)
-                _animations[CurrentAnimation].Update(gameTime);
-
-            UpdateFrame();
-            UpdateCurrentAnimation();
-
-            base.Update(gameTime);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
         }
 
         protected void UpdateCurrentAnimation()

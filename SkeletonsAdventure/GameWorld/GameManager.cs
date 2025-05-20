@@ -13,6 +13,9 @@ using RpgLibrary.GameObjectClasses;
 using System.IO;
 using System.Linq;
 using RpgLibrary.AttackData;
+using SkeletonsAdventure.Attacks;
+using RpgLibrary.QuestClasses;
+using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -22,19 +25,30 @@ namespace SkeletonsAdventure.GameWorld
         public static SpriteFont Arial10 { get; private set; }
         public static SpriteFont Arial12 { get; private set; }
         public static SpriteFont Arial14 { get; private set; }
-        public static SpriteFont Arial20 { get; private set; } 
+        public static SpriteFont Arial20 { get; private set; }
 
         //Strings
-        public static string GamePath { get; private set; } 
+        public static string GamePath { get; private set; }
         public static string SavePath { get; private set; }
 
         //Dictionaries
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
+        public static Dictionary<string, Enemy> EnemiesClone => GetEnemiesClone();
+
         private static Dictionary<string, GameItem> Items { get; set; } = [];
+        public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
+
         private static Dictionary<string, Chest> Chests { get; set; } = [];
         public static Dictionary<string, Chest> ChestsClone => GetChestsClone();
-        public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
-        public static Dictionary<string, Enemy> EnemiesClone => GetEnemiesClone();
+
+        private static Dictionary<string, EntityAttack> EntityAttacks { get; set; } = [];
+        public static Dictionary<string, EntityAttack> EntityAttackClone => GetEntityAttacksClone();
+
+        private static Dictionary<string, Quest> Quests { get; set; } = [];
+        public static Dictionary<string, Quest> QuestsClone => GetQuestsClone();
+
+        private static Dictionary<string, NPC> NPCs { get; set; } = [];
+        public static Dictionary<string, NPC> NPCClone => GetNPCClone();
 
         //=====Textures=====
         //Entity Textures
@@ -90,8 +104,24 @@ namespace SkeletonsAdventure.GameWorld
             CreateItems();
             CreateEnemies();
             CreateChests();
+            CreateAttacks();
+            CreateQuests();
+            CreateNPCs();
+
+            //TODO
+            foreach (KeyValuePair<string, EntityAttack> pair in EntityAttackClone)
+            {
+                string key = pair.Key;
+                EntityAttack attack = pair.Value;
+
+                // Use key and attack as needed
+                System.Diagnostics.Debug.WriteLine($"{key}: {attack}");
+            }
+
+
         }
 
+        //Load data from saved files
         public static List<GameItem> LoadGameItemsFromItemData(List<ItemData> itemDatas)
         {
             List<GameItem> items = [];
@@ -120,6 +150,7 @@ namespace SkeletonsAdventure.GameWorld
             return item;
         }
 
+        //Get a clone of the dictionaries
         private static Dictionary<string, GameItem> GetItemsClone()
         {
             Dictionary<string, GameItem> items = [];
@@ -134,7 +165,7 @@ namespace SkeletonsAdventure.GameWorld
         {
             Dictionary<string, Chest> chests = [];
 
-            foreach(var item in Chests)
+            foreach (var item in Chests)
                 chests.Add(item.Key, item.Value.Clone());
 
             return chests;
@@ -151,6 +182,37 @@ namespace SkeletonsAdventure.GameWorld
             return enemy;
         }
 
+        private static Dictionary<string, EntityAttack> GetEntityAttacksClone()
+        {
+            Dictionary<string, EntityAttack> attack = [];
+
+            foreach (KeyValuePair<string, EntityAttack> item in EntityAttacks)
+                attack.Add(item.Key, item.Value.Clone());
+
+            return attack;
+        }
+
+        private static Dictionary<string, Quest> GetQuestsClone()
+        {
+            Dictionary<string, Quest> Quest = [];
+
+            foreach (var quest in Quests)
+                Quest.Add(quest.Key, quest.Value.Clone());
+
+            return Quest;
+        }
+
+        private static Dictionary<string, NPC> GetNPCClone()
+        {
+            Dictionary<string, NPC> NPC = [];
+
+            foreach (var npc in NPCs)
+                NPC.Add(npc.Key, npc.Value.Clone());
+
+            return NPC;
+        }
+
+        //Create the player levels and their XP values
         public static void CreatePlayerLevelXPs() //TODO adjust the xp as needed
         {
             string levelsSavePath = Path.Combine(SavePath, "PlayerLevels.txt");
@@ -187,22 +249,25 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
+        //Get the level the player is at given the XP
         public static int GetPlayerLevelAtXP(int XP)
         {
             int level = 0;
 
-            foreach(var levelXP in PlayerLevelXPs)
-                if(XP > levelXP)
+            foreach (var levelXP in PlayerLevelXPs)
+                if (XP > levelXP)
                     level = PlayerLevelXPs.IndexOf(levelXP);
 
             return level;
         }
 
+        //Get the XP needed for the level
         public static int GetLevelXPAtLevel(int level)
         {
             return PlayerLevelXPs[level];
         }
 
+        //Load the data from the content folder
         private static void LoadFonts()
         {
             Arial10 = Content.Load<SpriteFont>("Fonts/Arial10");
@@ -250,6 +315,7 @@ namespace SkeletonsAdventure.GameWorld
             IceBulletData = Content.Load<AttackData>(@"AttackData/IceBullet");
         }
 
+        //Create the items from the content folder
         private static void CreateItems()
         {
             string[] folders = Directory.GetDirectories(@"Content/Items");
@@ -301,6 +367,7 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
+        //Create the enemies from the content folder
         private static void CreateEnemies()
         {
             //set the quantiy of the stackable items
@@ -322,7 +389,7 @@ namespace SkeletonsAdventure.GameWorld
                 items.Add(loot.GetItemData());
             }
 
-            //Create the entities from the data
+            //Create the entities from the data and add their items to their loot list
             EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"))
             {
                 Items = items
@@ -354,6 +421,7 @@ namespace SkeletonsAdventure.GameWorld
             Enemies.Add("Spider", spider);
         }
 
+        //Create the chests from the content folder
         private static void CreateChests() //TODO
         {
             GameManager.ItemsClone.TryGetValue("Coins", out GameItem Coins);
@@ -375,6 +443,44 @@ namespace SkeletonsAdventure.GameWorld
             string name = nameof(BasicChest);
             if (Chests.ContainsKey(name) == false)
                 Chests.Add(name, BasicChest);
+        }
+
+        private static void CreateAttacks()
+        {
+            //Create the attacks from the content folder
+            EntityAttack attack = new(BasicAttackData, SkeletonAttackTexture, null);
+            EntityAttacks.Add(attack.GetType().Name, attack);
+
+            FireBall fireball = new(FireBallData, FireBallTexture2, null);
+            EntityAttacks.Add(fireball.GetType().Name, fireball);
+
+            IcePillar icePillar = new(IcePillarData, IcePillarSpriteSheetTexture, null);
+            EntityAttacks.Add(icePillar.GetType().Name, icePillar);
+
+            IceBullet iceBullet = new(IceBulletData, IceBulletTexture, null);
+            EntityAttacks.Add(iceBullet.GetType().Name, iceBullet);
+        }
+
+        private static void CreateQuests() //TODO
+        {
+            QuestData questData = new()
+            {
+
+            };
+
+
+
+        }
+
+        private static void CreateNPCs() //TODO
+        {
+
+            NPCData data = new()
+            {
+
+            };
+
+
         }
     }
 }

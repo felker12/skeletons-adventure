@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.ECS;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Animations;
 using SkeletonsAdventure.Attacks;
@@ -10,7 +9,6 @@ using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
-using static Assimp.Metadata;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -27,6 +25,7 @@ namespace SkeletonsAdventure.Entities
         public int AttackCoolDownLength { get; protected set; } = 600; //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; }
         public EntityAttack EntityAttack { get; set; }
+        public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public int ID { get; protected set; } = 0;
         public int XP { get; set; } //Xp gained for killing the entity
         public int MaxHealth { get; set; }
@@ -38,8 +37,9 @@ namespace SkeletonsAdventure.Entities
         public int EntityLevel { get; protected set; }
         public Color BasicAttackColor { get; set; }
         public bool IsDead { get; set; } = false;
-        public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public bool HealthBarVisible { get; set; } = true;
+        public bool IsInvincible { get; set; } = false; //TODO add invincibility frames to the entity
+        public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
         public Vector2 PositionLastAttackedFrom { get; set; }
 
@@ -187,6 +187,7 @@ namespace SkeletonsAdventure.Entities
             Motion = Vector2.Zero;
             IsDead = false;
             AttackManager.ClearAttacks();
+            LastTimeAttacked = TimeSpan.Zero;
         }
 
         public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works

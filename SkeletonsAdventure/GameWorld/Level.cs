@@ -244,7 +244,7 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
         
-        private void ChestOpened(Chest chest) //TODO handle not taking items from chest if backpack is full
+        private void ChestOpened(Chest chest)
         {
             if (ChestMenu.Visible == false && chest.Info.Visible == true)
             {

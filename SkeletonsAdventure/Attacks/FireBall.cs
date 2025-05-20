@@ -23,6 +23,8 @@ namespace SkeletonsAdventure.Attacks
             Width = 32;
             Height = 28;
 
+            AnimatedAttack = true;
+
             SetFrames(3, Width, Height, 0, Height); 
         }
 

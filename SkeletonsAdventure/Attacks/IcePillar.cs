@@ -14,6 +14,8 @@ namespace SkeletonsAdventure.Attacks
             Width = Texture.Width;
             Height = Texture.Height;
             Frame = new(0, 0, Width, Height);
+
+            AnimatedAttack = true;
         }
 
         public IcePillar(IcePillar attack) : base(attack)

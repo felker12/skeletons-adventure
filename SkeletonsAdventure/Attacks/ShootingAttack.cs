@@ -12,8 +12,6 @@ namespace SkeletonsAdventure.Attacks
     {
         public List<Vector2> PathPoints { get; set; } = [];
 
-        private bool IsFirstFrame { get; set; } = true;
-
         public ShootingAttack(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {
         }

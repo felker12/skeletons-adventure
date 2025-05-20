@@ -17,7 +17,7 @@ namespace SkeletonsAdventure.Attacks
         public TimeSpan Duration { get; set; }
         public TimeSpan LastAttackTime { get; set; }
         public Vector2 AttackOffset { get; set; }
-        public Entity Source { get; protected set; }
+        public Entity Source { get; set; }
         public int AttackCoolDownLength { get; protected set; } //length of the delay between attacks in milliseconds
         public float DamageModifier { get; set; }
         public int ManaCost { get; set; }

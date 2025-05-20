@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CppNet;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -31,9 +32,9 @@ namespace SkeletonsAdventure.Entities
         public StatusBar ManaBar { get; set; } = new();
         public float XPModifier { get; set; } = 1.0f; //TODO
         public FireBall FireBall { get; set; }
-        public FireBall FireBall2 { get; set; }
+        //public FireBall FireBall2 { get; set; }
         public IcePillar IcePillar { get; set; }
-        public IcePillar IcePillar2 { get; set; }
+        //public IcePillar IcePillar2 { get; set; }
         public IceBullet IceBullet { get; set; } 
         public bool ManaBarVisible { get; set; } = true;
         public bool AimVisible { get; set; } = false;
@@ -70,26 +71,33 @@ namespace SkeletonsAdventure.Entities
             Info.Color = Color.Aqua;
 
             InitializeAttacks();
-        }
-
-        private void InitializeAttacks()
-        {
-            FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
-            FireBall2 ??= new(GameManager.FireBallData, GameManager.FireBallTexture2, this);
-            IcePillar ??= new(GameManager.IcePillarData, GameManager.IcePillarTexture, this);
-            IcePillar2 ??= new(GameManager.IcePillarData, GameManager.IcePillarSpriteSheetTexture, this, 62, 62);
-            IceBullet ??= new(GameManager.IceBulletData, GameManager.IceBulletTexture, this);
-
-            //TODO
-            FireBall2.AnimatedAttack = true;
 
             //TODO
             HealthBarVisible = false;
             ManaBarVisible = false;
+        }
+
+        private void InitializeAttacks()
+        {
+            //FireBall ??= new(GameManager.FireBallData, GameManager.FireBallTexture, this);
+            //FireBall2 ??= new(GameManager.FireBallData, GameManager.FireBallTexture2, this);
+            //IcePillar ??= new(GameManager.IcePillarData, GameManager.IcePillarTexture, this);
+            //IcePillar2 ??= new(GameManager.IcePillarData, GameManager.IcePillarSpriteSheetTexture, this, 62, 62);
+            //IceBullet ??= new(GameManager.IceBulletData, GameManager.IceBulletTexture, this);
+
+            FireBall = (FireBall)GameManager.EntityAttackClone["FireBall"];
+            IcePillar = (IcePillar)GameManager.EntityAttackClone["IcePillar"];
+            IceBullet = (IceBullet)GameManager.EntityAttackClone["IceBullet"];
+
+            FireBall.AnimatedAttack = true;
+            FireBall.Source = this;
+            IceBullet.Source = this;
+            IcePillar.Source = this;
+
 
             //TODO
-            IcePillar2.AnimatedAttack = true;
-            IcePillar2.SetFrames(4, 62, 62, 0, 62);
+            //IcePillar2.AnimatedAttack = true;
+            //IcePillar2.SetFrames(4, 62, 62, 0, 62);
         }
 
         public void UpdatePlayerData(PlayerData playerData)
@@ -249,30 +257,34 @@ namespace SkeletonsAdventure.Entities
             {
                 PerformAttack(gameTime, EntityAttack);
             }
+
+            //Keys 1 through 0 
+            //TODO change the Buttons to correct buttons to be used on a controller
             if (InputHandler.KeyReleased(Keys.D1) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformAttack(gameTime, FireBall);
+                PerformAimedAttack(gameTime, FireBall, GetMousePosition());
             }
             if (InputHandler.KeyReleased(Keys.D2) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformAimedAttack(gameTime, FireBall2, GetMousePosition());
+
+                PerformPopUpAttack(gameTime, IcePillar, GetMousePosition());
             }
             if (InputHandler.KeyReleased(Keys.D3) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformPopUpAttack(gameTime, IcePillar, GetMousePosition());
+                PerformAimedAttack(gameTime, IceBullet, GetMousePosition());
             }
             if (InputHandler.KeyReleased(Keys.D4) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformPopUpAttack(gameTime, IcePillar2, GetMousePosition());
+
             }
             if (InputHandler.KeyReleased(Keys.D5) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformAimedAttack(gameTime, IceBullet, GetMousePosition());
+
             }
         }
 

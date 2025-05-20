@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.Attacks
 {
