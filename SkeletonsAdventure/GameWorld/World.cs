@@ -81,6 +81,10 @@ namespace SkeletonsAdventure.GameWorld
             {
                 SetCurrentLevel(Levels["Testing"], Levels["Testing"].PlayerStartPosition);
             }
+            if (InputHandler.KeyReleased(Keys.NumPad7))
+            {
+                SetCurrentLevel(Levels["Level0_V2"], Levels["Level0_V2"].PlayerStartPosition);
+            }
             //=======================================================================
         }
 
@@ -184,6 +188,11 @@ namespace SkeletonsAdventure.GameWorld
             //Level 0
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
+            Levels.Add(level.Name, level);
+
+            //Level 0 v2
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_V2");
+            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
             Levels.Add(level.Name, level);
 
             //Initialize Levels
