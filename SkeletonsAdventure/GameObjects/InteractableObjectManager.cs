@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Tiled;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,11 @@ namespace SkeletonsAdventure.GameObjects
 
         public InteractableObjectManager() { }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Rectangle player)
         {
             foreach (var obj in InteractableObjects)
             {
-                obj.Update(gameTime);
+                obj.Update(gameTime, player);
             }
         }
 

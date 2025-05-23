@@ -107,18 +107,6 @@ namespace SkeletonsAdventure.GameWorld
             CreateAttacks();
             CreateQuests();
             CreateNPCs();
-
-            //TODO
-            foreach (KeyValuePair<string, EntityAttack> pair in EntityAttackClone)
-            {
-                string key = pair.Key;
-                EntityAttack attack = pair.Value;
-
-                // Use key and attack as needed
-                System.Diagnostics.Debug.WriteLine($"{key}: {attack}");
-            }
-
-
         }
 
         //Load data from saved files

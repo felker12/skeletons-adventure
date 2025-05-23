@@ -41,14 +41,13 @@ namespace SkeletonsAdventure.GameWorld
         public TiledMapObjectLayer InteractableObjectLayer { get; set; } = null;
         public LevelExit LevelExit { get; set; } = null;
         public LevelExit LevelEntrance { get; set; } = null;
-        internal InteractableObjectManager InteractableObjectManager { get; set; }
+        internal InteractableObjectManager InteractableObjectManager { get; set; } = new();
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
         private readonly Dictionary<string, Enemy> Enemies = [];
 
         public List<Rectangle> EnterExitLayerObjectRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for exits
-        public List<Rectangle> InteractableObjectLayerRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for InteractableObjects
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
@@ -75,21 +74,11 @@ namespace SkeletonsAdventure.GameWorld
 
             GraphicsDevice = graphics;
 
-
-            Rectangle rec;
             if(InteractableObjectLayer != null) //TODO 
             {
                 foreach (TiledMapObject obj in InteractableObjectLayer.Objects)
-                {
-                    rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
-                    InteractableObjectLayerRectangles.Add(rec);
-                }
+                    InteractableObjectManager.Add(new InteractableObject(obj));
             }
-
-
-
-
-
 
             //TODO controls are temporary and used for debugging
             title = new Label
@@ -129,19 +118,15 @@ namespace SkeletonsAdventure.GameWorld
             ChestManager.Draw(spriteBatch);
             EntityManager.Draw(spriteBatch);
             ControlManager.Draw(spriteBatch);
+            InteractableObjectManager.Draw(spriteBatch);
 
-            if(ChestMenu.Visible)
-            {
+            if (ChestMenu.Visible)
                 ChestMenu.Draw(spriteBatch);
-            }
 
             foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
-            {
                 spriteBatch.DrawRectangle(rec, Color.White, 1, 0); //used to see where the hitboxes are for the exits
-                
-            }
 
-            if(LevelEntrance is not null && LevelEntrance.ExitTextVisible)
+            if (LevelEntrance is not null && LevelEntrance.ExitTextVisible)
                 spriteBatch.DrawString(GameManager.Arial12, LevelEntrance.ExitText, LevelEntrance.ExitPosition, Color.White);
             if (LevelExit is not null && LevelExit.ExitTextVisible)
                 spriteBatch.DrawString(GameManager.Arial12, LevelExit.ExitText, LevelExit.ExitPosition, Color.White);
@@ -154,7 +139,7 @@ namespace SkeletonsAdventure.GameWorld
             EntityManager.Update(gameTime, totalTimeInWorld);
             EntityManager.CheckEntityBoundaryCollisions(TiledMap, _mapCollisionLayer);
 
-            Player = EntityManager.Player;
+            Player = EntityManager.Player; //TODO look into this
             Camera.Update(Player.Position);
 
             _tiledMapRenderer.Update(gameTime);
@@ -164,7 +149,9 @@ namespace SkeletonsAdventure.GameWorld
             CheckIfPlayerNearChest();
             ChestMenu.Update(true, Camera.Transformation);
 
-            if(LevelExit != null)
+            InteractableObjectManager.Update(gameTime, Player.GetRectangle);
+
+            if (LevelExit != null)
                 CheckIfPlayerIsNearExit(LevelExit, LevelExit.NextLevel.PlayerStartPosition);
 
             if (LevelEntrance != null)
