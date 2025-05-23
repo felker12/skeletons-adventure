@@ -15,7 +15,7 @@ using RpgLibrary.EntityClasses;
 
 namespace SkeletonsAdventure.States
 {
-    public class ExitScreen : State
+    internal class ExitScreen : State
     {
         private SettingsMenu SettingsMenu { get; set; }
 

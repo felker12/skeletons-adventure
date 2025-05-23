@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class Entity : AnimatedSprite
+    internal class Entity : AnimatedSprite
     {
         public int baseDefence, baseAttack, baseHealth, baseXP, weaponAttack, armourDefence;
         public Texture2D basicAttackTexture;

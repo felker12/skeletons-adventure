@@ -6,7 +6,7 @@ using RpgLibrary.AttackData;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class FireBall : ShootingAttack
+    internal class FireBall : ShootingAttack
     {
         public FireBall(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {

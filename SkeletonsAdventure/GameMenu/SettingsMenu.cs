@@ -5,7 +5,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameMenu
 {
-    public class SettingsMenu : TabbedMenu
+    internal class SettingsMenu : TabbedMenu
     {
         public BaseMenu Settings { get; private set; }
         public BaseMenu SaveMenu { get; set; }

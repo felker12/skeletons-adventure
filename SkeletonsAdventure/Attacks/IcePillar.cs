@@ -5,7 +5,7 @@ using RpgLibrary.AttackData;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class IcePillar : ShootingAttack
+    internal class IcePillar : ShootingAttack
     {
         private int AnimationFrames => _animations.Count;
 

@@ -7,7 +7,7 @@ using RpgLibrary.MenuClasses;
 
 namespace SkeletonsAdventure.GameMenu
 {
-    public class BaseMenu
+    internal class BaseMenu
     {
         public ControlManager ControlManager { get; set; } = new(GameManager.Arial20);
         protected ContentManager Content { get; set; } = GameManager.Content;

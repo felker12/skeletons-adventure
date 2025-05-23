@@ -4,9 +4,9 @@ using SkeletonsAdventure.Entities;
 
 namespace SkeletonsAdventure.GameObjects
 {
-    public class InteractableObject : AnimatedSprite
+    internal class InteractableObject : AnimatedSprite
     {
-
+        public string TypeOfObject { get; set; } = string.Empty;
 
         public InteractableObject() : base() { }
 

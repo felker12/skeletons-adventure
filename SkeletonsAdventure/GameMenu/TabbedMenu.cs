@@ -5,7 +5,7 @@ using SkeletonsAdventure.Controls;
 using System.Collections.Generic;
 namespace SkeletonsAdventure.GameMenu
 {
-    public class TabbedMenu : BaseMenu
+    internal class TabbedMenu : BaseMenu
     {
         public TabBar TabBar { get; set; } = new();
 

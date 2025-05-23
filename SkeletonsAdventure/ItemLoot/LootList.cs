@@ -4,7 +4,7 @@ using RpgLibrary.ItemClasses;
 
 namespace SkeletonsAdventure.ItemLoot
 {
-    public class LootList()
+    internal class LootList()
     {
         public List<GameItem> Loots { get; set; } = [];
 

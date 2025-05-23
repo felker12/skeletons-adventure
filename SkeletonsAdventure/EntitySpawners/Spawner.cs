@@ -5,7 +5,7 @@ using SkeletonsAdventure.Entities;
 
 namespace SkeletonsAdventure.EntitySpawners
 {
-    public class Spawner(TiledMapTileLayer mapSpawnerLayer)
+    internal class Spawner(TiledMapTileLayer mapSpawnerLayer)
     {
         public TiledMapTileLayer TiledMapTileLayer { get; set; } = mapSpawnerLayer;
 

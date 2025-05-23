@@ -6,7 +6,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.States
 {
-    public abstract class State
+    internal abstract class State
     {
         protected ContentManager Content { get; set; }
         protected GraphicsDevice GraphicsDevice { get; set; }

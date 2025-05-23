@@ -12,7 +12,7 @@ using Assimp.Configs;
 
 namespace SkeletonsAdventure.States
 {
-    public class MenuScreen : State
+    internal class MenuScreen : State
     {
         public MenuScreen(Game1 game) : base(game)
         {

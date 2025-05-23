@@ -3,7 +3,7 @@ using RpgLibrary.ItemClasses;
 
 namespace SkeletonsAdventure.ItemClasses
 {
-    public class Backpack()
+    internal class Backpack()
     {
         public List<GameItem> Items { get; } = [];
         public static int Capacity { get; } = 76;

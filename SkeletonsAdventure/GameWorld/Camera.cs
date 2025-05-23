@@ -2,7 +2,7 @@
 
 namespace SkeletonsAdventure.GameWorld
 {
-    public class Camera(int screenW, int screenH)
+    internal class Camera(int screenW, int screenH)
     {
         private int _mapWidth, _mapHeight;
 

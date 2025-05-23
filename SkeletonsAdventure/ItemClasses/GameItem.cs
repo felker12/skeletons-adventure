@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace SkeletonsAdventure.ItemClasses
 {
-    public class GameItem
+    internal class GameItem
     {
         public Vector2 Position { get; set; }
         public Texture2D Image { get; }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SkeletonsAdventure.Quests
 {
-    public class QuestReward
+    internal class QuestReward
     {
         public int Gold { get; set; } = 0;
         public int Experience { get; set; } = 0;

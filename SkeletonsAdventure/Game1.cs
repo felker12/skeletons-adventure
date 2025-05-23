@@ -7,7 +7,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure
 {
-    public class Game1 : Game
+    internal class Game1 : Game
     {
         public static GraphicsDeviceManager Graphics { get; set; }
         public SpriteBatch SpriteBatch { get; private set; }

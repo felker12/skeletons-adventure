@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SkeletonsAdventure.Quests
 {
-    public class Quest
+    internal class Quest
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

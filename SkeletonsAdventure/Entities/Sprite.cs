@@ -6,7 +6,7 @@ using MonoGame.Extended;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class Sprite
+    internal class Sprite
     {
         public Texture2D Texture { get; set; }
         public Label Info { get; set; }

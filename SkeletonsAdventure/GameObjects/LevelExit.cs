@@ -4,7 +4,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameObjects
 {
-    public class LevelExit(TiledMapObject exit, Level nextLevel)
+    internal class LevelExit(TiledMapObject exit, Level nextLevel)
     {
         public Level NextLevel { get; set; } = nextLevel;
         public Vector2 ExitPosition { get; set; } = new(exit.Position.X, exit.Position.Y);

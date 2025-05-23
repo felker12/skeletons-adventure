@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class AnimatedSprite : Sprite
+    internal class AnimatedSprite : Sprite
     {
         protected Dictionary<AnimationKey, SpriteAnimation> _animations;
 

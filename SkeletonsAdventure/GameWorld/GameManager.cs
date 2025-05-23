@@ -19,7 +19,7 @@ using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {
-    public class GameManager
+    internal class GameManager
     {
         //SpriteFonts
         public static SpriteFont Arial10 { get; private set; }

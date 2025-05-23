@@ -6,7 +6,7 @@ using RpgLibrary.ItemClasses;
 
 namespace SkeletonsAdventure.ItemLoot
 {
-    public class DroppedLootManager()
+    internal class DroppedLootManager()
     {
         public List<GameItem> Items { get; set; } = [];
         public List<GameItem> ItemToRemove { get; set; } = [];

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SkeletonsAdventure.States
 {
-    public class StateManager()
+    internal class StateManager()
     {
         public State CurrentState { get; private set; }
         private State _nextState;

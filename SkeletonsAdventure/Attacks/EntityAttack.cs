@@ -10,7 +10,7 @@ using System;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class EntityAttack : AnimatedSprite
+    internal class EntityAttack : AnimatedSprite
     {
         public int AttackLength { get; set; }
         public TimeSpan StartTime { get; set; }

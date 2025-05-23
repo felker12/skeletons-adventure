@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace SkeletonsAdventure.Engines
 {
     public enum MouseButton { Left, Middle, Right }
-    public class InputHandler : GameComponent
+    internal class InputHandler : GameComponent
     {
         #region Keyboard Field Region
         static KeyboardState keyboardState;

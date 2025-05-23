@@ -8,7 +8,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameObjects
 {
-    public class ChestManager(TiledMapTileLayer mapChestLayer)
+    internal class ChestManager(TiledMapTileLayer mapChestLayer)
     {
         public List<Chest> Chests { get; set; } = [];
         public TiledMapTileLayer TiledMapTileLayer { get; set; } = mapChestLayer;

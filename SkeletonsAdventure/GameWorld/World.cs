@@ -13,7 +13,7 @@ using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.GameWorld
 {
-    public class World
+    internal class World
     {
         public static Dictionary<string, Level> Levels { get; set; } = [];
         public static Level CurrentLevel { get; set; }
@@ -238,7 +238,7 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void FillPlayerBackback() //TODO this is for testing
         {
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 3; i++)
             {
                 foreach (GameItem item in GameManager.ItemsClone.Values)
                 {

@@ -6,7 +6,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.States
 {
-    public class StartScreen : State
+    internal class StartScreen : State
     {
         readonly Label title;
         readonly LinkLabel startLabel;

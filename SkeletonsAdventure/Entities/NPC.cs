@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class NPC : AnimatedSprite
+    internal class NPC : AnimatedSprite
     {
         List<Quest> Quests { get; set; } = [];
 

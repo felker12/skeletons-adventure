@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.GameMenu
 {
-    public class BackpackMenu : BaseMenu
+    internal class BackpackMenu : BaseMenu
     {
         public List<GameItem> Items { get; set; } = [];
 

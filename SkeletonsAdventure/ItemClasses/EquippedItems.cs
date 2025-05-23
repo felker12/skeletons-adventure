@@ -2,7 +2,7 @@
 
 namespace SkeletonsAdventure.ItemClasses
 {
-    public class EquippedItems()
+    internal class EquippedItems()
     {
         public GameItem Mainhand, Offhand, BodySlot, HeadSlot, HandsSlot, FeetSlot;
 

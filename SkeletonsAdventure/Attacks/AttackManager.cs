@@ -6,7 +6,7 @@ using SkeletonsAdventure.Entities;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class AttackManager(Entity entity)
+    internal class AttackManager(Entity entity)
     {
         public Entity SourceEntity { get; set; } = entity;
         public List<EntityAttack> Attacks { get; private set; } = [];

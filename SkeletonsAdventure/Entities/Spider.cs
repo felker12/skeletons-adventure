@@ -4,7 +4,7 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class Spider : Enemy
+    internal class Spider : Enemy
     {
         public Spider(EntityData entityData) : base(entityData)
         {

@@ -8,7 +8,7 @@ using System;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class Enemy : Entity
+    internal class Enemy : Entity
     {
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
 

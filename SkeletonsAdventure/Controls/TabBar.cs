@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class TabBar
+    internal class TabBar
     {
         public Dictionary<Tab, BaseMenu> TabMenus { get; private set; } = [];
         public Vector2 Position { get; set; } = new();

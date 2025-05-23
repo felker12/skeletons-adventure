@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.Attacks
 {
-    public class IceBullet : ShootingAttack
+    internal class IceBullet : ShootingAttack
     {
         public IceBullet(AttackData attackData, Texture2D texture, Entity source) : base(attackData, texture, source)
         {

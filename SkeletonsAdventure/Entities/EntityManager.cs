@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class EntityManager
+    internal class EntityManager
     {
         public List<Entity> Entities { get; }
         public DroppedLootManager DroppedLootManager { get; }

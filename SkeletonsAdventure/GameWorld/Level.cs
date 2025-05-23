@@ -18,7 +18,7 @@ using MonoGame.Extended;
 
 namespace SkeletonsAdventure.GameWorld
 {
-    public class Level
+    internal class Level
     {
         public Label title;
         public int Width { get; set; }
@@ -38,14 +38,17 @@ namespace SkeletonsAdventure.GameWorld
         public ChestManager ChestManager { get; set; }
         public PopUpBox ChestMenu { get; set; }
         public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
+        public TiledMapObjectLayer InteractableObjectLayer { get; set; } = null;
         public LevelExit LevelExit { get; set; } = null;
         public LevelExit LevelEntrance { get; set; } = null;
+        internal InteractableObjectManager InteractableObjectManager { get; set; }
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
         private readonly Dictionary<string, Enemy> Enemies = [];
 
         public List<Rectangle> EnterExitLayerObjectRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for exits
+        public List<Rectangle> InteractableObjectLayerRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for InteractableObjects
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
@@ -56,6 +59,7 @@ namespace SkeletonsAdventure.GameWorld
             _mapSpawnerLayer = tiledMap.GetLayer<TiledMapTileLayer>("SpawnerLayer");
             ChestManager = new(tiledMap.GetLayer<TiledMapTileLayer>("ChestLayer"));
             EnterExitLayer = TiledMap.GetLayer<TiledMapObjectLayer>("EnterExitLayer");
+            InteractableObjectLayer = TiledMap.GetLayer<TiledMapObjectLayer>("InteractableObjectLayerObjects");
 
             Width = tiledMap.WidthInPixels;
             Height = tiledMap.HeightInPixels;
@@ -70,6 +74,22 @@ namespace SkeletonsAdventure.GameWorld
             AddEnemys();
 
             GraphicsDevice = graphics;
+
+
+            Rectangle rec;
+            if(InteractableObjectLayer != null) //TODO 
+            {
+                foreach (TiledMapObject obj in InteractableObjectLayer.Objects)
+                {
+                    rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
+                    InteractableObjectLayerRectangles.Add(rec);
+                }
+            }
+
+
+
+
+
 
             //TODO controls are temporary and used for debugging
             title = new Label

@@ -16,7 +16,7 @@ using SkeletonsAdventure.GameUI;
 namespace SkeletonsAdventure.States
 {
     enum BoxSource { Game, Panel }
-    public class GameScreen : State
+    internal class GameScreen : State
     {
         private MouseState _mouseState, _lastMouseState;
         private Button equip, unequip, pickUp, drop, consume;

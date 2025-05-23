@@ -15,7 +15,7 @@ using Effect = RpgLibrary.ItemClasses.Effect;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class Player : Entity
+    internal class Player : Entity
     {
         private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, 
             bonusHealthFromLevel = 0, bonusManaFromLevel = 0,

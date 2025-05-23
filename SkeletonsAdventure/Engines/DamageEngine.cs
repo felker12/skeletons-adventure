@@ -3,7 +3,7 @@ using System;
 
 namespace SkeletonsAdventure.Engines
 {
-    public class DamageEngine() //TODO WIP
+    internal class DamageEngine() //TODO WIP
     {
         private readonly static Random rnd = new();
         public static int CalculateDamage(Entity attacker, Entity target)

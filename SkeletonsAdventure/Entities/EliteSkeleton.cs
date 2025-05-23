@@ -4,7 +4,7 @@ using RpgLibrary.EntityClasses;
 
 namespace SkeletonsAdventure.Entities
 {
-    public class EliteSkeleton : Skeleton
+    internal class EliteSkeleton : Skeleton
     {
         public EliteSkeleton(EntityData entityData) : base(entityData)
         {

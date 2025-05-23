@@ -8,7 +8,7 @@ using MonoGame.Extended;
 
 namespace SkeletonsAdventure.GameObjects
 {
-    public class Chest
+    internal class Chest
     {
         public ChestType ChestType {get; set; } //TODO add different types of chests
         public LootList Loot { get; set; } = new();

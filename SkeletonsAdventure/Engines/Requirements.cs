@@ -2,7 +2,7 @@
 
 namespace SkeletonsAdventure.Engines
 {
-    public class Requirements
+    internal class Requirements
     {
         public int Level { get; set; } = 0;
         public int Defence { get; set; } = 0;
