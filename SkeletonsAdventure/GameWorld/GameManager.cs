@@ -1,21 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Tiled;
+using RpgLibrary.AttackData;
 using RpgLibrary.EntityClasses;
+using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
+using RpgLibrary.QuestClasses;
+using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameObjects;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
+using SkeletonsAdventure.Quests;
 using System;
 using System.Collections.Generic;
-using RpgLibrary.GameObjectClasses;
 using System.IO;
 using System.Linq;
-using RpgLibrary.AttackData;
-using SkeletonsAdventure.Attacks;
-using RpgLibrary.QuestClasses;
-using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -458,6 +459,11 @@ namespace SkeletonsAdventure.GameWorld
 
 
 
+
+
+
+
+
         }
 
         private static void CreateNPCs() //TODO
@@ -469,6 +475,18 @@ namespace SkeletonsAdventure.GameWorld
             };
 
 
+        }
+
+        public static List<TiledMapTile> TileLocations(int id, TiledMapTile[] tiles)
+        {
+            List<TiledMapTile> mapTiles = [];
+
+            foreach (var tile in tiles)
+            {
+                if (tile.GlobalIdentifier == id)
+                    mapTiles.Add(tile);
+            }
+            return mapTiles;
         }
     }
 }

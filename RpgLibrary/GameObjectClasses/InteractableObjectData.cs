@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace RpgLibrary.GameObjectClasses
 {
@@ -9,6 +8,7 @@ namespace RpgLibrary.GameObjectClasses
         public Vector2 Position { get; set; } = new();
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
+        public bool Active { get; set; } = true;
 
         public InteractableObjectData() { }
 
@@ -18,9 +18,10 @@ namespace RpgLibrary.GameObjectClasses
             Position = interactableObjectData.Position;
             Width = interactableObjectData.Width;
             Height = interactableObjectData.Height;
+            Active = interactableObjectData.Active;
         }
 
-        public InteractableObjectData Clone()
+        public virtual InteractableObjectData Clone()
         {
             return new InteractableObjectData(this);
         }

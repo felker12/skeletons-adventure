@@ -11,7 +11,9 @@ using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using System;
+using System.Collections.Generic;
 using Effect = RpgLibrary.ItemClasses.Effect;
+using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -38,6 +40,8 @@ namespace SkeletonsAdventure.Entities
         public IceBullet IceBullet { get; set; } 
         public bool ManaBarVisible { get; set; } = true;
         public bool AimVisible { get; set; } = false;
+        public List<Quest> ActiveQuests { get; set; } = [];
+        public List<Quest> CompletedQuests { get; set; } = [];
 
         public Player() : base()
         {
@@ -94,7 +98,6 @@ namespace SkeletonsAdventure.Entities
             IceBullet.Source = this;
             IcePillar.Source = this;
 
-
             //TODO
             //IcePillar2.AnimatedAttack = true;
             //IcePillar2.SetFrames(4, 62, 62, 0, 62);
@@ -109,6 +112,8 @@ namespace SkeletonsAdventure.Entities
             Mana = playerData.mana;
             MaxMana = playerData.maxMana;
             StatusPoints = playerData.statusPoints;
+
+            //TODO update active quests and completed quests
         }
 
         public PlayerData GetPlayerData()

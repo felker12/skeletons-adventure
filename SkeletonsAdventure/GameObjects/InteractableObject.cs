@@ -6,15 +6,15 @@ using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameObjects
 {
     internal class InteractableObject : AnimatedSprite
     {
         public string TypeOfObject { get; set; } = string.Empty;
+        public bool Active { get; set; } = true;
 
-        public InteractableObject(TiledMapObject obj) : base() 
+        public InteractableObject(TiledMapObject obj) : base()
         {
             Position = new Vector2(obj.Position.X, obj.Position.Y);
             Width = (int)obj.Size.Width;
@@ -23,16 +23,17 @@ namespace SkeletonsAdventure.GameObjects
             if (obj.Properties.TryGetValue("TypeOfObject", out TiledMapPropertyValue value))
                 TypeOfObject = value.ToString();
 
-            Info.Position = Position;
-            Info.Text = "Press R to Interact";
-            Info.Visible = false;
-            Info.Color = Color.Orange;
+            Initialize();
         }
 
         public InteractableObject(InteractableObject obj) : base()
         {
             TypeOfObject = obj.TypeOfObject;
             Info = obj.Info;
+            Active = obj.Active;
+            Width = obj.Width;
+            Height = obj.Height;
+            Position = obj.Position;
 
             //Info.Position = Position;
             //Info.Text = "Press R to Interact";
@@ -40,24 +41,46 @@ namespace SkeletonsAdventure.GameObjects
             //Info.Color = Color.Orange;
         }
 
+        public InteractableObject(InteractableObjectData obj)
+        {
+            TypeOfObject = obj.TypeOfObject;
+            Active = obj.Active;
+            Width = obj.Width;
+            Height = obj.Height;
+            Position = obj.Position;
+
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            Info.Position = Position;
+            Info.Text = "Press R to Interact";
+            Info.Visible = false;
+            Info.Color = Color.Orange;
+        }
+
         public void Update(GameTime gameTime, Rectangle player)
         {
             //base.Update(gameTime);
 
-            CheckPlayerNear(player);
+            if (CheckPlayerNear(player))
+            {
+                HandleInput();
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             //base.Draw(spriteBatch);
 
-            if(Info.Visible)
+            if (Info.Visible)
                 Info.Draw(spriteBatch);
 
             spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
         }
 
-        public InteractableObject Clone()
+        public virtual InteractableObject Clone()
         {
             return new InteractableObject(this);
         }
@@ -69,27 +92,38 @@ namespace SkeletonsAdventure.GameObjects
                 TypeOfObject = TypeOfObject,
                 Position = Position,
                 Width = Width,
-                Height = Height
+                Height = Height,
+                Active = Active,
             };
         }
 
-        public void CheckPlayerNear(Rectangle player)
+        public bool CheckPlayerNear(Rectangle player)
         {
-            if(GetRectangle.Intersects(player))
+            if(Active)
             {
-                Info.Visible = true;
+                if (GetRectangle.Intersects(player))
+                    Info.Visible = true;
+                else
+                    Info.Visible = false;
+            }
 
-                if (InputHandler.KeyReleased(Keys.R) ||
-                    InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
-                {
-                    //TODO add the interaction logic here
-                    System.Diagnostics.Debug.WriteLine($"Interacting with {TypeOfObject} at {Position}");
-                }
-            }
-            else
+            return Info.Visible;
+        }
+
+        public virtual void HandleInput()
+        {
+            // This method can be overridden in derived classes to handle specific input logic
+            if (InputHandler.KeyReleased(Keys.R) || InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
             {
-                Info.Visible = false;
+                Interact();
             }
+        }
+
+        public virtual void Interact()
+        {
+            // This method can be overridden in derived classes to provide specific interaction logic
+            System.Diagnostics.Debug.WriteLine($"Interacting with {TypeOfObject} at {Position}" +
+                $", of type {this.GetType()}");
         }
     }
 }

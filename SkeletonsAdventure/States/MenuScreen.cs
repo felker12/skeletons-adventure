@@ -60,7 +60,6 @@ namespace SkeletonsAdventure.States
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
             WorldData worldData;
-            //TabbedMenuData tabbedMenuData;
             MenuManagerData gameScreenMenuData;
             TabbedMenuData exitScreenData;
 

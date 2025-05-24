@@ -238,22 +238,10 @@
 /processorParam:TextureFormat=Color
 /build:TiledFiles/BackpackBackground.png
 
-#begin TiledFiles/BackpackBackground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:TiledFiles/BackpackBackground.png
-
-#begin TiledFiles/Level0_V2.tmx
+#begin TiledFiles/Level0_Old.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
-/build:TiledFiles/Level0_V2.tmx
+/build:TiledFiles/Level0_Old.tmx
 
 #begin TiledFiles/Level0.tmx
 /importer:TiledMapImporter
@@ -265,30 +253,15 @@
 /processor:TiledMapProcessor
 /build:TiledFiles/Level0.tmx
 
-#begin TiledFiles/Level1.tmx
+#begin TiledFiles/Level1_Old.tmx
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
-/build:TiledFiles/Level1.tmx
-
-#begin TiledFiles/Level1.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:TiledFiles/Level1.tmx
+/build:TiledFiles/Level1_Old.tmx
 
 #begin TiledFiles/ProjectUtumno_full.tsx
 /importer:TiledMapTilesetImporter
 /processor:TiledMapTilesetProcessor
 /build:TiledFiles/ProjectUtumno_full.tsx
-
-#begin TiledFiles/ProjectUtumno_full.tsx
-/importer:TiledMapTilesetImporter
-/processor:TiledMapTilesetProcessor
-/build:TiledFiles/ProjectUtumno_full.tsx
-
-#begin TiledFiles/SidePanel.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:TiledFiles/SidePanel.tmx
 
 #begin TiledFiles/SidePanel.tmx
 /importer:TiledMapImporter
@@ -350,16 +323,6 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:TiledFiles/Testing.tmx
-
-#begin TiledFiles/Testing.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:TiledFiles/Testing.tmx
-
-#begin TiledFiles/TestLevel.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:TiledFiles/TestLevel.tmx
 
 #begin TiledFiles/TestLevel.tmx
 /importer:TiledMapImporter

@@ -10,6 +10,7 @@ using RpgLibrary.DataClasses;
 using RpgLibrary.WorldClasses;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -20,6 +21,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Player Player { get; set; }
         public static Camera Camera { get; set; }
         public GameTime TotalTimeInWorld { get; set; }
+
 
         private TiledMap _tiledMap;
         private readonly ContentManager _content;
@@ -67,11 +69,11 @@ namespace SkeletonsAdventure.GameWorld
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
             {
-                SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level0"], Levels["Level0_Old"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad1))
             {
-                SetCurrentLevel(Levels["Level1"], Levels["Level1"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level1"], Levels["Level1_Old"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad9))
             {
@@ -83,7 +85,7 @@ namespace SkeletonsAdventure.GameWorld
             }
             if (InputHandler.KeyReleased(Keys.NumPad7))
             {
-                SetCurrentLevel(Levels["Level0_V2"], Levels["Level0_V2"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             }
             //=======================================================================
         }
@@ -181,17 +183,17 @@ namespace SkeletonsAdventure.GameWorld
             Levels.Add(level.Name, level);
 
             //Level 1
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1_Old");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
             //Level 0
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_Old");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
             //Level 0 v2
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_V2");
+            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
             Levels.Add(level.Name, level);
 
@@ -206,7 +208,7 @@ namespace SkeletonsAdventure.GameWorld
         {
             level.Player = Player;
             level.Camera = Camera;
-            if(level.EntityManager.Player != null)
+            if(level.EntityManager.Player != null)//TODO fix this
             {
                 level.EntityManager.Remove(Player);
             }

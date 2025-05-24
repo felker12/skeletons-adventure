@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Tiled;
 using SkeletonsAdventure.Entities;
+using SkeletonsAdventure.GameWorld;
+
 
 namespace SkeletonsAdventure.EntitySpawners
 {
@@ -15,7 +17,7 @@ namespace SkeletonsAdventure.EntitySpawners
             int width = TiledMapTileLayer.TileWidth;
             int height = TiledMapTileLayer.TileHeight;
 
-            foreach (TiledMapTile tile in TileLocations(Enemy.ID, TiledMapTileLayer.Tiles))
+            foreach (TiledMapTile tile in GameManager.TileLocations(Enemy.ID, TiledMapTileLayer.Tiles))
             {
                 Enemy enemy = Enemy.Clone();
                 enemy.Position = new Vector2(tile.X * width - enemy.Width, tile.Y * height - enemy.Height);
@@ -23,18 +25,6 @@ namespace SkeletonsAdventure.EntitySpawners
                 enemies.Add(enemy);
             }
             return enemies;
-        }
-
-        public static List<TiledMapTile> TileLocations(int id, TiledMapTile[] tiles)
-        {
-            List<TiledMapTile> spawnerTiles = [];
-
-            foreach (var tile in tiles)
-            {
-                if (tile.GlobalIdentifier == id)
-                    spawnerTiles.Add(tile);
-            }
-            return spawnerTiles;
         }
     }
 }

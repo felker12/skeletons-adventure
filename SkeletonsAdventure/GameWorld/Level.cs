@@ -15,6 +15,7 @@ using SkeletonsAdventure.GameObjects;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
 using MonoGame.Extended;
+using MonoGame.Extended.Graphics.Effects;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -51,6 +52,8 @@ namespace SkeletonsAdventure.GameWorld
 
         public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
         {
+            GraphicsDevice = graphics;
+            this.Enemies = Enemies;
             TiledMap = tiledMap;
             _tiledMapRenderer = new(graphics);
             _tiledMapRenderer.LoadMap(TiledMap);
@@ -66,19 +69,11 @@ namespace SkeletonsAdventure.GameWorld
 
             ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
-            this.Enemies = Enemies;
-
             EntityManager = new();
             EnemyLevels = enemyLevels;
             AddEnemys();
 
-            GraphicsDevice = graphics;
-
-            if(InteractableObjectLayer != null) //TODO 
-            {
-                foreach (TiledMapObject obj in InteractableObjectLayer.Objects)
-                    InteractableObjectManager.Add(new InteractableObject(obj));
-            }
+            LoadInteractableObjects();
 
             //TODO controls are temporary and used for debugging
             title = new Label
@@ -195,6 +190,31 @@ namespace SkeletonsAdventure.GameWorld
 
                         EntityManager.Add(en);
                     }
+                }
+            }
+        }
+
+        private void LoadInteractableObjects()
+        {
+            if (InteractableObjectLayer != null) //TODO 
+            {
+                foreach (TiledMapObject obj in InteractableObjectLayer.Objects)
+                {
+                    if (obj.Properties.TryGetValue("TypeOfObject", out TiledMapPropertyValue value))
+                    {
+                        if (value == "Quest")
+                        {
+                            InteractableObjectManager.Add(new QuestNode(obj).Clone());
+                            break;
+                        }
+                        else if (value == "Resource")
+                        {
+                            InteractableObjectManager.Add(new ResourceNode(obj));
+                            break;
+                        }
+                    }
+
+                    InteractableObjectManager.Add(new InteractableObject(obj));
                 }
             }
         }
