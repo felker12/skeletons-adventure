@@ -60,7 +60,7 @@ namespace SkeletonsAdventure.GameObjects
             Info.Color = Color.Orange;
         }
 
-        public void Update(GameTime gameTime, Rectangle player)
+        public virtual void Update(GameTime gameTime, Rectangle player)
         {
             //base.Update(gameTime);
 

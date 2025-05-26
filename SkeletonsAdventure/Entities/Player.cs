@@ -190,12 +190,12 @@ namespace SkeletonsAdventure.Entities
 
             TotalXP += (int)(XpGained * XPModifier);
 
-            EntityLevel = GameManager.GetPlayerLevelAtXP(TotalXP);
+            Level = GameManager.GetPlayerLevelAtXP(TotalXP);
 
-            if (EntityLevel > currentLevel)
+            if (Level > currentLevel)
             {
                 PlayerStatAdjustmentForLevel();
-                while (currentLevel < EntityLevel) //perform the levelUp event for every level gained
+                while (currentLevel < Level) //perform the levelUp event for every level gained
                 {
                     currentLevel++;
                     LevelUP();
@@ -212,7 +212,7 @@ namespace SkeletonsAdventure.Entities
         private void PlayerStatAdjustmentForLevel()
         {
             //TODO
-            levelModifier = EntityLevel * 2;
+            levelModifier = Level * 2;
 
             bonusAttackFromLevel = levelModifier;
             bonusDefenceFromLevel = levelModifier;

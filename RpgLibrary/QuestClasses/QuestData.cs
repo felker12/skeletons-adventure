@@ -7,8 +7,10 @@ namespace RpgLibrary.QuestClasses
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool IsCompleted { get; set; } = false;
+        public bool Active { get; set; } = false;
         public RequirementData RequirementData { get; set; } = new();
-        public List<QuestData> SubQuests { get; set; } = new();
+        public List<string> RequiredQuestNameData { get; set; } = new();
+        public List<BaseTaskData> BaseTasksData { get; set; } = new();
 
         public QuestData() { }
 
@@ -18,7 +20,8 @@ namespace RpgLibrary.QuestClasses
             Description = data.Description;
             IsCompleted = data.IsCompleted;
             RequirementData = data.RequirementData;
-            SubQuests = data.SubQuests;
+            RequiredQuestNameData = data.RequiredQuestNameData;
+            BaseTasksData = data.BaseTasksData;
         }
 
         public QuestData Clone()
@@ -31,7 +34,27 @@ namespace RpgLibrary.QuestClasses
             return $"Name: {Name}, " +
                 $"Description: {Description}, " +
                 $"IsCompleted: {IsCompleted}, " +
-                $"Requirements: {RequirementData.ToString()}"; //TODO test this 
+                $"Requirements: {RequirementData}, " + //TODO test this 
+                $"Required Quests: {RequiredQuestsToString()}," +
+                $"Tasks: {TasksToString()}"; 
+        }
+
+        public string TasksToString()
+        {
+            if (BaseTasksData == null || BaseTasksData.Count == 0)
+                return "No tasks.";
+
+            return string.Join(", ", BaseTasksData.Select(t => t.ToString()));
+        }
+
+        public string RequiredQuestsToString()
+        {
+            string requiredQuests = string.Empty;
+
+            if (RequiredQuestNameData == null || RequiredQuestNameData.Count == 0)
+                return "No required quests.";
+
+            return string.Join(", ", RequiredQuestNameData.Select(q => q));
         }
     }
 }

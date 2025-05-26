@@ -18,7 +18,7 @@ namespace SkeletonsAdventure.Entities
             {
                 Position = Position,
                 LootList = LootList,
-                EntityLevel = this.EntityLevel,
+                Level = this.Level,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor
             };

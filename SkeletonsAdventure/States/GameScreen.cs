@@ -111,8 +111,8 @@ namespace SkeletonsAdventure.States
         {
             World.Update(gameTime);
 
-            int lvlXP = GameManager.GetLevelXPAtLevel(Player.EntityLevel);
-            int nextLvlXP = GameManager.GetLevelXPAtLevel(Player.EntityLevel + 1);
+            int lvlXP = GameManager.GetLevelXPAtLevel(Player.Level);
+            int nextLvlXP = GameManager.GetLevelXPAtLevel(Player.Level + 1);
             int playerXPToLevel = nextLvlXP - lvlXP;
             int playerXPSinceLastLevel = Player.TotalXP - lvlXP;
 

@@ -39,23 +39,23 @@ namespace SkeletonsAdventure.Entities
         public void SetEnemyLevel(MinMaxPair levels)
         {
             LevelRange = levels;
-            EntityLevel = levels.GetRandomNumberInRange();
+            Level = levels.GetRandomNumberInRange();
             EnemyStatAdjustmentForLevel();
         }
 
         public void SetEnemyLevel(int level) //TODO
         {
-            EntityLevel = level;
+            Level = level;
             EnemyStatAdjustmentForLevel();
         }
 
         private void EnemyStatAdjustmentForLevel()
         {
-            MaxHealth = baseHealth + EntityLevel * 2;
+            MaxHealth = baseHealth + Level * 2;
             Health = MaxHealth;
-            Defence = baseDefence + EntityLevel * 2;
-            Attack = baseAttack + EntityLevel * 2;
-            XP = baseXP + EntityLevel * 2;
+            Defence = baseDefence + Level * 2;
+            Attack = baseAttack + Level * 2;
+            XP = baseXP + Level * 2;
 
             if(IsElite)
             {

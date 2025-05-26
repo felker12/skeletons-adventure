@@ -1,17 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.Controls;
-using System;
-using System.IO;
-using RpgLibrary.DataClasses;
-using RpgLibrary.WorldClasses;
-using SkeletonsAdventure.GameWorld;
-using RpgLibrary.MenuClasses;
-using SkeletonsAdventure.GameMenu;
 using RpgLibrary.AttackData;
-using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.Attacks;
+using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
+using RpgLibrary.MenuClasses;
+using RpgLibrary.QuestClasses;
+using RpgLibrary.WorldClasses;
+using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Controls;
+using SkeletonsAdventure.Entities;
+using SkeletonsAdventure.GameMenu;
+using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.Quests;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SkeletonsAdventure.States
 {

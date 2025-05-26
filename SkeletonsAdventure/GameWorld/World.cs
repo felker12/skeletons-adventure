@@ -21,6 +21,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Player Player { get; set; }
         public static Camera Camera { get; set; }
         public GameTime TotalTimeInWorld { get; set; }
+        public static QuestManager QuestManager { get; set; } = GameManager.QuestManager;
 
 
         private TiledMap _tiledMap;

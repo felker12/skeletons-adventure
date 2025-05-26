@@ -34,7 +34,7 @@ namespace SkeletonsAdventure.Entities
         public int Attack { get; set; }
         public int RespawnTime { get; set; } //time in seconds until the entity respawns
         public LootList LootList { get; set; }
-        public int EntityLevel { get; protected set; }
+        public int Level { get; protected set; }
         public Color BasicAttackColor { get; set; }
         public bool IsDead { get; set; } = false;
         public bool HealthBarVisible { get; set; } = true;
@@ -49,7 +49,7 @@ namespace SkeletonsAdventure.Entities
             baseAttack = 1;
             baseDefence = 1;
             baseXP = 1;
-            EntityLevel = 0;
+            Level = 0;
             Health = baseHealth;
             Position = new();
 
@@ -105,7 +105,7 @@ namespace SkeletonsAdventure.Entities
 
 
             //TODO
-            Info.Text += "\nLevel = " + EntityLevel;
+            Info.Text += "\nLevel = " + Level;
             //Info.Text += "\nLast Attacked = " + (gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds;
         }
 
@@ -130,7 +130,7 @@ namespace SkeletonsAdventure.Entities
                 position = Position,
                 respawnPosition = RespawnPosition,
                 baseXP = baseXP,
-                entityLevel = EntityLevel,
+                entityLevel = Level,
                 isDead = IsDead,
                 lastDeathTime = lastDeathTime,
                 Items = LootList.GetLootListItemData()
@@ -145,7 +145,7 @@ namespace SkeletonsAdventure.Entities
             baseAttack = entityData.baseAttack;
             baseDefence = entityData.baseDefence;
             baseXP = entityData.baseXP;
-            EntityLevel = entityData.entityLevel;
+            Level = entityData.entityLevel;
             Health = entityData.currentHealth;
             IsDead = entityData.isDead;
 
@@ -162,7 +162,7 @@ namespace SkeletonsAdventure.Entities
             Entity entity = new(GetEntityData())
             {
                 Position = Position,
-                EntityLevel = this.EntityLevel,
+                Level = this.Level,
                 SpriteColor = this.SpriteColor
             };
             return entity;

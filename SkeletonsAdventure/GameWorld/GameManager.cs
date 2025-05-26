@@ -84,6 +84,7 @@ namespace SkeletonsAdventure.GameWorld
         //Miscellaneous Variables
         public static Game1 Game { get; private set; }
         public static GraphicsDevice GraphicsDevice { get; private set; }
+        public static QuestManager QuestManager { get; set; } = new();
         public static ContentManager Content { get; private set; }
         public static List<int> PlayerLevelXPs { get; private set; } = [];
 
@@ -452,17 +453,72 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void CreateQuests() //TODO
         {
-            QuestData questData = new()
-            {
 
+            BaseTask task = new()
+            {
+                RequiredSteps = 3,
+                TaskToComplete = "Kill that thing"
+            };
+            BaseTask task2 = new()
+            {
+                RequiredSteps = 5,
+                TaskToComplete = "Do that thing"
+            };
+            BaseTask task3 = new()
+            {
+                RequiredSteps = 5,
+                TaskToComplete = "talk to that person"
+            };
+
+            List<BaseTask> Tasks = [task, task2, task3];
+
+            Requirements requirements = new()
+            {
+                Attack = 0,
+                Defence = 0,
+                Level = 0,
             };
 
 
+            Quest quest = new()
+            {
+                Name = "Test Quest",
+                Description = "This is a test quest to test the quest system.",
+                Requirements = requirements,
+                Tasks = Tasks,
+            };
+
+            Quest quest2 = quest.Clone();
+            quest2.Name = "Test2";
+            quest2.RequiredQuestNames.Add(quest.Name);
+
+            Quest quest3 = new(quest.GetQuestData())
+            {
+                Name = "Test3",
+            };
 
 
+            QuestData questData = quest.GetQuestData();
+
+            //XnaSerializer.Serialize<QuestData>(savePath + @"\TestQuest.xml", questData);
+            //System.Diagnostics.Debug.WriteLine(questData.ToString());
+            //System.Diagnostics.Debug.WriteLine("quest2: " + quest2.ToString());
+            //System.Diagnostics.Debug.WriteLine("quest2 required quests: " + quest2.RequiredQuestsToString());
+            //System.Diagnostics.Debug.WriteLine("quest2 data: " + quest2.GetQuestData().ToString());
+            //System.Diagnostics.Debug.WriteLine("quest3 data: " + quest3.GetQuestData().ToString());
+            //System.Diagnostics.Debug.WriteLine("quest3 tasks: " + quest3.TasksToString());
+
+            List<Quest> quests = [quest, quest2, quest3];
+
+            foreach(var q in quests)
+            {
+                Quests.Add(q.Name, q);
+            }
 
 
-
+            //TODO
+            System.Diagnostics.Debug.WriteLine(QuestManager.ToString());
+            System.Diagnostics.Debug.WriteLine("Data: \n" + QuestManager.GetQuestManagerData().ToString());
 
         }
 
