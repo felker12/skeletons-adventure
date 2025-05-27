@@ -2,12 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
+using SkeletonsAdventure.Entities;
+using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.Quests;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.GameObjects
 {
@@ -44,16 +43,16 @@ namespace SkeletonsAdventure.GameObjects
 
         }
 
-        public QuestNode(QuestNodeData obj) : base(obj)
+        public QuestNode(QuestNodeData data) : base(data)
         {
 
         }
 
-        public override void Update(GameTime gameTime, Rectangle player)
+        public override void Update(GameTime gameTime, Player player)
         {
             if (CheckPlayerNear(player))
             {
-                HandleInput();
+                HandleInput(player);
             }
         }
 
@@ -66,11 +65,49 @@ namespace SkeletonsAdventure.GameObjects
         {
             return new(this);
         }
-        public override void Interact()
+
+        public override void Interact(Player player)
         {
             //TODO
-            System.Diagnostics.Debug.WriteLine($"Overrided logic");
-            base.Interact();
+            string quests = Quests.Count == 0 ? "No available quests." : string.Join(", ", Quests.Select(q => q.Name));
+            System.Diagnostics.Debug.WriteLine($"Available quests: {quests}");
+
+            foreach (var quest in Quests)
+            {
+                if (quest.PlayerRequirementsMet(player) is false)
+                    continue;
+
+                //check if the quest is already completed or active
+                bool completed = false;
+                bool active = false;
+
+                foreach (Quest completedQuest in player.CompletedQuests)
+                {
+                    if (completedQuest.Name == quest.Name)
+                    {
+                        completed = true;
+                        break;
+                    }
+                }
+
+                if (completed)
+                    continue; // Skip to the next quest if this one is already completed
+
+                foreach (Quest activeQuest in player.ActiveQuests)
+                {
+                    if (activeQuest.Name == quest.Name)
+                    {
+                        active = true;
+                        break;
+                    }
+                }
+
+                if (active)
+                    continue; // Skip to the next quest if this one is already active
+
+                //add the quest to the player's active quests if all the requirements are met
+                player.ActiveQuests.Add(quest);
+            }
         }
     }
 }

@@ -8,16 +8,28 @@ namespace RpgLibrary.QuestClasses
 {
     public class BaseTaskData
     {
-        public int RequiredSteps { get; set; } = 1;
-        public int CompletedSteps { get; set; } = 0;
+        public int RequiredAmount { get; set; } = 1;
+        public int CompletedAmount { get; set; } = 0;
         public string TaskToComplete { get; set; } = string.Empty;
 
 
         public BaseTaskData() { }
 
+        public BaseTaskData(BaseTaskData data)
+        {
+            RequiredAmount = data.RequiredAmount;
+            CompletedAmount = data.CompletedAmount;
+            TaskToComplete = data.TaskToComplete;
+        }
+
+        public virtual BaseTaskData Clone()
+        {
+            return new BaseTaskData(this);
+        }
+
         public override string ToString()
         {
-            return $"{CompletedSteps} out of {RequiredSteps} steps completed for task: {TaskToComplete}";
+            return $"{CompletedAmount} out of {RequiredAmount} completed for task: {TaskToComplete}";
         }
     }
 }

@@ -453,24 +453,29 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void CreateQuests() //TODO
         {
-
             BaseTask task = new()
             {
-                RequiredSteps = 3,
+                RequiredAmount = 3,
                 TaskToComplete = "Kill that thing"
             };
             BaseTask task2 = new()
             {
-                RequiredSteps = 5,
+                RequiredAmount = 5,
                 TaskToComplete = "Do that thing"
             };
             BaseTask task3 = new()
             {
-                RequiredSteps = 5,
+                RequiredAmount = 5,
                 TaskToComplete = "talk to that person"
             };
+            SlayTask slayTask = new()
+            {
+                RequiredAmount = 10,
+                TaskToComplete = "Slay Entity: Skeleton",
+                MonsterToSlay = "Skeleton",
+            };
 
-            List<BaseTask> Tasks = [task, task2, task3];
+            List <BaseTask> Tasks = [task, task2, task3, slayTask];
 
             Requirements requirements = new()
             {
@@ -478,7 +483,6 @@ namespace SkeletonsAdventure.GameWorld
                 Defence = 0,
                 Level = 0,
             };
-
 
             Quest quest = new()
             {
@@ -498,7 +502,7 @@ namespace SkeletonsAdventure.GameWorld
             };
 
 
-            QuestData questData = quest.GetQuestData();
+            //Q0.uestData questData = quest.GetQuestData();
 
             //XnaSerializer.Serialize<QuestData>(savePath + @"\TestQuest.xml", questData);
             //System.Diagnostics.Debug.WriteLine(questData.ToString());
@@ -508,7 +512,17 @@ namespace SkeletonsAdventure.GameWorld
             //System.Diagnostics.Debug.WriteLine("quest3 data: " + quest3.GetQuestData().ToString());
             //System.Diagnostics.Debug.WriteLine("quest3 tasks: " + quest3.TasksToString());
 
-            List<Quest> quests = [quest, quest2, quest3];
+
+            Quest SlaySkeletons = new()
+            {
+                Name = "SlaySkeletons",
+                Description = "Kill 10 skeletons",
+                Requirements = requirements
+            };
+            SlaySkeletons.Tasks.Add(slayTask);
+
+
+            List<Quest> quests = [quest, quest2, quest3, SlaySkeletons];
 
             foreach(var q in quests)
             {

@@ -37,7 +37,6 @@ namespace SkeletonsAdventure.Quests
             return CheckRequirements(player.Level, player.Defence, player.Attack);
         }
 
-
         public bool CheckRequirements(int level, int defence, int attack)
         {
             return level >= Level && defence >= Defence && attack >= Attack;

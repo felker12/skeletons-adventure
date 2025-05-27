@@ -60,13 +60,13 @@ namespace SkeletonsAdventure.GameObjects
             Info.Color = Color.Orange;
         }
 
-        public virtual void Update(GameTime gameTime, Rectangle player)
+        public virtual void Update(GameTime gameTime, Player player)
         {
             //base.Update(gameTime);
 
             if (CheckPlayerNear(player))
             {
-                HandleInput();
+                HandleInput(player);
             }
         }
 
@@ -97,11 +97,11 @@ namespace SkeletonsAdventure.GameObjects
             };
         }
 
-        public bool CheckPlayerNear(Rectangle player)
+        public bool CheckPlayerNear(Player player)
         {
             if(Active)
             {
-                if (GetRectangle.Intersects(player))
+                if (GetRectangle.Intersects(player.GetRectangle))
                     Info.Visible = true;
                 else
                     Info.Visible = false;
@@ -110,20 +110,20 @@ namespace SkeletonsAdventure.GameObjects
             return Info.Visible;
         }
 
-        public virtual void HandleInput()
+        public virtual void HandleInput(Player player)
         {
             // This method can be overridden in derived classes to handle specific input logic
             if (InputHandler.KeyReleased(Keys.R) || InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
             {
-                Interact();
+                Interact(player);
             }
         }
 
-        public virtual void Interact()
+        public virtual void Interact(Player player)
         {
             // This method can be overridden in derived classes to provide specific interaction logic
             System.Diagnostics.Debug.WriteLine($"Interacting with {TypeOfObject} at {Position}" +
-                $", of type {this.GetType()}");
+                $", of type {this.GetType().Name}");
         }
     }
 }

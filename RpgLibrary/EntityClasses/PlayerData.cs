@@ -1,20 +1,35 @@
 ﻿using RpgLibrary.ItemClasses;
+using RpgLibrary.QuestClasses;
 
 namespace RpgLibrary.EntityClasses
 {
     public class PlayerData : EntityData
     {
-        public int totalXP;
-        public int baseMana;
-        public int mana;
-        public int maxMana;
-        public int statusPoints;
+        public int totalXP = 0;
+        public int baseMana = 0;
+        public int mana = 0;
+        public int maxMana = 0;
+        public int statusPoints = 0;
         public List<ItemData> backpack = new();
+        public List<QuestData> activeQuests = new();
+        public List<QuestData> completedQuests = new();
+
         public PlayerData() { }
 
-        public PlayerData(EntityData entityData)
+        public PlayerData(PlayerData entityData) : base(entityData)
         {
-            SetEntityData(entityData);
+            totalXP = entityData.totalXP;
+            baseMana = entityData.baseMana;
+            mana = entityData.mana;
+            maxMana = entityData.maxMana;
+            statusPoints = entityData.statusPoints;
+            backpack = entityData.backpack;
+            activeQuests = entityData.activeQuests;
+            completedQuests = entityData.completedQuests;
+        }
+
+        public PlayerData(EntityData entityData) : base(entityData)
+        {
         }
 
         public override string ToString()

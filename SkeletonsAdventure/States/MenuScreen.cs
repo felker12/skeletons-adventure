@@ -85,8 +85,6 @@ namespace SkeletonsAdventure.States
             UpdateMenusFromSave(gameScreenMenuData);
             Game.ExitScreen.SetSettingsMenuData(exitScreenData);
 
-            System.Diagnostics.Debug.WriteLine("ExitScreenData: " + exitScreenData); //TODO
-
             //return to the game screen
             StateManager.ChangeState(Game.GameScreen);
         }

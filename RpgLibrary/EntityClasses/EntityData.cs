@@ -16,29 +16,7 @@ namespace RpgLibrary.EntityClasses
 
         public EntityData() { }
 
-        public EntityData(int id, string type, int baseHealth, int baseDefence, int baseAttack, int entityLevel, int baseXP, 
-            Vector2? position, Vector2? respawnPosition, int currentHealth, bool isDead, TimeSpan? lastDeathTime)
-        {
-            this.id = id;
-            this.type = type;
-            this.baseHealth = baseHealth;
-            this.baseDefence = baseDefence;
-            this.baseAttack = baseAttack;
-            this.entityLevel = entityLevel;
-            this.baseXP = baseXP;
-            this.position = position;
-            this.respawnPosition = respawnPosition;
-            this.currentHealth = currentHealth;
-            this.isDead = isDead;
-            this.lastDeathTime = lastDeathTime;
-        }
-
         public EntityData(EntityData entityData)
-        {
-            SetEntityData(entityData);
-        }
-
-        public void SetEntityData(EntityData entityData)
         {
             id = entityData.id;
             type = entityData.type;
@@ -57,11 +35,7 @@ namespace RpgLibrary.EntityClasses
 
         public virtual EntityData Clone()
         {
-            EntityData data = new(id, type, baseHealth, baseDefence, baseAttack, entityLevel, baseXP,
-                position, respawnPosition, currentHealth, isDead, lastDeathTime)
-            {
-            };
-            return data;
+            return new(this);
         }
 
         public override string ToString()

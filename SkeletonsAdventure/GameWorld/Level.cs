@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
 using MonoGame.Extended;
 using MonoGame.Extended.Graphics.Effects;
+using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -144,7 +145,7 @@ namespace SkeletonsAdventure.GameWorld
             CheckIfPlayerNearChest();
             ChestMenu.Update(true, Camera.Transformation);
 
-            InteractableObjectManager.Update(gameTime, Player.GetRectangle);
+            InteractableObjectManager.Update(gameTime, Player);
 
             if (LevelExit != null)
                 CheckIfPlayerIsNearExit(LevelExit, LevelExit.NextLevel.PlayerStartPosition);
@@ -204,8 +205,28 @@ namespace SkeletonsAdventure.GameWorld
                     {
                         if (value == "Quest")
                         {
-                            InteractableObjectManager.Add(new QuestNode(obj).Clone());
-                            break;
+                            if (obj.Properties.TryGetValue("Quests", out TiledMapPropertyValue quests))
+                            {
+                                System.Diagnostics.Debug.WriteLine($"Quests: {quests}");
+
+                                QuestNode questNode = new(obj);
+                                string[] Quests = quests.ToString().Split(',', StringSplitOptions.TrimEntries);
+
+                                foreach (string questName in Quests)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Quest: {questName}");
+                                    if (GameManager.QuestsClone.TryGetValue(questName, out Quest quest))
+                                    {
+                                        questNode.Quests.Add(quest.Clone()); //Clone the quest to prevent modifying the original quest
+                                        continue;
+                                    }
+                                    else
+                                        System.Diagnostics.Debug.WriteLine($"Quest {questName} not found in GameManager.QuestsClone");
+                                }
+
+                                InteractableObjectManager.Add(questNode);
+                                break;
+                            }
                         }
                         else if (value == "Resource")
                         {

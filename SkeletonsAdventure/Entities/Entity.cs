@@ -100,10 +100,6 @@ namespace SkeletonsAdventure.Entities
                 HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
             }
 
-
-
-
-
             //TODO
             Info.Text += "\nLevel = " + Level;
             //Info.Text += "\nLast Attacked = " + (gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds;
@@ -178,6 +174,12 @@ namespace SkeletonsAdventure.Entities
 
             LastTimeAttacked = gameTime.TotalGameTime;
             PositionLastAttackedFrom = attack.Source.GetCenter();
+
+
+            if(attack.Source is Player player)
+            {
+                //check if there is an active task that requires the player to kill this entity
+            }
         }
 
         public virtual void Respawn()

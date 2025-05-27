@@ -114,6 +114,8 @@ namespace SkeletonsAdventure.Entities
             StatusPoints = playerData.statusPoints;
 
             //TODO update active quests and completed quests
+            ActiveQuests = playerData.activeQuests.ConvertAll(q => new Quest(q));
+            CompletedQuests = playerData.completedQuests.ConvertAll(q => new Quest(q));
         }
 
         public PlayerData GetPlayerData()
@@ -125,7 +127,9 @@ namespace SkeletonsAdventure.Entities
                 mana = Mana,
                 maxMana = MaxMana,
                 statusPoints = StatusPoints,
-                backpack = Backpack.GetBackpackData()
+                backpack = Backpack.GetBackpackData(),
+                activeQuests = ActiveQuests.ConvertAll(q => q.GetQuestData()),
+                completedQuests = CompletedQuests.ConvertAll(q => q.GetQuestData())
             };
         }
 
@@ -177,6 +181,12 @@ namespace SkeletonsAdventure.Entities
             //Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
 
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
+            Info.Text += "\nActive quests: " + ActiveQuests.Count;
+
+            if (ActiveQuests.Count > 0 && ActiveQuests[0].ActiveTask != null)
+                Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
+            else
+                Info.Text += "\nActive task: None";
         }
 
         public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)

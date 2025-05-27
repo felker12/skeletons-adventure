@@ -1,4 +1,5 @@
 ﻿using RpgLibrary.QuestClasses;
+using SkeletonsAdventure.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace SkeletonsAdventure.Quests
         public Requirements Requirements { get; set; } = new();
         public List<string> RequiredQuestNames { get; set; } = [];
         public List<BaseTask> Tasks { get; set; } = [];
+        public BaseTask ActiveTask => GetActiveTask();
 
         public Quest() { }
 
@@ -35,13 +37,21 @@ namespace SkeletonsAdventure.Quests
             Active = data.Active;
             Requirements = new Requirements(data.RequirementData);
 
-            RequiredQuestNames = [.. data.RequiredQuestNameData.Select(q => q)]; //TODO test this
+            RequiredQuestNames = [.. data.RequiredQuestNameData.Select(q => q)];
             Tasks = [.. data.BaseTasksData.Select(t => new BaseTask(t))];
         }
 
         public Quest Clone()
         {
             return new Quest(this);
+        }
+
+        public bool PlayerRequirementsMet(Player player)
+        {
+            if (Requirements != null)
+                return Requirements.CheckRequirements(player);
+            else
+                return true; // No requirements means the quest is available
         }
 
         public void StartQuest()
@@ -67,6 +77,11 @@ namespace SkeletonsAdventure.Quests
                 RequiredQuestNameData = RequiredQuestNames,
                 BaseTasksData = GetBaseTaskDatas(),
             };
+        }
+
+        public BaseTask GetActiveTask()
+        {
+            return Tasks.FirstOrDefault(t => !t.IsCompleted);
         }
 
         public override string ToString()
@@ -100,7 +115,7 @@ namespace SkeletonsAdventure.Quests
             if (Tasks == null || Tasks.Count == 0)
                 return "No tasks.";
 
-            return string.Join(", ", Tasks.Select(t => t.ToString()));
+            return string.Join(",\n", Tasks.Select(t => t.ToString()));
         }
     }
 }

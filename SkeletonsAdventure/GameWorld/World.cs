@@ -21,7 +21,6 @@ namespace SkeletonsAdventure.GameWorld
         public static Player Player { get; set; }
         public static Camera Camera { get; set; }
         public GameTime TotalTimeInWorld { get; set; }
-        public static QuestManager QuestManager { get; set; } = GameManager.QuestManager;
 
 
         private TiledMap _tiledMap;
@@ -70,11 +69,11 @@ namespace SkeletonsAdventure.GameWorld
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
             {
-                SetCurrentLevel(Levels["Level0"], Levels["Level0_Old"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level0_Old"], Levels["Level0_Old"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad1))
             {
-                SetCurrentLevel(Levels["Level1"], Levels["Level1_Old"].PlayerStartPosition);
+                SetCurrentLevel(Levels["Level1_Old"], Levels["Level1_Old"].PlayerStartPosition);
             }
             if (InputHandler.KeyReleased(Keys.NumPad9))
             {
