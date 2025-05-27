@@ -7,7 +7,9 @@ using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
+using SkeletonsAdventure.Quests;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
@@ -175,11 +177,8 @@ namespace SkeletonsAdventure.Entities
             LastTimeAttacked = gameTime.TotalGameTime;
             PositionLastAttackedFrom = attack.Source.GetCenter();
 
-
-            if(attack.Source is Player player)
-            {
-                //check if there is an active task that requires the player to kill this entity
-            }
+            if (Health < 1)
+                EntityDied(attack);
         }
 
         public virtual void Respawn()
@@ -190,6 +189,25 @@ namespace SkeletonsAdventure.Entities
             IsDead = false;
             AttackManager.ClearAttacks();
             LastTimeAttacked = TimeSpan.Zero;
+        }
+
+        public virtual void EntityDied(EntityAttack attack) //TODO change how the timer for dead entities works
+        {
+            if (attack.Source is Player player)
+            {
+                //check if there is an active task that requires the player to kill this entity
+                foreach (Quest quest in player.ActiveQuests)
+                {
+                    if (quest is null || quest.ActiveTask is null)
+                        continue;
+
+                    if (quest.ActiveTask is not null && quest.ActiveTask is SlayTask slayTask)
+                    {
+                        if (slayTask.GetEntityToSlay().GetType() == this.GetType())
+                            slayTask.ProgressTask();
+                    }
+                }
+            }
         }
 
         public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works

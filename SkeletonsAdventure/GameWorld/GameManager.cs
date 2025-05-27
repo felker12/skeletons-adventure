@@ -501,26 +501,21 @@ namespace SkeletonsAdventure.GameWorld
                 Name = "Test3",
             };
 
-
-            //Q0.uestData questData = quest.GetQuestData();
-
-            //XnaSerializer.Serialize<QuestData>(savePath + @"\TestQuest.xml", questData);
-            //System.Diagnostics.Debug.WriteLine(questData.ToString());
-            //System.Diagnostics.Debug.WriteLine("quest2: " + quest2.ToString());
-            //System.Diagnostics.Debug.WriteLine("quest2 required quests: " + quest2.RequiredQuestsToString());
-            //System.Diagnostics.Debug.WriteLine("quest2 data: " + quest2.GetQuestData().ToString());
-            //System.Diagnostics.Debug.WriteLine("quest3 data: " + quest3.GetQuestData().ToString());
-            //System.Diagnostics.Debug.WriteLine("quest3 tasks: " + quest3.TasksToString());
-
+            QuestReward questReward = new()
+            {
+                Gold = 100,
+                XP = 50,
+                Items = [.. ItemsClone.Values] // Convert the Dictionary to a List
+            };
 
             Quest SlaySkeletons = new()
             {
                 Name = "SlaySkeletons",
                 Description = "Kill 10 skeletons",
-                Requirements = requirements
+                Requirements = requirements,
+                Reward = questReward,
             };
             SlaySkeletons.Tasks.Add(slayTask);
-
 
             List<Quest> quests = [quest, quest2, quest3, SlaySkeletons];
 
@@ -529,10 +524,20 @@ namespace SkeletonsAdventure.GameWorld
                 Quests.Add(q.Name, q);
             }
 
-
             //TODO
-            System.Diagnostics.Debug.WriteLine(QuestManager.ToString());
-            System.Diagnostics.Debug.WriteLine("Data: \n" + QuestManager.GetQuestManagerData().ToString());
+            //System.Diagnostics.Debug.WriteLine(SlaySkeletons.ToString());
+            //System.Diagnostics.Debug.WriteLine(QuestManager.ToString());
+            //System.Diagnostics.Debug.WriteLine("Data: \n" + QuestManager.GetQuestManagerData().ToString());
+
+
+            foreach(GameItem item in ItemsClone.Values)
+            {
+                //System.Diagnostics.Debug.WriteLine(item.ToString()); 
+                //System.Diagnostics.Debug.WriteLine("baseItem: " + item.BaseItem.ToString());
+
+                //System.Diagnostics.Debug.WriteLine(item.Clone().ToString());
+                //System.Diagnostics.Debug.WriteLine("baseItem: " + item.BaseItem.Clone().ToString());
+            }
 
         }
 

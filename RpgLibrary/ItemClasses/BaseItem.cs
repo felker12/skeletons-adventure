@@ -43,17 +43,20 @@ namespace RpgLibrary.ItemClasses
 
         public virtual BaseItem Clone()
         {
-            BaseItem item = new(this);
-            return item;
+            return new(this);
         }
         public override string ToString()
         {
-            string itemString = Name + ", ";
-            itemString += Type + ", ";
-            itemString += Description + ", ";
-            itemString += Price.ToString() + ", ";
-            itemString += Weight.ToString();
-            return itemString;
+            return $"Name: {Name}, " +
+                   $"Description: {Description}, " +
+                   $"Type: {Type}, " +
+                   $"Equipped: {Equipped}, " +
+                   $"Weight: {Weight}, " +
+                   $"Price: {Price}, " +
+                   $"Stackable: {Stackable}, " +
+                   $"Quantity: {Quantity}, " +
+                   $"SourceRectangle: {SourceRectangle}, " +
+                   $"TexturePath: {TexturePath}";
         }
     }
 }

@@ -5,7 +5,6 @@ using MonoGame.Extended;
 using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
-using System.Xml.Linq;
 
 namespace SkeletonsAdventure.ItemClasses
 {
@@ -44,6 +43,27 @@ namespace SkeletonsAdventure.ItemClasses
                 ToolTip.Text = BaseItem.Name;
         }
 
+        public GameItem(BaseItem item)
+        {
+            BaseItem = item.Clone();
+            Image = GameManager.Content.Load<Texture2D>(@$"{item.TexturePath}");
+            SourceRectangle = item.SourceRectangle;
+            Type = item.Type;
+            Quantity = item.Quantity;
+
+            ToolTip = new()
+            {
+                Visible = false,
+                SpriteFont = GameManager.Arial10,
+                Color = Color.Aqua
+            };
+
+            if (BaseItem.Stackable)
+                ToolTip.Text = Quantity + " " + BaseItem.Name;
+            else
+                ToolTip.Text = BaseItem.Name;
+        }
+
         public GameItem(GameItem gameItem)
         {
             if(gameItem.BaseItem.Stackable)
@@ -69,8 +89,7 @@ namespace SkeletonsAdventure.ItemClasses
 
         public GameItem Clone()
         {
-            GameItem item = new(this);
-            return item;
+            return new GameItem(this);
         }
 
         public void Update()
@@ -122,7 +141,8 @@ namespace SkeletonsAdventure.ItemClasses
                 Equipped = BaseItem.Equipped,
                 Stackable = BaseItem.Stackable,
                 Position = Position,
-                Quantity = Quantity
+                Quantity = Quantity,
+                TexturePath = BaseItem.TexturePath,
             };
 
             if (BaseItem is Consumable)

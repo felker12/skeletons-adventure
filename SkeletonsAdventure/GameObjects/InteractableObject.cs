@@ -34,11 +34,6 @@ namespace SkeletonsAdventure.GameObjects
             Width = obj.Width;
             Height = obj.Height;
             Position = obj.Position;
-
-            //Info.Position = Position;
-            //Info.Text = "Press R to Interact";
-            //Info.Visible = false;
-            //Info.Color = Color.Orange;
         }
 
         public InteractableObject(InteractableObjectData obj)

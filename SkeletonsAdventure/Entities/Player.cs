@@ -174,6 +174,8 @@ namespace SkeletonsAdventure.Entities
                 justLeveled = false;
             }
 
+            CheckQuestCompleted();
+
             //TODO delete this
             //Info.Text += $"\nXP = {TotalXP}";
             //Info.Text += $"\nAttack = {Attack}\nDefence = {Defence}";
@@ -187,6 +189,55 @@ namespace SkeletonsAdventure.Entities
                 Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
             else
                 Info.Text += "\nActive task: None";
+        }
+
+        public void CheckQuestCompleted()
+        {
+            List<Quest> completed = [];
+            if (ActiveQuests != null && ActiveQuests.Count > 0)
+                foreach (Quest quest in ActiveQuests)
+                {
+                    quest.CheckTasksCompleted();
+
+                    if (quest.IsCompleted)
+                        completed.Add(quest);
+                }
+
+            if (completed.Count > 0)
+            {
+                foreach (Quest quest in completed)
+                {
+                    ActiveQuests.Remove(quest);
+                    CompletedQuests.Add(quest);
+                    GiveQuestReward(quest.Reward);
+                }
+            }
+        }
+
+        public void GiveQuestReward(QuestReward reward)
+        {
+            GainXp(reward.XP);
+            //TODO give gold and items
+
+            GameItem coins = new(GameManager.ItemsClone["Coins"])
+            {
+                Quantity = reward.Gold
+            };
+
+            //if the items wont fit in the backpack, drop them on the ground
+            if (Backpack.AddItem(coins) is false)
+            {
+                World.CurrentLevel.EntityManager.DroppedLootManager.Add(coins, Position);
+            }
+            
+            foreach (GameItem item in reward.Items)
+            {
+                if (Backpack.AddItem(item.Clone()) is false)
+                {
+                    World.CurrentLevel.EntityManager.DroppedLootManager.Add(item.Clone(), Position);
+                }
+            }
+
         }
 
         public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)

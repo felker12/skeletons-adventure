@@ -20,7 +20,7 @@ namespace SkeletonsAdventure.GameWorld
         public static Level CurrentLevel { get; set; }
         public static Player Player { get; set; }
         public static Camera Camera { get; set; }
-        public GameTime TotalTimeInWorld { get; set; }
+        public static GameTime TotalTimeInWorld { get; set; }
 
 
         private TiledMap _tiledMap;
@@ -58,7 +58,7 @@ namespace SkeletonsAdventure.GameWorld
         }
 
 
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
             TotalTimeInWorld.TotalGameTime += gameTime.ElapsedGameTime;
 
@@ -95,7 +95,7 @@ namespace SkeletonsAdventure.GameWorld
             CurrentLevel.Draw(spriteBatch);
         }
 
-        public void LoadWorldDataIntoLevels(WorldData worldData)
+        public static void LoadWorldDataIntoLevels(WorldData worldData)
         {
             Player.UpdatePlayerData(worldData.PlayerData);
             LoadPlayerGameItemsFromGameData(worldData.PlayerData.backpack);
@@ -134,7 +134,7 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
-        public WorldData GetWorldData()
+        public static WorldData GetWorldData()
         {
             Dictionary<string, LevelData> levels = [];
             string name = string.Empty;

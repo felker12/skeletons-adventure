@@ -9,16 +9,16 @@ namespace RpgLibrary.QuestClasses
 {
     public class QuestRewardData
     {
+        public int XP { get; set; } = 0;
         public int Gold { get; set; } = 0;
-        public int Experience { get; set; } = 0;
         public List<ItemData> Items { get; set; } = new();
 
         public QuestRewardData() { }
 
         public QuestRewardData(QuestRewardData data)
         {
+            XP = data.XP;
             Gold = data.Gold;
-            Experience = data.Experience;
             Items = data.Items;
         }
 
@@ -29,8 +29,9 @@ namespace RpgLibrary.QuestClasses
 
         public override string ToString()
         {
-            return $"Gold: {Gold}, " +
-                $"Experience: {Experience}, " +
+            return
+                $"XP: {XP}, " +
+                $"Gold: {Gold}, " +
                 $"Items: {string.Join(", ", Items)}";
         }
     }

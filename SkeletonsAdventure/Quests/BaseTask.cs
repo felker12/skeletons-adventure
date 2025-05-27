@@ -49,7 +49,7 @@ namespace SkeletonsAdventure.Quests
             return new BaseTask(this); 
         }
 
-        public BaseTaskData GetBaseTaskData()
+        public virtual BaseTaskData GetBaseTaskData()
         {
             return new()
             {

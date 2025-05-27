@@ -9,6 +9,7 @@ namespace RpgLibrary.QuestClasses
         public bool IsCompleted { get; set; } = false;
         public bool Active { get; set; } = false;
         public RequirementData RequirementData { get; set; } = new();
+        public QuestRewardData RewardData { get; set; } = new();
         public List<string> RequiredQuestNameData { get; set; } = new();
         public List<BaseTaskData> BaseTasksData { get; set; } = new();
 
@@ -20,6 +21,7 @@ namespace RpgLibrary.QuestClasses
             Description = data.Description;
             IsCompleted = data.IsCompleted;
             RequirementData = data.RequirementData;
+            RewardData = data.RewardData;
             RequiredQuestNameData = data.RequiredQuestNameData;
             BaseTasksData = data.BaseTasksData;
         }
@@ -34,7 +36,8 @@ namespace RpgLibrary.QuestClasses
             return $"Name: {Name}, " +
                 $"Description: {Description}, " +
                 $"IsCompleted: {IsCompleted}, " +
-                $"Requirements: {RequirementData}, " + //TODO test this 
+                $"Requirements: {RequirementData}, " +
+                $"Rewards: {RewardData}, " + 
                 $"Required Quests: {RequiredQuestsToString()}," +
                 $"Tasks: {TasksToString()}"; 
         }

@@ -68,10 +68,6 @@ namespace SkeletonsAdventure.GameObjects
 
         public override void Interact(Player player)
         {
-            //TODO
-            string quests = Quests.Count == 0 ? "No available quests." : string.Join(", ", Quests.Select(q => q.Name));
-            System.Diagnostics.Debug.WriteLine($"Available quests: {quests}");
-
             foreach (var quest in Quests)
             {
                 if (quest.PlayerRequirementsMet(player) is false)
@@ -106,7 +102,7 @@ namespace SkeletonsAdventure.GameObjects
                     continue; // Skip to the next quest if this one is already active
 
                 //add the quest to the player's active quests if all the requirements are met
-                player.ActiveQuests.Add(quest);
+                player.ActiveQuests.Add(quest.Clone());
             }
         }
     }
