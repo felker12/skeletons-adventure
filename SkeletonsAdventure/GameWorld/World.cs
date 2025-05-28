@@ -10,7 +10,6 @@ using RpgLibrary.DataClasses;
 using RpgLibrary.WorldClasses;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
-using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.GameWorld
 {

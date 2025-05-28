@@ -1,4 +1,6 @@
 ﻿
+using RpgLibrary.QuestClasses;
+
 namespace RpgLibrary.ItemClasses
 {
     public class ItemDataManager
@@ -7,5 +9,6 @@ namespace RpgLibrary.ItemClasses
         public Dictionary<string, WeaponData> WeaponData { get; set; } = new();
         public Dictionary<string, ConsumableData> ConsumableData { get; set; } = new();
         public Dictionary<string, ItemData> ItemData { get; set; } = new();
+        public Dictionary<string, QuestData> QuestData { get; set; } = new();
     }
 }

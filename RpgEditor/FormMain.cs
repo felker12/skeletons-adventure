@@ -20,9 +20,11 @@ namespace RpgEditor
         RPG RPG { get; set; } = new();
         FormArmor? frmArmor;
         FormWeapon? frmWeapon;
+        FormQuest? frmQuest;
 
         public static string ItemPath { get; set; } = string.Empty;
         public static string GamePath { get; set; } = string.Empty;
+        public static string QuestPath { get; set; } = string.Empty;
 
         public FormMain()
         {
@@ -59,6 +61,7 @@ namespace RpgEditor
                         {
                             GamePath = Path.Combine(folderDialog.SelectedPath, "Game");
                             ItemPath = Path.Combine(GamePath, "Items");
+                            QuestPath = Path.Combine(GamePath, "Quests");
 
                             if (Directory.Exists(GamePath))
                                 throw new Exception("Selected directory already exists.");
@@ -66,6 +69,7 @@ namespace RpgEditor
                             Directory.CreateDirectory(GamePath);
                             Directory.CreateDirectory(ItemPath + @"\Armor");
                             Directory.CreateDirectory(ItemPath + @"\Weapon");
+                            Directory.CreateDirectory(QuestPath);
                             RPG = frmNewGame.RPG;
                             XnaSerializer.Serialize<RPG>(GamePath + @"\Game.xml", RPG);
                         }
@@ -75,6 +79,7 @@ namespace RpgEditor
                             return;
                         }
                         itemsToolStripMenuItem.Enabled = true;
+                        questsToolStripMenuItem.Enabled = true;
                     }
                 }
             }
@@ -82,9 +87,11 @@ namespace RpgEditor
 
         private void OpenGameToolStripMenuItem_Click(object? sender, EventArgs e)
         {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            folderDialog.Description = "Select Game folder";
-            folderDialog.SelectedPath = Application.StartupPath;
+            FolderBrowserDialog folderDialog = new()
+            {
+                Description = "Select Game folder",
+                SelectedPath = Application.StartupPath
+            };
             bool tryAgain = false;
             do
             {
@@ -135,6 +142,7 @@ namespace RpgEditor
                 {
                     XnaSerializer.Serialize<RPG>(GamePath + @"\Game.xml", RPG);
                     FormDetails.WriteItemData();
+                    FormDetails.WriteQuestData();
                 }
                 catch (Exception ex)
                 {
@@ -148,10 +156,12 @@ namespace RpgEditor
         {
             GamePath = Path.Combine(path, "Game");
             ItemPath = Path.Combine(GamePath, "Items");
+            QuestPath = Path.Combine(GamePath, "Quests");
 
             RPG = XnaSerializer.Deserialize<RPG>(GamePath + @"\Game.xml");
 
             FormDetails.ReadItemData();
+            FormDetails.ReadQuestData();
 
             PrepareForms();
         }
@@ -170,7 +180,15 @@ namespace RpgEditor
             };
             frmWeapon.FillListBox();
 
+            frmQuest ??= new()
+            {
+                MdiParent = this
+            };
+            frmQuest.FillListBox();
+
+
             itemsToolStripMenuItem.Enabled = true;
+            questsToolStripMenuItem.Enabled = true;
         }
 
         private void ExitGameToolStripMenuItem_Click(object? sender, EventArgs e)
@@ -198,5 +216,14 @@ namespace RpgEditor
             frmArmor.BringToFront();
         }
 
+        private void QuestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmQuest ??= new()
+            {
+                MdiParent = this
+            };
+            frmQuest.Show();
+            frmQuest.BringToFront();
+        }
     }
 }

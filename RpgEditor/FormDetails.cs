@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RpgLibrary.DataClasses;
 using RpgLibrary.ItemClasses;
+using RpgLibrary.QuestClasses;
 
 namespace RpgEditor
 {
     public partial class FormDetails : Form
     {
         public static ItemDataManager ItemDataManager { get; private set; } = new();
+
         public FormDetails()
         {
             InitializeComponent();
@@ -57,22 +59,28 @@ namespace RpgEditor
             //TODO do the same for consumables
         }
 
+        public static void WriteQuestData()
+        {
+            foreach (string s in ItemDataManager.QuestData.Keys)
+            {
+                XnaSerializer.Serialize<QuestData>(
+                FormMain.QuestPath + "Quests" + s + ".xml",
+                ItemDataManager.QuestData[s]);
+            }
+        }
+
         public static void ReadItemData()
         {
             ItemDataManager = new ItemDataManager();
 
-            string[] fileNames = Directory.GetFiles(
-            Path.Combine(FormMain.ItemPath, "Armor"),
-            "*.xml");
+            string[] fileNames = Directory.GetFiles(Path.Combine(FormMain.ItemPath, "Armor"), "*.xml");
             foreach (string s in fileNames)
             {
                 ArmorData armorData = XnaSerializer.Deserialize<ArmorData>(s);
                 ItemDataManager.ArmorData.Add(armorData.Name, armorData);
             }
 
-            fileNames = Directory.GetFiles(
-            Path.Combine(FormMain.ItemPath, "Weapon"),
-            "*.xml");
+            fileNames = Directory.GetFiles(Path.Combine(FormMain.ItemPath, "Weapon"), "*.xml");
             foreach (string s in fileNames)
             {
                 WeaponData weaponData = XnaSerializer.Deserialize<WeaponData>(s);
@@ -80,6 +88,17 @@ namespace RpgEditor
             }
 
             //TODO do the same for consumables
+
+        }
+
+        public static void ReadQuestData()
+        {
+            string[] fileNames = Directory.GetFiles(Path.Combine(FormMain.QuestPath), "*.xml");
+            foreach (string s in fileNames)
+            {
+                QuestData questData = XnaSerializer.Deserialize<QuestData>(s);
+                ItemDataManager.QuestData.Add(questData.Name, questData);
+            }
         }
     }
 }
