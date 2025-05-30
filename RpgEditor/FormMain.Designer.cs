@@ -39,13 +39,14 @@
             armorToolStripMenuItem = new ToolStripMenuItem();
             questsToolStripMenuItem = new ToolStripMenuItem();
             questToolStripMenuItem = new ToolStripMenuItem();
+            entitiesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { gameToolStripMenuItem, itemsToolStripMenuItem, questsToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { gameToolStripMenuItem, itemsToolStripMenuItem, questsToolStripMenuItem, entitiesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
@@ -121,9 +122,17 @@
             // questToolStripMenuItem
             // 
             questToolStripMenuItem.Name = "questToolStripMenuItem";
-            questToolStripMenuItem.Size = new Size(224, 26);
+            questToolStripMenuItem.Size = new Size(130, 26);
             questToolStripMenuItem.Text = "Quest";
             questToolStripMenuItem.Click += QuestToolStripMenuItem_Click;
+            // 
+            // entitiesToolStripMenuItem
+            // 
+            entitiesToolStripMenuItem.Enabled = false;
+            entitiesToolStripMenuItem.Name = "entitiesToolStripMenuItem";
+            entitiesToolStripMenuItem.Size = new Size(71, 24);
+            entitiesToolStripMenuItem.Text = "Entities";
+            entitiesToolStripMenuItem.Click += entitiesToolStripMenuItem_Click;
             // 
             // FormMain
             // 
@@ -155,5 +164,6 @@
         private ToolStripMenuItem armorToolStripMenuItem;
         private ToolStripMenuItem questsToolStripMenuItem;
         private ToolStripMenuItem questToolStripMenuItem;
+        private ToolStripMenuItem entitiesToolStripMenuItem;
     }
 }

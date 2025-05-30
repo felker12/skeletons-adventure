@@ -41,6 +41,7 @@
             lbTasks = new ListBox();
             btnOK = new Button();
             btnCancel = new Button();
+            btnAddTask = new Button();
             lblName = new Label();
             lblDescription = new Label();
             lblLevel = new Label();
@@ -90,7 +91,7 @@
             // 
             cbActive.AutoSize = true;
             cbActive.Enabled = false;
-            cbActive.Location = new Point(423, 55);
+            cbActive.Location = new Point(548, 20);
             cbActive.Margin = new Padding(3, 4, 3, 4);
             cbActive.Name = "cbActive";
             cbActive.Size = new Size(72, 24);
@@ -145,7 +146,7 @@
             // lbRequiredQuests
             // 
             lbRequiredQuests.FormattingEnabled = true;
-            lbRequiredQuests.Location = new Point(423, 147);
+            lbRequiredQuests.Location = new Point(423, 107);
             lbRequiredQuests.Margin = new Padding(3, 4, 3, 4);
             lbRequiredQuests.Name = "lbRequiredQuests";
             lbRequiredQuests.Size = new Size(228, 124);
@@ -154,7 +155,7 @@
             // lbTasks
             // 
             lbTasks.FormattingEnabled = true;
-            lbTasks.Location = new Point(423, 301);
+            lbTasks.Location = new Point(423, 346);
             lbTasks.Margin = new Padding(3, 4, 3, 4);
             lbTasks.Name = "lbTasks";
             lbTasks.Size = new Size(228, 124);
@@ -162,7 +163,7 @@
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(423, 453);
+            btnOK.Location = new Point(114, 393);
             btnOK.Margin = new Padding(3, 4, 3, 4);
             btnOK.Name = "btnOK";
             btnOK.Size = new Size(103, 40);
@@ -172,7 +173,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(549, 453);
+            btnCancel.Location = new Point(114, 464);
             btnCancel.Margin = new Padding(3, 4, 3, 4);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(103, 40);
@@ -180,13 +181,23 @@
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
+            // btnAddTask
+            // 
+            btnAddTask.Location = new Point(491, 478);
+            btnAddTask.Margin = new Padding(3, 4, 3, 4);
+            btnAddTask.Name = "btnAddTask";
+            btnAddTask.Size = new Size(103, 40);
+            btnAddTask.TabIndex = 13;
+            btnAddTask.Text = "Add Task";
+            btnAddTask.UseVisualStyleBackColor = true;
+            // 
             // lblName
             // 
             lblName.AutoSize = true;
             lblName.Location = new Point(14, 20);
             lblName.Name = "lblName";
             lblName.Size = new Size(52, 20);
-            lblName.TabIndex = 13;
+            lblName.TabIndex = 14;
             lblName.Text = "Name:";
             // 
             // lblDescription
@@ -195,7 +206,7 @@
             lblDescription.Location = new Point(14, 55);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(88, 20);
-            lblDescription.TabIndex = 14;
+            lblDescription.TabIndex = 15;
             lblDescription.Text = "Description:";
             // 
             // lblLevel
@@ -204,7 +215,7 @@
             lblLevel.Location = new Point(14, 149);
             lblLevel.Name = "lblLevel";
             lblLevel.Size = new Size(76, 20);
-            lblLevel.TabIndex = 15;
+            lblLevel.TabIndex = 16;
             lblLevel.Text = "Level Req:";
             // 
             // lblDefence
@@ -213,7 +224,7 @@
             lblDefence.Location = new Point(14, 188);
             lblDefence.Name = "lblDefence";
             lblDefence.Size = new Size(97, 20);
-            lblDefence.TabIndex = 16;
+            lblDefence.TabIndex = 17;
             lblDefence.Text = "Defence Req:";
             // 
             // lblAttack
@@ -222,7 +233,7 @@
             lblAttack.Location = new Point(14, 227);
             lblAttack.Name = "lblAttack";
             lblAttack.Size = new Size(84, 20);
-            lblAttack.TabIndex = 17;
+            lblAttack.TabIndex = 18;
             lblAttack.Text = "Attack Req:";
             // 
             // lblXP
@@ -231,7 +242,7 @@
             lblXP.Location = new Point(14, 265);
             lblXP.Name = "lblXP";
             lblXP.Size = new Size(83, 20);
-            lblXP.TabIndex = 18;
+            lblXP.TabIndex = 19;
             lblXP.Text = "XP Reward:";
             // 
             // lblGold
@@ -240,32 +251,33 @@
             lblGold.Location = new Point(14, 304);
             lblGold.Name = "lblGold";
             lblGold.Size = new Size(98, 20);
-            lblGold.TabIndex = 19;
+            lblGold.TabIndex = 20;
             lblGold.Text = "Gold Reward:";
             // 
             // lblRequiredQuests
             // 
             lblRequiredQuests.AutoSize = true;
-            lblRequiredQuests.Location = new Point(423, 123);
+            lblRequiredQuests.Location = new Point(423, 83);
             lblRequiredQuests.Name = "lblRequiredQuests";
             lblRequiredQuests.Size = new Size(120, 20);
-            lblRequiredQuests.TabIndex = 20;
+            lblRequiredQuests.TabIndex = 21;
             lblRequiredQuests.Text = "Required Quests:";
             // 
             // lblTasks
             // 
             lblTasks.AutoSize = true;
-            lblTasks.Location = new Point(423, 277);
+            lblTasks.Location = new Point(423, 322);
             lblTasks.Name = "lblTasks";
             lblTasks.Size = new Size(45, 20);
-            lblTasks.TabIndex = 21;
+            lblTasks.TabIndex = 22;
             lblTasks.Text = "Tasks:";
             // 
             // FormQuestDetails
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(686, 520);
+            ClientSize = new Size(686, 560);
+            Controls.Add(btnAddTask);
             Controls.Add(lblTasks);
             Controls.Add(lblRequiredQuests);
             Controls.Add(lblGold);
@@ -315,6 +327,7 @@
         public System.Windows.Forms.ListBox lbTasks;
         public System.Windows.Forms.Button btnOK;
         public System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.Button btnAddTask;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblLevel;

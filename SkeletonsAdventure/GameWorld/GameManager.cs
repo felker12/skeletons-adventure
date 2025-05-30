@@ -409,6 +409,12 @@ namespace SkeletonsAdventure.GameWorld
             Enemies.Add("Skeleton", skeleton);
             Enemies.Add("Elite Skeleton", eliteSkeleton);
             Enemies.Add("Spider", spider);
+
+            //TODO test this
+            foreach (var enemy in Enemies)
+            {
+                System.Diagnostics.Debug.WriteLine($"Enemy: {enemy.Key}, enemy name {enemy.Value.GetType().Name}");
+            }
         }
 
         //Create the chests from the content folder

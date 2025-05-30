@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RpgEditor;
 
 namespace RpgEditor
 {
@@ -21,16 +22,22 @@ namespace RpgEditor
         FormArmor? frmArmor;
         FormWeapon? frmWeapon;
         FormQuest? frmQuest;
+        FormEntity? frmEntity;
 
         public static string ItemPath { get; set; } = string.Empty;
         public static string GamePath { get; set; } = string.Empty;
         public static string QuestPath { get; set; } = string.Empty;
+        public static string EntityPath { get; set; } = string.Empty;
 
         public FormMain()
         {
             InitializeComponent();
 
             this.FormClosing += FormMain_FormClosing;
+
+            // Add this if you have a menu strip or toolbar for entities
+            // Example for a menu item:
+            // entityToolStripMenuItem.Click += EntityToolStripMenuItem_Click;
         }
 
         void FormMain_FormClosing(object? sender, FormClosingEventArgs e)
@@ -62,6 +69,7 @@ namespace RpgEditor
                             GamePath = Path.Combine(folderDialog.SelectedPath, "Game");
                             ItemPath = Path.Combine(GamePath, "Items");
                             QuestPath = Path.Combine(GamePath, "Quests");
+                            EntityPath = Path.Combine(GamePath, "Entities");
 
                             if (Directory.Exists(GamePath))
                                 throw new Exception("Selected directory already exists.");
@@ -70,6 +78,7 @@ namespace RpgEditor
                             Directory.CreateDirectory(ItemPath + @"\Armor");
                             Directory.CreateDirectory(ItemPath + @"\Weapon");
                             Directory.CreateDirectory(QuestPath);
+                            Directory.CreateDirectory(EntityPath);
                             RPG = frmNewGame.RPG;
                             XnaSerializer.Serialize<RPG>(GamePath + @"\Game.xml", RPG);
                         }
@@ -143,6 +152,7 @@ namespace RpgEditor
                     XnaSerializer.Serialize<RPG>(GamePath + @"\Game.xml", RPG);
                     FormDetails.WriteItemData();
                     FormDetails.WriteQuestData();
+                    FormDetails.WriteEntityData();
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +167,7 @@ namespace RpgEditor
             GamePath = Path.Combine(path, "Game");
             ItemPath = Path.Combine(GamePath, "Items");
             QuestPath = Path.Combine(GamePath, "Quests");
+            EntityPath = Path.Combine(GamePath, "Entities");
 
             RPG = XnaSerializer.Deserialize<RPG>(GamePath + @"\Game.xml");
 
@@ -186,9 +197,9 @@ namespace RpgEditor
             };
             frmQuest.FillListBox();
 
-
             itemsToolStripMenuItem.Enabled = true;
             questsToolStripMenuItem.Enabled = true;
+            entitiesToolStripMenuItem.Enabled = true;
         }
 
         private void ExitGameToolStripMenuItem_Click(object? sender, EventArgs e)
@@ -224,6 +235,26 @@ namespace RpgEditor
             };
             frmQuest.Show();
             frmQuest.BringToFront();
+        }
+
+        private void EntityToolStripMenuItem_Click(object? sender, EventArgs e)
+        {
+            frmEntity ??= new FormEntity
+            {
+                MdiParent = this
+            };
+            frmEntity.Show();
+            frmEntity.BringToFront();
+        }
+
+        private void entitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEntity ??= new FormEntity
+            {
+                MdiParent = this
+            };
+            frmEntity.Show();
+            frmEntity.BringToFront();
         }
     }
 }

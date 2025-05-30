@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RpgLibrary.DataClasses;
+using RpgLibrary.EntityClasses;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.QuestClasses;
 
@@ -64,8 +65,19 @@ namespace RpgEditor
             foreach (string s in ItemDataManager.QuestData.Keys)
             {
                 XnaSerializer.Serialize<QuestData>(
-                FormMain.QuestPath + "Quests" + s + ".xml",
-                ItemDataManager.QuestData[s]);
+                    FormMain.QuestPath + @"\" + s + ".xml",
+                    ItemDataManager.QuestData[s]);
+            }
+        }
+
+        public static void WriteEntityData()
+        {
+            //TODO: Implement entity data writing logic here
+            foreach(var s in ItemDataManager.EntityData.Keys)
+            {
+                XnaSerializer.Serialize<EntityData>(
+                    FormMain.EntityPath + @"\" + s + ".xml",
+                    ItemDataManager.EntityData[s]);
             }
         }
 
@@ -100,5 +112,14 @@ namespace RpgEditor
                 ItemDataManager.QuestData.Add(questData.Name, questData);
             }
         }
-    }
+
+        public static void ReadEntityData()
+        {
+            string[] fileNames = Directory.GetFiles(Path.Combine(FormMain.EntityPath), "*.xml");
+            foreach (string s in fileNames)
+            {
+                EntityData entityData = XnaSerializer.Deserialize<EntityData>(s);
+                ItemDataManager.EntityData.Add(entityData.GetType().Name, entityData);
+            }
+        }
 }

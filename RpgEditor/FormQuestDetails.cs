@@ -21,6 +21,7 @@ namespace RpgEditor
             InitializeComponent();
             btnOK.Click += BtnOK_Click;
             btnCancel.Click += BtnCancel_Click;
+            btnAddTask.Click += BtnAddTask_Click;
         }
 
         void BtnOK_Click(object? sender, EventArgs e)
@@ -64,6 +65,37 @@ namespace RpgEditor
             this.Close();
         }
 
+        void BtnAddTask_Click(object? sender, EventArgs e)
+        {
+            using (var dialog = new FormAddTask())
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    BaseTaskData taskData;
+                    if (dialog.SelectedTaskType == "Slay")
+                    {
+                        taskData = new SlayTaskData
+                        {
+                            TaskToComplete = dialog.TaskDescription,
+                            RequiredAmount = dialog.RequiredAmount,
+                            CompletedAmount = dialog.CompletedAmount,
+                            MonsterToSlay = dialog.MonsterToSlay
+                        };
+                    }
+                    else
+                    {
+                        taskData = new BaseTaskData
+                        {
+                            TaskToComplete = dialog.TaskDescription,
+                            RequiredAmount = dialog.RequiredAmount,
+                            CompletedAmount = dialog.CompletedAmount
+                        };
+                    }
+                    lbTasks.Items.Add(taskData);
+                }
+            }
+        }
+
         public void LoadQuest(QuestData quest)
         {
             tbName.Text = quest.Name;
@@ -86,4 +118,3 @@ namespace RpgEditor
         }
     }
 }
-
