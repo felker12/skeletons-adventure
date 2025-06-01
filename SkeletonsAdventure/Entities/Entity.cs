@@ -9,16 +9,15 @@ using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemLoot;
 using SkeletonsAdventure.Quests;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
     internal class Entity : AnimatedSprite
     {
-        public int baseDefence, baseAttack, baseHealth, baseXP, weaponAttack, armourDefence;
+        public int baseDefence = 1, baseAttack = 1, baseHealth = 1, baseXP = 1, weaponAttack = 0, armourDefence = 0;
         public Texture2D basicAttackTexture;
-        public TimeSpan lastDeathTime;
+        public TimeSpan lastDeathTime = new();
         public Vector2 RespawnPosition = Vector2.Zero;
         public string Type { get; set; } = string.Empty;
         public StatusBar HealthBar = new();
@@ -31,13 +30,13 @@ namespace SkeletonsAdventure.Entities
         public int ID { get; protected set; } = 0;
         public int XP { get; set; } //Xp gained for killing the entity
         public int MaxHealth { get; set; }
-        public int Health { get; set; }
+        public int Health { get; set; } 
         public int Defence { get; set; }
         public int Attack { get; set; }
-        public int RespawnTime { get; set; } //time in seconds until the entity respawns
-        public LootList LootList { get; set; }
-        public int Level { get; protected set; }
-        public Color BasicAttackColor { get; set; }
+        public int RespawnTime { get; set; } = 3; //time in seconds until the entity respawns
+        public LootList LootList { get; set; } = new();
+        public int Level { get; protected set; } = 0;
+        public Color BasicAttackColor { get; set; } = Color.White; //Color of the basic attack
         public bool IsDead { get; set; } = false;
         public bool HealthBarVisible { get; set; } = true;
         public bool IsInvincible { get; set; } = false; //TODO add invincibility frames to the entity
@@ -47,13 +46,9 @@ namespace SkeletonsAdventure.Entities
 
         public Entity() : base()
         {
-            baseHealth = 1;
-            baseAttack = 1;
-            baseDefence = 1;
-            baseXP = 1;
-            Level = 0;
             Health = baseHealth;
             Position = new();
+            Type = this.GetType().Name;
 
             Initialize();
         }
@@ -62,27 +57,21 @@ namespace SkeletonsAdventure.Entities
         {
             UpdateEntityData(entityData);
             Initialize();
+
+            Type = this.GetType().FullName; //TODO remove this when the entity data is loaded from the file
         }
 
         private void Initialize()
         {
-            Type = this.GetType().Name;
-            weaponAttack = 0;
-            armourDefence = 0;
             AttackManager = new(this);
             Health = baseHealth;
             MaxHealth = baseHealth;
             Defence = baseDefence;
             Attack = baseAttack;
 
-            RespawnTime = 3;
-            lastDeathTime = new();
             XP = baseXP;
-            LootList = new LootList();
-            BasicAttackColor = Color.White;
             basicAttackTexture = GameManager.SkeletonAttackTexture;
             EntityAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
-
         }
 
         public override void Update(GameTime gameTime)

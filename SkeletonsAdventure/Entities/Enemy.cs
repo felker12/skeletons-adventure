@@ -72,6 +72,7 @@ namespace SkeletonsAdventure.Entities
                 XP *= 2;
             }
 
+            UpdateEntityData(GetEntityData()); //TODO: check if this is needed
         }
         public override void Update(GameTime gameTime)
         {

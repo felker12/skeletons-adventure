@@ -73,7 +73,7 @@ namespace RpgEditor
         public static void WriteEntityData()
         {
             //TODO: Implement entity data writing logic here
-            foreach(var s in ItemDataManager.EntityData.Keys)
+            foreach (var s in ItemDataManager.EntityData.Keys)
             {
                 XnaSerializer.Serialize<EntityData>(
                     FormMain.EntityPath + @"\" + s + ".xml",
@@ -122,4 +122,5 @@ namespace RpgEditor
                 ItemDataManager.EntityData.Add(entityData.GetType().Name, entityData);
             }
         }
+    }
 }

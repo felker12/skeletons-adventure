@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.AttackData;
+using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
@@ -31,6 +32,8 @@ namespace SkeletonsAdventure.GameWorld
         //Strings
         public static string GamePath { get; private set; }
         public static string SavePath { get; private set; }
+        public static string ItemPath { get; private set; } 
+        public static string EnemyPath {get; private set; }
 
         //Dictionaries
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
@@ -94,9 +97,7 @@ namespace SkeletonsAdventure.GameWorld
             Content = game.Content;
             GraphicsDevice = game.GraphicsDevice;
 
-            GamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
-            SavePath = Path.GetFullPath(Path.Combine(GamePath, @"..\SaveFiles")); //Directory of the saved files
-
+            SetPaths();
             CreatePlayerLevelXPs();
 
             LoadFonts();
@@ -109,6 +110,19 @@ namespace SkeletonsAdventure.GameWorld
             CreateAttacks();
             CreateQuests();
             CreateNPCs();
+        }
+
+        private static void SetPaths()
+        {
+            GamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
+            SavePath = Path.GetFullPath(Path.Combine(GamePath, @"..\SaveFiles")); //Directory of the saved files
+            ItemPath = Path.Combine(SavePath, "Items"); //Directory of the items
+            EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
+
+            if (Path.Exists(ItemPath) == false)
+                Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
+            if (Path.Exists(EnemyPath) == false)
+                Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
         }
 
         //Load data from saved files
@@ -371,6 +385,34 @@ namespace SkeletonsAdventure.GameWorld
             loots.Add(Coins.Clone());
             loots.Add(ItemsClone["Sword"]);
 
+            string[] fileNames = Directory.GetFiles(Path.Combine(EnemyPath), "*.xml");
+            foreach (string s in fileNames)
+            {
+                EntityData data = XnaSerializer.Deserialize<EntityData>(s);
+
+                Type type = Type.GetType(data.type); //Get the type of the entity from the data
+
+                dynamic en = Activator.CreateInstance(type, data);
+                en.LootList = loots.Clone(); //Set the loot list for the entity
+
+                Enemies.Add(en.GetType().Name, en); //Add the entity to the dictionary of enemies
+            }
+        }
+
+        //This is the old method for creating enemies. It is kept for reference and testing purposes
+        private static void CreateEnemiesManually()
+        {
+            //set the quantiy of the stackable items
+            GameItem Coins = ItemsClone["Coins"];
+            Coins.Quantity = 10;
+
+            //Create the loot list
+            LootList loots = new();
+            loots.Add(ItemsClone["Robes"]);
+            loots.Add(ItemsClone["Bones"]);
+            loots.Add(Coins.Clone());
+            loots.Add(ItemsClone["Sword"]);
+
             //populate the loot list with the items the entity will be carrying
             List<ItemData> items = [];
 
@@ -382,7 +424,7 @@ namespace SkeletonsAdventure.GameWorld
             //Create the entities from the data and add their items to their loot list
             EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"))
             {
-                Items = items
+                //Items = items
             };
 
             Skeleton skeleton = new(entityData)
@@ -397,7 +439,7 @@ namespace SkeletonsAdventure.GameWorld
 
             entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"))
             {
-                Items = items
+                //Items = items
             };
 
             Spider spider = new(entityData)
@@ -407,20 +449,20 @@ namespace SkeletonsAdventure.GameWorld
 
             //Add the entities to the dictionary
             Enemies.Add("Skeleton", skeleton);
-            Enemies.Add("Elite Skeleton", eliteSkeleton);
+            Enemies.Add("EliteSkeleton", eliteSkeleton);
             Enemies.Add("Spider", spider);
 
             //TODO test this
-            foreach (var enemy in Enemies)
+            foreach (var enemy in Enemies)//shouldn't be needed now
             {
-                System.Diagnostics.Debug.WriteLine($"Enemy: {enemy.Key}, enemy name {enemy.Value.GetType().Name}");
+                //XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Key}.xml", enemy.Value.GetEntityData());
             }
         }
 
         //Create the chests from the content folder
         private static void CreateChests() //TODO
         {
-            GameManager.ItemsClone.TryGetValue("Coins", out GameItem Coins);
+            ItemsClone.TryGetValue("Coins", out GameItem Coins);
             Coins.Quantity = 10;
 
             LootList loots = new();
@@ -511,7 +553,7 @@ namespace SkeletonsAdventure.GameWorld
             {
                 Gold = 100,
                 XP = 50,
-                Items = [.. ItemsClone.Values] // Convert the Dictionary to a List
+                Items = [..ItemsClone.Values] // Convert the Dictionary to a List
             };
 
             Quest SlaySkeletons = new()
@@ -529,22 +571,6 @@ namespace SkeletonsAdventure.GameWorld
             {
                 Quests.Add(q.Name, q);
             }
-
-            //TODO
-            //System.Diagnostics.Debug.WriteLine(SlaySkeletons.ToString());
-            //System.Diagnostics.Debug.WriteLine(QuestManager.ToString());
-            //System.Diagnostics.Debug.WriteLine("Data: \n" + QuestManager.GetQuestManagerData().ToString());
-
-
-            foreach(GameItem item in ItemsClone.Values)
-            {
-                //System.Diagnostics.Debug.WriteLine(item.ToString()); 
-                //System.Diagnostics.Debug.WriteLine("baseItem: " + item.BaseItem.ToString());
-
-                //System.Diagnostics.Debug.WriteLine(item.Clone().ToString());
-                //System.Diagnostics.Debug.WriteLine("baseItem: " + item.BaseItem.Clone().ToString());
-            }
-
         }
 
         private static void CreateNPCs() //TODO
