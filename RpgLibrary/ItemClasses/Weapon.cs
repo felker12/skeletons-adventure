@@ -28,8 +28,7 @@ namespace RpgLibrary.ItemClasses
 
         public override Weapon Clone()
         {
-            Weapon weapon = new(this);
-            return weapon;
+            return new(this);
         }
     }
 }

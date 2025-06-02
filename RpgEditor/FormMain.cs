@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Input;
+using RpgEditor;
 using RpgLibrary.DataClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
@@ -8,11 +9,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RpgEditor;
 
 namespace RpgEditor
 {
@@ -169,34 +170,23 @@ namespace RpgEditor
             QuestPath = Path.Combine(GamePath, "Quests");
             EntityPath = Path.Combine(GamePath, "Entities");
 
+            System.Diagnostics.Debug.WriteLine("GamePath: " + GamePath);
+            System.Diagnostics.Debug.WriteLine("ItemPath: " + ItemPath);
+            System.Diagnostics.Debug.WriteLine("QuestPath: " + QuestPath);
+            System.Diagnostics.Debug.WriteLine("EntityPath: " + EntityPath);
+
+
             RPG = XnaSerializer.Deserialize<RPG>(GamePath + @"\Game.xml");
 
             FormDetails.ReadItemData();
             FormDetails.ReadQuestData();
+            FormDetails.ReadEntityData();
 
             PrepareForms();
         }
 
         private void PrepareForms()
         {
-            frmArmor ??= new()
-            {
-                MdiParent = this
-            };
-            frmArmor.FillListBox();
-
-            frmWeapon ??= new()
-            {
-                MdiParent = this
-            };
-            frmWeapon.FillListBox();
-
-            frmQuest ??= new()
-            {
-                MdiParent = this
-            };
-            frmQuest.FillListBox();
-
             itemsToolStripMenuItem.Enabled = true;
             questsToolStripMenuItem.Enabled = true;
             entitiesToolStripMenuItem.Enabled = true;
@@ -213,6 +203,7 @@ namespace RpgEditor
             {
                 MdiParent = this
             };
+            frmWeapon.FillListBox();
             frmWeapon.Show();
             frmWeapon.BringToFront();
         }
@@ -223,6 +214,7 @@ namespace RpgEditor
             {
                 MdiParent = this
             };
+            frmArmor.FillListBox();
             frmArmor.Show();
             frmArmor.BringToFront();
         }
@@ -233,26 +225,18 @@ namespace RpgEditor
             {
                 MdiParent = this
             };
+            frmQuest.FillListBox();
             frmQuest.Show();
             frmQuest.BringToFront();
         }
 
-        private void EntityToolStripMenuItem_Click(object? sender, EventArgs e)
+        private void EntityToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmEntity ??= new FormEntity
             {
                 MdiParent = this
             };
-            frmEntity.Show();
-            frmEntity.BringToFront();
-        }
-
-        private void entitiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmEntity ??= new FormEntity
-            {
-                MdiParent = this
-            };
+            frmEntity.FillListBox();
             frmEntity.Show();
             frmEntity.BringToFront();
         }

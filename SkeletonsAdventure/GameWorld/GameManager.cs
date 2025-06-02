@@ -106,6 +106,22 @@ namespace SkeletonsAdventure.GameWorld
 
             CreateItems();
             CreateEnemies();
+            //CreateEnemiesManually();
+
+
+            //TODO
+            foreach (Enemy en in Enemies.Values)
+            {
+                System.Diagnostics.Debug.WriteLine(en.Type);
+            }
+
+            System.Diagnostics.Debug.WriteLine("Keys");
+            foreach (var key in Enemies.Keys)
+            {
+                System.Diagnostics.Debug.WriteLine(key);
+            }
+
+
             CreateChests();
             CreateAttacks();
             CreateQuests();
@@ -145,9 +161,9 @@ namespace SkeletonsAdventure.GameWorld
                 if (itemData.Name == gameItem.BaseItem.Name)
                 {
                     item = gameItem.Clone();
-                    item.Quantity = itemData.Quantity;
-                    item.BaseItem.Quantity = itemData.Quantity;
-                    item.Position = itemData.Position;
+                    //item.Quantity = itemData.Quantity;
+                    //item.BaseItem.Quantity = itemData.Quantity;
+                    //item.Position = itemData.Position;
                 }
             }
 
@@ -455,7 +471,7 @@ namespace SkeletonsAdventure.GameWorld
             //TODO test this
             foreach (var enemy in Enemies)//shouldn't be needed now
             {
-                //XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Key}.xml", enemy.Value.GetEntityData());
+                XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Key}.xml", enemy.Value.GetEntityData());
             }
         }
 
@@ -520,7 +536,7 @@ namespace SkeletonsAdventure.GameWorld
             {
                 RequiredAmount = 10,
                 TaskToComplete = "Slay Entity: Skeleton",
-                MonsterToSlay = "Skeleton",
+                MonsterToSlay = typeof(Skeleton).FullName,
             };
 
             List <BaseTask> Tasks = [task, task2, task3, slayTask];

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using RpgLibrary.EntityClasses;
+using RpgLibrary.GameObjectClasses;
+using RpgLibrary.QuestClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RpgLibrary.EntityClasses;
 
 namespace RpgEditor
 {
@@ -24,46 +26,46 @@ namespace RpgEditor
 
         void BtnAdd_Click(object? sender, EventArgs e)
         {
-            using (FormEntityDetails frmEntityDetails = new())
+            using (FormEntityDetails formEntityDetails = new())
             {
-                if (frmEntityDetails.ShowDialog() == DialogResult.OK && frmEntityDetails.Entity != null)
+                formEntityDetails.ShowDialog();
+                if (formEntityDetails.Entity != null)
                 {
-                    AddEntity(frmEntityDetails.Entity);
+                    AddEntity(formEntityDetails.Entity);
                 }
             }
         }
 
         void BtnEdit_Click(object? sender, EventArgs e)
         {
-            if (lbDetails.SelectedItem is EntityData entity)
+            if (lbDetails.SelectedItem is EntityData data)
             {
-                using (FormEntityDetails frmEntityDetails = new())
+                using (FormEntityDetails formEntityDetails = new())
                 {
-                    // Optionally, you can implement a LoadEntity method for editing
-                    frmEntityDetails.Entity = entity.Clone();
-                    if (frmEntityDetails.ShowDialog() == DialogResult.OK && frmEntityDetails.Entity != null)
-                    {
-                        int idx = lbDetails.SelectedIndex;
-                        lbDetails.Items[idx] = frmEntityDetails.Entity;
-                        // Update in your data manager if you add persistence
-                    }
+                    formEntityDetails.Entity = data;
+                    formEntityDetails.LoadEntity(data);
+                    formEntityDetails.ShowDialog();
+                    if (formEntityDetails.Entity == null)
+                        return;
+
+                    int idx = lbDetails.SelectedIndex;
+                    lbDetails.Items[idx] = formEntityDetails.Entity;
                 }
             }
         }
 
         void BtnDelete_Click(object? sender, EventArgs e)
         {
-            if (lbDetails.SelectedItem is EntityData entity)
+            if (lbDetails.SelectedItem is EntityData data)
             {
                 DialogResult result = MessageBox.Show(
-                    $"Are you sure you want to delete entity {entity.type} (ID: {entity.id})?",
+                    $"Are you sure you want to delete {data.type}?",
                     "Delete",
                     MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.Yes)
                 {
                     lbDetails.Items.RemoveAt(lbDetails.SelectedIndex);
-                    // Remove from your data manager if you add persistence
                 }
             }
         }
@@ -71,13 +73,27 @@ namespace RpgEditor
         public void FillListBox()
         {
             lbDetails.Items.Clear();
-            // If you add a manager for entities, enumerate and add here
-            // Example: foreach (var entity in EntityManager.Entities) lbDetails.Items.Add(entity);
+            foreach (string s in FormDetails.ItemDataManager.EntityData.Keys)
+            {
+                lbDetails.Items.Add(FormDetails.ItemDataManager.EntityData[s]);
+            }
         }
 
         private void AddEntity(EntityData entityData)
         {
-            // You can use entityData.type or entityData.id as a key if you add a manager
+            if (FormDetails.ItemDataManager.EntityData.ContainsKey(entityData.type))
+            {
+                DialogResult result = MessageBox.Show(
+                    entityData.type + " already exists. Overwrite it?",
+                    "Existing quest",
+                    MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                    return;
+                FormDetails.ItemDataManager.EntityData[entityData.type] = entityData;
+                FillListBox();
+                return;
+            }
+            FormDetails.ItemDataManager.EntityData.Add(entityData.type, entityData);
             lbDetails.Items.Add(entityData);
         }
     }

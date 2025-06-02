@@ -64,7 +64,6 @@ namespace RpgEditor
             float weight = 0f;
             if (string.IsNullOrEmpty(tbName.Text))
             {
-
                 MessageBox.Show("You must enter a name for the item.");
                 return;
             }
@@ -112,6 +111,12 @@ namespace RpgEditor
             if (!int.TryParse(mtbWidth.Text, out int width))
             {
                 MessageBox.Show("Width value must be a float value.");
+                return;
+            }
+
+            if(cboHands.SelectedItem is null)
+            {
+                MessageBox.Show("You must select a hand type.");
                 return;
             }
 

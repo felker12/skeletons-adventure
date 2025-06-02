@@ -87,6 +87,11 @@ namespace SkeletonsAdventure.ItemClasses
             Position = gameItem.Position;
         }
 
+        public GameItem(ItemData data)
+        {
+            //TODO
+        }
+
         public GameItem Clone()
         {
             return new GameItem(this);

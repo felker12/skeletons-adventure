@@ -39,6 +39,7 @@ namespace RpgLibrary.ItemClasses
             Stackable = item.Stackable;
             SourceRectangle = item.SourceRectangle;
             TexturePath = item.TexturePath;
+            Quantity = item.Quantity;
         }
 
         public virtual BaseItem Clone()

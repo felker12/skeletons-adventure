@@ -20,9 +20,6 @@ namespace SkeletonsAdventure.Entities
         public Rectangle AttackArea => new((int)Position.X - Width,
             (int)Position.Y - Width, Width * 3, Height + Width * 2);
 
-
-        //public Rectangle DetectionArea, AttackArea;
-
         public Enemy(EntityData entityData) : base(entityData)
         {
             Initialize();
