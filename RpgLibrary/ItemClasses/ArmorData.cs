@@ -10,7 +10,11 @@ namespace RpgLibrary.ItemClasses
         {
         }
 
-        protected ArmorData(ArmorData armorData) : base(armorData)
+        public ArmorData(ItemData itemData) : base(itemData)
+        {
+        }
+
+        public ArmorData(ArmorData armorData) : base(armorData)
         {
             ArmorLocation = armorData.ArmorLocation;
             DefenseValue = armorData.DefenseValue;

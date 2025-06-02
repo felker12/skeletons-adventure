@@ -1,5 +1,4 @@
-﻿using Assimp;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using RpgLibrary.ItemClasses;
@@ -18,29 +17,27 @@ namespace SkeletonsAdventure.ItemClasses
         public Rectangle ItemRectangle { get; set; }
         public static int Width { get; } = 32;
         public static int Height { get; } = 32;
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
+        public int Price { get; set; } = 0;
+        public float Weight { get; set;} = 0f;
+        public bool Stackable { get; set; } = false;
+        public bool Equipped { get; set; } = false; 
         public Label ToolTip { get; set; }
-        public string Name => GetItemData().Name;
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string TexturePath { get; set; } = string.Empty;
 
-        public GameItem(BaseItem item, int quantity, Texture2D texture)
+        public GameItem(BaseItem item, int quantity, Texture2D texture) : this(item)
         {
-            BaseItem = item.Clone();
-            Image = texture;
-            SourceRectangle = item.SourceRectangle;
-            Type = item.Type;
-
+            Image ??= texture;
             Quantity = quantity;
-            ToolTip = new()
+
+            ToolTip ??= new()
             {
                 Visible = false,
                 SpriteFont = GameManager.Arial10,
                 Color = Color.Aqua
             };
-
-            if (BaseItem.Stackable)
-                ToolTip.Text = Quantity + " " + BaseItem.Name;
-            else
-                ToolTip.Text = BaseItem.Name;
         }
 
         public GameItem(BaseItem item)
@@ -50,6 +47,13 @@ namespace SkeletonsAdventure.ItemClasses
             SourceRectangle = item.SourceRectangle;
             Type = item.Type;
             Quantity = item.Quantity;
+            Name = item.Name;
+            Stackable = item.Stackable;
+            Description = item.Description;
+            TexturePath = item.TexturePath;
+            Price = item.Price;
+            Weight = item.Weight;
+            Equipped = item.Equipped;
 
             ToolTip = new()
             {
@@ -58,15 +62,15 @@ namespace SkeletonsAdventure.ItemClasses
                 Color = Color.Aqua
             };
 
-            if (BaseItem.Stackable)
-                ToolTip.Text = Quantity + " " + BaseItem.Name;
+            if (Stackable)
+                ToolTip.Text = Quantity + " " + Name;
             else
-                ToolTip.Text = BaseItem.Name;
+                ToolTip.Text = Name;
         }
 
         public GameItem(GameItem gameItem)
         {
-            if(gameItem.BaseItem.Stackable)
+            if(gameItem.Stackable)
                 BaseItem = gameItem.BaseItem;
             else
                 BaseItem = gameItem.BaseItem.Clone();
@@ -75,6 +79,14 @@ namespace SkeletonsAdventure.ItemClasses
             Image = gameItem.Image;
             SourceRectangle = gameItem.SourceRectangle;
             Type = gameItem.Type;
+            Name = gameItem.Name;
+            Stackable = gameItem.Stackable;
+            Description = gameItem.Description;
+            TexturePath = gameItem.TexturePath;
+            Price = gameItem.Price;
+            Weight = gameItem.Weight;
+            Equipped = gameItem.Equipped;
+
             ToolTip = new()
             {
                 Visible = false,
@@ -85,6 +97,11 @@ namespace SkeletonsAdventure.ItemClasses
             };
             Quantity = gameItem.Quantity;
             Position = gameItem.Position;
+        }
+
+        public GameItem(ItemData data)
+        {
+            //TODO
         }
 
         public GameItem Clone()
@@ -98,9 +115,9 @@ namespace SkeletonsAdventure.ItemClasses
 
             ToolTip.Position = Position + new Vector2(2, 0);
 
-            if (BaseItem.Stackable)
+            if (Stackable)
             {
-                ToolTip.Text = Quantity + " " + BaseItem.Name;
+                ToolTip.Text = Quantity + " " + Name;
                 BaseItem.Quantity = Quantity;
             }
         }
@@ -127,28 +144,59 @@ namespace SkeletonsAdventure.ItemClasses
         public void SetEquipped(bool equipped)
         {
             BaseItem.Equipped = equipped;
+            Equipped = equipped;
         }
 
         public ItemData GetItemData()
         {
             ItemData itemData = new()
             {
-                Name = BaseItem.Name,
-                Type = BaseItem.Type,
-                Description = BaseItem.Description,
-                Price = BaseItem.Price,
-                Weight = BaseItem.Weight,
-                Equipped = BaseItem.Equipped,
-                Stackable = BaseItem.Stackable,
+                Name = Name,
+                Type = Type,
+                Description = Description,
+                Price = Price,
+                Weight = Weight,
+                Equipped = Equipped,
+                Stackable = Stackable,
                 Position = Position,
                 Quantity = Quantity,
-                TexturePath = BaseItem.TexturePath,
+                TexturePath = TexturePath,
             };
 
             if (BaseItem is Consumable)
                 itemData.Consumable = true;
             else 
                 itemData.Consumable = false;
+
+            if(BaseItem is Weapon weapon)
+            {
+                WeaponData weaponData = new(itemData)
+                {
+                    NumberHands = weapon.NumberHands,
+                    AttackValue = weapon.AttackValue
+                };
+                return weaponData;
+            }
+            else if (BaseItem is Armor armor)
+            {
+                ArmorData armorData = new(itemData)
+                {
+                    ArmorLocation = armor.ArmorLocation,
+                    DefenseValue = armor.DefenseValue
+                };
+
+                return armorData;
+            }
+            else if (BaseItem is Consumable consumable)
+            {
+                ConsumableData consumableData = new(itemData)
+                {
+                    Effect = consumable.Effect,
+                    EffectBonus = consumable.EffectBonus,
+                    EffectDuration = consumable.EffectDuration
+                };
+                return consumableData;
+            }
 
             return itemData;
         }

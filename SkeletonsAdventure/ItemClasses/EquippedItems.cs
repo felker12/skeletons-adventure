@@ -37,7 +37,7 @@ namespace SkeletonsAdventure.ItemClasses
             BaseItem item = gameItem.BaseItem;
             if(item is Weapon weapon)
             {
-                if (weapon.NumberOfHands == Hands.Both)
+                if (weapon.NumberHands == Hands.Both)
                 {
                     if (Mainhand != null)
                         TryUnequipItem(Mainhand);
@@ -46,19 +46,19 @@ namespace SkeletonsAdventure.ItemClasses
 
                     Mainhand = gameItem;
                 }
-                else if (weapon.NumberOfHands == Hands.Main)
+                else if (weapon.NumberHands == Hands.Main)
                 {
                     if (Mainhand != null)
                         TryUnequipItem(Mainhand);
 
                     Mainhand = gameItem;
                 }
-                else if (weapon.NumberOfHands == Hands.Off)
+                else if (weapon.NumberHands == Hands.Off)
                 {
                     if (Offhand != null)
                         TryUnequipItem(Offhand);
                     //If a mainhand weapon is equipped and it is a 2 handed weapon unequip it
-                    if (Mainhand != null && Mainhand.BaseItem is Weapon weap && weap.NumberOfHands == Hands.Both) 
+                    if (Mainhand != null && Mainhand.BaseItem is Weapon weap && weap.NumberHands == Hands.Both) 
                         TryUnequipItem(Mainhand);
 
                     Offhand = gameItem;

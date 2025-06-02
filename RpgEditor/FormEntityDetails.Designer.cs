@@ -28,273 +28,296 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbId = new System.Windows.Forms.TextBox();
-            this.tbType = new System.Windows.Forms.TextBox();
-            this.tbBaseHealth = new System.Windows.Forms.TextBox();
-            this.tbBaseDefence = new System.Windows.Forms.TextBox();
-            this.tbBaseAttack = new System.Windows.Forms.TextBox();
-            this.tbEntityLevel = new System.Windows.Forms.TextBox();
-            this.tbBaseXP = new System.Windows.Forms.TextBox();
-            this.tbCurrentHealth = new System.Windows.Forms.TextBox();
-            this.tbPositionX = new System.Windows.Forms.TextBox();
-            this.tbPositionY = new System.Windows.Forms.TextBox();
-            this.tbRespawnX = new System.Windows.Forms.TextBox();
-            this.tbRespawnY = new System.Windows.Forms.TextBox();
-            this.cbIsDead = new System.Windows.Forms.CheckBox();
-            this.lblId = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
-            this.lblBaseHealth = new System.Windows.Forms.Label();
-            this.lblBaseDefence = new System.Windows.Forms.Label();
-            this.lblBaseAttack = new System.Windows.Forms.Label();
-            this.lblEntityLevel = new System.Windows.Forms.Label();
-            this.lblBaseXP = new System.Windows.Forms.Label();
-            this.lblCurrentHealth = new System.Windows.Forms.Label();
-            this.lblPosition = new System.Windows.Forms.Label();
-            this.lblRespawn = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            tbId = new TextBox();
+            tbType = new TextBox();
+            tbBaseHealth = new TextBox();
+            tbBaseDefence = new TextBox();
+            tbBaseAttack = new TextBox();
+            tbEntityLevel = new TextBox();
+            tbBaseXP = new TextBox();
+            tbCurrentHealth = new TextBox();
+            tbPositionX = new TextBox();
+            tbPositionY = new TextBox();
+            tbRespawnX = new TextBox();
+            tbRespawnY = new TextBox();
+            cbIsDead = new CheckBox();
+            lblId = new Label();
+            lblType = new Label();
+            lblBaseHealth = new Label();
+            lblBaseDefence = new Label();
+            lblBaseAttack = new Label();
+            lblEntityLevel = new Label();
+            lblBaseXP = new Label();
+            lblCurrentHealth = new Label();
+            lblPosition = new Label();
+            lblRespawn = new Label();
+            btnOK = new Button();
+            btnCancel = new Button();
+            SuspendLayout();
             // 
             // tbId
             // 
-            this.tbId.Location = new System.Drawing.Point(120, 12);
-            this.tbId.Name = "tbId";
-            this.tbId.Size = new System.Drawing.Size(100, 23);
-            this.tbId.TabIndex = 0;
+            tbId.Location = new Point(137, 16);
+            tbId.Margin = new Padding(3, 4, 3, 4);
+            tbId.Name = "tbId";
+            tbId.Size = new Size(114, 27);
+            tbId.TabIndex = 0;
             // 
             // tbType
             // 
-            this.tbType.Location = new System.Drawing.Point(120, 41);
-            this.tbType.Name = "tbType";
-            this.tbType.Size = new System.Drawing.Size(100, 23);
-            this.tbType.TabIndex = 1;
+            tbType.Location = new Point(137, 55);
+            tbType.Margin = new Padding(3, 4, 3, 4);
+            tbType.Name = "tbType";
+            tbType.Size = new Size(114, 27);
+            tbType.TabIndex = 1;
             // 
             // tbBaseHealth
             // 
-            this.tbBaseHealth.Location = new System.Drawing.Point(120, 70);
-            this.tbBaseHealth.Name = "tbBaseHealth";
-            this.tbBaseHealth.Size = new System.Drawing.Size(100, 23);
-            this.tbBaseHealth.TabIndex = 2;
+            tbBaseHealth.Location = new Point(137, 93);
+            tbBaseHealth.Margin = new Padding(3, 4, 3, 4);
+            tbBaseHealth.Name = "tbBaseHealth";
+            tbBaseHealth.Size = new Size(114, 27);
+            tbBaseHealth.TabIndex = 2;
+            tbBaseHealth.TextChanged += tbBaseHealth_TextChanged;
             // 
             // tbBaseDefence
             // 
-            this.tbBaseDefence.Location = new System.Drawing.Point(120, 99);
-            this.tbBaseDefence.Name = "tbBaseDefence";
-            this.tbBaseDefence.Size = new System.Drawing.Size(100, 23);
-            this.tbBaseDefence.TabIndex = 3;
+            tbBaseDefence.Location = new Point(137, 132);
+            tbBaseDefence.Margin = new Padding(3, 4, 3, 4);
+            tbBaseDefence.Name = "tbBaseDefence";
+            tbBaseDefence.Size = new Size(114, 27);
+            tbBaseDefence.TabIndex = 3;
             // 
             // tbBaseAttack
             // 
-            this.tbBaseAttack.Location = new System.Drawing.Point(120, 128);
-            this.tbBaseAttack.Name = "tbBaseAttack";
-            this.tbBaseAttack.Size = new System.Drawing.Size(100, 23);
-            this.tbBaseAttack.TabIndex = 4;
+            tbBaseAttack.Location = new Point(137, 171);
+            tbBaseAttack.Margin = new Padding(3, 4, 3, 4);
+            tbBaseAttack.Name = "tbBaseAttack";
+            tbBaseAttack.Size = new Size(114, 27);
+            tbBaseAttack.TabIndex = 4;
             // 
             // tbEntityLevel
             // 
-            this.tbEntityLevel.Location = new System.Drawing.Point(120, 157);
-            this.tbEntityLevel.Name = "tbEntityLevel";
-            this.tbEntityLevel.Size = new System.Drawing.Size(100, 23);
-            this.tbEntityLevel.TabIndex = 5;
+            tbEntityLevel.Location = new Point(137, 209);
+            tbEntityLevel.Margin = new Padding(3, 4, 3, 4);
+            tbEntityLevel.Name = "tbEntityLevel";
+            tbEntityLevel.Size = new Size(114, 27);
+            tbEntityLevel.TabIndex = 5;
             // 
             // tbBaseXP
             // 
-            this.tbBaseXP.Location = new System.Drawing.Point(120, 186);
-            this.tbBaseXP.Name = "tbBaseXP";
-            this.tbBaseXP.Size = new System.Drawing.Size(100, 23);
-            this.tbBaseXP.TabIndex = 6;
+            tbBaseXP.Location = new Point(137, 248);
+            tbBaseXP.Margin = new Padding(3, 4, 3, 4);
+            tbBaseXP.Name = "tbBaseXP";
+            tbBaseXP.Size = new Size(114, 27);
+            tbBaseXP.TabIndex = 6;
             // 
             // tbCurrentHealth
             // 
-            this.tbCurrentHealth.Location = new System.Drawing.Point(120, 215);
-            this.tbCurrentHealth.Name = "tbCurrentHealth";
-            this.tbCurrentHealth.Size = new System.Drawing.Size(100, 23);
-            this.tbCurrentHealth.TabIndex = 7;
+            tbCurrentHealth.Enabled = false;
+            tbCurrentHealth.Location = new Point(137, 287);
+            tbCurrentHealth.Margin = new Padding(3, 4, 3, 4);
+            tbCurrentHealth.Name = "tbCurrentHealth";
+            tbCurrentHealth.Size = new Size(114, 27);
+            tbCurrentHealth.TabIndex = 7;
             // 
             // tbPositionX
             // 
-            this.tbPositionX.Location = new System.Drawing.Point(120, 244);
-            this.tbPositionX.Name = "tbPositionX";
-            this.tbPositionX.Size = new System.Drawing.Size(45, 23);
-            this.tbPositionX.TabIndex = 8;
+            tbPositionX.Location = new Point(137, 325);
+            tbPositionX.Margin = new Padding(3, 4, 3, 4);
+            tbPositionX.Name = "tbPositionX";
+            tbPositionX.Size = new Size(51, 27);
+            tbPositionX.TabIndex = 8;
+            tbPositionX.Text = "0";
             // 
             // tbPositionY
             // 
-            this.tbPositionY.Location = new System.Drawing.Point(175, 244);
-            this.tbPositionY.Name = "tbPositionY";
-            this.tbPositionY.Size = new System.Drawing.Size(45, 23);
-            this.tbPositionY.TabIndex = 9;
+            tbPositionY.Location = new Point(200, 325);
+            tbPositionY.Margin = new Padding(3, 4, 3, 4);
+            tbPositionY.Name = "tbPositionY";
+            tbPositionY.Size = new Size(51, 27);
+            tbPositionY.TabIndex = 9;
+            tbPositionY.Text = "0";
             // 
             // tbRespawnX
             // 
-            this.tbRespawnX.Location = new System.Drawing.Point(120, 273);
-            this.tbRespawnX.Name = "tbRespawnX";
-            this.tbRespawnX.Size = new System.Drawing.Size(45, 23);
-            this.tbRespawnX.TabIndex = 10;
+            tbRespawnX.Location = new Point(137, 364);
+            tbRespawnX.Margin = new Padding(3, 4, 3, 4);
+            tbRespawnX.Name = "tbRespawnX";
+            tbRespawnX.Size = new Size(51, 27);
+            tbRespawnX.TabIndex = 10;
+            tbRespawnX.Text = "0";
             // 
             // tbRespawnY
             // 
-            this.tbRespawnY.Location = new System.Drawing.Point(175, 273);
-            this.tbRespawnY.Name = "tbRespawnY";
-            this.tbRespawnY.Size = new System.Drawing.Size(45, 23);
-            this.tbRespawnY.TabIndex = 11;
+            tbRespawnY.Location = new Point(200, 364);
+            tbRespawnY.Margin = new Padding(3, 4, 3, 4);
+            tbRespawnY.Name = "tbRespawnY";
+            tbRespawnY.Size = new Size(51, 27);
+            tbRespawnY.TabIndex = 11;
+            tbRespawnY.Text = "0";
             // 
             // cbIsDead
             // 
-            this.cbIsDead.AutoSize = true;
-            this.cbIsDead.Location = new System.Drawing.Point(120, 302);
-            this.cbIsDead.Name = "cbIsDead";
-            this.cbIsDead.Size = new System.Drawing.Size(65, 19);
-            this.cbIsDead.TabIndex = 12;
-            this.cbIsDead.Text = "Is Dead";
-            this.cbIsDead.UseVisualStyleBackColor = true;
+            cbIsDead.AutoSize = true;
+            cbIsDead.Enabled = false;
+            cbIsDead.Location = new Point(137, 403);
+            cbIsDead.Margin = new Padding(3, 4, 3, 4);
+            cbIsDead.Name = "cbIsDead";
+            cbIsDead.Size = new Size(81, 24);
+            cbIsDead.TabIndex = 12;
+            cbIsDead.Text = "Is Dead";
+            cbIsDead.UseVisualStyleBackColor = true;
             // 
             // lblId
             // 
-            this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(12, 15);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(21, 15);
-            this.lblId.TabIndex = 13;
-            this.lblId.Text = "ID:";
+            lblId.AutoSize = true;
+            lblId.Location = new Point(14, 20);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(27, 20);
+            lblId.TabIndex = 13;
+            lblId.Text = "ID:";
             // 
             // lblType
             // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(12, 44);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(34, 15);
-            this.lblType.TabIndex = 14;
-            this.lblType.Text = "Type:";
+            lblType.AutoSize = true;
+            lblType.Location = new Point(14, 59);
+            lblType.Name = "lblType";
+            lblType.Size = new Size(43, 20);
+            lblType.TabIndex = 14;
+            lblType.Text = "Type:";
             // 
             // lblBaseHealth
             // 
-            this.lblBaseHealth.AutoSize = true;
-            this.lblBaseHealth.Location = new System.Drawing.Point(12, 73);
-            this.lblBaseHealth.Name = "lblBaseHealth";
-            this.lblBaseHealth.Size = new System.Drawing.Size(72, 15);
-            this.lblBaseHealth.TabIndex = 15;
-            this.lblBaseHealth.Text = "Base Health:";
+            lblBaseHealth.AutoSize = true;
+            lblBaseHealth.Location = new Point(14, 97);
+            lblBaseHealth.Name = "lblBaseHealth";
+            lblBaseHealth.Size = new Size(91, 20);
+            lblBaseHealth.TabIndex = 15;
+            lblBaseHealth.Text = "Base Health:";
             // 
             // lblBaseDefence
             // 
-            this.lblBaseDefence.AutoSize = true;
-            this.lblBaseDefence.Location = new System.Drawing.Point(12, 102);
-            this.lblBaseDefence.Name = "lblBaseDefence";
-            this.lblBaseDefence.Size = new System.Drawing.Size(82, 15);
-            this.lblBaseDefence.TabIndex = 16;
-            this.lblBaseDefence.Text = "Base Defence:";
+            lblBaseDefence.AutoSize = true;
+            lblBaseDefence.Location = new Point(14, 136);
+            lblBaseDefence.Name = "lblBaseDefence";
+            lblBaseDefence.Size = new Size(102, 20);
+            lblBaseDefence.TabIndex = 16;
+            lblBaseDefence.Text = "Base Defence:";
             // 
             // lblBaseAttack
             // 
-            this.lblBaseAttack.AutoSize = true;
-            this.lblBaseAttack.Location = new System.Drawing.Point(12, 131);
-            this.lblBaseAttack.Name = "lblBaseAttack";
-            this.lblBaseAttack.Size = new System.Drawing.Size(73, 15);
-            this.lblBaseAttack.TabIndex = 17;
-            this.lblBaseAttack.Text = "Base Attack:";
+            lblBaseAttack.AutoSize = true;
+            lblBaseAttack.Location = new Point(14, 175);
+            lblBaseAttack.Name = "lblBaseAttack";
+            lblBaseAttack.Size = new Size(89, 20);
+            lblBaseAttack.TabIndex = 17;
+            lblBaseAttack.Text = "Base Attack:";
             // 
             // lblEntityLevel
             // 
-            this.lblEntityLevel.AutoSize = true;
-            this.lblEntityLevel.Location = new System.Drawing.Point(12, 160);
-            this.lblEntityLevel.Name = "lblEntityLevel";
-            this.lblEntityLevel.Size = new System.Drawing.Size(71, 15);
-            this.lblEntityLevel.TabIndex = 18;
-            this.lblEntityLevel.Text = "Entity Level:";
+            lblEntityLevel.AutoSize = true;
+            lblEntityLevel.Location = new Point(14, 213);
+            lblEntityLevel.Name = "lblEntityLevel";
+            lblEntityLevel.Size = new Size(87, 20);
+            lblEntityLevel.TabIndex = 18;
+            lblEntityLevel.Text = "Entity Level:";
             // 
             // lblBaseXP
             // 
-            this.lblBaseXP.AutoSize = true;
-            this.lblBaseXP.Location = new System.Drawing.Point(12, 189);
-            this.lblBaseXP.Name = "lblBaseXP";
-            this.lblBaseXP.Size = new System.Drawing.Size(54, 15);
-            this.lblBaseXP.TabIndex = 19;
-            this.lblBaseXP.Text = "Base XP:";
+            lblBaseXP.AutoSize = true;
+            lblBaseXP.Location = new Point(14, 252);
+            lblBaseXP.Name = "lblBaseXP";
+            lblBaseXP.Size = new Size(64, 20);
+            lblBaseXP.TabIndex = 19;
+            lblBaseXP.Text = "Base XP:";
             // 
             // lblCurrentHealth
             // 
-            this.lblCurrentHealth.AutoSize = true;
-            this.lblCurrentHealth.Location = new System.Drawing.Point(12, 218);
-            this.lblCurrentHealth.Name = "lblCurrentHealth";
-            this.lblCurrentHealth.Size = new System.Drawing.Size(87, 15);
-            this.lblCurrentHealth.TabIndex = 20;
-            this.lblCurrentHealth.Text = "Current Health:";
+            lblCurrentHealth.AutoSize = true;
+            lblCurrentHealth.Location = new Point(14, 291);
+            lblCurrentHealth.Name = "lblCurrentHealth";
+            lblCurrentHealth.Size = new Size(108, 20);
+            lblCurrentHealth.TabIndex = 20;
+            lblCurrentHealth.Text = "Current Health:";
             // 
             // lblPosition
             // 
-            this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(12, 247);
-            this.lblPosition.Name = "lblPosition";
-            this.lblPosition.Size = new System.Drawing.Size(53, 15);
-            this.lblPosition.TabIndex = 21;
-            this.lblPosition.Text = "Position:";
+            lblPosition.AutoSize = true;
+            lblPosition.Location = new Point(14, 329);
+            lblPosition.Name = "lblPosition";
+            lblPosition.Size = new Size(64, 20);
+            lblPosition.TabIndex = 21;
+            lblPosition.Text = "Position:";
             // 
             // lblRespawn
             // 
-            this.lblRespawn.AutoSize = true;
-            this.lblRespawn.Location = new System.Drawing.Point(12, 276);
-            this.lblRespawn.Name = "lblRespawn";
-            this.lblRespawn.Size = new System.Drawing.Size(60, 15);
-            this.lblRespawn.TabIndex = 22;
-            this.lblRespawn.Text = "Respawn:";
+            lblRespawn.AutoSize = true;
+            lblRespawn.Location = new Point(14, 368);
+            lblRespawn.Name = "lblRespawn";
+            lblRespawn.Size = new Size(71, 20);
+            lblRespawn.TabIndex = 22;
+            lblRespawn.Text = "Respawn:";
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(60, 340);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 30);
-            this.btnOK.TabIndex = 23;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
+            btnOK.Location = new Point(69, 453);
+            btnOK.Margin = new Padding(3, 4, 3, 4);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new Size(86, 40);
+            btnOK.TabIndex = 23;
+            btnOK.Text = "OK";
+            btnOK.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(145, 340);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 30);
-            this.btnCancel.TabIndex = 24;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Location = new Point(166, 453);
+            btnCancel.Margin = new Padding(3, 4, 3, 4);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(86, 40);
+            btnCancel.TabIndex = 24;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // FormEntityDetails
             // 
-            this.AcceptButton = this.btnOK;
-            this.CancelButton = this.btnCancel;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 390);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.lblRespawn);
-            this.Controls.Add(this.lblPosition);
-            this.Controls.Add(this.lblCurrentHealth);
-            this.Controls.Add(this.lblBaseXP);
-            this.Controls.Add(this.lblEntityLevel);
-            this.Controls.Add(this.lblBaseAttack);
-            this.Controls.Add(this.lblBaseDefence);
-            this.Controls.Add(this.lblBaseHealth);
-            this.Controls.Add(this.lblType);
-            this.Controls.Add(this.lblId);
-            this.Controls.Add(this.cbIsDead);
-            this.Controls.Add(this.tbRespawnY);
-            this.Controls.Add(this.tbRespawnX);
-            this.Controls.Add(this.tbPositionY);
-            this.Controls.Add(this.tbPositionX);
-            this.Controls.Add(this.tbCurrentHealth);
-            this.Controls.Add(this.tbBaseXP);
-            this.Controls.Add(this.tbEntityLevel);
-            this.Controls.Add(this.tbBaseAttack);
-            this.Controls.Add(this.tbBaseDefence);
-            this.Controls.Add(this.tbBaseHealth);
-            this.Controls.Add(this.tbType);
-            this.Controls.Add(this.tbId);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FormEntityDetails";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Entity Details";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = btnOK;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
+            ClientSize = new Size(286, 520);
+            Controls.Add(btnCancel);
+            Controls.Add(btnOK);
+            Controls.Add(lblRespawn);
+            Controls.Add(lblPosition);
+            Controls.Add(lblCurrentHealth);
+            Controls.Add(lblBaseXP);
+            Controls.Add(lblEntityLevel);
+            Controls.Add(lblBaseAttack);
+            Controls.Add(lblBaseDefence);
+            Controls.Add(lblBaseHealth);
+            Controls.Add(lblType);
+            Controls.Add(lblId);
+            Controls.Add(cbIsDead);
+            Controls.Add(tbRespawnY);
+            Controls.Add(tbRespawnX);
+            Controls.Add(tbPositionY);
+            Controls.Add(tbPositionX);
+            Controls.Add(tbCurrentHealth);
+            Controls.Add(tbBaseXP);
+            Controls.Add(tbEntityLevel);
+            Controls.Add(tbBaseAttack);
+            Controls.Add(tbBaseDefence);
+            Controls.Add(tbBaseHealth);
+            Controls.Add(tbType);
+            Controls.Add(tbId);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "FormEntityDetails";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Entity Details";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

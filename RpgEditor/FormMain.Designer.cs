@@ -132,7 +132,7 @@
             entitiesToolStripMenuItem.Name = "entitiesToolStripMenuItem";
             entitiesToolStripMenuItem.Size = new Size(71, 24);
             entitiesToolStripMenuItem.Text = "Entities";
-            entitiesToolStripMenuItem.Click += entitiesToolStripMenuItem_Click;
+            entitiesToolStripMenuItem.Click += EntityToolStripMenuItem_Click;
             // 
             // FormMain
             // 

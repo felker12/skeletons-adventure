@@ -1,7 +1,6 @@
 ﻿
 namespace RpgLibrary.ItemClasses
 {
-    public enum Effect { Heal, AttackIncrease, DefenceIncrease}
     public class Consumable : BaseItem
     {
         public Effect Effect { get; set; }

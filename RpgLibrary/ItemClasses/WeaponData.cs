@@ -10,6 +10,10 @@ namespace RpgLibrary.ItemClasses
         {
         }
 
+        public WeaponData(ItemData itemData) : base(itemData)
+        {
+        }
+
         protected WeaponData(WeaponData weaponData) : base(weaponData)
         {
             NumberHands = weaponData.NumberHands;

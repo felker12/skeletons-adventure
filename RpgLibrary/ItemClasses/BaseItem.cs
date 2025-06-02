@@ -4,6 +4,8 @@ namespace RpgLibrary.ItemClasses
 {
     public enum Hands { Main, Off, Both }
     public enum ArmorLocation { Body, Head, Hands, Feet }
+    public enum Effect { Heal, AttackIncrease, DefenceIncrease }
+
     public class BaseItem
     {
         public string Name { get; set; } = string.Empty;
@@ -39,6 +41,7 @@ namespace RpgLibrary.ItemClasses
             Stackable = item.Stackable;
             SourceRectangle = item.SourceRectangle;
             TexturePath = item.TexturePath;
+            Quantity = item.Quantity;
         }
 
         public virtual BaseItem Clone()

@@ -11,7 +11,11 @@ namespace RpgLibrary.ItemClasses
         {
         }
 
-        protected ConsumableData(ConsumableData consumableData) : base(consumableData)
+        public ConsumableData(ItemData itemData) : base(itemData)
+        {
+        }
+
+        public ConsumableData(ConsumableData consumableData) : base(consumableData)
         {
             Effect = consumableData.Effect;
             EffectDuration = consumableData.EffectDuration;

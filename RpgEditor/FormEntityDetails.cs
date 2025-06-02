@@ -123,5 +123,34 @@ namespace RpgEditor
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        public void LoadEntity(EntityData entity)
+        {
+            tbType.Text = entity.type;
+            tbId.Text = entity.id.ToString();
+            tbBaseHealth.Text = entity.baseHealth.ToString();
+            tbBaseDefence.Text = entity.baseDefence.ToString();
+            tbBaseAttack.Text = entity.baseAttack.ToString();
+            tbEntityLevel.Text = entity.entityLevel.ToString();
+            tbBaseXP.Text = entity.baseXP.ToString();
+            cbIsDead.Checked = entity.isDead;
+            tbCurrentHealth.Text = entity.currentHealth.ToString();
+            if (entity.position.HasValue)
+            {
+                tbPositionX.Text = entity.position.Value.X.ToString();
+                tbPositionY.Text = entity.position.Value.Y.ToString();
+            }
+            if (entity.respawnPosition.HasValue)
+            {
+                tbRespawnX.Text = entity.respawnPosition.Value.X.ToString();
+                tbRespawnY.Text = entity.respawnPosition.Value.Y.ToString();
+            }
+        }
+
+        private void tbBaseHealth_TextChanged(object sender, EventArgs e)
+        {
+            // Default current health to base health
+            tbCurrentHealth.Text = tbBaseHealth.Text; 
+        }
     }
 }
