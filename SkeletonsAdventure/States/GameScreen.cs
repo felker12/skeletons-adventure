@@ -210,8 +210,13 @@ namespace SkeletonsAdventure.States
 
             if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
             {
-                if (itemUnderMouse != null && transformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
+                // Only try to pick up items if they're in the game world (not in backpack)
+                if (itemUnderMouse != null && 
+                    !BackpackMenu.Items.Contains(itemUnderMouse) && // Check if item is NOT in backpack
+                    transformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
+                {
                     PickUp_Click(null, new EventArgs());
+                }
             }
 
             if (PopUpBox.Visible)

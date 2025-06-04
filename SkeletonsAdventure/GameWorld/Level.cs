@@ -70,7 +70,10 @@ namespace SkeletonsAdventure.GameWorld
 
             ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
-            EntityManager = new();
+            EntityManager = new()
+            {
+                EnemyLevelRange = enemyLevels,
+            };
             EnemyLevels = enemyLevels;
             AddEnemys();
 

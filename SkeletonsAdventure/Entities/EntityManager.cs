@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Timers;
+using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.ItemClasses;
@@ -16,6 +17,7 @@ namespace SkeletonsAdventure.Entities
         public List<Entity> Entities { get; }
         public DroppedLootManager DroppedLootManager { get; }
         public Player Player { get; set; }
+        public MinMaxPair EnemyLevelRange { get; set; } = new(0, 0); //used to set the level of enemies when they are created or respawned
 
         public EntityManager()
         {

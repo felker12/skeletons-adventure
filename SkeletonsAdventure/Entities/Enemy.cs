@@ -13,7 +13,6 @@ namespace SkeletonsAdventure.Entities
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
 
         public bool IsElite { get; set; } = false;
-        private MinMaxPair LevelRange { get; set; } = new(0, 0);
         public bool CheckedLastAtackArea { get; set; } = false;
         public Rectangle DetectionArea => new((int)Position.X - (detectionWidth - Width) / 2,
             (int)Position.Y - (detectionHeight - Height) / 2, detectionWidth, detectionHeight);
@@ -35,7 +34,6 @@ namespace SkeletonsAdventure.Entities
 
         public void SetEnemyLevel(MinMaxPair levels)
         {
-            LevelRange = levels;
             Level = levels.GetRandomNumberInRange();
             EnemyStatAdjustmentForLevel();
         }
@@ -118,11 +116,11 @@ namespace SkeletonsAdventure.Entities
             }
         }
 
-        public override void Respawn()
+        public virtual void Respawn(MinMaxPair levelRange)
         { 
             ResetSquare();
             Motion = Vector2.Zero;
-            SetEnemyLevel(LevelRange);
+            SetEnemyLevel(levelRange);
             base.Respawn();
         }
 

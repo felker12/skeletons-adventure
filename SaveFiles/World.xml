@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses" xmlns:ItemClasses="RpgLibrary.ItemClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT7M56.2342858S</TotalTimeInWorld>
+    <TotalTimeInWorld>PT18.0667028S</TotalTimeInWorld>
     <CurrentLevel>TestLevel</CurrentLevel>
     <PlayerData>
       <Items />
@@ -10,18 +10,18 @@
       <baseHealth>10000</baseHealth>
       <baseDefence>6</baseDefence>
       <baseAttack>400</baseAttack>
-      <entityLevel>3</entityLevel>
+      <entityLevel>4</entityLevel>
       <baseXP>1</baseXP>
-      <currentHealth>10060</currentHealth>
-      <position>354.38855 1100.9515</position>
+      <currentHealth>10080</currentHealth>
+      <position>111.71065 597.7111</position>
       <respawnPosition>266 92</respawnPosition>
       <isDead>false</isDead>
       <lastDeathTime>PT0S</lastDeathTime>
-      <totalXP>471</totalXP>
+      <totalXP>628</totalXP>
       <baseMana>1000</baseMana>
-      <mana>1060</mana>
-      <maxMana>1060</maxMana>
-      <statusPoints>6</statusPoints>
+      <mana>1080</mana>
+      <maxMana>1080</maxMana>
+      <statusPoints>8</statusPoints>
       <backpack>
         <Item Type="ItemClasses:ArmorData">
           <Name>Robes</Name>
@@ -49,7 +49,7 @@
           <Stackable>true</Stackable>
           <Consumable>true</Consumable>
           <Position>1152 32</Position>
-          <Quantity>4</Quantity>
+          <Quantity>3</Quantity>
           <SourceRectangle>0 0 0 0</SourceRectangle>
           <TexturePath>Items/Bones</TexturePath>
           <Effect>Heal</Effect>
@@ -66,7 +66,7 @@
           <Stackable>true</Stackable>
           <Consumable>false</Consumable>
           <Position>1184 32</Position>
-          <Quantity>33</Quantity>
+          <Quantity>23</Quantity>
           <SourceRectangle>0 0 0 0</SourceRectangle>
           <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
         </Item>
@@ -150,38 +150,6 @@
           <NumberHands>Main</NumberHands>
           <AttackValue>10</AttackValue>
         </Item>
-        <Item Type="ItemClasses:ArmorData">
-          <Name>Robes</Name>
-          <Type>Robes</Type>
-          <Description>A Robe</Description>
-          <Price>10</Price>
-          <Weight>5</Weight>
-          <Equipped>false</Equipped>
-          <Stackable>false</Stackable>
-          <Consumable>false</Consumable>
-          <Position>1120 96</Position>
-          <Quantity>1</Quantity>
-          <SourceRectangle>0 0 0 0</SourceRectangle>
-          <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
-          <ArmorLocation>Body</ArmorLocation>
-          <DefenseValue>2</DefenseValue>
-        </Item>
-        <Item Type="ItemClasses:WeaponData">
-          <Name>Sword</Name>
-          <Type>Slashing</Type>
-          <Description>A Sword</Description>
-          <Price>40</Price>
-          <Weight>15</Weight>
-          <Equipped>false</Equipped>
-          <Stackable>false</Stackable>
-          <Consumable>false</Consumable>
-          <Position>1152 96</Position>
-          <Quantity>1</Quantity>
-          <SourceRectangle>0 0 0 0</SourceRectangle>
-          <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
-          <NumberHands>Main</NumberHands>
-          <AttackValue>10</AttackValue>
-        </Item>
       </backpack>
       <activeQuests />
       <completedQuests />
@@ -207,7 +175,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>405.69196 1120.524</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -223,7 +191,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>420.69196 1135.524</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -240,7 +208,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>435.69196 1150.524</Position>
+                    <Position>0 0</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -254,7 +222,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>450.69196 1165.524</Position>
+                    <Position>0 0</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -267,13 +235,13 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>0</entityLevel>
+                <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>50</currentHealth>
-                <position>800 880.5</position>
+                <currentHealth>430</currentHealth>
+                <position>1050 883</position>
                 <respawnPosition>800 778</respawnPosition>
                 <isDead>false</isDead>
-                <lastDeathTime>PT21.2833759S</lastDeathTime>
+                <lastDeathTime>PT0S</lastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -286,7 +254,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>504.90445 574.3444</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -302,7 +270,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>519.9044 589.3444</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -319,7 +287,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>534.9044 604.3444</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -333,86 +301,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>549.9044 619.3444</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
-                    <NumberHands>Main</NumberHands>
-                    <AttackValue>10</AttackValue>
-                  </Item>
-                </Items>
-                <id>836</id>
-                <type>SkeletonsAdventure.Entities.Skeleton</type>
-                <baseHealth>20</baseHealth>
-                <baseDefence>2</baseDefence>
-                <baseAttack>9</baseAttack>
-                <entityLevel>0</entityLevel>
-                <baseXP>5</baseXP>
-                <currentHealth>20</currentHealth>
-                <position>405 458</position>
-                <respawnPosition>320 458</respawnPosition>
-                <isDead>false</isDead>
-                <lastDeathTime>PT5.4500109S</lastDeathTime>
-              </Item>
-              <Item>
-                <Items>
-                  <Item Type="ItemClasses:ArmorData">
-                    <Name>Robes</Name>
-                    <Type>Robes</Type>
-                    <Description>A Robe</Description>
-                    <Price>10</Price>
-                    <Weight>5</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
-                    <ArmorLocation>Body</ArmorLocation>
-                    <DefenseValue>2</DefenseValue>
-                  </Item>
-                  <Item Type="ItemClasses:ConsumableData">
-                    <Name>Bones</Name>
-                    <Type>Consumable</Type>
-                    <Description>Bones of a creature</Description>
-                    <Price>1</Price>
-                    <Weight>1</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>true</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>1</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath>Items/Bones</TexturePath>
-                    <Effect>Heal</Effect>
-                    <EffectDuration>0</EffectDuration>
-                    <EffectBonus>5</EffectBonus>
-                  </Item>
-                  <Item>
-                    <Name>Coins</Name>
-                    <Type>Currency</Type>
-                    <Description>Money</Description>
-                    <Price>1</Price>
-                    <Weight>0</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>true</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
-                    <Quantity>10</Quantity>
-                    <SourceRectangle>0 0 0 0</SourceRectangle>
-                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
-                  </Item>
-                  <Item Type="ItemClasses:WeaponData">
-                    <Name>Sword</Name>
-                    <Type>Slashing</Type>
-                    <Description>A Sword</Description>
-                    <Price>40</Price>
-                    <Weight>15</Weight>
-                    <Equipped>false</Equipped>
-                    <Stackable>false</Stackable>
-                    <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -427,11 +316,90 @@
                 <baseAttack>9</baseAttack>
                 <entityLevel>76</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>172</currentHealth>
-                <position>971 708</position>
+                <currentHealth>-180</currentHealth>
+                <position>222.13388 597.3473</position>
+                <respawnPosition>320 458</respawnPosition>
+                <isDead>true</isDead>
+                <lastDeathTime>PT16.9167005S</lastDeathTime>
+              </Item>
+              <Item>
+                <Items>
+                  <Item Type="ItemClasses:ArmorData">
+                    <Name>Robes</Name>
+                    <Type>Robes</Type>
+                    <Description>A Robe</Description>
+                    <Price>10</Price>
+                    <Weight>5</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>467.23334 644.26685</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+                    <ArmorLocation>Body</ArmorLocation>
+                    <DefenseValue>2</DefenseValue>
+                  </Item>
+                  <Item Type="ItemClasses:ConsumableData">
+                    <Name>Bones</Name>
+                    <Type>Consumable</Type>
+                    <Description>Bones of a creature</Description>
+                    <Price>1</Price>
+                    <Weight>1</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>true</Consumable>
+                    <Position>482.23334 659.26685</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath>Items/Bones</TexturePath>
+                    <Effect>Heal</Effect>
+                    <EffectDuration>0</EffectDuration>
+                    <EffectBonus>5</EffectBonus>
+                  </Item>
+                  <Item>
+                    <Name>Coins</Name>
+                    <Type>Currency</Type>
+                    <Description>Money</Description>
+                    <Price>1</Price>
+                    <Weight>0</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>true</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>497.23334 674.26685</Position>
+                    <Quantity>10</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+                  </Item>
+                  <Item Type="ItemClasses:WeaponData">
+                    <Name>Sword</Name>
+                    <Type>Slashing</Type>
+                    <Description>A Sword</Description>
+                    <Price>40</Price>
+                    <Weight>15</Weight>
+                    <Equipped>false</Equipped>
+                    <Stackable>false</Stackable>
+                    <Consumable>false</Consumable>
+                    <Position>512.23334 689.26685</Position>
+                    <Quantity>1</Quantity>
+                    <SourceRectangle>0 0 0 0</SourceRectangle>
+                    <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+                    <NumberHands>Main</NumberHands>
+                    <AttackValue>10</AttackValue>
+                  </Item>
+                </Items>
+                <id>836</id>
+                <type>SkeletonsAdventure.Entities.Skeleton</type>
+                <baseHealth>20</baseHealth>
+                <baseDefence>2</baseDefence>
+                <baseAttack>9</baseAttack>
+                <entityLevel>76</entityLevel>
+                <baseXP>5</baseXP>
+                <currentHealth>-202</currentHealth>
+                <position>447.23334 624.26685</position>
                 <respawnPosition>736 458</respawnPosition>
-                <isDead>false</isDead>
-                <lastDeathTime>PT0S</lastDeathTime>
+                <isDead>true</isDead>
+                <lastDeathTime>PT17.2500345S</lastDeathTime>
               </Item>
               <Item>
                 <Items>
@@ -507,7 +475,7 @@
                 <entityLevel>76</entityLevel>
                 <baseXP>4</baseXP>
                 <currentHealth>167</currentHealth>
-                <position>843 538</position>
+                <position>417.52795 347.22205</position>
                 <respawnPosition>608 288</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -524,7 +492,7 @@
               <Equipped>false</Equipped>
               <Stackable>false</Stackable>
               <Consumable>false</Consumable>
-              <Position>405.69196 1120.524</Position>
+              <Position>537.5626 617.33044</Position>
               <Quantity>1</Quantity>
               <SourceRectangle>0 0 0 0</SourceRectangle>
               <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -540,7 +508,7 @@
               <Equipped>false</Equipped>
               <Stackable>true</Stackable>
               <Consumable>true</Consumable>
-              <Position>420.69196 1135.524</Position>
+              <Position>552.5626 632.33044</Position>
               <Quantity>1</Quantity>
               <SourceRectangle>0 0 0 0</SourceRectangle>
               <TexturePath>Items/Bones</TexturePath>
@@ -557,7 +525,7 @@
               <Equipped>false</Equipped>
               <Stackable>true</Stackable>
               <Consumable>false</Consumable>
-              <Position>435.69196 1150.524</Position>
+              <Position>567.5626 647.33044</Position>
               <Quantity>10</Quantity>
               <SourceRectangle>0 0 0 0</SourceRectangle>
               <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -571,7 +539,196 @@
               <Equipped>false</Equipped>
               <Stackable>false</Stackable>
               <Consumable>false</Consumable>
-              <Position>450.69196 1165.524</Position>
+              <Position>582.5626 662.33044</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <NumberHands>Main</NumberHands>
+              <AttackValue>10</AttackValue>
+            </Item>
+            <Item Type="ItemClasses:ArmorData">
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>751.4287 620.0713</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <ArmorLocation>Body</ArmorLocation>
+              <DefenseValue>2</DefenseValue>
+            </Item>
+            <Item Type="ItemClasses:ConsumableData">
+              <Name>Bones</Name>
+              <Type>Consumable</Type>
+              <Description>Bones of a creature</Description>
+              <Price>1</Price>
+              <Weight>1</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>true</Consumable>
+              <Position>766.4287 635.0713</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>Items/Bones</TexturePath>
+              <Effect>Heal</Effect>
+              <EffectDuration>0</EffectDuration>
+              <EffectBonus>5</EffectBonus>
+            </Item>
+            <Item>
+              <Name>Coins</Name>
+              <Type>Currency</Type>
+              <Description>Money</Description>
+              <Price>1</Price>
+              <Weight>0</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>false</Consumable>
+              <Position>781.4287 650.0713</Position>
+              <Quantity>10</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+            </Item>
+            <Item Type="ItemClasses:WeaponData">
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>796.4287 665.0713</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <NumberHands>Main</NumberHands>
+              <AttackValue>10</AttackValue>
+            </Item>
+            <Item Type="ItemClasses:ArmorData">
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>242.13388 617.3473</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <ArmorLocation>Body</ArmorLocation>
+              <DefenseValue>2</DefenseValue>
+            </Item>
+            <Item Type="ItemClasses:ConsumableData">
+              <Name>Bones</Name>
+              <Type>Consumable</Type>
+              <Description>Bones of a creature</Description>
+              <Price>1</Price>
+              <Weight>1</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>true</Consumable>
+              <Position>257.13388 632.3473</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>Items/Bones</TexturePath>
+              <Effect>Heal</Effect>
+              <EffectDuration>0</EffectDuration>
+              <EffectBonus>5</EffectBonus>
+            </Item>
+            <Item>
+              <Name>Coins</Name>
+              <Type>Currency</Type>
+              <Description>Money</Description>
+              <Price>1</Price>
+              <Weight>0</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>false</Consumable>
+              <Position>272.13388 647.3473</Position>
+              <Quantity>10</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+            </Item>
+            <Item Type="ItemClasses:WeaponData">
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>287.13388 662.3473</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <NumberHands>Main</NumberHands>
+              <AttackValue>10</AttackValue>
+            </Item>
+            <Item Type="ItemClasses:ArmorData">
+              <Name>Robes</Name>
+              <Type>Robes</Type>
+              <Description>A Robe</Description>
+              <Price>10</Price>
+              <Weight>5</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>467.23334 644.26685</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+              <ArmorLocation>Body</ArmorLocation>
+              <DefenseValue>2</DefenseValue>
+            </Item>
+            <Item Type="ItemClasses:ConsumableData">
+              <Name>Bones</Name>
+              <Type>Consumable</Type>
+              <Description>Bones of a creature</Description>
+              <Price>1</Price>
+              <Weight>1</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>true</Consumable>
+              <Position>482.23334 659.26685</Position>
+              <Quantity>1</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>Items/Bones</TexturePath>
+              <Effect>Heal</Effect>
+              <EffectDuration>0</EffectDuration>
+              <EffectBonus>5</EffectBonus>
+            </Item>
+            <Item>
+              <Name>Coins</Name>
+              <Type>Currency</Type>
+              <Description>Money</Description>
+              <Price>1</Price>
+              <Weight>0</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>true</Stackable>
+              <Consumable>false</Consumable>
+              <Position>497.23334 674.26685</Position>
+              <Quantity>10</Quantity>
+              <SourceRectangle>0 0 0 0</SourceRectangle>
+              <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
+            </Item>
+            <Item Type="ItemClasses:WeaponData">
+              <Name>Sword</Name>
+              <Type>Slashing</Type>
+              <Description>A Sword</Description>
+              <Price>40</Price>
+              <Weight>15</Weight>
+              <Equipped>false</Equipped>
+              <Stackable>false</Stackable>
+              <Consumable>false</Consumable>
+              <Position>512.23334 689.26685</Position>
               <Quantity>1</Quantity>
               <SourceRectangle>0 0 0 0</SourceRectangle>
               <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -971,9 +1128,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>73</entityLevel>
+                <entityLevel>48</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>415</currentHealth>
+                <currentHealth>290</currentHealth>
                 <position>2240 1162</position>
                 <respawnPosition>2240 1162</respawnPosition>
                 <isDead>false</isDead>
@@ -1050,9 +1207,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>10</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>275</currentHealth>
+                <currentHealth>100</currentHealth>
                 <position>672 3338</position>
                 <respawnPosition>672 3338</respawnPosition>
                 <isDead>false</isDead>
@@ -1069,7 +1226,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1085,7 +1242,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1102,7 +1259,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1116,7 +1273,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1129,9 +1286,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>53</entityLevel>
+                <entityLevel>64</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>126</currentHealth>
+                <currentHealth>148</currentHealth>
                 <position>256 106</position>
                 <respawnPosition>256 106</respawnPosition>
                 <isDead>false</isDead>
@@ -1148,7 +1305,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1164,7 +1321,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1181,7 +1338,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1195,7 +1352,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1208,9 +1365,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>85</entityLevel>
+                <entityLevel>70</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>190</currentHealth>
+                <currentHealth>160</currentHealth>
                 <position>224 522</position>
                 <respawnPosition>224 522</respawnPosition>
                 <isDead>false</isDead>
@@ -1227,7 +1384,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1243,7 +1400,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1260,7 +1417,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1274,7 +1431,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1287,9 +1444,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>78</entityLevel>
+                <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>176</currentHealth>
+                <currentHealth>182</currentHealth>
                 <position>64 714</position>
                 <respawnPosition>64 714</respawnPosition>
                 <isDead>false</isDead>
@@ -1306,7 +1463,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1322,7 +1479,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1339,7 +1496,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1353,7 +1510,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1366,9 +1523,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>22</entityLevel>
+                <entityLevel>45</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>64</currentHealth>
+                <currentHealth>110</currentHealth>
                 <position>32 1034</position>
                 <respawnPosition>32 1034</respawnPosition>
                 <isDead>false</isDead>
@@ -1385,7 +1542,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1401,7 +1558,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1418,7 +1575,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1432,7 +1589,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1445,9 +1602,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>81</entityLevel>
+                <entityLevel>19</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>182</currentHealth>
+                <currentHealth>58</currentHealth>
                 <position>288 1034</position>
                 <respawnPosition>288 1034</respawnPosition>
                 <isDead>false</isDead>
@@ -1464,7 +1621,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1480,7 +1637,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1497,7 +1654,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1511,7 +1668,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1524,9 +1681,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>92</entityLevel>
+                <entityLevel>43</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>204</currentHealth>
+                <currentHealth>106</currentHealth>
                 <position>192 1482</position>
                 <respawnPosition>192 1482</respawnPosition>
                 <isDead>false</isDead>
@@ -1543,7 +1700,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1559,7 +1716,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1576,7 +1733,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1590,7 +1747,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1603,9 +1760,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>7</entityLevel>
+                <entityLevel>1</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>34</currentHealth>
+                <currentHealth>22</currentHealth>
                 <position>1920 1738</position>
                 <respawnPosition>1920 1738</respawnPosition>
                 <isDead>false</isDead>
@@ -1622,7 +1779,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1638,7 +1795,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1655,7 +1812,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1669,7 +1826,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1682,9 +1839,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>45</entityLevel>
+                <entityLevel>26</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>110</currentHealth>
+                <currentHealth>72</currentHealth>
                 <position>96 1802</position>
                 <respawnPosition>96 1802</respawnPosition>
                 <isDead>false</isDead>
@@ -1701,7 +1858,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1717,7 +1874,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1734,7 +1891,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1748,7 +1905,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1761,9 +1918,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>39</entityLevel>
+                <entityLevel>57</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>98</currentHealth>
+                <currentHealth>134</currentHealth>
                 <position>2208 1802</position>
                 <respawnPosition>2208 1802</respawnPosition>
                 <isDead>false</isDead>
@@ -1780,7 +1937,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1796,7 +1953,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1813,7 +1970,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1827,7 +1984,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1840,9 +1997,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>49</entityLevel>
+                <entityLevel>19</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>118</currentHealth>
+                <currentHealth>58</currentHealth>
                 <position>768 1834</position>
                 <respawnPosition>768 1834</respawnPosition>
                 <isDead>false</isDead>
@@ -1859,7 +2016,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1875,7 +2032,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1892,7 +2049,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1906,7 +2063,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1919,9 +2076,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>2</entityLevel>
+                <entityLevel>53</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>24</currentHealth>
+                <currentHealth>126</currentHealth>
                 <position>224 1898</position>
                 <respawnPosition>224 1898</respawnPosition>
                 <isDead>false</isDead>
@@ -1938,7 +2095,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1954,7 +2111,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -1971,7 +2128,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1985,7 +2142,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -1998,9 +2155,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>53</entityLevel>
+                <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>126</currentHealth>
+                <currentHealth>182</currentHealth>
                 <position>1760 2026</position>
                 <respawnPosition>1760 2026</respawnPosition>
                 <isDead>false</isDead>
@@ -2017,7 +2174,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2033,7 +2190,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2050,7 +2207,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2064,7 +2221,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2077,9 +2234,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>88</entityLevel>
+                <entityLevel>83</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>196</currentHealth>
+                <currentHealth>186</currentHealth>
                 <position>2016 2058</position>
                 <respawnPosition>2016 2058</respawnPosition>
                 <isDead>false</isDead>
@@ -2096,7 +2253,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2112,7 +2269,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2129,7 +2286,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2143,7 +2300,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2156,9 +2313,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>84</entityLevel>
+                <entityLevel>51</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>188</currentHealth>
+                <currentHealth>122</currentHealth>
                 <position>672 2186</position>
                 <respawnPosition>672 2186</respawnPosition>
                 <isDead>false</isDead>
@@ -2175,7 +2332,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2191,7 +2348,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2208,7 +2365,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2222,7 +2379,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2235,9 +2392,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>95</entityLevel>
+                <entityLevel>88</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>210</currentHealth>
+                <currentHealth>196</currentHealth>
                 <position>864 2186</position>
                 <respawnPosition>864 2186</respawnPosition>
                 <isDead>false</isDead>
@@ -2254,7 +2411,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2270,7 +2427,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2287,7 +2444,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2301,7 +2458,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2314,9 +2471,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>29</entityLevel>
+                <entityLevel>57</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>78</currentHealth>
+                <currentHealth>134</currentHealth>
                 <position>224 2282</position>
                 <respawnPosition>224 2282</respawnPosition>
                 <isDead>false</isDead>
@@ -2333,7 +2490,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2349,7 +2506,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2366,7 +2523,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2380,7 +2537,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2393,9 +2550,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>11</entityLevel>
+                <entityLevel>98</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>42</currentHealth>
+                <currentHealth>216</currentHealth>
                 <position>1216 2314</position>
                 <respawnPosition>1216 2314</respawnPosition>
                 <isDead>false</isDead>
@@ -2412,7 +2569,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2428,7 +2585,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2445,7 +2602,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2459,7 +2616,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2472,9 +2629,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>87</entityLevel>
+                <entityLevel>55</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>194</currentHealth>
+                <currentHealth>130</currentHealth>
                 <position>1536 2314</position>
                 <respawnPosition>1536 2314</respawnPosition>
                 <isDead>false</isDead>
@@ -2491,7 +2648,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2507,7 +2664,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2524,7 +2681,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2538,7 +2695,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2551,9 +2708,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>48</entityLevel>
+                <entityLevel>50</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>116</currentHealth>
+                <currentHealth>120</currentHealth>
                 <position>2080 2410</position>
                 <respawnPosition>2080 2410</respawnPosition>
                 <isDead>false</isDead>
@@ -2570,7 +2727,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2586,7 +2743,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2603,7 +2760,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2617,7 +2774,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2630,9 +2787,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>86</entityLevel>
+                <entityLevel>42</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>192</currentHealth>
+                <currentHealth>104</currentHealth>
                 <position>2080 2442</position>
                 <respawnPosition>2080 2442</respawnPosition>
                 <isDead>false</isDead>
@@ -2649,7 +2806,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2665,7 +2822,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2682,7 +2839,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2696,7 +2853,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2709,9 +2866,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>67</entityLevel>
+                <entityLevel>53</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>154</currentHealth>
+                <currentHealth>126</currentHealth>
                 <position>544 2506</position>
                 <respawnPosition>544 2506</respawnPosition>
                 <isDead>false</isDead>
@@ -2728,7 +2885,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2744,7 +2901,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2761,7 +2918,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2775,7 +2932,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2788,9 +2945,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>73</entityLevel>
+                <entityLevel>49</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>166</currentHealth>
+                <currentHealth>118</currentHealth>
                 <position>864 2506</position>
                 <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
@@ -2807,7 +2964,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2823,7 +2980,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2840,7 +2997,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2854,7 +3011,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2867,9 +3024,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>54</entityLevel>
+                <entityLevel>98</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>128</currentHealth>
+                <currentHealth>216</currentHealth>
                 <position>2336 2602</position>
                 <respawnPosition>2336 2602</respawnPosition>
                 <isDead>false</isDead>
@@ -2886,7 +3043,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2902,7 +3059,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2919,7 +3076,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2933,7 +3090,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2946,9 +3103,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>57</entityLevel>
+                <entityLevel>52</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>134</currentHealth>
+                <currentHealth>124</currentHealth>
                 <position>2336 2634</position>
                 <respawnPosition>2336 2634</respawnPosition>
                 <isDead>false</isDead>
@@ -2965,7 +3122,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -2981,7 +3138,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -2998,7 +3155,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3012,7 +3169,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3025,9 +3182,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>83</entityLevel>
+                <entityLevel>12</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>186</currentHealth>
+                <currentHealth>44</currentHealth>
                 <position>1504 2698</position>
                 <respawnPosition>1504 2698</respawnPosition>
                 <isDead>false</isDead>
@@ -3044,7 +3201,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3060,7 +3217,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3077,7 +3234,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3091,7 +3248,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3104,9 +3261,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>67</entityLevel>
+                <entityLevel>56</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>154</currentHealth>
+                <currentHealth>132</currentHealth>
                 <position>1248 2858</position>
                 <respawnPosition>1248 2858</respawnPosition>
                 <isDead>false</isDead>
@@ -3123,7 +3280,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3139,7 +3296,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3156,7 +3313,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3170,7 +3327,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3183,9 +3340,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>50</entityLevel>
+                <entityLevel>97</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>120</currentHealth>
+                <currentHealth>214</currentHealth>
                 <position>2336 2954</position>
                 <respawnPosition>2336 2954</respawnPosition>
                 <isDead>false</isDead>
@@ -3202,7 +3359,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3218,7 +3375,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3235,7 +3392,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3249,7 +3406,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3262,9 +3419,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>33</entityLevel>
+                <entityLevel>19</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>86</currentHealth>
+                <currentHealth>58</currentHealth>
                 <position>32 2986</position>
                 <respawnPosition>32 2986</respawnPosition>
                 <isDead>false</isDead>
@@ -3281,7 +3438,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3297,7 +3454,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3314,7 +3471,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3328,7 +3485,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3341,9 +3498,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>100</entityLevel>
+                <entityLevel>62</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>220</currentHealth>
+                <currentHealth>144</currentHealth>
                 <position>1248 2986</position>
                 <respawnPosition>1248 2986</respawnPosition>
                 <isDead>false</isDead>
@@ -3360,7 +3517,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3376,7 +3533,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3393,7 +3550,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3407,7 +3564,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3420,9 +3577,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>41</entityLevel>
+                <entityLevel>63</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>102</currentHealth>
+                <currentHealth>146</currentHealth>
                 <position>640 3018</position>
                 <respawnPosition>640 3018</respawnPosition>
                 <isDead>false</isDead>
@@ -3439,7 +3596,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3455,7 +3612,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3472,7 +3629,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3486,7 +3643,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3499,9 +3656,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>28</entityLevel>
+                <entityLevel>25</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>76</currentHealth>
+                <currentHealth>70</currentHealth>
                 <position>1504 3146</position>
                 <respawnPosition>1504 3146</respawnPosition>
                 <isDead>false</isDead>
@@ -3518,7 +3675,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3534,7 +3691,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3551,7 +3708,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3565,7 +3722,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3578,9 +3735,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>64</entityLevel>
+                <entityLevel>56</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>148</currentHealth>
+                <currentHealth>132</currentHealth>
                 <position>1856 3210</position>
                 <respawnPosition>1856 3210</respawnPosition>
                 <isDead>false</isDead>
@@ -3597,7 +3754,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3613,7 +3770,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3630,7 +3787,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3644,7 +3801,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3657,9 +3814,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>79</entityLevel>
+                <entityLevel>27</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>178</currentHealth>
+                <currentHealth>74</currentHealth>
                 <position>2336 3242</position>
                 <respawnPosition>2336 3242</respawnPosition>
                 <isDead>false</isDead>
@@ -3676,7 +3833,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3692,7 +3849,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3709,7 +3866,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3723,7 +3880,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3736,9 +3893,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>13</entityLevel>
+                <entityLevel>69</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>46</currentHealth>
+                <currentHealth>158</currentHealth>
                 <position>1024 3466</position>
                 <respawnPosition>1024 3466</respawnPosition>
                 <isDead>false</isDead>
@@ -3755,7 +3912,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3771,7 +3928,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3788,7 +3945,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3802,7 +3959,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3815,9 +3972,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>72</entityLevel>
+                <entityLevel>74</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>164</currentHealth>
+                <currentHealth>168</currentHealth>
                 <position>2112 3466</position>
                 <respawnPosition>2112 3466</respawnPosition>
                 <isDead>false</isDead>
@@ -3834,7 +3991,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3850,7 +4007,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3867,7 +4024,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3881,7 +4038,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3894,9 +4051,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>50</entityLevel>
+                <entityLevel>40</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>120</currentHealth>
+                <currentHealth>100</currentHealth>
                 <position>1248 3498</position>
                 <respawnPosition>1248 3498</respawnPosition>
                 <isDead>false</isDead>
@@ -3913,7 +4070,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3929,7 +4086,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -3946,7 +4103,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3960,7 +4117,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -3973,9 +4130,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>64</entityLevel>
+                <entityLevel>26</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>148</currentHealth>
+                <currentHealth>72</currentHealth>
                 <position>1824 3594</position>
                 <respawnPosition>1824 3594</respawnPosition>
                 <isDead>false</isDead>
@@ -3992,7 +4149,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4008,7 +4165,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -4025,7 +4182,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4039,7 +4196,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4052,9 +4209,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>40</entityLevel>
+                <entityLevel>42</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>100</currentHealth>
+                <currentHealth>104</currentHealth>
                 <position>1408 3626</position>
                 <respawnPosition>1408 3626</respawnPosition>
                 <isDead>false</isDead>
@@ -4071,7 +4228,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4087,7 +4244,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -4104,7 +4261,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4118,7 +4275,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4131,9 +4288,9 @@
                 <baseHealth>20</baseHealth>
                 <baseDefence>2</baseDefence>
                 <baseAttack>9</baseAttack>
-                <entityLevel>44</entityLevel>
+                <entityLevel>58</entityLevel>
                 <baseXP>5</baseXP>
-                <currentHealth>108</currentHealth>
+                <currentHealth>136</currentHealth>
                 <position>704 3690</position>
                 <respawnPosition>704 3690</respawnPosition>
                 <isDead>false</isDead>
@@ -4165,7 +4322,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4181,7 +4338,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -4198,7 +4355,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4212,7 +4369,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4244,7 +4401,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4260,7 +4417,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -4277,7 +4434,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4291,7 +4448,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4323,7 +4480,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>467.23334 644.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4339,7 +4496,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>true</Consumable>
-                    <Position>0 0</Position>
+                    <Position>482.23334 659.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>Items/Bones</TexturePath>
@@ -4356,7 +4513,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>true</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>497.23334 674.26685</Position>
                     <Quantity>10</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
@@ -4370,7 +4527,7 @@
                     <Equipped>false</Equipped>
                     <Stackable>false</Stackable>
                     <Consumable>false</Consumable>
-                    <Position>0 0</Position>
+                    <Position>512.23334 689.26685</Position>
                     <Quantity>1</Quantity>
                     <SourceRectangle>0 0 0 0</SourceRectangle>
                     <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
