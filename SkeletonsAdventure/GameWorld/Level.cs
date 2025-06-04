@@ -1,22 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Tiled.Renderers;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
-using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.EntitySpawners;
-using SkeletonsAdventure.Controls;
-using System.Collections.Generic;
+using MonoGame.Extended.Tiled.Renderers;
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.WorldClasses;
-using SkeletonsAdventure.ItemClasses;
-using System;
-using SkeletonsAdventure.GameObjects;
-using Microsoft.Xna.Framework.Input;
+using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.Engines;
-using MonoGame.Extended;
-using MonoGame.Extended.Graphics.Effects;
+using SkeletonsAdventure.Entities;
+using SkeletonsAdventure.EntitySpawners;
+using SkeletonsAdventure.GameObjects;
+using SkeletonsAdventure.GameUI;
+using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
+using System;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -44,6 +44,7 @@ namespace SkeletonsAdventure.GameWorld
         public LevelExit LevelExit { get; set; } = null;
         public LevelExit LevelEntrance { get; set; } = null;
         internal InteractableObjectManager InteractableObjectManager { get; set; } = new();
+        public DamagePopUpManager DamagePopUpManager { get; } = new(); //used to show damage popups when an entity is hit by an attack
 
         private readonly TiledMapRenderer _tiledMapRenderer;
         private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
@@ -130,6 +131,8 @@ namespace SkeletonsAdventure.GameWorld
             if (LevelExit is not null && LevelExit.ExitTextVisible)
                 spriteBatch.DrawString(GameManager.Arial12, LevelExit.ExitText, LevelExit.ExitPosition, Color.White);
 
+            DamagePopUpManager.Draw(spriteBatch);
+
             spriteBatch.End();
         }
 
@@ -149,6 +152,7 @@ namespace SkeletonsAdventure.GameWorld
             ChestMenu.Update(true, Camera.Transformation);
 
             InteractableObjectManager.Update(gameTime, Player);
+            DamagePopUpManager.Update(gameTime);
 
             if (LevelExit != null)
                 CheckIfPlayerIsNearExit(LevelExit, LevelExit.NextLevel.PlayerStartPosition);
@@ -187,7 +191,9 @@ namespace SkeletonsAdventure.GameWorld
                 {
                     if(enemy.GetType().FullName == entityData.type)
                     {
-                        dynamic en = Activator.CreateInstance(enemy.GetType(), entityData);
+                        Enemy en = (Enemy)Activator.CreateInstance(enemy.GetType(), entityData);
+                        //TODO
+                        //dynamic en = Activator.CreateInstance(enemy.GetType(), entityData);
                         en.SetEnemyLevel(entityData.entityLevel);
                         en.LootList.Add(GameManager.LoadGameItemsFromItemData(entityData.Items));
 

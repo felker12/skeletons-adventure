@@ -79,6 +79,7 @@ namespace SkeletonsAdventure.Entities
             AttackManager.Update(gameTime);
             base.Update(gameTime);
 
+            //make the entity red for a time when hit
             //Timespan.Zero check makes sure it isn't true when the game starts
             if ((gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds < 200 && LastTimeAttacked != TimeSpan.Zero) 
                 SpriteColor = Color.Red;
@@ -160,7 +161,17 @@ namespace SkeletonsAdventure.Entities
             AttacksHitBy.Add(attack);
 
             int dmg = (int)(DamageEngine.CalculateDamage(attack.Source, this) * attack.DamageModifier);
-            attack.Info.Text += dmg;
+            DamagePopUp damagePopUp = new(dmg.ToString(), GetCenter());
+
+            if (this is Enemy)
+                damagePopUp.Color = Color.Cyan;
+
+            World.CurrentLevel.DamagePopUpManager.Add(damagePopUp);
+            //TODO add logic for critical hits and color the attack orange if it is a critical
+
+
+            //TODO
+            //attack.Info.Text += dmg;
             Health -= dmg;
 
             LastTimeAttacked = gameTime.TotalGameTime;
@@ -178,10 +189,13 @@ namespace SkeletonsAdventure.Entities
             IsDead = false;
             AttackManager.ClearAttacks();
             LastTimeAttacked = TimeSpan.Zero;
+            Info.Text = string.Empty;
         }
 
         public virtual void EntityDied(EntityAttack attack) //TODO change how the timer for dead entities works
         {
+            AttacksHitBy.Clear();
+
             if (attack.Source is Player player)
             {
                 //check if there is an active task that requires the player to kill this entity

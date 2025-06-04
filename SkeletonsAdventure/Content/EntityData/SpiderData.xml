@@ -3,16 +3,16 @@
   <Asset Type="EntityClasses:EntityData">
     <Items />
     <id>4126</id>
-    <type Null="true" />
+    <type>SkeletonsAdventure.Entities.Spider</type>
     <baseHealth>15</baseHealth>
     <baseDefence>2</baseDefence>
     <baseAttack>7</baseAttack>
     <entityLevel>0</entityLevel>
     <baseXP>4</baseXP>
     <currentHealth>15</currentHealth>
-    <position Null="true" />
-    <respawnPosition Null="true" />
+    <position>0 0</position>
+    <respawnPosition>0 0</respawnPosition>
     <isDead>false</isDead>
-    <lastDeathTime Null="true" />
+    <lastDeathTime>PT0S</lastDeathTime>
   </Asset>
 </XnaContent>

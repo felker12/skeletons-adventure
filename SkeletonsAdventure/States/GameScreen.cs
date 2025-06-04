@@ -101,8 +101,6 @@ namespace SkeletonsAdventure.States
 
             //FPS.Draw(spriteBatch, GameManager.InfoFont, new(10,10), Color.MonoGameOrange);
 
-
-
             spriteBatch.End();
         }
 

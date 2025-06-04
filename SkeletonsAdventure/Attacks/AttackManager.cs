@@ -82,20 +82,16 @@ namespace SkeletonsAdventure.Attacks
                     {
                         if (entity.IsDead)
                             continue;//prevents attacking dead enemies
-                        if (entity.AttacksHitBy.Contains(attack) is false) //prevents an attack from hitting an opponent multiple times
-                        {
-                            if (SourceEntity != entity) //makes sure the entity cannot attack itself
-                            {
-                                if (entity is Enemy && SourceEntity is Enemy) { } //This line prevents enemies from attacking other enemies
-                                else if (entity.GetRectangle.Intersects(attack.DamageHitBox))
-                                {
-                                    entity.GetHitByAttack(attack, gameTime);
-                                }
-                            }
-                        }
+                        if (entity.AttacksHitBy.Contains(attack) is true) //prevents an attack from hitting an opponent multiple times
+                            continue;
+                        if (SourceEntity == entity) //makes sure the entity cannot attack itself
+                            continue;
+                        if (entity is Enemy && SourceEntity is Enemy) //This line prevents enemies from attacking other enemies
+                            continue;
+                        if (entity.GetRectangle.Intersects(attack.DamageHitBox))
+                            entity.GetHitByAttack(attack, gameTime);
                     }
                 }
-                
             }
         }
 

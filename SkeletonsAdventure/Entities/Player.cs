@@ -183,12 +183,14 @@ namespace SkeletonsAdventure.Entities
             //Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
 
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
-            Info.Text += "\nActive quests: " + ActiveQuests.Count;
+            //Info.Text += "\nActive quests: " + ActiveQuests.Count;
 
-            if (ActiveQuests.Count > 0 && ActiveQuests[0].ActiveTask != null)
-                Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
-            else
-                Info.Text += "\nActive task: None";
+            //if (ActiveQuests.Count > 0 && ActiveQuests[0].ActiveTask != null)
+            //    Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
+            //else
+            //    Info.Text += "\nActive task: None";
+
+            //Info.Text += $"{Position}";
         }
 
         public void CheckQuestCompleted()

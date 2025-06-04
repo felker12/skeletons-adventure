@@ -9,20 +9,19 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
+using SkeletonsAdventure.GameUI;
 
 namespace SkeletonsAdventure.Entities
 {
     internal class EntityManager
     {
-        public List<Entity> Entities { get; }
-        public DroppedLootManager DroppedLootManager { get; }
+        public List<Entity> Entities { get; } = []; //list of all entities in the level, including the player
+        public DroppedLootManager DroppedLootManager { get; } = new(); //used to manage the loot dropped by dead entities
         public Player Player { get; set; }
         public MinMaxPair EnemyLevelRange { get; set; } = new(0, 0); //used to set the level of enemies when they are created or respawned
 
         public EntityManager()
         {
-            Entities = [];
-            DroppedLootManager = new();
         }
 
         public void Add(Entity entity)
@@ -56,15 +55,16 @@ namespace SkeletonsAdventure.Entities
         {
             foreach (var entity in Entities)
             {
-                if (entity.IsDead == false)
+
+                if (entity.IsDead == false) //Ensure dead enemies cannot be hit
                 {
                     entity.Update(gameTime);
 
+                    if (entity == Player)
+                        PickUpLoot(); //If the player walks over loot pick it up
+
                     entity.AttackManager.CheckAttackHit(Entities, gameTime); //TODO: this might have to be changed to totalTimeInWorld instead later
                     AttackManager.ClearOldAttacks(Entities);
-
-                    if (entity == Player)
-                        PickUpLoot();
 
                     if (entity.Health < 1)
                     {

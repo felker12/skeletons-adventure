@@ -108,10 +108,25 @@
 /processorParam:TextureFormat=Color
 /build:Controls/Button.png
 
+#begin EntityData/EliteSkeletonData.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:EntityData/EliteSkeletonData.xml
+
 #begin EntityData/SkeletonData.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
 /build:EntityData/SkeletonData.xml
+
+#begin EntityData/SkeletonData.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:EntityData/SkeletonData.xml
+
+#begin EntityData/SpiderData.xml
+/importer:XmlImporter
+/processor:PassThroughProcessor
+/build:EntityData/SpiderData.xml
 
 #begin EntityData/SpiderData.xml
 /importer:XmlImporter
@@ -242,11 +257,6 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:TiledFiles/Level0_Old.tmx
-
-#begin TiledFiles/Level0.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:TiledFiles/Level0.tmx
 
 #begin TiledFiles/Level0.tmx
 /importer:TiledMapImporter

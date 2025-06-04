@@ -108,20 +108,6 @@ namespace SkeletonsAdventure.GameWorld
             CreateEnemies();
             //CreateEnemiesManually();
 
-
-            //TODO
-            foreach (Enemy en in Enemies.Values)
-            {
-                System.Diagnostics.Debug.WriteLine(en.Type);
-            }
-
-            System.Diagnostics.Debug.WriteLine("Keys");
-            foreach (var key in Enemies.Keys)
-            {
-                System.Diagnostics.Debug.WriteLine(key);
-            }
-
-
             CreateChests();
             CreateAttacks();
             CreateQuests();
@@ -132,6 +118,9 @@ namespace SkeletonsAdventure.GameWorld
         {
             GamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
             SavePath = Path.GetFullPath(Path.Combine(GamePath, @"..\SaveFiles")); //Directory of the saved files
+
+            //TODO these are temprorary paths, the files created here are not
+            //saved in the content folder and will need to be moved to the content folder
             ItemPath = Path.Combine(SavePath, "Items"); //Directory of the items
             EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
 
@@ -139,6 +128,11 @@ namespace SkeletonsAdventure.GameWorld
                 Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
             if (Path.Exists(EnemyPath) == false)
                 Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
+
+
+            System.Diagnostics.Debug.WriteLine("Game Paths:");
+            System.Diagnostics.Debug.WriteLine(Directory.GetCurrentDirectory());
+            System.Diagnostics.Debug.WriteLine(GamePath);
         }
 
         //Load data from saved files
@@ -402,14 +396,24 @@ namespace SkeletonsAdventure.GameWorld
             loots.Add(Coins.Clone());
             loots.Add(ItemsClone["Sword"]);
 
-            string[] fileNames = Directory.GetFiles(Path.Combine(EnemyPath), "*.xml");
+            string EnemiesPath = Path.Combine(GamePath, "Content", "EntityData");
+            string[] fileNames = Directory.GetFiles(EnemiesPath);
+
             foreach (string s in fileNames)
             {
-                EntityData data = XnaSerializer.Deserialize<EntityData>(s);
+                // Get just the filename without extension and path
+                string fileName = Path.GetFileNameWithoutExtension(s);
+                
+                // Load using Content.Load with the correct content path format
+                EntityData data = Content.Load<EntityData>($"EntityData/{fileName}");
 
                 Type type = Type.GetType(data.type); //Get the type of the entity from the data
 
-                dynamic en = Activator.CreateInstance(type, data);
+                //TODO
+                //dynamic en = Activator.CreateInstance(type, data);
+                //en.LootList = loots.Clone(); //Set the loot list for the entity
+
+                Enemy en = (Enemy)Activator.CreateInstance(type, data);
                 en.LootList = loots.Clone(); //Set the loot list for the entity
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
@@ -446,12 +450,12 @@ namespace SkeletonsAdventure.GameWorld
 
             Skeleton skeleton = new(entityData)
             {
-                LootList = loots
+                //LootList = loots
             };
 
             EliteSkeleton eliteSkeleton = new(entityData)
             {
-                LootList = loots
+                //LootList = loots
             };
 
             entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"))
@@ -461,18 +465,19 @@ namespace SkeletonsAdventure.GameWorld
 
             Spider spider = new(entityData)
             {
-                LootList = loots
+                //LootList = loots
             };
 
             //Add the entities to the dictionary
-            Enemies.Add("Skeleton", skeleton);
-            Enemies.Add("EliteSkeleton", eliteSkeleton);
-            Enemies.Add("Spider", spider);
+            Enemies.Add(skeleton.GetType().FullName, skeleton);
+            Enemies.Add(eliteSkeleton.GetType().FullName, eliteSkeleton);
+            Enemies.Add(spider.GetType().FullName, spider);
+
 
             //TODO test this
             foreach (var enemy in Enemies)//shouldn't be needed now
             {
-                XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Key}.xml", enemy.Value.GetEntityData());
+                //XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Value.GetType().Name}.xml", enemy.Value.GetEntityData());
             }
         }
 
