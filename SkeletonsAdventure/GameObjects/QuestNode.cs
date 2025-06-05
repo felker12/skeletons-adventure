@@ -13,6 +13,7 @@ namespace SkeletonsAdventure.GameObjects
     internal class QuestNode : InteractableObject
     {
         public List<Quest> Quests { get; set; } = [];
+
         public Quest LowestRequirementQuest
         {
             get

@@ -14,8 +14,8 @@ namespace SkeletonsAdventure.GameUI
         public string Text { get; set; } = string.Empty;
         public Vector2 Position { get; set; } = Vector2.Zero;
         public Vector2 Motion { get; set; } = new Vector2(0, -1); // Default motion upwards
-        public float Speed { get; set; } = 100f; // Default speed in pixels per second
-        public float Duration { get; set; } = 1.2f; // Default duration of 1 second
+        public float Speed { get; set; } = 160f; // Default speed in pixels per second
+        public float Duration { get; set; } = 0.8f; // Default duration of 1 second
         public float ElapsedTime { get; private set; } = 0f;
         public SpriteFont Font { get; } = GameManager.Arial14; // Assuming you have a default font
         public bool TimedOut { get; private set; } = false; // Property to check if the pop-up has timed out

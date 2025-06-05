@@ -128,11 +128,6 @@ namespace SkeletonsAdventure.GameWorld
                 Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
             if (Path.Exists(EnemyPath) == false)
                 Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
-
-
-            System.Diagnostics.Debug.WriteLine("Game Paths:");
-            System.Diagnostics.Debug.WriteLine(Directory.GetCurrentDirectory());
-            System.Diagnostics.Debug.WriteLine(GamePath);
         }
 
         //Load data from saved files

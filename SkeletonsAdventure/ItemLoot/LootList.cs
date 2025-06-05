@@ -7,6 +7,7 @@ namespace SkeletonsAdventure.ItemLoot
     internal class LootList()
     {
         public List<GameItem> Loots { get; set; } = [];
+        public int Count => Loots.Count;
 
         public void Add(GameItem item) 
         {

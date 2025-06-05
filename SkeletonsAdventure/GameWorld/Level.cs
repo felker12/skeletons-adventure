@@ -17,6 +17,7 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -38,7 +39,6 @@ namespace SkeletonsAdventure.GameWorld
         public Vector2 PlayerEndPosition { get; set; } = new(80, 80);//location of the exit so if the player comes back to the level this is where they will be placed
         public Vector2 PlayerRespawnPosition { get; set; } = new(80, 80);
         public ChestManager ChestManager { get; set; }
-        public PopUpBox ChestMenu { get; set; }
         public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
         public TiledMapObjectLayer InteractableObjectLayer { get; set; } = null;
         public LevelExit LevelExit { get; set; } = null;
@@ -92,13 +92,7 @@ namespace SkeletonsAdventure.GameWorld
             {
                 title
             };
-            //=================================================================
-
-            ChestMenu = new()
-            {
-                Visible = false,
-                Texture = GameManager.PopUpBoxTexture
-            };
+            //======================
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -119,9 +113,6 @@ namespace SkeletonsAdventure.GameWorld
             EntityManager.Draw(spriteBatch);
             ControlManager.Draw(spriteBatch);
             InteractableObjectManager.Draw(spriteBatch);
-
-            if (ChestMenu.Visible)
-                ChestMenu.Draw(spriteBatch);
 
             foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
                 spriteBatch.DrawRectangle(rec, Color.White, 1, 0); //used to see where the hitboxes are for the exits
@@ -148,8 +139,8 @@ namespace SkeletonsAdventure.GameWorld
 
             TotalTimeInWorld = totalTimeInWorld;
 
+            ChestManager.Update(gameTime);
             CheckIfPlayerNearChest();
-            ChestMenu.Update(true, Camera.Transformation);
 
             InteractableObjectManager.Update(gameTime, Player);
             DamagePopUpManager.Update(gameTime);
@@ -215,35 +206,27 @@ namespace SkeletonsAdventure.GameWorld
                         {
                             if (obj.Properties.TryGetValue("Quests", out TiledMapPropertyValue quests))
                             {
-                                System.Diagnostics.Debug.WriteLine($"Quests: {quests}");
-
                                 QuestNode questNode = new(obj);
                                 string[] Quests = quests.ToString().Split(',', StringSplitOptions.TrimEntries);
 
                                 foreach (string questName in Quests)
                                 {
-                                    System.Diagnostics.Debug.WriteLine($"Quest: {questName}");
                                     if (GameManager.QuestsClone.TryGetValue(questName, out Quest quest))
-                                    {
                                         questNode.Quests.Add(quest.Clone()); //Clone the quest to prevent modifying the original quest
-                                        continue;
-                                    }
-                                    else
-                                        System.Diagnostics.Debug.WriteLine($"Quest {questName} not found in GameManager.QuestsClone");
                                 }
 
                                 InteractableObjectManager.Add(questNode);
-                                break;
                             }
                         }
                         else if (value == "Resource")
                         {
-                            InteractableObjectManager.Add(new ResourceNode(obj));
-                            break;
+                            InteractableObjectManager.Add(new ResourceNode(obj)); //TODO resource logic still needs added
+                        }
+                        else
+                        {
+                            InteractableObjectManager.Add(new InteractableObject(obj));
                         }
                     }
-
-                    InteractableObjectManager.Add(new InteractableObject(obj));
                 }
             }
         }
@@ -264,85 +247,23 @@ namespace SkeletonsAdventure.GameWorld
 
         private void CheckIfPlayerNearChest()
         {
-            int count = 0;
             Chest chestToOpen = null;
             foreach (Chest chest in ChestManager.Chests)
             {
-                if (Player.GetRectangle.Intersects(chest.DetectionArea))
+                if (chest.PlayerIntersects(Player.GetRectangle))
                 {
-                    if(chest.Loot.Loots.Count > 0)
+                    if(chest.Loot.Count > 0) //Cannot open empty chests
                     {
-                        chest.Info.Text = "Press R to open";
-
+                        //input handler is here instead of in the chest class so that multipe chests can be opened at once
                         if (InputHandler.KeyReleased(Keys.R) ||
                             InputHandler.ButtonDown(Buttons.A, PlayerIndex.One))
                         {
                             chestToOpen = chest;
                         }
                     }
-                    else
-                        chest.Info.Text = "Chest Empty";
-
-                    chest.Info.Visible = true;
-                    count++;
-                }
-                else
-                    chest.Info.Visible = false;
-            }
-
-            if (count < 1) //the player isn't near a chest anymore hide menu
-                ChestMenu.Visible = false;
-            else
-            {
-                //having the chestToOpen variable prevents the menu from not appearing if multiple chests are detected
-                if (chestToOpen is not null) 
-                    ChestOpened(chestToOpen);
-            }
-        }
-        
-        private void ChestOpened(Chest chest)
-        {
-            if (ChestMenu.Visible == false && chest.Info.Visible == true)
-            {
-                ChestMenu.Visible = true;
-                ChestMenu.Buttons.Clear();
-
-                Dictionary<string, Button> buttons = [];
-                foreach (GameItem gameItem in chest.Loot.Loots)
-                {
-                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10);
-
-                    #pragma warning disable IDE0039 // Use local function
-                    EventHandler handler = (object sender, EventArgs e) =>
-                    {
-                        if(Player.Backpack.AddItem(gameItem))
-                        {
-                            btn.Visible = false;
-                            chest.Loot.Remove(gameItem);
-                        }
-                    };
-                    #pragma warning restore IDE0039 // Use local function
-
-                    btn.Click += (object sender, EventArgs e) =>
-                    {
-                        handler?.Invoke(sender, e);
-                        btn.Click -= handler;
-                    };
-
-                    buttons.Add(gameItem.Name, btn);
-                }
-
-                ChestMenu.AddButtons(buttons);
-
-                foreach (Button button in ChestMenu.Buttons)
-                {
-                    button.Visible = true;
                 }
             }
-            else
-                ChestMenu.Visible = false;
-
-            ChestMenu.Position = chest.Position;
+            chestToOpen?.ChestOpened(); //if not null open the chest
         }
 
         public void CheckIfPlayerIsNearExit(LevelExit exit, Vector2 targetPosition)

@@ -21,6 +21,14 @@ namespace SkeletonsAdventure.GameObjects
             }    
         }
 
+        public void Update(GameTime gameTime)
+        {
+            foreach (Chest chest in Chests)
+            {
+                chest.Update(gameTime);
+            }
+        }
+
         public List<Chest> GetChestsFromTiledMapTileLayer(Chest chest)
         {
             List<Chest> chests = [];

@@ -97,15 +97,23 @@ namespace SkeletonsAdventure.Attacks
 
         public static void ClearOldAttacks(List<Entity> entities)
         {
+            List<EntityAttack> oldAttacks = [];
+
             foreach (var entity in entities)
             {
                 foreach (var atk in entity.AttacksHitBy)
                 {
                     if (atk.AttackTimedOut())
+                        oldAttacks.Add(atk);
+                }
+
+                if(oldAttacks.Count > 0)
+                {
+                    foreach (var oldAttack in oldAttacks)
                     {
-                        entity.AttacksHitBy.Remove(atk);
-                        break;
+                        entity.AttacksHitBy.Remove(oldAttack);
                     }
+                    oldAttacks.Clear();
                 }
             }
         }
