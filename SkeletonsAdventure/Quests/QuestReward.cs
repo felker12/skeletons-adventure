@@ -10,7 +10,7 @@ namespace SkeletonsAdventure.Quests
     internal class QuestReward
     {
         public int XP { get; set; } = 0;
-        public int Gold { get; set; } = 0;
+        public int Coins { get; set; } = 0;
         public List<GameItem> Items { get; set; } = [];
 
         public QuestReward()
@@ -20,24 +20,18 @@ namespace SkeletonsAdventure.Quests
         public QuestReward(QuestReward questReward)
         {
             XP = questReward.XP;
-            Gold = questReward.Gold;
+            Coins = questReward.Coins;
             Items = [.. questReward.Items.Select(i => new GameItem(i))];
         }
 
         public QuestReward(QuestRewardData data)
         {
             XP = data.XP;
-            Gold = data.Gold;
+            Coins = data.Coins;
 
             foreach (ItemData itemData in data.Items)
             {
-
-
-                //BaseItem baseItem = new(itemData); //TODO remove baseItem and use itemData directly if possible
-
                 GameItem item = GameManager.LoadGameItemFromItemData(itemData);
-
-
                 Items.Add(item); 
             }
         }
@@ -52,7 +46,7 @@ namespace SkeletonsAdventure.Quests
             return new QuestRewardData
             {
                 XP = XP,
-                Gold = Gold,
+                Coins = Coins,
                 Items = [.. Items.Select(i => i.GetItemData())]
             };
         }
@@ -61,7 +55,7 @@ namespace SkeletonsAdventure.Quests
         {
             return 
                 $"XP: {XP}, " +
-                $"Gold: {Gold}, " +
+                $"Gold: {Coins}, " +
                 $"Items: {string.Join(", ", Items.Select(i => i.Name))}"; // Assuming GameItem has a Name property
         }
     }

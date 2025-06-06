@@ -17,7 +17,6 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -28,8 +27,8 @@ namespace SkeletonsAdventure.GameWorld
         public int Height { get; set; }
         public string Name { get; set; } = string.Empty;
         protected ControlManager ControlManager { get; set; }
-        public Player Player { get; set; }
-        public Camera Camera { get; set; }
+        public Player Player { get; set; } = World.Player; //TODO this is a temporary fix to get the player working in the level
+        public Camera Camera { get; set; } = World.Camera; //TODO this is a temporary fix to get the camera working in the level
         public EntityManager EntityManager { get; set; }
         public TiledMap TiledMap { get; private set; }
         public MinMaxPair EnemyLevels { get; set; }
@@ -46,18 +45,36 @@ namespace SkeletonsAdventure.GameWorld
         internal InteractableObjectManager InteractableObjectManager { get; set; } = new();
         public DamagePopUpManager DamagePopUpManager { get; } = new(); //used to show damage popups when an entity is hit by an attack
 
-        private readonly TiledMapRenderer _tiledMapRenderer;
-        private readonly TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
+        private TiledMapRenderer _tiledMapRenderer;
+        private TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
         private readonly Dictionary<string, Enemy> Enemies = [];
 
         public List<Rectangle> EnterExitLayerObjectRectangles { get; set; } = []; //TODO used to temporarily see where hitboxes are for exits
 
-        public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> Enemies, MinMaxPair enemyLevels)
+        public Level(GraphicsDevice graphics, TiledMap tiledMap, Dictionary<string, Enemy> enemies, MinMaxPair enemyLevels)
         {
             GraphicsDevice = graphics;
-            this.Enemies = Enemies;
+            Enemies = enemies;
+            CreateMap(tiledMap);
+
+            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
+
+            EntityManager = new()
+            {
+                EnemyLevelRange = enemyLevels,
+            };
+            EnemyLevels = enemyLevels;
+            EntityManager.Add(Player);
+            AddEnemys();
+
+            LoadInteractableObjects();
+            CreateControls();
+        }
+
+        private void CreateMap(TiledMap tiledMap)
+        {
             TiledMap = tiledMap;
-            _tiledMapRenderer = new(graphics);
+            _tiledMapRenderer = new(GraphicsDevice);
             _tiledMapRenderer.LoadMap(TiledMap);
             _mapCollisionLayer = TiledMap.GetLayer<TiledMapTileLayer>("CollisionLayer");
             _mapSpawnerLayer = tiledMap.GetLayer<TiledMapTileLayer>("SpawnerLayer");
@@ -68,18 +85,10 @@ namespace SkeletonsAdventure.GameWorld
             Width = tiledMap.WidthInPixels;
             Height = tiledMap.HeightInPixels;
             Name = tiledMap.Name[11..]; //trim "TiledFiles/" from the tiledmap name to use as the level name
+        }
 
-            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
-
-            EntityManager = new()
-            {
-                EnemyLevelRange = enemyLevels,
-            };
-            EnemyLevels = enemyLevels;
-            AddEnemys();
-
-            LoadInteractableObjects();
-
+        private void CreateControls()
+        {
             //TODO controls are temporary and used for debugging
             title = new Label
             {

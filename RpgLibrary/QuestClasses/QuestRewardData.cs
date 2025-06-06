@@ -1,16 +1,11 @@
 ﻿using RpgLibrary.ItemClasses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RpgLibrary.QuestClasses
 {
     public class QuestRewardData
     {
         public int XP { get; set; } = 0;
-        public int Gold { get; set; } = 0;
+        public int Coins { get; set; } = 0;
         public List<ItemData> Items { get; set; } = new();
 
         public QuestRewardData() { }
@@ -18,7 +13,7 @@ namespace RpgLibrary.QuestClasses
         public QuestRewardData(QuestRewardData data)
         {
             XP = data.XP;
-            Gold = data.Gold;
+            Coins = data.Coins;
             Items = data.Items;
         }
 
@@ -31,7 +26,7 @@ namespace RpgLibrary.QuestClasses
         {
             return
                 $"XP: {XP}, " +
-                $"Gold: {Gold}, " +
+                $"Gold: {Coins}, " +
                 $"Items: {string.Join(", ", Items)}";
         }
     }

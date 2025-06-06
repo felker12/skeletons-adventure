@@ -1,19 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.AttackData;
 using RpgLibrary.DataClasses;
-using RpgLibrary.EntityClasses;
 using RpgLibrary.MenuClasses;
-using RpgLibrary.QuestClasses;
 using RpgLibrary.WorldClasses;
-using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Controls;
-using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameMenu;
 using SkeletonsAdventure.GameWorld;
-using SkeletonsAdventure.Quests;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace SkeletonsAdventure.States
@@ -41,6 +34,11 @@ namespace SkeletonsAdventure.States
             SettingsMenu.StartLabel.Selected += StartLabel_Selected;
             SettingsMenu.MenuLabel.Selected += MenuLabel_Selected; 
             SettingsMenu.SaveGameButton.Click += SaveGameButton_Clicked;
+
+            SettingsMenu.PlayerMenu.Opened += (s, e) =>
+            {
+                SettingsMenu.PlayerMenu.SetPlayerData(Game.GameScreen.Player.GetPlayerData());
+            };
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -48,9 +46,7 @@ namespace SkeletonsAdventure.States
             GraphicsDevice.Clear(Color.MidnightBlue);
 
             spriteBatch.Begin();
-
             ControlManager.Draw(spriteBatch);
-
             spriteBatch.End();
 
             SettingsMenu.Draw(spriteBatch);

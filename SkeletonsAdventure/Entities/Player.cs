@@ -19,18 +19,19 @@ namespace SkeletonsAdventure.Entities
 {
     internal class Player : Entity
     {
-        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0, 
+        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0,
             bonusHealthFromLevel = 0, bonusManaFromLevel = 0,
-            levelModifier = 0;
+            bonusAttackFromAttributePoints = 0, bonusDefenceFromAttributePoints = 0, 
+            bonusHealthFromAttributePoints = 0, bonusManaFromAttributePoints = 0;
         private bool justLeveled = false;
 
         public Backpack Backpack { get; set; }
         public EquippedItems EquippedItems { get; set; }
         public int TotalXP { get; set; } = 0;
-        public int Mana { get; set; }
-        public int BaseMana { get; set; }
-        public int MaxMana { get; set; }
-        public int StatusPoints { get; set; } = 0;
+        public int Mana { get; set; } = 0;
+        public int BaseMana { get; set; } = 0;
+        public int MaxMana { get; set; } = 0;
+        public int AttributePoints { get; set; } = 0;
         public StatusBar ManaBar { get; set; } = new();
         public float XPModifier { get; set; } = 1.0f; //TODO
         public FireBall FireBall { get; set; }
@@ -111,7 +112,11 @@ namespace SkeletonsAdventure.Entities
             BaseMana = playerData.baseMana;
             Mana = playerData.mana;
             MaxMana = playerData.maxMana;
-            StatusPoints = playerData.statusPoints;
+            AttributePoints = playerData.attributePoints;
+            bonusAttackFromAttributePoints = playerData.bonusAttackFromAttributePoints;
+            bonusDefenceFromAttributePoints = playerData.bonusDefenceFromAttributePoints;
+            bonusHealthFromAttributePoints = playerData.bonusHealthFromAttributePoints;
+            bonusManaFromAttributePoints = playerData.bonusManaFromAttributePoints;
 
             //TODO update active quests and completed quests
             ActiveQuests = playerData.activeQuests.ConvertAll(q => new Quest(q));
@@ -126,7 +131,11 @@ namespace SkeletonsAdventure.Entities
                 baseMana = BaseMana,
                 mana = Mana,
                 maxMana = MaxMana,
-                statusPoints = StatusPoints,
+                attributePoints = AttributePoints,
+                bonusAttackFromAttributePoints = bonusAttackFromAttributePoints,
+                bonusDefenceFromAttributePoints = bonusDefenceFromAttributePoints,
+                bonusHealthFromAttributePoints = bonusHealthFromAttributePoints,
+                bonusManaFromAttributePoints = bonusManaFromAttributePoints,
                 backpack = Backpack.GetBackpackData(),
                 activeQuests = ActiveQuests.ConvertAll(q => q.GetQuestData()),
                 completedQuests = CompletedQuests.ConvertAll(q => q.GetQuestData())
@@ -161,19 +170,8 @@ namespace SkeletonsAdventure.Entities
             }
             
             Backpack.Update();
-
-            Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel;
-            Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel;
-            MaxHealth = baseHealth + bonusHealthFromLevel; //TODO maybe allow gear to provide a health bonus
-            MaxMana = BaseMana + bonusManaFromLevel; //TODO maybe allow gear to provide a mana bonus
-
-            if(justLeveled)
-            {
-                Mana = MaxMana;
-                Health = MaxHealth;
-                justLeveled = false;
-            }
-
+            UpdateStatsWithBonusses();
+            IfLeveledRefillStats();
             CheckQuestCompleted();
 
             //TODO delete this
@@ -193,6 +191,24 @@ namespace SkeletonsAdventure.Entities
             //Info.Text += $"{Position}";
         }
 
+        private protected void UpdateStatsWithBonusses()
+        {
+            Attack = baseAttack + EquippedItems.EquippedItemsAttackBonus() + bonusAttackFromLevel + bonusAttackFromAttributePoints;
+            Defence = baseDefence + EquippedItems.EquippedItemsDefenceBonus() + bonusDefenceFromLevel + bonusDefenceFromAttributePoints;
+            MaxHealth = baseHealth + bonusHealthFromLevel + bonusHealthFromAttributePoints; //TODO maybe allow gear to provide a health bonus
+            MaxMana = BaseMana + bonusManaFromLevel + bonusManaFromAttributePoints; //TODO maybe allow gear to provide a mana bonus
+        }
+
+        private void IfLeveledRefillStats()
+        {
+            if (justLeveled)
+            {
+                Health = MaxHealth;
+                Mana = MaxMana;
+                justLeveled = false;
+            }
+        }
+
         public void CheckQuestCompleted()
         {
             List<Quest> completed = [];
@@ -205,6 +221,8 @@ namespace SkeletonsAdventure.Entities
                         completed.Add(quest);
                 }
 
+            //if there are any completed quests, remove them from the active quests and
+            //add them to the completed quests as well as give the player the rewards
             if (completed.Count > 0)
             {
                 foreach (Quest quest in completed)
@@ -223,7 +241,7 @@ namespace SkeletonsAdventure.Entities
 
             GameItem coins = new(GameManager.ItemsClone["Coins"])
             {
-                Quantity = reward.Gold
+                Quantity = reward.Coins
             };
 
             //if the items wont fit in the backpack, drop them on the ground
@@ -268,19 +286,28 @@ namespace SkeletonsAdventure.Entities
 
         public void LevelUP() //TODO
         {
-            StatusPoints += 2;
+            AttributePoints += 5;
             justLeveled = true;
         }
 
         private void PlayerStatAdjustmentForLevel()
         {
             //TODO
-            levelModifier = Level * 2;
+            int levelModifier = Level * 2;
 
             bonusAttackFromLevel = levelModifier;
             bonusDefenceFromLevel = levelModifier;
             bonusHealthFromLevel = levelModifier * 10;
             bonusManaFromLevel = levelModifier * 10;
+        }
+
+        public void ApplyAttributePoints(int attackPoints, int defencePoints, int healthPoints, int manaPoints)
+        {
+            bonusAttackFromAttributePoints += attackPoints;
+            bonusDefenceFromAttributePoints += defencePoints;
+            bonusHealthFromAttributePoints += healthPoints;
+            bonusManaFromAttributePoints += manaPoints;
+            AttributePoints -= (attackPoints + defencePoints + healthPoints + manaPoints);
         }
 
         public void ConsumeItem(GameItem item)
@@ -350,6 +377,31 @@ namespace SkeletonsAdventure.Entities
 
             }
             if (InputHandler.KeyReleased(Keys.D5) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+
+            }
+            if (InputHandler.KeyReleased(Keys.D6) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+
+            }
+            if (InputHandler.KeyReleased(Keys.D7) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+
+            }
+            if (InputHandler.KeyReleased(Keys.D8) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+
+            }
+            if (InputHandler.KeyReleased(Keys.D9) ||
+            InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
+            {
+
+            }
+            if (InputHandler.KeyReleased(Keys.D0) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
 
@@ -447,7 +499,7 @@ namespace SkeletonsAdventure.Entities
         public static Vector2 GetMousePosition()
         {
             MouseState _mouseState = Mouse.GetState();
-            return Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(GameManager.Game.GameScreen.Camera.Transformation));
+            return Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(World.Camera.Transformation));
         }
     }
 }

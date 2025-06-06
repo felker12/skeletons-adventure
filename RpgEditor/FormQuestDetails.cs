@@ -47,7 +47,7 @@ namespace RpgEditor
                 RewardData = new QuestRewardData
                 {
                     XP = (int)nudXP.Value,
-                    Gold = (int)nudGold.Value,
+                    Coins = (int)nudGold.Value,
                     // Items can be added with a more advanced UI if needed
                 },
                 RequiredQuestNameData = new List<string>(lbRequiredQuests.Items.Cast<string>()),
@@ -106,7 +106,7 @@ namespace RpgEditor
             nudDefence.Value = quest.RequirementData.Defence;
             nudAttack.Value = quest.RequirementData.Attack;
             nudXP.Value = quest.RewardData.XP;
-            nudGold.Value = quest.RewardData.Gold;
+            nudGold.Value = quest.RewardData.Coins;
 
             lbRequiredQuests.Items.Clear();
             foreach (var rq in quest.RequiredQuestNameData)

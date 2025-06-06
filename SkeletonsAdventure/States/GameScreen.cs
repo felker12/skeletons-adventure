@@ -317,13 +317,13 @@ namespace SkeletonsAdventure.States
         {
             HealthBar = new()
             {
-                Width = (int)(Game1.ScreenWidth * .75),
+                Width = 200,
                 Height = 18,
                 BorderColor = Color.Black,
                 BorderWidth = 2,
                 BarColor = Color.Firebrick,
                 TextVisible = true,
-                Transparency = 0.33f,
+                Transparency = 0.5f,
             };
 
             ManaBar = new()
@@ -334,7 +334,7 @@ namespace SkeletonsAdventure.States
                 BarColor = Color.Blue,
                 BorderWidth = 2,
                 TextVisible = true,
-                Transparency = 0.33f,
+                Transparency = HealthBar.Transparency,
             };
 
             XPProgress = new()
@@ -345,15 +345,11 @@ namespace SkeletonsAdventure.States
                 BarColor = Color.DarkSlateGray,
                 BorderWidth = 2,
                 TextVisible = true,
-                Transparency = 0.33f,
+                Transparency = HealthBar.Transparency,
             };
 
             //Position the status bars
-            HealthBar.Position = new(Game1.ScreenWidth / 2 - HealthBar.Width / 2,
-                    Game1.ScreenHeight - HealthBar.Height - HealthBar.BorderWidth -
-                    ManaBar.Height - ManaBar.BorderWidth -
-                    XPProgress.Height - XPProgress.BorderWidth);
-
+            HealthBar.Position = new(0,0);
             ManaBar.Position = HealthBar.Position + new Vector2(0, HealthBar.Height + HealthBar.BorderWidth);
             XPProgress.Position = ManaBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth);
         }

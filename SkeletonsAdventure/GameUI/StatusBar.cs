@@ -65,7 +65,6 @@ namespace SkeletonsAdventure.GameUI
                     var textPosition = new Vector2(Position.X + Width / 2 - GameManager.Arial10.MeasureString(statusBarText).X / 2, Position.Y + Height / 2 - GameManager.Arial10.MeasureString(statusBarText).Y / 2);
                     spriteBatch.DrawString(GameManager.Arial10, statusBarText, textPosition, Color.White * Transparency);
                 }
-
             }
         }
 

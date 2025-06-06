@@ -1,9 +1,10 @@
-﻿using SkeletonsAdventure.Controls;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.GameWorld;
 using RpgLibrary.MenuClasses;
+using SkeletonsAdventure.Controls;
+using SkeletonsAdventure.GameWorld;
+using System;
 
 namespace SkeletonsAdventure.GameMenu
 {
@@ -14,6 +15,7 @@ namespace SkeletonsAdventure.GameMenu
         protected GraphicsDevice GraphicsDevice { get; set; } = GameManager.GraphicsDevice;
         protected PlayerIndex PlayerIndexInControl { get; set; } = PlayerIndex.One;
 
+        public string Title { get; set; } = "Menu";
         public bool Visible { get; set; } = false;
         public Vector2 Position { get; set; } = new();
         public int Width { get; set; } = 200;
@@ -23,8 +25,7 @@ namespace SkeletonsAdventure.GameMenu
         public Color TintColor { get; set; } = Color.White;
 
         //This is just used to save the background color used by the SetBackgroundColor method to color the texture
-        protected Color BackgroundColor { get; private set; } = Color.White; 
-        public string Title { get; set; } = "Menu";
+        protected Color BackgroundColor { get; private set; } = Color.White;
 
         public BaseMenu()
         {

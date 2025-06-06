@@ -5,11 +5,11 @@ using MonoGame.Extended.Timers;
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
 using System;
 using System.Collections.Generic;
-using SkeletonsAdventure.GameUI;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -17,7 +17,7 @@ namespace SkeletonsAdventure.Entities
     {
         public List<Entity> Entities { get; } = []; //list of all entities in the level, including the player
         public DroppedLootManager DroppedLootManager { get; } = new(); //used to manage the loot dropped by dead entities
-        public Player Player { get; set; }
+        public Player Player { get; set; } = World.Player;
         public MinMaxPair EnemyLevelRange { get; set; } = new(0, 0); //used to set the level of enemies when they are created or respawned
 
         public EntityManager()
@@ -34,6 +34,9 @@ namespace SkeletonsAdventure.Entities
         public void Remove(Entity entity)
         {
             Entities.Remove(entity);
+
+            if (entity is Player)
+                Player = null;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -55,7 +58,6 @@ namespace SkeletonsAdventure.Entities
         {
             foreach (var entity in Entities)
             {
-
                 if (entity.IsDead == false) //Ensure dead enemies cannot be hit
                 {
                     entity.Update(gameTime);

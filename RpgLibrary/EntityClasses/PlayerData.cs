@@ -5,11 +5,15 @@ namespace RpgLibrary.EntityClasses
 {
     public class PlayerData : EntityData
     {
-        public int totalXP = 0;
-        public int baseMana = 0;
-        public int mana = 0;
-        public int maxMana = 0;
-        public int statusPoints = 0;
+        public int totalXP = 0, 
+            baseMana = 0,
+            mana = 0,
+            maxMana = 0,
+            attributePoints = 0,
+            bonusAttackFromAttributePoints = 0, 
+            bonusDefenceFromAttributePoints = 0, 
+            bonusHealthFromAttributePoints = 0,
+            bonusManaFromAttributePoints;
         public List<ItemData> backpack = new();
         public List<QuestData> activeQuests = new();
         public List<QuestData> completedQuests = new();
@@ -22,7 +26,11 @@ namespace RpgLibrary.EntityClasses
             baseMana = entityData.baseMana;
             mana = entityData.mana;
             maxMana = entityData.maxMana;
-            statusPoints = entityData.statusPoints;
+            attributePoints = entityData.attributePoints;
+            bonusAttackFromAttributePoints = entityData.bonusAttackFromAttributePoints;
+            bonusDefenceFromAttributePoints = entityData.bonusDefenceFromAttributePoints;
+            bonusHealthFromAttributePoints = entityData.bonusHealthFromAttributePoints;
+            bonusManaFromAttributePoints = entityData.bonusManaFromAttributePoints;
             backpack = entityData.backpack;
             activeQuests = entityData.activeQuests;
             completedQuests = entityData.completedQuests;
@@ -38,7 +46,12 @@ namespace RpgLibrary.EntityClasses
             toString += totalXP + ", ";
             toString += baseMana + ", ";
             toString += mana + ", ";
-            toString += maxMana;
+            toString += maxMana + ", ";
+            toString += attributePoints + ", ";
+            toString += bonusAttackFromAttributePoints + ", ";
+            toString += bonusDefenceFromAttributePoints + ", ";
+            toString += bonusHealthFromAttributePoints + ", ";
+            toString += bonusManaFromAttributePoints + ", ";
             return toString;
         }
     }

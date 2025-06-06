@@ -60,10 +60,7 @@ namespace SkeletonsAdventure.GameWorld
         public static void Update(GameTime gameTime)
         {
             TotalTimeInWorld.TotalGameTime += gameTime.ElapsedGameTime;
-
             CurrentLevel.Update(gameTime, TotalTimeInWorld);
-
-            Player = CurrentLevel.Player;
 
             //TODO delete this after adding a way to move from level to level to the game
             if (InputHandler.KeyReleased(Keys.NumPad0))
@@ -205,14 +202,6 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void InitializeLevel(Level level)
         {
-            level.Player = Player;
-            level.Camera = Camera;
-            if(level.EntityManager.Player != null)//TODO fix this
-            {
-                level.EntityManager.Remove(Player);
-            }
-            level.EntityManager.Add(Player);
-
             //TODO just used to temporarily provide a way to see where the hitboxes are for the exits
             Rectangle rec;
 
