@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
-using System;
 
 namespace SkeletonsAdventure.GameMenu
 {

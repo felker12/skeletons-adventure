@@ -13,32 +13,27 @@ namespace SkeletonsAdventure.States
 {
     internal class ExitScreen : State
     {
-        private SettingsMenu SettingsMenu { get; set; }
+        private ExitScreenMenu ExitScreenMenu { get; set; }
 
         private readonly string savePath = GameManager.SavePath;
 
         public ExitScreen(Game1 game) : base(game)
         {
-            SettingsMenu = new()
+            ExitScreenMenu = new()
             {
                 Position = new(0, 0),
                 Visible = true,
                 Width = Game1.ScreenWidth,
                 Height = Game1.ScreenHeight,
             };
-            SettingsMenu.TabBar.Width = Game1.ScreenWidth;
-            SettingsMenu.SetBackgroundColor(Color.MidnightBlue);
-            SettingsMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
+            ExitScreenMenu.TabBar.Width = Game1.ScreenWidth;
+            ExitScreenMenu.SetBackgroundColor(Color.MidnightBlue);
+            ExitScreenMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
 
             //Add event handlers to the controls in the Settings Menu
-            SettingsMenu.StartLabel.Selected += StartLabel_Selected;
-            SettingsMenu.MenuLabel.Selected += MenuLabel_Selected; 
-            SettingsMenu.SaveGameButton.Click += SaveGameButton_Clicked;
-
-            SettingsMenu.PlayerMenu.Opened += (s, e) =>
-            {
-                SettingsMenu.PlayerMenu.SetPlayerData(Game.GameScreen.Player.GetPlayerData());
-            };
+            ExitScreenMenu.StartLabel.Selected += StartLabel_Selected;
+            ExitScreenMenu.MenuLabel.Selected += MenuLabel_Selected; 
+            ExitScreenMenu.SaveGameButton.Click += SaveGameButton_Clicked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -49,7 +44,7 @@ namespace SkeletonsAdventure.States
             ControlManager.Draw(spriteBatch);
             spriteBatch.End();
 
-            SettingsMenu.Draw(spriteBatch);
+            ExitScreenMenu.Draw(spriteBatch);
         }
 
         public override void PostUpdate(GameTime gameTime){}
@@ -73,7 +68,7 @@ namespace SkeletonsAdventure.States
                 //save the data
                 XnaSerializer.Serialize<WorldData>(savePath + @"\World.xml", World.GetWorldData());
                 XnaSerializer.Serialize<MenuManagerData>(savePath + @"\GameScreenMenuData.xml", GameScreenMenuData);
-                XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\ExitScreenData.xml", SettingsMenu.GetTabbedMenuData());
+                XnaSerializer.Serialize<TabbedMenuData>(savePath + @"\ExitScreenData.xml", ExitScreenMenu.GetTabbedMenuData());
             }
             catch (Exception ex)
             {
@@ -85,13 +80,13 @@ namespace SkeletonsAdventure.States
 
         public void SetSettingsMenuData(TabbedMenuData settingsMenu)
         {
-            SettingsMenu.SetMenuData(settingsMenu);
+            ExitScreenMenu.SetMenuData(settingsMenu);
         }
 
         public override void Update(GameTime gameTime)
         {
             ControlManager.Update(gameTime, PlayerIndexInControl);
-            SettingsMenu.Update(gameTime);
+            ExitScreenMenu.Update(gameTime);
         }
 
         private void MenuLabel_Selected(object sender, EventArgs e)

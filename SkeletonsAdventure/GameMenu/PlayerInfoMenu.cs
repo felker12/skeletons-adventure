@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.EntityClasses;
+using SkeletonsAdventure.GameWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,6 @@ namespace SkeletonsAdventure.GameMenu
         // This menu is used to display player information such as stats, and such.
         PlayerData PlayerData { get; set; } = new();
 
-
-        public event EventHandler MenuOpened; //TODO when the menu is opened, this event should be raised to update the player data
         public PlayerInfoMenu() : base()
         {
 
@@ -30,4 +29,10 @@ namespace SkeletonsAdventure.GameMenu
         {
             base.Draw(spriteBatch);
         }
+
+        public void SetPlayerData(PlayerData playerData)
+        {
+            PlayerData = playerData;
+        }
+    }
 }

@@ -5,12 +5,12 @@ using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameMenu
 {
-    internal class SettingsMenu : TabbedMenu
+    internal class ExitScreenMenu : TabbedMenu
     {
         public BaseMenu SaveMenu { get; set; }
         public BaseMenu Settings { get; private set; }
         public PlayerInfoMenu PlayerMenu { get; set; }
-        public BaseMenu QuestMenu { get; set; }
+        public QuestMenu QuestMenu { get; set; }
 
         public LinkLabel StartLabel { get; set; }
         public LinkLabel MenuLabel { get; set; }
@@ -20,7 +20,7 @@ namespace SkeletonsAdventure.GameMenu
 
         public Button SaveGameButton { get; set; }
 
-        public SettingsMenu() : base()
+        public ExitScreenMenu() : base()
         {
             Visible = false;
             Title = "SettingsMenu";
@@ -53,6 +53,22 @@ namespace SkeletonsAdventure.GameMenu
             AddMenu(Settings);
             AddMenu(PlayerMenu);
             AddMenu(QuestMenu);
+
+            CreateTabOpenedLogic();
+        }
+
+        private void CreateTabOpenedLogic()
+        {
+            //Keep the player data displayed up to date any time the tab is opened
+            TabBar.TabClicked += (sender, e) =>
+            {
+                if (TabBar.ActiveMenu == PlayerMenu)
+                    PlayerMenu.SetPlayerData(World.Player.GetPlayerData());
+                else if (TabBar.ActiveMenu == QuestMenu)
+                {
+                    //TODO update quest menu with quest data from player
+                }
+            };
         }
 
         private void CreateSaveMenu()
@@ -108,7 +124,7 @@ namespace SkeletonsAdventure.GameMenu
             PlayerMenu = new()
             {
                 Visible = true,
-                Title = "Test2",
+                Title = "Player",
             };
             PlayerMenu.SetBackgroundColor(Color.MidnightBlue);
         }
@@ -118,7 +134,7 @@ namespace SkeletonsAdventure.GameMenu
             QuestMenu = new()
             {
                 Visible = true,
-                Title = "Test3",
+                Title = "Quests",
             };
             QuestMenu.SetBackgroundColor(Color.MidnightBlue);
 

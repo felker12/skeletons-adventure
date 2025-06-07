@@ -52,7 +52,6 @@ namespace SkeletonsAdventure.Controls
                     }
                     else
                         tab.IsHovering = false;
-
                 }
             }
         }
