@@ -49,9 +49,10 @@ namespace SkeletonsAdventure.Controls
             foreach (Control c in this)
             {
                 if (c.Enabled)
+                {
                     c.Update(gameTime);
-                if (c.HasFocus)
                     c.HandleInput(playerIndex);
+                }
             }
 
             if (!AcceptInput)
@@ -62,7 +63,7 @@ namespace SkeletonsAdventure.Controls
                 PreviousControl();
             if (InputHandler.ButtonPressed(Buttons.LeftThumbstickDown, playerIndex) ||
             InputHandler.ButtonPressed(Buttons.DPadDown, playerIndex) ||
-            InputHandler.KeyPressed(Keys.Down))
+            InputHandler.KeyPressed(Keys.Down) || InputHandler.KeyPressed(Keys.Tab))
                 NextControl();
         }
         public void Draw(SpriteBatch spriteBatch)

@@ -83,7 +83,7 @@ namespace SkeletonsAdventure.States
             //Update the game with the saved information
             Game.GameScreen = new(Game, worldData);
             UpdateMenusFromSave(gameScreenMenuData);
-            Game.ExitScreen.SetSettingsMenuData(exitScreenData);
+            Game.ExitScreen.SetExitScreenMenuData(exitScreenData);
 
             //return to the game screen
             StateManager.ChangeState(Game.GameScreen);

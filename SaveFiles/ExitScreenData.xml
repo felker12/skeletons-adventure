@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:MenuClasses="RpgLibrary.MenuClasses">
   <Asset Type="MenuClasses:TabbedMenuData">
-    <Title>SettingsMenu</Title>
+    <Title>ExitScreenMenu</Title>
     <Visible>true</Visible>
     <Width>1280</Width>
     <Height>720</Height>
     <Position>0 0</Position>
     <TintColor>FFFFFFFF</TintColor>
     <BackgroundColor>FF191970</BackgroundColor>
-    <ActiveMenu>Quests</ActiveMenu>
+    <ActiveMenu>Save</ActiveMenu>
     <MenuDatas>
       <Item>
-        <Title>SaveMenu</Title>
+        <Title>Save</Title>
         <Visible>true</Visible>
-        <Width>200</Width>
-        <Height>200</Height>
-        <Position>0 0</Position>
+        <Width>1280</Width>
+        <Height>689</Height>
+        <Position>0 31</Position>
         <TintColor>FFFFFFFF</TintColor>
         <BackgroundColor>FF191970</BackgroundColor>
       </Item>
       <Item>
         <Title>Settings</Title>
         <Visible>true</Visible>
-        <Width>200</Width>
-        <Height>200</Height>
+        <Width>1280</Width>
+        <Height>689</Height>
         <Position>0 31</Position>
         <TintColor>FFFFFFFF</TintColor>
         <BackgroundColor>FF191970</BackgroundColor>

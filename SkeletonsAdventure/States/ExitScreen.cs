@@ -15,8 +15,6 @@ namespace SkeletonsAdventure.States
     {
         private ExitScreenMenu ExitScreenMenu { get; set; }
 
-        private readonly string savePath = GameManager.SavePath;
-
         public ExitScreen(Game1 game) : base(game)
         {
             ExitScreenMenu = new()
@@ -31,26 +29,27 @@ namespace SkeletonsAdventure.States
             ExitScreenMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
 
             //Add event handlers to the controls in the Settings Menu
-            ExitScreenMenu.StartLabel.Selected += StartLabel_Selected;
-            ExitScreenMenu.MenuLabel.Selected += MenuLabel_Selected; 
+            ExitScreenMenu.ReturnToGameLabel.Selected += ReturnToGameLabel_Selected;
+            ExitScreenMenu.ReturnToMenuLabel.Selected += ReturnToMenuLabel_Selected; 
             ExitScreenMenu.SaveGameButton.Click += SaveGameButton_Clicked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             GraphicsDevice.Clear(Color.MidnightBlue);
-
-            spriteBatch.Begin();
-            ControlManager.Draw(spriteBatch);
-            spriteBatch.End();
-
             ExitScreenMenu.Draw(spriteBatch);
+        }
+        public override void Update(GameTime gameTime)
+        {
+            ExitScreenMenu.Update(gameTime);
         }
 
         public override void PostUpdate(GameTime gameTime){}
 
         private void SaveGame()
         {
+            string savePath = GameManager.SavePath;
+
             try
             {
                 if (Directory.Exists(savePath) == false)
@@ -78,26 +77,19 @@ namespace SkeletonsAdventure.States
             }
         }
 
-        public void SetSettingsMenuData(TabbedMenuData settingsMenu)
+        public void SetExitScreenMenuData(TabbedMenuData settingsMenu)
         {
             ExitScreenMenu.SetMenuData(settingsMenu);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            ControlManager.Update(gameTime, PlayerIndexInControl);
-            ExitScreenMenu.Update(gameTime);
-        }
-
-        private void MenuLabel_Selected(object sender, EventArgs e)
+        private void ReturnToMenuLabel_Selected(object sender, EventArgs e)
         {
             SaveGame();
             StateManager.ChangeState(new MenuScreen(Game));
         }
 
-        private void StartLabel_Selected(object sender, EventArgs e)
+        private void ReturnToGameLabel_Selected(object sender, EventArgs e)
         {
-            SaveGame();
             StateManager.ChangeState(Game.GameScreen);
         }
 

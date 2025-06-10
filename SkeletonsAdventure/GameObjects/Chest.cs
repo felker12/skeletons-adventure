@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
 using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.Controls;
+using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
-using SkeletonsAdventure.Quests;
-using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
@@ -91,13 +89,18 @@ namespace SkeletonsAdventure.GameObjects
         {
             if (ChestMenu.Visible == false && Info.Visible == true)
             {
-                ChestMenu.Visible = true;
+                // Set position before making visible
+                ChestMenu.Position = Position - new Vector2(ChestMenu.Width / 2, ChestMenu.Height + 10);
+                
                 ChestMenu.Buttons.Clear();
 
                 Dictionary<string, Button> buttons = [];
                 foreach (GameItem gameItem in Loot.Loots)
                 {
-                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10);
+                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10)
+                    {
+                        Text = $"{gameItem.Name} x{gameItem.Quantity}"  // Add text to show item name and quantity
+                    };
 
                     btn.Click += (sender, e) =>
                     {
@@ -115,11 +118,12 @@ namespace SkeletonsAdventure.GameObjects
 
                 foreach (Button button in ChestMenu.Buttons)
                     button.Visible = true;
+
+                // Make visible after everything is set up
+                ChestMenu.Visible = true;
             }
             else
                 ChestMenu.Visible = false;
-
-            ChestMenu.Position = Position;
         }
 
         public Chest Clone()

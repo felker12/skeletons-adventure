@@ -27,32 +27,31 @@ namespace SkeletonsAdventure.Controls
         public override void Update(GameTime gameTime)
         {
         }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             if (hasFocus)
                 spriteBatch.DrawString(SpriteFont, Text, Position, selectedColor);
             else
                 spriteBatch.DrawString(SpriteFont, Text, Position, Color);
         }
+
         public override void HandleInput(PlayerIndex playerIndex)
         {
+            if (InputHandler.CheckMouseReleased(MouseButton.Left))
+            {
+                size = SpriteFont.MeasureString(Text);
+                Rectangle r = new((int)Position.X, (int)Position.Y, (int)size.X, (int)size.Y);
+
+                if (r.Contains(InputHandler.MouseAsPoint))
+                    base.OnSelected(null);
+            }
+
             if (!HasFocus)
                 return;
             if (InputHandler.KeyReleased(Keys.Enter) ||
             InputHandler.ButtonReleased(Buttons.A, playerIndex))
                 base.OnSelected(null);
-            if (InputHandler.CheckMouseReleased(MouseButton.Left))
-            {
-                size = SpriteFont.MeasureString(Text);
-                Rectangle r = new Rectangle(
-                (int)Position.X,
-                (int)Position.Y,
-                (int)size.X,
-                (int)size.Y);
-                if (r.Contains(InputHandler.MouseAsPoint))
-                    base.OnSelected(null);
-            }
         }
         #endregion
     }

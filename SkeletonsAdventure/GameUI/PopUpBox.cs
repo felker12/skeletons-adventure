@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SkeletonsAdventure.Controls;
 using System.Collections.Generic;
 
-namespace SkeletonsAdventure.Controls
+namespace SkeletonsAdventure.GameUI
 {
     public class PopUpBox
     {
@@ -13,7 +14,7 @@ namespace SkeletonsAdventure.Controls
         public int Height { get; set; } = 100;
         public Color Color { get; set; } = Color.White;
         public bool Visible { get; set; } = false;
-        public List<Button> Buttons { get; protected set; } = [];
+        public List<Button> Buttons { get; set; } = [];
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
 
         public PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
@@ -24,7 +25,7 @@ namespace SkeletonsAdventure.Controls
             Height = height;
         }
 
-        public  PopUpBox()
+        public PopUpBox()
         {
         }
 
@@ -35,9 +36,7 @@ namespace SkeletonsAdventure.Controls
             foreach (Button button in Buttons)
             {
                 if (button.Visible)
-                {
                     button.Draw(spriteBatch);
-                }
             }
         }
 

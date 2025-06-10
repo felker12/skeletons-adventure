@@ -42,12 +42,17 @@ namespace SkeletonsAdventure.GameMenu
             SetBackgroundColor(menuData.BackgroundColor);
         }
 
-        public BaseMenu(Vector2 pos, int width, int height, Texture2D texture) : base()
+        public BaseMenu(Vector2 pos, int width, int height, Texture2D texture)
         {
             Position = pos;
             Width = width;
             Height = height;
             Texture = texture;
+        }
+
+        public BaseMenu(Vector2 pos)
+        {
+            Position = pos;
         }
 
         public virtual void Update(GameTime gameTime)

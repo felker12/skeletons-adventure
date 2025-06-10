@@ -12,8 +12,8 @@ namespace SkeletonsAdventure.GameMenu
         public PlayerInfoMenu PlayerMenu { get; set; }
         public QuestMenu QuestMenu { get; set; }
 
-        public LinkLabel StartLabel { get; set; }
-        public LinkLabel MenuLabel { get; set; }
+        public LinkLabel ReturnToGameLabel { get; set; }
+        public LinkLabel ReturnToMenuLabel { get; set; }
 
         private readonly Texture2D buttonTexture = GameManager.ButtonTexture;
         private readonly SpriteFont buttonFont = GameManager.Arial12;
@@ -23,7 +23,7 @@ namespace SkeletonsAdventure.GameMenu
         public ExitScreenMenu() : base()
         {
             Visible = false;
-            Title = "SettingsMenu";
+            Title = "ExitScreenMenu";
 
             CreateTabbedMenu();
         }
@@ -46,13 +46,19 @@ namespace SkeletonsAdventure.GameMenu
             CreatePlayerMenu();
             CreateQuestsMenu();
 
-            TabBar.SetActiveTab(SaveMenu); //Set the active tab
+            System.Diagnostics.Debug.WriteLine(TabBar.Height + " is the height probably");
 
             //Add the menus to the tab bar
             AddMenu(SaveMenu);
             AddMenu(Settings);
             AddMenu(PlayerMenu);
             AddMenu(QuestMenu);
+
+            //PlayerMenu.CreateControls(); //Create the controls after the menus are added to correctly position the controls
+
+            TabBar.SetActiveTab(SaveMenu); //Set the active tab
+
+            System.Diagnostics.Debug.WriteLine(TabBar.Height + " is the height");
 
             CreateTabOpenedLogic();
         }
@@ -63,10 +69,13 @@ namespace SkeletonsAdventure.GameMenu
             TabBar.TabClicked += (sender, e) =>
             {
                 if (TabBar.ActiveMenu == PlayerMenu)
-                    PlayerMenu.SetPlayerData(World.Player.GetPlayerData());
+                {
+                    PlayerMenu.UpdateWithPlayer(World.Player);
+                }
                 else if (TabBar.ActiveMenu == QuestMenu)
                 {
                     //TODO update quest menu with quest data from player
+                    QuestMenu.SetPlayer(World.Player);
                 }
             };
         }
@@ -76,37 +85,36 @@ namespace SkeletonsAdventure.GameMenu
             SaveMenu = new()
             {
                 Visible = true,
-                Title = "SaveMenu",
+                Title = "Save",
             };
             SaveMenu.SetBackgroundColor(Color.MidnightBlue);
 
             //Add controls to the Menu
-            Label title = new()
+            ReturnToGameLabel = new()
             {
-                Text = "The Adventures of The Skeleton",
-                Color = Color.White
-            };
-            title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 30);
-            ControlManager.Add(title);
-
-            StartLabel = new()
-            {
-                Text = "Press ENTER to return to the game and save",
+                Text = "Press ENTER to return to the game",
                 TabStop = true,
                 HasFocus = true
             };
-            StartLabel.Position = new Vector2(Game1.ScreenWidth / 2 - StartLabel.SpriteFont.MeasureString(StartLabel.Text).X / 2, 350);
-            SaveMenu.ControlManager.Add(StartLabel);
+            ReturnToGameLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).X / 2, 350);
 
-            MenuLabel = new()
+            ReturnToMenuLabel = new()
             {
                 Text = "Press to save and return to menu screen",
                 TabStop = true,
-                HasFocus = true
             };
-            MenuLabel.Position = new Vector2(Game1.ScreenWidth / 2 - MenuLabel.SpriteFont.MeasureString(MenuLabel.Text).X / 2,
-                StartLabel.Position.Y + StartLabel.SpriteFont.MeasureString(StartLabel.Text).Y + 20);
-            SaveMenu.ControlManager.Add(MenuLabel);
+            ReturnToMenuLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToMenuLabel.SpriteFont.MeasureString(ReturnToMenuLabel.Text).X / 2,
+                ReturnToGameLabel.Position.Y + ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).Y + 20);
+
+            SaveGameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(300, 200),
+                Text = "Save Game",
+            };
+
+            SaveMenu.ControlManager.Add(ReturnToMenuLabel);
+            SaveMenu.ControlManager.Add(ReturnToGameLabel);//Add this label after return to menu label so if enter is pressed the event for this will be triggered instead of the 1 for return to menu
+            SaveMenu.ControlManager.Add(SaveGameButton);
         }
 
         private void CreateSettingsMenu()
@@ -121,7 +129,7 @@ namespace SkeletonsAdventure.GameMenu
 
         private void CreatePlayerMenu()
         {
-            PlayerMenu = new()
+            PlayerMenu = new PlayerInfoMenu()
             {
                 Visible = true,
                 Title = "Player",
@@ -137,13 +145,6 @@ namespace SkeletonsAdventure.GameMenu
                 Title = "Quests",
             };
             QuestMenu.SetBackgroundColor(Color.MidnightBlue);
-
-            SaveGameButton = new Button(buttonTexture, buttonFont)
-            {
-                Position = new Vector2(300, 200),
-                Text = "Save Game",
-            };
-            QuestMenu.ControlManager.Add(SaveGameButton);
         }
     }
 }

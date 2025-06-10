@@ -121,7 +121,7 @@ namespace SkeletonsAdventure.Controls
 
         public override void HandleInput(PlayerIndex playerIndex)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         #endregion

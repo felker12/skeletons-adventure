@@ -35,6 +35,7 @@ namespace SkeletonsAdventure.GameMenu
                     activeMenu = menu;
             }
 
+            TabBar.Position = Position;
             TabBar.Width = Width;
             TabBar.Height = TabBar.MaxTabHeight();
             TabBar.SetActiveTab(activeMenu);
