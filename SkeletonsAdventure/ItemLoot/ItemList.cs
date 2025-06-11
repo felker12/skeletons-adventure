@@ -9,11 +9,41 @@ namespace SkeletonsAdventure.ItemLoot
         public List<GameItem> Items { get; set; } = [];
         public int Count => Items.Count;
 
-        public virtual void Add(GameItem item) 
+        public void Update()
         {
-            Items.Add(item.Clone());
+            foreach (GameItem item in Items)
+                item.Update();
         }
 
+        public virtual bool Add(GameItem item)
+        {
+            if (item is null)
+                return false;
+
+            if (item.BaseItem.Stackable && ContainsBaseItem(item)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
+            {
+                return AddItemToStack(item); //returns true if the item was added to an existing stack
+            }
+            else
+            {
+                Items.Add(item.Clone());
+                return true;
+            }
+        }
+
+        protected virtual bool AddItemToStack(GameItem item)
+        {
+            foreach (var gameItem in Items)
+            {
+                if (item.BaseItem == gameItem.BaseItem)
+                {
+                    gameItem.Quantity += item.Quantity;
+                    return true;
+                }
+            }
+
+            return false; //if no existing stack was found, return false
+        }
         public virtual void Add(List<GameItem> items)
         {
             foreach (GameItem item in items)
@@ -58,6 +88,26 @@ namespace SkeletonsAdventure.ItemLoot
                 data.Add(item.GetItemData());
 
             return data;
+        }
+
+        public bool ContainsBaseItem(GameItem item)
+        {
+            foreach (var gameItem in Items)
+            {
+                if (item.BaseItem == gameItem.BaseItem)
+                    return true;
+            }
+            return false;
+        }
+
+        public bool ContainsItem(GameItem item)
+        {
+            foreach (var gameItem in Items)
+            {
+                if (item == gameItem)
+                    return true;
+            }
+            return false;
         }
     }
 }

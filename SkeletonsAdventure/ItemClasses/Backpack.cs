@@ -8,66 +8,24 @@ namespace SkeletonsAdventure.ItemClasses
     {
         public int Capacity { get; } = 76;
 
-        public void Update()
+        public override bool Add(GameItem item)
         {
-            foreach (GameItem item in Items)
-                item.Update();
-        }
-
-        public new bool Add(GameItem item)
-        {
-            bool added = false;
-
             if (item is null) 
-                return added;
+                return false;
 
             if (Count <= Capacity)
             {
-                if (item.BaseItem.Stackable && ContainsBaseItem(item))
+                if (item.BaseItem.Stackable && ContainsBaseItem(item)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
                 {
-                    foreach (var gameItem in Items)
-                    {
-                        if (item.BaseItem == gameItem.BaseItem)
-                        {
-                            gameItem.Quantity += item.Quantity;
-                            added = true;
-                            break;
-                        }
-                    }
+                    return AddItemToStack(item); //returns true if the item was added to an existing stack
                 }
-                else if (Count < Capacity)
+                else if (Count < Capacity) //dont add the item if it exceeds capacity
                 {
                     Items.Add(item.Clone());
-                    added = true;
+                    return true;
                 }
             }
 
-            return added;
-        }
-
-        public override void Add(List<GameItem> items)
-        {
-            foreach (GameItem item in items)
-                Add(item);
-        }
-
-        public bool ContainsBaseItem(GameItem item)
-        {
-            foreach (var gameItem in Items)
-            {
-                if (item.BaseItem == gameItem.BaseItem)
-                    return true;
-            }
-            return false;
-        }
-
-        public bool ContainsItem(GameItem item)
-        {
-            foreach (var gameItem in Items)
-            {
-                if (item == gameItem)
-                    return true;
-            }
             return false;
         }
     }
