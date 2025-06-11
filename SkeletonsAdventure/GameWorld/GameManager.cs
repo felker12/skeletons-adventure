@@ -385,7 +385,7 @@ namespace SkeletonsAdventure.GameWorld
             Coins.Quantity = 10;
 
             //Create the loot list
-            LootList loots = new();
+            ItemList loots = new();
             loots.Add(ItemsClone["Robes"]);
             loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
@@ -423,7 +423,7 @@ namespace SkeletonsAdventure.GameWorld
             Coins.Quantity = 10;
 
             //Create the loot list
-            LootList loots = new();
+            ItemList loots = new();
             loots.Add(ItemsClone["Robes"]);
             loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());
@@ -432,7 +432,7 @@ namespace SkeletonsAdventure.GameWorld
             //populate the loot list with the items the entity will be carrying
             List<ItemData> items = [];
 
-            foreach (var loot in loots.Loots)
+            foreach (var loot in loots.Items)
             {
                 items.Add(loot.GetItemData());
             }
@@ -482,7 +482,7 @@ namespace SkeletonsAdventure.GameWorld
             ItemsClone.TryGetValue("Coins", out GameItem Coins);
             Coins.Quantity = 10;
 
-            LootList loots = new();
+            ItemList loots = new();
             loots.Add(ItemsClone["Robes"]);
             loots.Add(ItemsClone["Bones"]);
             loots.Add(Coins.Clone());

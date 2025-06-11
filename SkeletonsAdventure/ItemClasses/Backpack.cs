@@ -1,22 +1,12 @@
 ﻿using System.Collections.Generic;
 using RpgLibrary.ItemClasses;
+using SkeletonsAdventure.ItemLoot;
 
 namespace SkeletonsAdventure.ItemClasses
 {
-    internal class Backpack()
+    internal class Backpack() : ItemList
     {
-        public List<GameItem> Items { get; } = [];
-        public static int Capacity { get; } = 76;
-
-        public List<GameItem> Clone()
-        {
-            List<GameItem> items = [];
-
-            foreach (var item in Items)
-                items.Add(item.Clone());
-
-            return items;
-        }
+        public int Capacity { get; } = 76;
 
         public void Update()
         {
@@ -24,10 +14,14 @@ namespace SkeletonsAdventure.ItemClasses
                 item.Update();
         }
 
-        public bool AddItem(GameItem item)
+        public new bool Add(GameItem item)
         {
             bool added = false;
-            if (Items.Count < Capacity)
+
+            if (item is null) 
+                return added;
+
+            if (Count <= Capacity)
             {
                 if (item.BaseItem.Stackable && ContainsBaseItem(item))
                 {
@@ -36,25 +30,14 @@ namespace SkeletonsAdventure.ItemClasses
                         if (item.BaseItem == gameItem.BaseItem)
                         {
                             gameItem.Quantity += item.Quantity;
+                            added = true;
+                            break;
                         }
                     }
                 }
-                else
-                    Items.Add(item.Clone());
-
-                added = true;
-            }
-            else if (Items.Count == Capacity)
-            {
-                if (item.BaseItem.Stackable && ContainsBaseItem(item))
+                else if (Count < Capacity)
                 {
-                    foreach (var gameItem in Items)
-                    {
-                        if (item.BaseItem == gameItem.BaseItem)
-                        {
-                            gameItem.Quantity += item.Quantity;
-                        }
-                    }
+                    Items.Add(item.Clone());
                     added = true;
                 }
             }
@@ -62,10 +45,12 @@ namespace SkeletonsAdventure.ItemClasses
             return added;
         }
 
-        public void RemoveItem(GameItem item)
+        public override void Add(List<GameItem> items)
         {
-            Items.Remove(item);
+            foreach (GameItem item in items)
+                Add(item);
         }
+
         public bool ContainsBaseItem(GameItem item)
         {
             foreach (var gameItem in Items)
@@ -84,28 +69,6 @@ namespace SkeletonsAdventure.ItemClasses
                     return true;
             }
             return false;
-        }
-
-        public override string ToString()
-        {
-            string output = string.Empty;
-
-            foreach (GameItem item in Items)
-                output += item.ToString() + "\n";
-
-            return output;
-        }
-
-        public List<ItemData> GetBackpackData()
-        {
-            List<ItemData> backpackData = [];
-
-            foreach (var gameItem in Items)
-            {
-                backpackData.Add(gameItem.GetItemData()); //TODO?
-            }
-
-            return backpackData;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SkeletonsAdventure.Entities
         public int Defence { get; set; }
         public int Attack { get; set; }
         public int RespawnTime { get; set; } = 3; //time in seconds until the entity respawns
-        public LootList LootList { get; set; } = new();
+        public ItemList LootList { get; set; } = new();
         public int Level { get; protected set; } = 0;
         public Color BasicAttackColor { get; set; } = Color.White; //Color of the basic attack
         public bool IsDead { get; set; } = false;
@@ -121,7 +121,7 @@ namespace SkeletonsAdventure.Entities
                 entityLevel = Level,
                 isDead = IsDead,
                 lastDeathTime = lastDeathTime,
-                Items = LootList.GetLootListItemData()
+                Items = LootList.GetItemListItemData()
             };
         }
 

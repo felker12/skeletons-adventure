@@ -127,7 +127,7 @@ namespace SkeletonsAdventure.GameWorld
             {
                 temp = GameManager.LoadGameItemFromItemData(item);
 
-                Player.Backpack.AddItem(temp);
+                Player.Backpack.Add(temp);
                 if (item.Equipped)
                 {
                     index = Player.Backpack.Items.Count - 1;
@@ -238,14 +238,14 @@ namespace SkeletonsAdventure.GameWorld
             {
                 foreach (GameItem item in GameManager.ItemsClone.Values)
                 {
-                    Player.Backpack.AddItem(item);
+                    Player.Backpack.Add(item);
                 }
             }
 
             GameItem Coins = GameManager.ItemsClone["Coins"];
             Coins.Quantity = 20;
 
-            Player.Backpack.AddItem(Coins);
+            Player.Backpack.Add(Coins);
 
             Player.EquippedItems.TryEquipItem(Player.Backpack.Items[0]);
             Player.EquippedItems.TryEquipItem(Player.Backpack.Items[3]);

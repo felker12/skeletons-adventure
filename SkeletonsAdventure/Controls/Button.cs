@@ -79,72 +79,52 @@ namespace SkeletonsAdventure.Controls
         public void Update()
         {
             if (_isHovering)
-            {
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
-                {
                     Clicked = true;
-                    System.Diagnostics.Debug.WriteLine("hovering");
-                    //Click?.Invoke(this, new EventArgs());
-                    //Clicked = false; //Reset the clicked state after handling the click event
-                }
-            }
-            else
-            {
-                //Clicked = false;
-            }
+        }
+
+        public static bool Intersects(Rectangle rec, Rectangle rec2)
+        {
+            return rec.Intersects(rec2);
         }
 
         public void IsMouseHovering()
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-            _isHovering = false;
 
             Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(Rectangle))
-            {
-                _isHovering = true;
-            }
+            _isHovering = mouseRectangle.Intersects(Rectangle);
         }
 
         public void IsMouseHovering(bool transformMouse, Matrix transformation)
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-            _isHovering = false;
 
             Vector2 mousePos = new(_currentMouse.X, _currentMouse.Y);
             Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
 
-            if (transformMouse == false)
+            if (transformMouse)
             {
-                if (mouseRectangle.Intersects(Rectangle))
-                {
-                    _isHovering = true;
-                }
+                Vector2 transformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
+                Rectangle transformedMouseRectangle = new((int)transformedmousePos.X, (int)transformedmousePos.Y, 1, 1);
+
+                mouseRectangle = transformedMouseRectangle;
             }
-            else if (transformMouse)
-            {
-                Vector2 TransformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
-                Rectangle TransformedMouseRectangle = new((int)TransformedmousePos.X, (int)TransformedmousePos.Y, 1, 1);
-                if (TransformedMouseRectangle.Intersects(Rectangle))
-                {
-                    _isHovering = true;
-                }
-            }
+
+            _isHovering = mouseRectangle.Intersects(Rectangle);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)
         {
             if(Clicked)
             {
-                System.Diagnostics.Debug.WriteLine("Clicked");
                 Click?.Invoke(this, new EventArgs());
                 Clicked = false; //Reset the clicked state after handling the click event
             }
         }
-
         #endregion
     }
 }

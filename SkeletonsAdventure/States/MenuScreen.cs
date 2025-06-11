@@ -8,7 +8,6 @@ using RpgLibrary.DataClasses;
 using SkeletonsAdventure.GameWorld;
 using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.GameMenu;
-using Assimp.Configs;
 
 namespace SkeletonsAdventure.States
 {
@@ -46,6 +45,16 @@ namespace SkeletonsAdventure.States
             ControlManager.Add(newGameButton);
             ControlManager.Add(loadGameButton);
             ControlManager.Add(quitGameButton);
+        }
+
+        public override void PostUpdate(GameTime gameTime)
+        {
+            //remove sprites if they're not needed
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            ControlManager.Update(gameTime, PlayerIndexInControl);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -123,16 +132,6 @@ namespace SkeletonsAdventure.States
             World.FillPlayerBackback(); //TODO
 
             StateManager.ChangeState(Game.GameScreen);
-        }
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-            //remove sprites if they're not needed
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            ControlManager.Update(gameTime, PlayerIndexInControl);
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)

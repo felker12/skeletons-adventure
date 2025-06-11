@@ -22,8 +22,8 @@
       <Item>
         <Title>Settings</Title>
         <Visible>true</Visible>
-        <Width>1280</Width>
-        <Height>689</Height>
+        <Width>200</Width>
+        <Height>200</Height>
         <Position>0 31</Position>
         <TintColor>FFFFFFFF</TintColor>
         <BackgroundColor>FF191970</BackgroundColor>
@@ -31,8 +31,8 @@
       <Item>
         <Title>Player</Title>
         <Visible>true</Visible>
-        <Width>1280</Width>
-        <Height>689</Height>
+        <Width>200</Width>
+        <Height>200</Height>
         <Position>0 31</Position>
         <TintColor>FFFFFFFF</TintColor>
         <BackgroundColor>FF191970</BackgroundColor>
@@ -40,8 +40,8 @@
       <Item>
         <Title>Quests</Title>
         <Visible>true</Visible>
-        <Width>1280</Width>
-        <Height>689</Height>
+        <Width>200</Width>
+        <Height>200</Height>
         <Position>0 31</Position>
         <TintColor>FFFFFFFF</TintColor>
         <BackgroundColor>FF191970</BackgroundColor>

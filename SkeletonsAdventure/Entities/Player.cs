@@ -136,7 +136,7 @@ namespace SkeletonsAdventure.Entities
                 bonusDefenceFromAttributePoints = bonusDefenceFromAttributePoints,
                 bonusHealthFromAttributePoints = bonusHealthFromAttributePoints,
                 bonusManaFromAttributePoints = bonusManaFromAttributePoints,
-                backpack = Backpack.GetBackpackData(),
+                backpack = Backpack.GetItemListItemData(),
                 activeQuests = ActiveQuests.ConvertAll(q => q.GetQuestData()),
                 completedQuests = CompletedQuests.ConvertAll(q => q.GetQuestData())
             };
@@ -245,14 +245,14 @@ namespace SkeletonsAdventure.Entities
             };
 
             //if the items wont fit in the backpack, drop them on the ground
-            if (Backpack.AddItem(coins) is false)
+            if (Backpack.Add(coins) is false)
             {
                 World.CurrentLevel.EntityManager.DroppedLootManager.Add(coins, Position);
             }
             
             foreach (GameItem item in reward.Items)
             {
-                if (Backpack.AddItem(item.Clone()) is false)
+                if (Backpack.Add(item.Clone()) is false)
                 {
                     World.CurrentLevel.EntityManager.DroppedLootManager.Add(item.Clone(), Position);
                 }
@@ -330,7 +330,7 @@ namespace SkeletonsAdventure.Entities
 
                                 item.Quantity -= 1;
                                 if (item.Quantity == 0)
-                                    Backpack.RemoveItem(item);
+                                    Backpack.Remove(item);
                             }
                             break;
                         case Effect.DefenceIncrease: //TODO

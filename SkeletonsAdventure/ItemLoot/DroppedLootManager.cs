@@ -42,10 +42,10 @@ namespace SkeletonsAdventure.ItemLoot
                 Add(item, pos);
         }
 
-        public void Add(LootList lootList, Vector2 pos)
+        public void Add(ItemList lootList, Vector2 pos)
         {
             Vector2 offset = Vector2.Zero;
-            foreach(GameItem item in lootList.Loots)
+            foreach(GameItem item in lootList.Items)
             { 
                 Add(item, pos + offset);
                 offset += new Vector2(15, 15);

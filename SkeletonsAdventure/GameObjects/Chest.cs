@@ -14,7 +14,7 @@ namespace SkeletonsAdventure.GameObjects
     internal class Chest
     {
         public ChestType ChestType { get; set; } //TODO add different types of chests
-        public LootList Loot { get; set; } = new();
+        public ItemList Loot { get; set; } = new();
         public Vector2 Position { get; set; } = new();
         public int ID { get; set; } = -1;
         public Rectangle DetectionArea { get; set; }
@@ -44,7 +44,7 @@ namespace SkeletonsAdventure.GameObjects
             Info.Position = chest.Position;
         }
 
-        public Chest(LootList loot)
+        public Chest(ItemList loot)
         {
             Loot = loot;
         }
@@ -101,7 +101,7 @@ namespace SkeletonsAdventure.GameObjects
                 ChestMenu.Buttons.Clear();
 
                 Dictionary<string, Button> buttons = [];
-                foreach (GameItem gameItem in Loot.Loots)
+                foreach (GameItem gameItem in Loot.Items)
                 {
                     Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10)
                     {
@@ -110,7 +110,7 @@ namespace SkeletonsAdventure.GameObjects
 
                     btn.Click += (sender, e) =>
                     {
-                        if (World.CurrentLevel.Player.Backpack.AddItem(gameItem))
+                        if (World.CurrentLevel.Player.Backpack.Add(gameItem))
                         {
                             btn.Visible = false;
                             Loot.Remove(gameItem);
@@ -141,7 +141,7 @@ namespace SkeletonsAdventure.GameObjects
         {
             return new()
             {
-                ItemDatas = Loot.GetLootListItemData(),
+                ItemDatas = Loot.GetItemListItemData(),
                 ID = ID,
                 ChestType = ChestType,
                 Position = Position

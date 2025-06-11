@@ -113,7 +113,7 @@ namespace SkeletonsAdventure.Entities
         {
             foreach(GameItem item in DroppedLootManager.Items)
             {
-                if (Player.GetRectangle.Intersects(item.ItemRectangle) && Player.Backpack.AddItem(item) == true)
+                if (Player.GetRectangle.Intersects(item.ItemRectangle) && Player.Backpack.Add(item) == true)
                     DroppedLootManager.ItemToRemove.Add(item);
             }
         }

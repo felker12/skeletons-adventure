@@ -373,13 +373,13 @@ namespace SkeletonsAdventure.States
             {
                 Player.EquippedItems.TryUnequipItem(itemUnderMouse);
                 World.CurrentLevel.EntityManager.DroppedLootManager.Add(itemUnderMouse, Player.Position - new Vector2(60, 40));
-                Player.Backpack.RemoveItem(itemUnderMouse);
+                Player.Backpack.Remove(itemUnderMouse);
             }
         }
 
         private void PickUp_Click(object sender, EventArgs e)
         {
-            if (itemUnderMouse != null && Player.Backpack.AddItem(itemUnderMouse) == true)
+            if (itemUnderMouse != null && Player.Backpack.Add(itemUnderMouse) == true)
                 World.CurrentLevel.EntityManager.DroppedLootManager.ItemToRemove.Add(itemUnderMouse);
         }
 

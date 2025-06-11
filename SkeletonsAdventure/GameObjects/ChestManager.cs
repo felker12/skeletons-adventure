@@ -74,7 +74,7 @@ namespace SkeletonsAdventure.GameObjects
                 {
                     if(chest.Position == data.Position)
                     {
-                        chest.Loot.Loots = GameManager.LoadGameItemsFromItemData(data.ItemDatas);
+                        chest.Loot.Items = GameManager.LoadGameItemsFromItemData(data.ItemDatas);
                     }
                 }
             }
