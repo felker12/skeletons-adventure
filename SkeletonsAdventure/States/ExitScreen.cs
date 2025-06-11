@@ -43,6 +43,10 @@ namespace SkeletonsAdventure.States
         {
             ExitScreenMenu.Update(gameTime);
         }
+        public override void HandleInput(PlayerIndex playerIndex)
+        {
+
+        }
 
         public override void PostUpdate(GameTime gameTime){}
 

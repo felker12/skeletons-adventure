@@ -45,6 +45,11 @@ namespace SkeletonsAdventure.States
             spriteBatch.End();
         }
 
+        public override void HandleInput(PlayerIndex playerIndex)
+        {
+            
+        }
+
         public override void PostUpdate(GameTime gameTime)
         {
         }

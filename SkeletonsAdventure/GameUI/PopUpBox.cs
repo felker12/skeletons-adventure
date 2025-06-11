@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Controls;
+using SkeletonsAdventure.GameWorld;
+using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameUI
@@ -15,6 +17,7 @@ namespace SkeletonsAdventure.GameUI
         public Color Color { get; set; } = Color.White;
         public bool Visible { get; set; } = false;
         public List<Button> Buttons { get; set; } = [];
+        public ControlManager ControlManager { get; set; } = new(GameManager.Arial12);
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
 
         public PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
@@ -78,6 +81,18 @@ namespace SkeletonsAdventure.GameUI
                 Width = 0;
             }
         }
+
+        public void HandleInput(PlayerIndex playerIndex)
+        {
+            foreach (Button button in Buttons)
+            {
+                if (button.Visible)
+                {
+                    button.HandleInput(playerIndex);
+                }
+            }
+        }
+
 
         public void AddButton(Button button, string buttonText)
         {

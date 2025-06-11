@@ -21,6 +21,7 @@ namespace SkeletonsAdventure
         public static GameTime GameTime { get; private set; }
         public static float DeltaTime => (float)GameTime.ElapsedGameTime.TotalSeconds;
         public static int BaseSpeedMultiplier { get; set; } = 50;
+        protected PlayerIndex PlayerIndexInControl { get; set; } = PlayerIndex.One;
 
         public Game1()
         {
@@ -79,6 +80,7 @@ namespace SkeletonsAdventure
             }
 
             StateManager.Update(gameTime);
+            StateManager.HandleInput(PlayerIndexInControl);
             base.Update(gameTime);
         }
 

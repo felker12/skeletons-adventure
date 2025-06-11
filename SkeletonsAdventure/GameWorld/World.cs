@@ -1,15 +1,16 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using MonoGame.Extended.Tiled;
-using SkeletonsAdventure.Entities;
-using RpgLibrary.ItemClasses;
-using SkeletonsAdventure.ItemClasses;
-using RpgLibrary.DataClasses;
-using RpgLibrary.WorldClasses;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Tiled;
+using RpgLibrary.DataClasses;
+using RpgLibrary.ItemClasses;
+using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.Entities;
+using SkeletonsAdventure.ItemClasses;
+using System;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -84,6 +85,11 @@ namespace SkeletonsAdventure.GameWorld
                 SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             }
             //=======================================================================
+        }
+
+        public static void HandleInput(PlayerIndex playerIndex)
+        {
+            CurrentLevel.HandleInput(playerIndex);
         }
 
         public static void Draw(SpriteBatch spriteBatch)

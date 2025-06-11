@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
-using SkeletonsAdventure.EntitySpawners;
 using RpgLibrary.GameObjectClasses;
+using SkeletonsAdventure.EntitySpawners;
 using SkeletonsAdventure.GameWorld;
+using System;
+using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
 {
@@ -26,6 +27,14 @@ namespace SkeletonsAdventure.GameObjects
             foreach (Chest chest in Chests)
             {
                 chest.Update(gameTime);
+            }
+        }
+
+        public void HandleInput(PlayerIndex playerIndex)
+        {
+            foreach (Chest chest in Chests)
+            {
+                chest.HandleInput(playerIndex);
             }
         }
 

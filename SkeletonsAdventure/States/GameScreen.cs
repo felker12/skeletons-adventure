@@ -124,19 +124,18 @@ namespace SkeletonsAdventure.States
                 menu.Update(gameTime);
 
             CheckUnderMouse();
-            HandleInput();
 
             //FPS.Update(gameTime);
         }
 
-        private void HandleInput()
+        public override void HandleInput(PlayerIndex playerIndex)
         {
             if (InputHandler.KeyReleased(Keys.I))
             {
                 BackpackMenu.ToggleVisibility();
             }
 
-            if(InputHandler.KeyReleased(Keys.V)) //TODO
+            if (InputHandler.KeyReleased(Keys.V)) //TODO
             {
                 HealthBar.ToggleVisibility();
                 ManaBar.ToggleVisibility();
@@ -148,6 +147,13 @@ namespace SkeletonsAdventure.States
 
                 //TODO
                 //System.Diagnostics.Debug.WriteLine(World.CurrentLevel.EntityManager.Entities.Count);
+            }
+
+            World.HandleInput(playerIndex);
+
+            if (PopUpBox.Visible)
+            {
+                PopUpBox.HandleInput(playerIndex);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SkeletonsAdventure.GameWorld;
 using System;
 
 namespace SkeletonsAdventure.Controls
@@ -13,7 +14,7 @@ namespace SkeletonsAdventure.Controls
 
         public SpriteFont Font { get; private set; } = font;
 
-        protected bool _isHovering;
+        protected bool _isHovering = false;
 
         protected MouseState _previousMouse;
 
@@ -25,7 +26,7 @@ namespace SkeletonsAdventure.Controls
 
         public event EventHandler Click;
 
-        public bool Clicked { get; private set; }
+        public bool Clicked { get; private set; } = false;
 
         public Color PenColour { get; set; } = Color.Black;
 
@@ -64,64 +65,84 @@ namespace SkeletonsAdventure.Controls
 
         public override void Update(GameTime gameTime)
         {
-            _previousMouse = _currentMouse;
-            _currentMouse = Mouse.GetState();
-
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
-
-            _isHovering = false;
-
-            if (mouseRectangle.Intersects(Rectangle))
-            {
-                _isHovering = true;
-
-                if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
-                {
-                    Click?.Invoke(this, new EventArgs());
-                }
-            }
+            IsMouseHovering();
+            Update();
         }
 
         public void Update(bool transformMouse, Matrix transformation)
         {
+            IsMouseHovering(transformMouse, transformation);
+            Update();
+        }
+
+        //This method wont work with the button being used in the ControlManager
+        public void Update()
+        {
+            if (_isHovering)
+            {
+                if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Clicked = true;
+                    System.Diagnostics.Debug.WriteLine("hovering");
+                    //Click?.Invoke(this, new EventArgs());
+                    //Clicked = false; //Reset the clicked state after handling the click event
+                }
+            }
+            else
+            {
+                //Clicked = false;
+            }
+        }
+
+        public void IsMouseHovering()
+        {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
+            _isHovering = false;
+
+            Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
+
+            if (mouseRectangle.Intersects(Rectangle))
+            {
+                _isHovering = true;
+            }
+        }
+
+        public void IsMouseHovering(bool transformMouse, Matrix transformation)
+        {
+            _previousMouse = _currentMouse;
+            _currentMouse = Mouse.GetState();
+            _isHovering = false;
 
             Vector2 mousePos = new(_currentMouse.X, _currentMouse.Y);
-            Vector2 TransformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
-            Rectangle TransformedMouseRectangle = new((int)TransformedmousePos.X, (int)TransformedmousePos.Y, 1, 1);
             Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
-            _isHovering = false;
 
             if (transformMouse == false)
             {
                 if (mouseRectangle.Intersects(Rectangle))
                 {
                     _isHovering = true;
-
-                    if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
-                    {
-                        Click?.Invoke(this, new EventArgs());
-                    }
                 }
             }
             else if (transformMouse)
             {
+                Vector2 TransformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
+                Rectangle TransformedMouseRectangle = new((int)TransformedmousePos.X, (int)TransformedmousePos.Y, 1, 1);
                 if (TransformedMouseRectangle.Intersects(Rectangle))
                 {
                     _isHovering = true;
-
-                    if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
-                    {
-                        Click?.Invoke(this, new EventArgs());
-                    }
                 }
             }
         }
 
         public override void HandleInput(PlayerIndex playerIndex)
         {
-            //throw new NotImplementedException();
+            if(Clicked)
+            {
+                System.Diagnostics.Debug.WriteLine("Clicked");
+                Click?.Invoke(this, new EventArgs());
+                Clicked = false; //Reset the clicked state after handling the click event
+            }
         }
 
         #endregion

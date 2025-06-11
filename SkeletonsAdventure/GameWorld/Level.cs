@@ -161,6 +161,11 @@ namespace SkeletonsAdventure.GameWorld
                 CheckIfPlayerIsNearExit(LevelEntrance, LevelEntrance.NextLevel.PlayerEndPosition);
         }
 
+        public void HandleInput(PlayerIndex playerIndex)
+        {
+            ChestManager.HandleInput(playerIndex);
+        }
+
         public void LoadLevelDataFromLevelData(LevelData levelData)
         {
             EntityManager.RemoveAll();

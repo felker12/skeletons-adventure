@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace SkeletonsAdventure.States
 {
@@ -28,6 +29,11 @@ namespace SkeletonsAdventure.States
 
             CurrentState.Update(gameTime);
             CurrentState.PostUpdate(gameTime);
+        }
+
+        public void HandleInput(PlayerIndex playerIndex)
+        {
+            CurrentState.HandleInput(playerIndex);
         }
     }
 }

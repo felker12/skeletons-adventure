@@ -6,6 +6,7 @@ using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
+using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
@@ -65,6 +66,11 @@ namespace SkeletonsAdventure.GameObjects
                 Info.Text = Loot.Count > 0 ? "Press R to Open" : "Chest Empty";
 
             ChestMenu.Update(true, World.Camera.Transformation);
+        }
+
+        public void HandleInput(PlayerIndex playerIndex)
+        {
+            ChestMenu.HandleInput(playerIndex);
         }
 
         public bool PlayerIntersects(Rectangle playerRec)
