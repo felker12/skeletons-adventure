@@ -89,7 +89,7 @@ namespace SkeletonsAdventure.Entities
             if (HealthBarVisible)
             {
                 Vector2 healthBarOffset = new(HealthBar.Width / 2 - Width / 2, HealthBar.Height + HealthBar.BorderWidth + 4);
-                HealthBar.UpdateStatusBar(Health, MaxHealth, Position - healthBarOffset);
+                HealthBar.Update(Health, MaxHealth, Position - healthBarOffset);
             }
 
             //TODO

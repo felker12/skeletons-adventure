@@ -32,6 +32,40 @@ namespace SkeletonsAdventure.ItemClasses
             return def;
         }
 
+        public int EquippedItemsManaBonus()
+        {
+            //int mana = 0;
+            //if (HeadSlot != null && HeadSlot.BaseItem is Armor head)
+            //    mana += head.ManaValue;
+            //if (BodySlot != null && BodySlot.BaseItem is Armor body)
+            //    mana += body.ManaValue;
+            //if (HandsSlot != null && HandsSlot.BaseItem is Armor hands)
+            //    mana += hands.ManaValue;
+            //if (FeetSlot != null && FeetSlot.BaseItem is Armor feet)
+            //    mana += feet.ManaValue;
+            //return mana;
+
+            //TODO: Implement mana bonus for equipped items
+            return 0; // Placeholder for future mana bonus implementation
+        }
+
+        public int EquippedItemsHealthBonus()
+        {
+            //int health = 0;
+            //if (HeadSlot != null && HeadSlot.BaseItem is Armor head)
+            //    health += head.HealthValue;
+            //if (BodySlot != null && BodySlot.BaseItem is Armor body)
+            //    health += body.HealthValue;
+            //if (HandsSlot != null && HandsSlot.BaseItem is Armor hands)
+            //    health += hands.HealthValue;
+            //if (FeetSlot != null && FeetSlot.BaseItem is Armor feet)
+            //    health += feet.HealthValue;
+            //return health;
+
+            //TODO: Implement health bonus for equipped items
+            return 0; // Placeholder for future health bonus implementation
+        }
+
         public void TryEquipItem(GameItem gameItem)
         {
             BaseItem item = gameItem.BaseItem;

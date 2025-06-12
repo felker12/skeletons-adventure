@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
-using SkeletonsAdventure.EntitySpawners;
 using SkeletonsAdventure.GameWorld;
-using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects

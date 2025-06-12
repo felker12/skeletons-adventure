@@ -19,7 +19,7 @@ namespace SkeletonsAdventure.States
     internal class GameScreen : State
     {
         private MouseState _mouseState, _lastMouseState;
-        private Button equip, unequip, pickUp, drop, consume;
+        private GameButton equip, unequip, pickUp, drop, consume;
         private GameItem itemUnderMouse = null;
 
         private BoxSource CurrentSource { get; set; }
@@ -27,7 +27,7 @@ namespace SkeletonsAdventure.States
         public World World { get; private set; }
         public Player Player { get; set; }
         public List<BaseMenu> Menus { get; set; } = [];
-        public PopUpBox PopUpBox { get; private set; }
+        public PopUpBox GameItemPopUpBox { get; private set; }
         public BackpackMenu BackpackMenu { get; set; }
         private StatusBar HealthBar { get; set; }
         private StatusBar ManaBar { get; set; }
@@ -81,18 +81,18 @@ namespace SkeletonsAdventure.States
                 null,
                 Camera.Transformation);
 
-            if (CurrentSource == BoxSource.Game && PopUpBox.Visible)
+            if (CurrentSource == BoxSource.Game && GameItemPopUpBox.Visible)
             {
-                PopUpBox.Draw(spriteBatch);
+                GameItemPopUpBox.Draw(spriteBatch);
             }
 
             spriteBatch.End();
 
             spriteBatch.Begin();
 
-            if (CurrentSource == BoxSource.Panel && PopUpBox.Visible)
+            if (CurrentSource == BoxSource.Panel && GameItemPopUpBox.Visible)
             {
-                PopUpBox.Draw(spriteBatch);
+                GameItemPopUpBox.Draw(spriteBatch);
             }
 
             HealthBar.Draw(spriteBatch);
@@ -114,16 +114,16 @@ namespace SkeletonsAdventure.States
             int playerXPToLevel = nextLvlXP - lvlXP;
             int playerXPSinceLastLevel = Player.TotalXP - lvlXP;
 
-            HealthBar.UpdateStatusBar(Player.Health, Player.MaxHealth, HealthBar.Position);
-            ManaBar.UpdateStatusBar(Player.Mana, Player.MaxMana, ManaBar.Position);
-            XPProgress.UpdateStatusBar(playerXPSinceLastLevel, playerXPToLevel, XPProgress.Position);
+            HealthBar.Update(Player.Health, Player.MaxHealth, HealthBar.Position);
+            ManaBar.Update(Player.Mana, Player.MaxMana, ManaBar.Position);
+            XPProgress.Update(playerXPSinceLastLevel, playerXPToLevel, XPProgress.Position);
 
             BackpackMenu.Update(World.CurrentLevel.EntityManager.Player.Backpack.Items);
 
             foreach (BaseMenu menu in Menus)
                 menu.Update(gameTime);
 
-            CheckUnderMouse();
+            CheckUnderMouse(gameTime);
 
             //FPS.Update(gameTime);
         }
@@ -151,13 +151,13 @@ namespace SkeletonsAdventure.States
 
             World.HandleInput(playerIndex);
 
-            if (PopUpBox.Visible)
+            if (GameItemPopUpBox.Visible)
             {
-                PopUpBox.HandleInput(playerIndex);
+                GameItemPopUpBox.HandleInput(playerIndex);
             }
         }
 
-        private void CheckUnderMouse()
+        private void CheckUnderMouse(GameTime gameTime)
         {
             _lastMouseState = _mouseState;
             _mouseState = Mouse.GetState();
@@ -181,9 +181,9 @@ namespace SkeletonsAdventure.States
 
                     Intersects(mouseRec, item.ItemRectangle, item, BoxSource.Panel);
 
-                    if (PopUpBox.Visible)
+                    if (GameItemPopUpBox.Visible)
                     {
-                        Rectangle rec = new((int)PopUpBox.Position.X, (int)PopUpBox.Position.Y, 1, 1);
+                        Rectangle rec = new((int)GameItemPopUpBox.Position.X, (int)GameItemPopUpBox.Position.Y, 1, 1);
                         if (rec.Intersects(item.ItemRectangle))
                             itemUnderMouse = item;
                     }
@@ -196,9 +196,9 @@ namespace SkeletonsAdventure.States
             {
                 Intersects(transformedMouseRectangle, item.ItemRectangle, item, BoxSource.Game);
 
-                if (PopUpBox.Visible)
+                if (GameItemPopUpBox.Visible)
                 {
-                    Rectangle rec = new((int)PopUpBox.Position.X, (int)PopUpBox.Position.Y, 1, 1);
+                    Rectangle rec = new((int)GameItemPopUpBox.Position.X, (int)GameItemPopUpBox.Position.Y, 1, 1);
                     if (rec.Intersects(item.ItemRectangle))
                         itemUnderMouse = item;
                 }
@@ -210,7 +210,7 @@ namespace SkeletonsAdventure.States
 
             //hide popupbox when no more items are under mouse
             if (itemUnderMouse == null)
-                PopUpBox.Visible = false;
+                GameItemPopUpBox.Visible = false;
 
             if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
             {
@@ -223,19 +223,19 @@ namespace SkeletonsAdventure.States
                 }
             }
 
-            if (PopUpBox.Visible)
+            if (GameItemPopUpBox.Visible)
             {
-                foreach (Button button in PopUpBox.Buttons)
+                foreach (GameButton button in GameItemPopUpBox.Buttons)
                     button.Visible = false;
 
                 if (CurrentSource == BoxSource.Game)
                 {
                     pickUp.Visible = true;
 
-                    PopUpBox.Update(true, Camera.Transformation);
+                    GameItemPopUpBox.Update(gameTime, true, Camera.Transformation);
 
-                    if (transformedMouseRectangle.Intersects(PopUpBox.Rectangle) == false)
-                        PopUpBox.Visible = false;
+                    if (transformedMouseRectangle.Intersects(GameItemPopUpBox.Rectangle) == false)
+                        GameItemPopUpBox.Visible = false;
                 }
                 else if (CurrentSource == BoxSource.Panel)
                 {
@@ -257,10 +257,10 @@ namespace SkeletonsAdventure.States
 
                     drop.Visible = true;
 
-                    PopUpBox.Update(false, Camera.Transformation);
+                    GameItemPopUpBox.Update(gameTime,false, Camera.Transformation);
 
-                    if (mouseRec.Intersects(PopUpBox.Rectangle) == false)
-                        PopUpBox.Visible = false;
+                    if (mouseRec.Intersects(GameItemPopUpBox.Rectangle) == false)
+                        GameItemPopUpBox.Visible = false;
                 }
             }
 
@@ -279,8 +279,8 @@ namespace SkeletonsAdventure.States
                     CurrentSource = source;
                     Vector2 mousePos = new(mouseRec.X, mouseRec.Y);
 
-                    PopUpBox.Position = mousePos;
-                    PopUpBox.Visible = true;
+                    GameItemPopUpBox.Position = mousePos;
+                    GameItemPopUpBox.Visible = true;
                     intersects = true;
                 }
             }
@@ -295,7 +295,7 @@ namespace SkeletonsAdventure.States
             Texture2D texture = GameManager.DefaultButtonTexture;
             SpriteFont font = GameManager.Arial10;
 
-            PopUpBox = new(Vector2.Zero, GameManager.PopUpBoxTexture, 100, 100)
+            GameItemPopUpBox = new(Vector2.Zero, GameManager.PopUpBoxTexture, 100, 100)
             {
                 Visible = false,
             };
@@ -312,11 +312,11 @@ namespace SkeletonsAdventure.States
             consume.Click += Consume_Click;
             drop.Click += Drop_Click;
 
-            PopUpBox.AddButton(equip, "Equip Item");
-            PopUpBox.AddButton(unequip, "Unequip Item");
-            PopUpBox.AddButton(pickUp, "Pick Up Item");
-            PopUpBox.AddButton(consume, "Consume Item");
-            PopUpBox.AddButton(drop, "Drop Item");
+            GameItemPopUpBox.AddButton(equip, "Equip Item");
+            GameItemPopUpBox.AddButton(unequip, "Unequip Item");
+            GameItemPopUpBox.AddButton(pickUp, "Pick Up Item");
+            GameItemPopUpBox.AddButton(consume, "Consume Item");
+            GameItemPopUpBox.AddButton(drop, "Drop Item");
         }
 
         private void CreateStatusBars()

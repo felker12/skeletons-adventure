@@ -23,7 +23,7 @@ namespace SkeletonsAdventure.GameUI
         private string statusBarText = string.Empty;
         
 
-        public void UpdateStatusBar(int value, int Max, Vector2 position)
+        public void Update(int value, int Max, Vector2 position)
         {
             if(Visible)
             {

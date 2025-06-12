@@ -6,7 +6,6 @@ using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.ItemLoot;
-using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
@@ -65,7 +64,7 @@ namespace SkeletonsAdventure.GameObjects
             if (Info.Visible)
                 Info.Text = Loot.Count > 0 ? "Press R to Open" : "Chest Empty";
 
-            ChestMenu.Update(true, World.Camera.Transformation);
+            ChestMenu.Update(gameTime, true, World.Camera.Transformation);
         }
 
         public void HandleInput(PlayerIndex playerIndex)
@@ -100,10 +99,10 @@ namespace SkeletonsAdventure.GameObjects
                 
                 ChestMenu.Buttons.Clear();
 
-                Dictionary<string, Button> buttons = [];
+                Dictionary<string, GameButton> buttons = [];
                 foreach (GameItem gameItem in Loot.Items)
                 {
-                    Button btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10)
+                    GameButton btn = new(GameManager.DefaultButtonTexture, GameManager.Arial10)
                     {
                         Text = $"{gameItem.Name} x{gameItem.Quantity}"  // Add text to show item name and quantity
                     };
@@ -122,7 +121,7 @@ namespace SkeletonsAdventure.GameObjects
 
                 ChestMenu.AddButtons(buttons);
 
-                foreach (Button button in ChestMenu.Buttons)
+                foreach (GameButton button in ChestMenu.Buttons)
                     button.Visible = true;
 
                 // Make visible after everything is set up

@@ -11,7 +11,6 @@ namespace SkeletonsAdventure.GameMenu
         public BaseMenu Settings { get; private set; }
         public PlayerInfoMenu PlayerMenu { get; set; }
         public QuestMenu QuestMenu { get; set; }
-
         public LinkLabel ReturnToGameLabel { get; set; }
         public LinkLabel ReturnToMenuLabel { get; set; }
 
@@ -40,13 +39,11 @@ namespace SkeletonsAdventure.GameMenu
 
         private void CreateTabbedMenu()
         {
-            //create the child menus for the tabbed menu
+            //Create the child menus for the tabbed menu
             CreateSaveMenu();
             CreateSettingsMenu();
             CreatePlayerMenu();
             CreateQuestsMenu();
-
-            System.Diagnostics.Debug.WriteLine(TabBar.Height + " is the height probably");
 
             //Add the menus to the tab bar
             AddMenu(SaveMenu);
@@ -54,13 +51,9 @@ namespace SkeletonsAdventure.GameMenu
             AddMenu(PlayerMenu);
             AddMenu(QuestMenu);
 
-            //PlayerMenu.CreateControls(); //Create the controls after the menus are added to correctly position the controls
-
             TabBar.SetActiveTab(SaveMenu); //Set the active tab
 
-            System.Diagnostics.Debug.WriteLine(TabBar.Height + " is the height");
-
-            CreateTabOpenedLogic();
+            CreateTabOpenedLogic(); //Needs to be the active tab before this is called so it can update the menus correctly
         }
 
         private void CreateTabOpenedLogic()

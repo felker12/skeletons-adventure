@@ -9,11 +9,11 @@ namespace SkeletonsAdventure.ItemClasses
 {
     internal class GameItem
     {
-        public Vector2 Position { get; set; }
+        public Vector2 Position { get; set; } = Vector2.Zero;
         public Texture2D Image { get; }
         public Rectangle SourceRectangle { get; }
         public BaseItem BaseItem { get; set; }
-        public string Type { get; }
+        public string Type { get; } = string.Empty;
         public Rectangle ItemRectangle { get; set; }
         public static int Width { get; } = 32;
         public static int Height { get; } = 32;

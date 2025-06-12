@@ -19,7 +19,7 @@ namespace SkeletonsAdventure.Entities
 {
     internal class Player : Entity
     {
-        private int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0,
+        public int bonusAttackFromLevel = 0, bonusDefenceFromLevel = 0,
             bonusHealthFromLevel = 0, bonusManaFromLevel = 0,
             bonusAttackFromAttributePoints = 0, bonusDefenceFromAttributePoints = 0, 
             bonusHealthFromAttributePoints = 0, bonusManaFromAttributePoints = 0;
@@ -121,6 +121,8 @@ namespace SkeletonsAdventure.Entities
             //TODO update active quests and completed quests
             ActiveQuests = playerData.activeQuests.ConvertAll(q => new Quest(q));
             CompletedQuests = playerData.completedQuests.ConvertAll(q => new Quest(q));
+
+            PlayerStatAdjustmentForLevel();
         }
 
         public PlayerData GetPlayerData()
@@ -166,7 +168,7 @@ namespace SkeletonsAdventure.Entities
             if (ManaBarVisible)
             {
                 HealthBar.Position -= new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2);
-                ManaBar.UpdateStatusBar(Mana, MaxMana, HealthBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2));
+                ManaBar.Update(Mana, MaxMana, HealthBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth + 2));
             }
             
             Backpack.Update();
@@ -189,6 +191,7 @@ namespace SkeletonsAdventure.Entities
             //    Info.Text += "\nActive task: None";
 
             //Info.Text += $"{Position}";
+            //Info.Text += $"\nbonusAttackFromLevel = {bonusAttackFromLevel}";
         }
 
         private protected void UpdateStatsWithBonusses()

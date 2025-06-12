@@ -16,7 +16,7 @@ namespace SkeletonsAdventure.GameUI
         public int Height { get; set; } = 100;
         public Color Color { get; set; } = Color.White;
         public bool Visible { get; set; } = false;
-        public List<Button> Buttons { get; set; } = [];
+        public List<GameButton> Buttons { get; set; } = [];
         public ControlManager ControlManager { get; set; } = new(GameManager.Arial12);
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
 
@@ -36,7 +36,7 @@ namespace SkeletonsAdventure.GameUI
         {
             spriteBatch.Draw(Texture, Rectangle, Color);
 
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible)
                     button.Draw(spriteBatch);
@@ -46,7 +46,7 @@ namespace SkeletonsAdventure.GameUI
         public virtual void Update(GameTime gameTime)
         {
             Vector2 offset = ButtonOffset;
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible)
                 {
@@ -57,7 +57,7 @@ namespace SkeletonsAdventure.GameUI
             }
         }
 
-        public virtual void Update(bool transformMouse, Matrix transformation)
+        public virtual void Update(GameTime gameTime, bool transformMouse, Matrix transformation)
         {
             if (VisibleButtonsCount() > 0)
             {
@@ -65,11 +65,13 @@ namespace SkeletonsAdventure.GameUI
                 Width = LongestButtonTextLength() + (int)ButtonOffset.X * 2;
                 Vector2 offset = ButtonOffset;
 
-                foreach (Button button in Buttons)
+                foreach (GameButton button in Buttons)
                 {
                     if (button.Visible)
                     {
-                        button.Update(transformMouse, transformation);
+                        button.TransformMouse = transformMouse;
+                        button.Transformation = transformation;
+                        button.Update(gameTime);
                         button.Position = Position + offset;
                         offset += new Vector2(0, button.Height);
                     }
@@ -84,7 +86,7 @@ namespace SkeletonsAdventure.GameUI
 
         public void HandleInput(PlayerIndex playerIndex)
         {
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible)
                 {
@@ -94,7 +96,7 @@ namespace SkeletonsAdventure.GameUI
         }
 
 
-        public void AddButton(Button button, string buttonText)
+        public void AddButton(GameButton button, string buttonText)
         {
             button.Text = buttonText;
             button.Visible = false;
@@ -104,9 +106,9 @@ namespace SkeletonsAdventure.GameUI
             Buttons.Add(button);
         }
 
-        public void AddButtons(Dictionary<string, Button> buttons)
+        public void AddButtons(Dictionary<string, GameButton> buttons)
         {
-            foreach (KeyValuePair<string, Button> button in buttons)
+            foreach (KeyValuePair<string, GameButton> button in buttons)
             {
                 AddButton(button.Value, button.Key);
             }
@@ -115,7 +117,7 @@ namespace SkeletonsAdventure.GameUI
         public int VisibleButtonsCount()
         {
             int count = 0;
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible == true)
                     count++;
@@ -127,7 +129,7 @@ namespace SkeletonsAdventure.GameUI
         {
             int heightCount = 0;
 
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible == true)
                     heightCount += button.Height;
@@ -140,7 +142,7 @@ namespace SkeletonsAdventure.GameUI
         {
             int length = 0;
 
-            foreach (Button button in Buttons)
+            foreach (GameButton button in Buttons)
             {
                 if (button.Visible == true)
                 {

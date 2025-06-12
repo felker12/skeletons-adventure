@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SkeletonsAdventure.GameWorld;
 using System;
 
 namespace SkeletonsAdventure.Controls
@@ -9,31 +8,18 @@ namespace SkeletonsAdventure.Controls
     public class Button(Texture2D texture, SpriteFont font) : Control
     {
         #region Fields
-
         protected MouseState _currentMouse;
-
-        public SpriteFont Font { get; private set; } = font;
-
         protected bool _isHovering = false;
-
         protected MouseState _previousMouse;
-
-        public Texture2D Texture { get; private set; } = texture;
-
         #endregion
-
         #region Properties
-
         public event EventHandler Click;
-
+        public SpriteFont Font { get; private set; } = font;
+        public Texture2D Texture { get; private set; } = texture;
         public bool Clicked { get; private set; } = false;
-
         public Color PenColour { get; set; } = Color.Black;
-
         public int Width { get; set; } = texture.Width;
         public int Height { get; set; } = texture.Height;
-
-
         public Rectangle Rectangle
         {
             get
@@ -41,7 +27,6 @@ namespace SkeletonsAdventure.Controls
                 return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
             }
         }
-
         #endregion
         #region Methods
 
@@ -69,23 +54,13 @@ namespace SkeletonsAdventure.Controls
             Update();
         }
 
-        public void Update(bool transformMouse, Matrix transformation)
-        {
-            IsMouseHovering(transformMouse, transformation);
-            Update();
-        }
-
         //This method wont work with the button being used in the ControlManager
-        public void Update()
+        protected void Update()
         {
             if (_isHovering)
-                if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                if (_currentMouse.LeftButton == ButtonState.Released 
+                    && _previousMouse.LeftButton == ButtonState.Pressed)
                     Clicked = true;
-        }
-
-        public static bool Intersects(Rectangle rec, Rectangle rec2)
-        {
-            return rec.Intersects(rec2);
         }
 
         public void IsMouseHovering()
@@ -94,25 +69,6 @@ namespace SkeletonsAdventure.Controls
             _currentMouse = Mouse.GetState();
 
             Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
-
-            _isHovering = mouseRectangle.Intersects(Rectangle);
-        }
-
-        public void IsMouseHovering(bool transformMouse, Matrix transformation)
-        {
-            _previousMouse = _currentMouse;
-            _currentMouse = Mouse.GetState();
-
-            Vector2 mousePos = new(_currentMouse.X, _currentMouse.Y);
-            Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
-
-            if (transformMouse)
-            {
-                Vector2 transformedmousePos = Vector2.Transform(mousePos, Matrix.Invert(transformation)); //Mouse position in the world
-                Rectangle transformedMouseRectangle = new((int)transformedmousePos.X, (int)transformedmousePos.Y, 1, 1);
-
-                mouseRectangle = transformedMouseRectangle;
-            }
 
             _isHovering = mouseRectangle.Intersects(Rectangle);
         }

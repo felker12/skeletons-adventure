@@ -38,6 +38,7 @@ namespace SkeletonsAdventure.ItemLoot
                 if (item.BaseItem == gameItem.BaseItem)
                 {
                     gameItem.Quantity += item.Quantity;
+                    gameItem.BaseItem.Quantity = gameItem.Quantity; //update the base item's quantity as well //TODO idk if this is necessary
                     return true;
                 }
             }

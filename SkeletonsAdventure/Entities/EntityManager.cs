@@ -188,9 +188,6 @@ namespace SkeletonsAdventure.Entities
             return playerInRange;
         }
 
-
-
-
         public void CheckEntityBoundaryCollisions(TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             foreach (Entity entity in Entities)
