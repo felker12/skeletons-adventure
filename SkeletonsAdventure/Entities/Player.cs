@@ -260,7 +260,6 @@ namespace SkeletonsAdventure.Entities
                     World.CurrentLevel.EntityManager.DroppedLootManager.Add(item.Clone(), Position);
                 }
             }
-
         }
 
         public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
@@ -311,6 +310,8 @@ namespace SkeletonsAdventure.Entities
             bonusHealthFromAttributePoints += healthPoints;
             bonusManaFromAttributePoints += manaPoints;
             AttributePoints -= (attackPoints + defencePoints + healthPoints + manaPoints);
+
+            UpdateStatsWithBonusses();
         }
 
         public void ConsumeItem(GameItem item)

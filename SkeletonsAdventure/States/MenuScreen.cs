@@ -138,5 +138,13 @@ namespace SkeletonsAdventure.States
         {
             Game.Exit();
         }
+
+        public override void StateChangeToHandler()
+        {
+        }
+
+        public override void StateChangeFromHandler()
+        {
+        }
     }
 }

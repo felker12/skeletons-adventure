@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
@@ -25,7 +24,7 @@ namespace SkeletonsAdventure.GameMenu
 
         Button ApplyBtn, CancelBtn, IncreaseAttackBtn, IncreaseDefenceBtn, IncreaseHealthBtn, IncreaseManaBtn;
 
-        private int startingAttributePoints, currentAttributePoints,
+        private int currentAttributePoints,
             attackToAdd = 0, defenceToAdd = 0, healthToAdd = 0, manaToAdd = 0;
 
         public PlayerInfoMenu() : base()
@@ -43,25 +42,24 @@ namespace SkeletonsAdventure.GameMenu
         {
             base.Draw(spriteBatch);
         }
+
         public void UpdateWithPlayer(Player player)
         {
             Player = player;
-            startingAttributePoints = player.AttributePoints;
             currentAttributePoints = player.AttributePoints;
 
             UpdateLabelText(player);
-            SetPositions();
+            SetPositions(); 
+            CheckEnoughAttributePoints();
         }
 
-        private void ResetAttributePoints()
+        public void ResetAttributePoints()
         {
-            currentAttributePoints = startingAttributePoints;
             attackToAdd = 0;
             defenceToAdd = 0;
             healthToAdd = 0;
             manaToAdd = 0;
-            //UpdateLabelText(Player);
-            SetToAddLabelsText(); //TODO: update the attribute points label when the add buttons are clicked
+            SetToAddLabelsText();
         }
 
         private void UpdateLabelText(Player player)
@@ -99,6 +97,25 @@ namespace SkeletonsAdventure.GameMenu
             DefenceToAddLabel.Text = defenceToAdd.ToString();
             HealthToAddLabel.Text = healthToAdd.ToString();
             ManaToAddLabel.Text = manaToAdd.ToString();
+            AttributePointsLbl.Text = "Attribute Points: " + currentAttributePoints.ToString();
+        }
+
+        private void CheckEnoughAttributePoints()
+        {
+            if(currentAttributePoints == 0)
+            {
+                IncreaseAttackBtn.Enabled = false;
+                IncreaseDefenceBtn.Enabled = false;
+                IncreaseHealthBtn.Enabled = false;
+                IncreaseManaBtn.Enabled = false;
+            }
+            else
+            {
+                IncreaseAttackBtn.Enabled = true;
+                IncreaseDefenceBtn.Enabled = true;
+                IncreaseHealthBtn.Enabled = true;
+                IncreaseManaBtn.Enabled = true;
+            }
         }
 
         private void SetPositions()
@@ -254,39 +271,60 @@ namespace SkeletonsAdventure.GameMenu
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             ResetAttributePoints();
+            currentAttributePoints = Player.AttributePoints;
+            CheckEnoughAttributePoints();
+            UpdateLabelText(Player);
         }
 
         private void ApplyBtn_Click(object sender, EventArgs e)
         {
-            //TODO
-            System.Diagnostics.Debug.WriteLine($"{attackToAdd}, {defenceToAdd}, {healthToAdd}, {manaToAdd}");
+            Player.ApplyAttributePoints(attackToAdd, defenceToAdd, healthToAdd, manaToAdd);
+            currentAttributePoints = Player.AttributePoints;
+            UpdateLabelText(Player); 
+            ResetAttributePoints();
         }
 
         private void IncreaseManaBtn_Click(object sender, EventArgs e)
         {
+            if (currentAttributePoints > 0 is false)
+                return;
+
             manaToAdd++;
             currentAttributePoints--;
             SetToAddLabelsText();
+            CheckEnoughAttributePoints();
         }
 
         private void IncreaseHealthBtn_Click(object sender, EventArgs e)
         {
+            if (currentAttributePoints > 0 is false)
+                return;
+
             healthToAdd++;
             currentAttributePoints--;
-            SetToAddLabelsText();
+            SetToAddLabelsText(); 
+            CheckEnoughAttributePoints();
         }
 
         private void IncreaseDefenceBtn_Click(object sender, EventArgs e)
         {
+            if (currentAttributePoints > 0 is false)
+                return;
+
             defenceToAdd++;
             currentAttributePoints--;
             SetToAddLabelsText();
+            CheckEnoughAttributePoints();
         }
         private void IncreaseAttackBtn_Click(object sender, EventArgs e)
         {
+            if (currentAttributePoints > 0 is false)
+                return;
+
             attackToAdd++;
             currentAttributePoints--;
             SetToAddLabelsText();
+            CheckEnoughAttributePoints();
         }
     }
 }

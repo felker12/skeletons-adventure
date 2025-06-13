@@ -62,5 +62,12 @@ namespace SkeletonsAdventure.States
         {
             StateManager.ChangeState(new MenuScreen(GameManager.Game));
         }
+        public override void StateChangeToHandler()
+        {
+        }
+
+        public override void StateChangeFromHandler()
+        {
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SkeletonsAdventure.States;
+using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.States;
 
 namespace SkeletonsAdventure
 {
@@ -71,7 +72,7 @@ namespace SkeletonsAdventure
             if (InputHandler.KeyReleased(Keys.Escape) ||
             InputHandler.ButtonDown(Buttons.Back, PlayerIndex.One))
             {
-                if (StateManager.CurrentState == GameScreen) 
+                if (StateManager.CurrentState == GameScreen)
                     StateManager.ChangeState(ExitScreen);
                 else if (StateManager.CurrentState == ExitScreen) 
                     StateManager.ChangeState(GameScreen);

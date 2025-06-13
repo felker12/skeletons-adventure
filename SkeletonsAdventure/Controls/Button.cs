@@ -37,6 +37,9 @@ namespace SkeletonsAdventure.Controls
             if (_isHovering)
                 colour = Color.Gray;
 
+            if (Enabled is false)
+                colour = Color.DarkGray;
+
             spriteBatch.Draw(Texture, Rectangle, colour);
 
             if (!string.IsNullOrEmpty(Text))

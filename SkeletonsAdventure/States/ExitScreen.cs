@@ -12,7 +12,7 @@ namespace SkeletonsAdventure.States
 {
     internal class ExitScreen : State
     {
-        private ExitScreenMenu ExitScreenMenu { get; set; }
+        public ExitScreenMenu ExitScreenMenu { get; set; }
 
         public ExitScreen(Game1 game) : base(game)
         {
@@ -44,7 +44,6 @@ namespace SkeletonsAdventure.States
         }
         public override void HandleInput(PlayerIndex playerIndex)
         {
-
         }
 
         public override void PostUpdate(GameTime gameTime){}
@@ -99,6 +98,22 @@ namespace SkeletonsAdventure.States
         private void SaveGameButton_Clicked(object sender, EventArgs e)
         {
             SaveGame();
+        }
+
+        public override void StateChangeToHandler()
+        {
+            if (ExitScreenMenu.TabBar.ActiveMenu == ExitScreenMenu.PlayerMenu)
+            {
+                ExitScreenMenu.PlayerMenu.ResetAttributePoints();
+            }
+        }
+
+        public override void StateChangeFromHandler()
+        {
+            if (ExitScreenMenu.TabBar.ActiveMenu == ExitScreenMenu.PlayerMenu)
+            {
+                ExitScreenMenu.PlayerMenu.UpdateWithPlayer(World.Player);
+            }
         }
     }
 }

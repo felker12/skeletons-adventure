@@ -26,6 +26,8 @@ namespace SkeletonsAdventure.States
             ControlManager = new ControlManager(MenuFont);
         }
 
+        public abstract void StateChangeToHandler();
+        public abstract void StateChangeFromHandler();
         public abstract void Update(GameTime gameTime);
         public abstract void HandleInput(PlayerIndex playerIndex);
         public abstract void Draw(SpriteBatch spriteBatch);

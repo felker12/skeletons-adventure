@@ -392,5 +392,13 @@ namespace SkeletonsAdventure.States
         {
             Player.EquippedItems.TryEquipItem(itemUnderMouse);
         }
+
+        public override void StateChangeToHandler()
+        {
+        }
+
+        public override void StateChangeFromHandler()
+        {
+        }
     }
 }
