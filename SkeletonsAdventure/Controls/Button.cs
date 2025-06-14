@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SkeletonsAdventure.GameWorld;
 using System;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class Button(Texture2D texture, SpriteFont font) : Control
+    public class Button : Control
     {
         #region Fields
         protected MouseState _currentMouse;
@@ -14,19 +15,40 @@ namespace SkeletonsAdventure.Controls
         #endregion
         #region Properties
         public event EventHandler Click;
-        public SpriteFont Font { get; private set; } = font;
-        public Texture2D Texture { get; private set; } = texture;
+        public Texture2D Texture { get; private set; } = GameManager.ButtonTexture;
         public bool Clicked { get; private set; } = false;
-        public Color PenColour { get; set; } = Color.Black;
-        public int Width { get; set; } = texture.Width;
-        public int Height { get; set; } = texture.Height;
-        public Rectangle Rectangle
+        //public Color PenColor { get; set; } = Color.Black;
+        #endregion
+        #region Constructors
+        public Button()
         {
-            get
-            {
-                return new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
-            }
+            Initialize();
         }
+
+        public Button(SpriteFont font) : base(font)
+        {
+            Initialize();
+        }
+
+        public Button(Texture2D texture)
+        {
+            Texture = texture;
+            Initialize();
+        }
+
+        public Button(Texture2D texture, SpriteFont font) : base(font)
+        {
+            Texture = texture;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            Width = Texture.Width;
+            Height = Texture.Height;
+            TextColor = Color.Black;
+        }
+
         #endregion
         #region Methods
 
@@ -44,10 +66,10 @@ namespace SkeletonsAdventure.Controls
 
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (Font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (Font.MeasureString(Text).Y / 2);
+                var x = (Rectangle.X + (Rectangle.Width / 2)) - (SpriteFont.MeasureString(Text).X / 2);
+                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (SpriteFont.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(Font, Text, new Vector2(x, y), PenColour);
+                spriteBatch.DrawString(SpriteFont, Text, new Vector2(x, y), TextColor);
             }
         }
 

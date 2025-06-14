@@ -14,9 +14,6 @@ namespace SkeletonsAdventure.GameMenu
         public LinkLabel ReturnToGameLabel { get; set; }
         public LinkLabel ReturnToMenuLabel { get; set; }
 
-        private readonly Texture2D buttonTexture = GameManager.ButtonTexture;
-        private readonly SpriteFont buttonFont = GameManager.Arial12;
-
         public Button SaveGameButton { get; set; }
 
         public ExitScreenMenu() : base()
@@ -52,25 +49,11 @@ namespace SkeletonsAdventure.GameMenu
             AddMenu(QuestMenu);
 
             TabBar.SetActiveTab(SaveMenu); //Set the active tab
-
-            CreateTabOpenedLogic(); //Needs to be the active tab before this is called so it can update the menus correctly
         }
 
-        private void CreateTabOpenedLogic()
+        public override void MenuOpened()
         {
-            //Keep the player data displayed up to date any time the tab is opened
-            TabBar.TabClicked += (sender, e) =>
-            {
-                if (TabBar.ActiveMenu == PlayerMenu)
-                {
-                    PlayerMenu.UpdateWithPlayer(World.Player);
-                }
-                else if (TabBar.ActiveMenu == QuestMenu)
-                {
-                    //TODO update quest menu with quest data from player
-                    QuestMenu.SetPlayer(World.Player);
-                }
-            };
+            TabBar.ActiveMenu?.MenuOpened(); //Call MenuOpened on the active menu to update it
         }
 
         private void CreateSaveMenu()
@@ -83,7 +66,7 @@ namespace SkeletonsAdventure.GameMenu
             SaveMenu.SetBackgroundColor(Color.MidnightBlue);
 
             //Add controls to the Menu
-            ReturnToGameLabel = new()
+            ReturnToGameLabel = new(GameManager.Arial20)
             {
                 Text = "Press ENTER to return to the game",
                 TabStop = true,
@@ -91,15 +74,15 @@ namespace SkeletonsAdventure.GameMenu
             };
             ReturnToGameLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).X / 2, 350);
 
-            ReturnToMenuLabel = new()
+            ReturnToMenuLabel = new(GameManager.Arial20)
             {
-                Text = "Press to save and return to menu screen",
+                Text = "Press to return to menu screen",
                 TabStop = true,
             };
             ReturnToMenuLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToMenuLabel.SpriteFont.MeasureString(ReturnToMenuLabel.Text).X / 2,
                 ReturnToGameLabel.Position.Y + ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).Y + 20);
 
-            SaveGameButton = new Button(buttonTexture, buttonFont)
+            SaveGameButton = new Button(GameManager.Arial14)
             {
                 Position = new Vector2(300, 200),
                 Text = "Save Game",

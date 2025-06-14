@@ -8,20 +8,27 @@ namespace SkeletonsAdventure.Controls
     public class LinkLabel : Control
     {
         #region Fields and Properties
-        Color selectedColor = Color.Red;
-        public Color SelectedColor
-        {
-            get { return selectedColor; }
-            set { selectedColor = value; }
-        }
+        public Color SelectedColor{ get; set; } = Color.Red;
         #endregion
         #region Constructor Region
         public LinkLabel()
         {
+            Initialize();
+        }
+
+        public LinkLabel(SpriteFont font) : base(font)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+
             TabStop = true;
             HasFocus = false;
             Position = Vector2.Zero;
         }
+
         #endregion
         #region Abstract Methods
         public override void Update(GameTime gameTime)
@@ -30,20 +37,20 @@ namespace SkeletonsAdventure.Controls
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (hasFocus)
-                spriteBatch.DrawString(SpriteFont, Text, Position, selectedColor);
+            if (HasFocus)
+                spriteBatch.DrawString(SpriteFont, Text, Position, SelectedColor);
             else
-                spriteBatch.DrawString(SpriteFont, Text, Position, Color);
+                spriteBatch.DrawString(SpriteFont, Text, Position, TextColor);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)
         {
             if (InputHandler.CheckMouseReleased(MouseButton.Left))
             {
-                size = SpriteFont.MeasureString(Text);
-                Rectangle r = new((int)Position.X, (int)Position.Y, (int)size.X, (int)size.Y);
+                Width = (int)SpriteFont.MeasureString(Text).X;
+                Height = (int)SpriteFont.MeasureString(Text).Y;
 
-                if (r.Contains(InputHandler.MouseAsPoint))
+                if (Rectangle.Contains(InputHandler.MouseAsPoint))
                     base.OnSelected(null);
             }
 

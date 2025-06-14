@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.AttackData;
-using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
@@ -27,13 +26,13 @@ namespace SkeletonsAdventure.GameWorld
         public static SpriteFont Arial10 { get; private set; }
         public static SpriteFont Arial12 { get; private set; }
         public static SpriteFont Arial14 { get; private set; }
+        public static SpriteFont Arial16 { get; private set; }
+        public static SpriteFont Arial18 { get; private set; }
         public static SpriteFont Arial20 { get; private set; }
 
         //Strings
         public static string GamePath { get; private set; }
         public static string SavePath { get; private set; }
-        public static string ItemPath { get; private set; } 
-        public static string EnemyPath {get; private set; }
 
         //Dictionaries
         private static Dictionary<string, Enemy> Enemies { get; set; } = [];
@@ -87,7 +86,7 @@ namespace SkeletonsAdventure.GameWorld
         //Miscellaneous Variables
         public static Game1 Game { get; private set; }
         public static GraphicsDevice GraphicsDevice { get; private set; }
-        public static QuestManager QuestManager { get; set; } = new();
+        public static QuestManager QuestManager { get; set; } = new(); //TODO this isn't used
         public static ContentManager Content { get; private set; }
         public static List<int> PlayerLevelXPs { get; private set; } = [];
 
@@ -118,16 +117,6 @@ namespace SkeletonsAdventure.GameWorld
         {
             GamePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; //Project Directory
             SavePath = Path.GetFullPath(Path.Combine(GamePath, @"..\SaveFiles")); //Directory of the saved files
-
-            //TODO these are temprorary paths, the files created here are not
-            //saved in the content folder and will need to be moved to the content folder
-            ItemPath = Path.Combine(SavePath, "Items"); //Directory of the items
-            EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
-
-            if (Path.Exists(ItemPath) == false)
-                Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
-            if (Path.Exists(EnemyPath) == false)
-                Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
         }
 
         //Load data from saved files
@@ -283,6 +272,8 @@ namespace SkeletonsAdventure.GameWorld
             Arial10 = Content.Load<SpriteFont>("Fonts/Arial10");
             Arial12 = Content.Load<SpriteFont>("Fonts/Arial12");
             Arial14 = Content.Load<SpriteFont>("Fonts/Arial14");
+            Arial16 = Content.Load<SpriteFont>("Fonts/Arial16");
+            Arial18 = Content.Load<SpriteFont>("Fonts/Arial18");
             Arial20 = Content.Load<SpriteFont>("Fonts/Arial20");
         }
 
@@ -404,10 +395,6 @@ namespace SkeletonsAdventure.GameWorld
 
                 Type type = Type.GetType(data.type); //Get the type of the entity from the data
 
-                //TODO
-                //dynamic en = Activator.CreateInstance(type, data);
-                //en.LootList = loots.Clone(); //Set the loot list for the entity
-
                 Enemy en = (Enemy)Activator.CreateInstance(type, data);
                 en.LootList = loots.Clone(); //Set the loot list for the entity
 
@@ -468,6 +455,16 @@ namespace SkeletonsAdventure.GameWorld
             Enemies.Add(eliteSkeleton.GetType().FullName, eliteSkeleton);
             Enemies.Add(spider.GetType().FullName, spider);
 
+
+            //TODO these are temprorary paths, the files created here are not
+            //saved in the content folder and will need to be moved to the content folder
+            //ItemPath = Path.Combine(SavePath, "Items"); //Directory of the items
+            //EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
+
+            //if (Path.Exists(ItemPath) == false)
+            //    Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
+            //if (Path.Exists(EnemyPath) == false)
+            //    Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
 
             //TODO test this
             foreach (var enemy in Enemies)//shouldn't be needed now
@@ -597,8 +594,6 @@ namespace SkeletonsAdventure.GameWorld
             {
 
             };
-
-
         }
 
         public static List<TiledMapTile> TileLocations(int id, TiledMapTile[] tiles)

@@ -93,12 +93,16 @@ namespace SkeletonsAdventure.Controls
 
         public void SetActiveTab(BaseMenu menu)
         {
+            if (menu == null || !TabMenus.ContainsValue(menu))
+                return;
+
             foreach (Tab t in TabMenus.Keys)
             {
                 if (TabMenus[t] == menu)
                 {
                     t.Active = true;
                     ActiveMenu = menu;
+                    ActiveMenu.MenuOpened();
                 }
                 else
                 {

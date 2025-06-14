@@ -93,11 +93,11 @@ namespace SkeletonsAdventure.GameWorld
             title = new Label
             {
                 Text = Name,
-                Color = Color.Orange
+                TextColor = Color.Orange
             };
             title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 20);
 
-            ControlManager = new(ControlManager.SpriteFont)
+            ControlManager = new(GameManager.Arial12)
             {
                 title
             };

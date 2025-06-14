@@ -10,10 +10,7 @@ namespace SkeletonsAdventure.GameMenu
     internal class BaseMenu
     {
         public ControlManager ControlManager { get; set; } = new(GameManager.Arial20);
-        protected ContentManager Content { get; set; } = GameManager.Content;
-        protected GraphicsDevice GraphicsDevice { get; set; } = GameManager.GraphicsDevice;
         protected PlayerIndex PlayerIndexInControl { get; set; } = PlayerIndex.One;
-
         public string Title { get; set; } = "Menu";
         public bool Visible { get; set; } = false;
         public Vector2 Position { get; set; } = new();
@@ -42,19 +39,6 @@ namespace SkeletonsAdventure.GameMenu
             SetBackgroundColor(menuData.BackgroundColor);
         }
 
-        public BaseMenu(Vector2 pos, int width, int height, Texture2D texture)
-        {
-            Position = pos;
-            Width = width;
-            Height = height;
-            Texture = texture;
-        }
-
-        public BaseMenu(Vector2 pos)
-        {
-            Position = pos;
-        }
-
         public virtual void Update(GameTime gameTime)
         {
             if (Visible)
@@ -72,6 +56,11 @@ namespace SkeletonsAdventure.GameMenu
             }
         }
 
+        public virtual void MenuOpened()
+        {
+            //Overridden by child classes
+        }
+
         public void SetMenuData(MenuData menuData)
         {
             Visible = menuData.Visible;
@@ -81,7 +70,6 @@ namespace SkeletonsAdventure.GameMenu
             TintColor = menuData.TintColor;
             Title = menuData.Title;
         }
-
         public void SetBackgroundColor(Color color)
         {
             Texture2D background = new(GameManager.GraphicsDevice, 1, 1);

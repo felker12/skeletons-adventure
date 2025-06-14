@@ -11,29 +11,25 @@ namespace SkeletonsAdventure.Controls
     {
         #region Fields and Properties
         int selectedControl = 0;
-        static SpriteFont spriteFont;
         bool acceptInput = true;
 
-        public static SpriteFont SpriteFont
-        {
-            get { return spriteFont; }
-        }
+        public SpriteFont SpriteFont { get; set; }
         #endregion
         #region Constructors
         public ControlManager(SpriteFont spriteFont)
         : base()
         {
-            ControlManager.spriteFont = spriteFont;
+            SpriteFont = spriteFont;
         }
         public ControlManager(SpriteFont spriteFont, int capacity)
         : base(capacity)
         {
-            ControlManager.spriteFont = spriteFont;
+            SpriteFont = spriteFont;
         }
         public ControlManager(SpriteFont spriteFont, IEnumerable<Control> collection)
         : base(collection)
         {
-            ControlManager.spriteFont = spriteFont;
+            SpriteFont = spriteFont;
         }
         #endregion
 

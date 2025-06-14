@@ -5,6 +5,7 @@ using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.Quests;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -72,34 +73,12 @@ namespace SkeletonsAdventure.GameObjects
             foreach (var quest in Quests)
             {
                 if (quest.PlayerRequirementsMet(player) is false)
-                    continue;
+                    continue; // Skip to the nexrt quest if the requirements aren't met
 
-                //check if the quest is already completed or active
-                bool completed = false;
-                bool active = false;
-
-                foreach (Quest completedQuest in player.CompletedQuests)
-                {
-                    if (completedQuest.Name == quest.Name)
-                    {
-                        completed = true;
-                        break;
-                    }
-                }
-
-                if (completed)
+                if (quest.CheckCompletedQuest(player))
                     continue; // Skip to the next quest if this one is already completed
 
-                foreach (Quest activeQuest in player.ActiveQuests)
-                {
-                    if (activeQuest.Name == quest.Name)
-                    {
-                        active = true;
-                        break;
-                    }
-                }
-
-                if (active)
+                if (quest.CheckActiveQuest(player))
                     continue; // Skip to the next quest if this one is already active
 
                 //add the quest to the player's active quests if all the requirements are met

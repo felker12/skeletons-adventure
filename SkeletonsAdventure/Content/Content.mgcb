@@ -118,16 +118,6 @@
 /processor:PassThroughProcessor
 /build:EntityData/SkeletonData.xml
 
-#begin EntityData/SkeletonData.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:EntityData/SkeletonData.xml
-
-#begin EntityData/SpiderData.xml
-/importer:XmlImporter
-/processor:PassThroughProcessor
-/build:EntityData/SpiderData.xml
-
 #begin EntityData/SpiderData.xml
 /importer:XmlImporter
 /processor:PassThroughProcessor
@@ -152,6 +142,20 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Arial10.spritefont
 
+#begin Fonts/Arial10.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial10.spritefont
+
+#begin Fonts/Arial12.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial12.spritefont
+
 #begin Fonts/Arial12.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -165,6 +169,34 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Arial14.spritefont
+
+#begin Fonts/Arial14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial14.spritefont
+
+#begin Fonts/Arial16.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial16.spritefont
+
+#begin Fonts/Arial18.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial18.spritefont
+
+#begin Fonts/Arial20.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/Arial20.spritefont
 
 #begin Fonts/Arial20.spritefont
 /importer:FontDescriptionImporter

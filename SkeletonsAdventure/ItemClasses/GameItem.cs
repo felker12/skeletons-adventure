@@ -36,7 +36,7 @@ namespace SkeletonsAdventure.ItemClasses
             {
                 Visible = false,
                 SpriteFont = GameManager.Arial10,
-                Color = Color.Aqua
+                TextColor = Color.Aqua
             };
         }
 
@@ -59,7 +59,7 @@ namespace SkeletonsAdventure.ItemClasses
             {
                 Visible = false,
                 SpriteFont = GameManager.Arial10,
-                Color = Color.Aqua
+                TextColor = Color.Aqua
             };
 
             if (Stackable)
@@ -91,7 +91,7 @@ namespace SkeletonsAdventure.ItemClasses
             {
                 Visible = false,
                 SpriteFont = gameItem.ToolTip.SpriteFont,
-                Color = gameItem.ToolTip.Color,
+                TextColor = gameItem.ToolTip.TextColor,
                 Text = gameItem.ToolTip.Text,
                 Position = gameItem.ToolTip.Position
             };

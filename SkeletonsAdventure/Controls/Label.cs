@@ -7,7 +7,17 @@ namespace SkeletonsAdventure.Controls
     {
         public Label()
         {
-            tabStop = false;
+            Initialize();
+        }
+
+        public Label(SpriteFont font) : base(font)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            TabStop = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -15,7 +25,8 @@ namespace SkeletonsAdventure.Controls
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(SpriteFont, Text, Position, Color);
+            if (!string.IsNullOrEmpty(Text))
+                spriteBatch.DrawString(SpriteFont, Text, Position, TextColor);
         }
         public override void HandleInput(PlayerIndex playerIndex)
         {

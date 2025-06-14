@@ -40,7 +40,7 @@ namespace SkeletonsAdventure.Attacks
             Source = attack.Source;
             Position = attack.Position;
             SpriteColor = attack.SpriteColor;
-            Info.Color = attack.Info.Color;
+            Info.TextColor = attack.Info.TextColor;
             LastAttackTime = attack.LastAttackTime;
             AttackCoolDownLength = attack.AttackCoolDownLength;
             Motion = attack.Motion;
@@ -137,9 +137,9 @@ namespace SkeletonsAdventure.Attacks
 
                //draw the info with a different color for the player //TODO: delete this
                 if (Source is Player)
-                    Info.Color = Color.Cyan;
+                    Info.TextColor = Color.Cyan;
                 else
-                    Info.Color = new Color(255, 81, 89, 255);
+                    Info.TextColor = new Color(255, 81, 89, 255);
             }
 
             //Prevent the source from moving during an attack with a build up

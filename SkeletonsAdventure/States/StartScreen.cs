@@ -19,15 +19,15 @@ namespace SkeletonsAdventure.States
                 Text = "The Adventures of The Skeleton"
             };
             title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 30);
-            title.Color = Color.White;
+            title.TextColor = Color.White;
             ControlManager.Add(title);
 
-            startLabel = new LinkLabel
+            startLabel = new LinkLabel()
             {
                 Text = "Press ENTER to begin"
             };
             startLabel.Position = new Vector2(Game1.ScreenWidth / 2 - startLabel.SpriteFont.MeasureString(startLabel.Text).X / 2, 450);
-            startLabel.Color = Color.White;
+            startLabel.TextColor = Color.White;
             startLabel.TabStop = true;
             startLabel.HasFocus = true;
             startLabel.Selected += new EventHandler(StartLabel_Selected);

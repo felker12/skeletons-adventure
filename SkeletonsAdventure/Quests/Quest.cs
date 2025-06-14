@@ -41,7 +41,6 @@ namespace SkeletonsAdventure.Quests
             Reward = new QuestReward(data.RewardData);
 
             RequiredQuestNames = [.. data.RequiredQuestNameData.Select(q => q)];
-            //Tasks = [.. data.BaseTasksData.Select(t => new BaseTask(t))];
 
             //TODO  type check the base task to see what type of task it is
             foreach (var taskData in data.BaseTasksData)
@@ -98,6 +97,30 @@ namespace SkeletonsAdventure.Quests
         {
             IsCompleted = true;
             Active = false;
+        }
+
+        public bool CheckCompletedQuest(Player player)
+        {
+            foreach (Quest completedQuest in player.CompletedQuests)
+            {
+                if (completedQuest.Name == Name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool CheckActiveQuest(Player player)
+        {
+            foreach (Quest activeQuest in player.ActiveQuests)
+            {
+                if (activeQuest.Name == Name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public QuestData GetQuestData()

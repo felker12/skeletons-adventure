@@ -4,10 +4,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace SkeletonsAdventure.Controls
 {
-    public class GameButton(Texture2D texture, SpriteFont font) : Button(texture, font)
+    public class GameButton : Button
     {
         public bool TransformMouse { get; set; } = false;
         public Matrix Transformation { get; set; }
+
+        public GameButton(Texture2D texture) : base(texture)
+        {
+        }
+
+        public GameButton(Texture2D texture, SpriteFont font) : base(texture, font)
+        {
+        }
 
         public override void Update(GameTime gameTime)
         {

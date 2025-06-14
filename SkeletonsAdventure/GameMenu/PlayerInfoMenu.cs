@@ -14,10 +14,9 @@ namespace SkeletonsAdventure.GameMenu
 
         // This menu is used to display player information such as stats, and such.
         private readonly Texture2D buttonTexture = GameManager.ButtonTexture;
-        private readonly SpriteFont buttonFont = GameManager.Arial12;
 
         //Controls for displaying player information can be added here
-        Label AttributePointsLbl, BaseAttackLbl, BaseDefenceLbl,
+        Label LevelLbl, AttributePointsLbl, BaseAttackLbl, BaseDefenceLbl,
             BaseHealthLbl, BaseManaLbl, AttackLbl, DefenceLbl,
             HealthLbl, ManaLbl, AttackToAddLabel,
             DefenceToAddLabel, HealthToAddLabel, ManaToAddLabel;
@@ -43,6 +42,13 @@ namespace SkeletonsAdventure.GameMenu
             base.Draw(spriteBatch);
         }
 
+        public override void MenuOpened()
+        {
+            UpdateWithPlayer(World.Player);
+            ResetAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
+        }
+
         public void UpdateWithPlayer(Player player)
         {
             Player = player;
@@ -51,6 +57,7 @@ namespace SkeletonsAdventure.GameMenu
             UpdateLabelText(player);
             SetPositions(); 
             CheckEnoughAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
         }
 
         public void ResetAttributePoints()
@@ -64,12 +71,13 @@ namespace SkeletonsAdventure.GameMenu
 
         private void UpdateLabelText(Player player)
         {
-            //Update the labels with the player's information           
-            AttributePointsLbl.Text = "Attribute Points: " + player.AttributePoints.ToString(); //TODO change this to currentAttributePoints
-            BaseAttackLbl.Text = "Base Attack: " + player.baseAttack.ToString();
-            BaseDefenceLbl.Text = "Base Defence: " + player.baseDefence.ToString();
-            BaseHealthLbl.Text = "Base Health: " + player.baseHealth.ToString();
-            BaseManaLbl.Text = "Base Mana: " + player.BaseMana.ToString();
+            //Update the labels with the player's information
+            LevelLbl.Text = $"Level: {player.Level}";
+            AttributePointsLbl.Text = $"Total Attribute Points: {player.AttributePoints}";
+            BaseAttackLbl.Text = $"Base Attack: {player.baseAttack}";
+            BaseDefenceLbl.Text = $"Base Defence: {player.baseDefence}";
+            BaseHealthLbl.Text = $"Base Health: {player.baseHealth}";
+            BaseManaLbl.Text = $"Base Mana: {player.BaseMana}";
 
             AttackLbl.Text = $"Total Attack: {player.Attack}, Base Attack: {player.baseAttack}, " +
                 $"Attack From Level: {player.bonusAttackFromLevel}, " +
@@ -97,7 +105,7 @@ namespace SkeletonsAdventure.GameMenu
             DefenceToAddLabel.Text = defenceToAdd.ToString();
             HealthToAddLabel.Text = healthToAdd.ToString();
             ManaToAddLabel.Text = manaToAdd.ToString();
-            AttributePointsLbl.Text = "Attribute Points: " + currentAttributePoints.ToString();
+            AttributePointsLbl.Text = "Total Attribute Points: " + currentAttributePoints.ToString();
         }
 
         private void CheckEnoughAttributePoints()
@@ -127,7 +135,9 @@ namespace SkeletonsAdventure.GameMenu
             int longestLbl = GetLongestLabel(labels);
 
             //Position the controls
-            AttributePointsLbl.Position = new(Position.X + labelSpace, Position.Y + 15);
+            LevelLbl.Position = new(Position.X + 15, Position.Y + 15);
+            AttributePointsLbl.Position = LevelLbl.Position +
+                new Vector2(0, LevelLbl.SpriteFont.LineSpacing + labelSpace);
             BaseAttackLbl.Position = AttributePointsLbl.Position +
                 new Vector2(0, AttributePointsLbl.SpriteFont.LineSpacing + labelSpace);
             BaseDefenceLbl.Position = BaseAttackLbl.Position +
@@ -183,6 +193,7 @@ namespace SkeletonsAdventure.GameMenu
 
         public void CreateControls()
         {
+            LevelLbl = new();
             AttributePointsLbl = new(); 
             BaseAttackLbl = new(); 
             BaseDefenceLbl = new();
@@ -198,38 +209,38 @@ namespace SkeletonsAdventure.GameMenu
             ManaToAddLabel = new();
 
             //Initialize the buttons
-            ApplyBtn = new(buttonTexture, buttonFont)
+            ApplyBtn = new(buttonTexture)
             {
                 Text = "Apply",
                 Width = 80,
             };
-            CancelBtn = new(buttonTexture, buttonFont) 
+            CancelBtn = new(buttonTexture) 
             { 
                 Text = "Cancel",
                 Width = 80,
             };
-            IncreaseAttackBtn = new(buttonTexture, buttonFont)
+            IncreaseAttackBtn = new(buttonTexture)
             {
                 Text = " +1 ",
             };
             IncreaseAttackBtn.Height = (int)IncreaseAttackBtn.SpriteFont.MeasureString(IncreaseAttackBtn.Text).Y;
             IncreaseAttackBtn.Width = (int)IncreaseAttackBtn.SpriteFont.MeasureString(IncreaseAttackBtn.Text).X;
 
-            IncreaseDefenceBtn = new(buttonTexture, buttonFont)
+            IncreaseDefenceBtn = new(buttonTexture)
             {
                 Text = " +1 ",
             };
             IncreaseDefenceBtn.Height = (int)IncreaseDefenceBtn.SpriteFont.MeasureString(IncreaseDefenceBtn.Text).Y;
             IncreaseDefenceBtn.Width = (int)IncreaseDefenceBtn.SpriteFont.MeasureString(IncreaseDefenceBtn.Text).X;
 
-            IncreaseHealthBtn = new(buttonTexture, buttonFont)
+            IncreaseHealthBtn = new(buttonTexture)
             {
                 Text = " +1 ",
             };
             IncreaseHealthBtn.Height = (int)IncreaseHealthBtn.SpriteFont.MeasureString(IncreaseHealthBtn.Text).Y;
             IncreaseHealthBtn.Width = (int)IncreaseHealthBtn.SpriteFont.MeasureString(IncreaseHealthBtn.Text).X;
 
-            IncreaseManaBtn = new(buttonTexture, buttonFont)
+            IncreaseManaBtn = new(buttonTexture)
             {
                 Text = " +1 ",
             };
@@ -245,6 +256,7 @@ namespace SkeletonsAdventure.GameMenu
             IncreaseManaBtn.Click += IncreaseManaBtn_Click;
 
             //Add the labels to the control manager
+            ControlManager.Add(LevelLbl);
             ControlManager.Add(AttributePointsLbl);
             ControlManager.Add(BaseAttackLbl);
             ControlManager.Add(BaseDefenceLbl);
@@ -274,6 +286,7 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints = Player.AttributePoints;
             CheckEnoughAttributePoints();
             UpdateLabelText(Player);
+            CheckApplyAndCancelShouldBeEnabled();
         }
 
         private void ApplyBtn_Click(object sender, EventArgs e)
@@ -282,6 +295,7 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints = Player.AttributePoints;
             UpdateLabelText(Player); 
             ResetAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
         }
 
         private void IncreaseManaBtn_Click(object sender, EventArgs e)
@@ -293,6 +307,7 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints--;
             SetToAddLabelsText();
             CheckEnoughAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
         }
 
         private void IncreaseHealthBtn_Click(object sender, EventArgs e)
@@ -304,6 +319,7 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints--;
             SetToAddLabelsText(); 
             CheckEnoughAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
         }
 
         private void IncreaseDefenceBtn_Click(object sender, EventArgs e)
@@ -315,6 +331,7 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints--;
             SetToAddLabelsText();
             CheckEnoughAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
         }
         private void IncreaseAttackBtn_Click(object sender, EventArgs e)
         {
@@ -325,6 +342,21 @@ namespace SkeletonsAdventure.GameMenu
             currentAttributePoints--;
             SetToAddLabelsText();
             CheckEnoughAttributePoints();
+            CheckApplyAndCancelShouldBeEnabled();
+        }
+
+        public void CheckApplyAndCancelShouldBeEnabled()
+        {
+            if ((defenceToAdd + attackToAdd + healthToAdd + manaToAdd) > 0)
+            {
+                ApplyBtn.Enabled = true;
+                CancelBtn.Enabled = true;
+            }
+            else
+            {
+                ApplyBtn.Enabled = false;
+                CancelBtn.Enabled = false;
+            }
         }
     }
 }

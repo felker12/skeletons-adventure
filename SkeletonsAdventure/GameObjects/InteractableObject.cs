@@ -52,7 +52,7 @@ namespace SkeletonsAdventure.GameObjects
             Info.Position = Position;
             Info.Text = "Press R to Interact";
             Info.Visible = false;
-            Info.Color = Color.Orange;
+            Info.TextColor = Color.Orange;
         }
 
         public virtual void Update(GameTime gameTime, Player player)

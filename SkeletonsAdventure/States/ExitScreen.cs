@@ -86,7 +86,6 @@ namespace SkeletonsAdventure.States
 
         private void ReturnToMenuLabel_Selected(object sender, EventArgs e)
         {
-            SaveGame();
             StateManager.ChangeState(new MenuScreen(Game));
         }
 
@@ -102,18 +101,11 @@ namespace SkeletonsAdventure.States
 
         public override void StateChangeToHandler()
         {
-            if (ExitScreenMenu.TabBar.ActiveMenu == ExitScreenMenu.PlayerMenu)
-            {
-                ExitScreenMenu.PlayerMenu.ResetAttributePoints();
-            }
+            ExitScreenMenu.MenuOpened();
         }
 
         public override void StateChangeFromHandler()
         {
-            if (ExitScreenMenu.TabBar.ActiveMenu == ExitScreenMenu.PlayerMenu)
-            {
-                ExitScreenMenu.PlayerMenu.UpdateWithPlayer(World.Player);
-            }
         }
     }
 }

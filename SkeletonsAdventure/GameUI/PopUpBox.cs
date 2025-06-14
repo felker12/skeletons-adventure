@@ -100,8 +100,8 @@ namespace SkeletonsAdventure.GameUI
         {
             button.Text = buttonText;
             button.Visible = false;
-            button.Width = (int)button.Font.MeasureString(buttonText).X;
-            button.Height = (int)button.Font.MeasureString(buttonText).Y;
+            button.Width = (int)button.SpriteFont.MeasureString(buttonText).X;
+            button.Height = (int)button.SpriteFont.MeasureString(buttonText).Y;
 
             Buttons.Add(button);
         }
@@ -146,9 +146,9 @@ namespace SkeletonsAdventure.GameUI
             {
                 if (button.Visible == true)
                 {
-                    if (button.Font.MeasureString(button.Text).X > length)
+                    if (button.SpriteFont.MeasureString(button.Text).X > length)
                     {
-                        length = (int)button.Font.MeasureString(button.Text).X;
+                        length = (int)button.SpriteFont.MeasureString(button.Text).X;
                     }
                 }
             }
