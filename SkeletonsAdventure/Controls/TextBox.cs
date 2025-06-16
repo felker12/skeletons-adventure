@@ -1,40 +1,53 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Controls
 {
     internal class TextBox : Control
     {
+        public Texture2D Background { get; set; }
+        public Color BackgroundOutlineColor { get; set; } = Color.Black;
 
         public TextBox() : base()
         {
-
+            Initialize();
         }
 
         public TextBox(SpriteFont font) : base(font)
         {
+            Initialize();
+        }
 
+        private void Initialize()
+        {
+            TextColor = Color.Black;
+            Background = GameManager.TextBoxTexture;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawRectangle(Rectangle, Color.White, 1, 0); 
-            spriteBatch.DrawString(SpriteFont, Text, Position + new Vector2(5,5), TextColor);
+            if (Visible is false)
+                return;
+
+
+            spriteBatch.Draw(Background, Rectangle, Color.White);
+            spriteBatch.DrawRectangle(Rectangle, BackgroundOutlineColor, 2, 0);
+            spriteBatch.DrawString(SpriteFont, Text, Position + new Vector2(5, 5), TextColor);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)
         {
+            if (Visible is false)
+                return;
 
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (Visible is false)
+                return;
 
         }
     }

@@ -27,7 +27,7 @@ namespace SkeletonsAdventure.States
         public World World { get; private set; }
         public Player Player { get; set; }
         public List<BaseMenu> Menus { get; set; } = [];
-        public PopUpBox GameItemPopUpBox { get; private set; }
+        public GameButtonBox GameItemPopUpBox { get; private set; }
         public BackpackMenu BackpackMenu { get; set; }
         private StatusBar HealthBar { get; set; }
         private StatusBar ManaBar { get; set; }
@@ -295,7 +295,7 @@ namespace SkeletonsAdventure.States
             Texture2D texture = GameManager.DefaultButtonTexture;
             SpriteFont font = GameManager.Arial10;
 
-            GameItemPopUpBox = new(Vector2.Zero, GameManager.PopUpBoxTexture, 100, 100)
+            GameItemPopUpBox = new(Vector2.Zero, GameManager.ButtonBoxTexture, 100, 100)
             {
                 Visible = false,
             };

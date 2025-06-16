@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
@@ -14,8 +15,8 @@ namespace SkeletonsAdventure.GameMenu
         public string Title { get; set; } = "Menu";
         public bool Visible { get; set; } = false;
         public Vector2 Position { get; set; } = new();
-        public int Width { get; set; } = 200;
-        public int Height { get; set; } = 200;
+        public int Width { get; set; } = 400;
+        public int Height { get; set; } = 400;
         public Texture2D Texture { get; set; } = GameManager.GameMenuTexture;
         public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
         public Color TintColor { get; set; } = Color.White;
@@ -25,6 +26,12 @@ namespace SkeletonsAdventure.GameMenu
 
         public BaseMenu()
         {
+        }
+
+        public BaseMenu(int width, int height)
+        {
+            Width = width;
+            Height = height;
         }
 
         public BaseMenu(MenuData menuData)
@@ -54,6 +61,11 @@ namespace SkeletonsAdventure.GameMenu
                 ControlManager.Draw(spriteBatch);
                 spriteBatch.End();
             }
+        }
+
+        public virtual void HandleInput(PlayerIndex playerIndex)
+        {
+
         }
 
         public virtual void MenuOpened()

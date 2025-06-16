@@ -11,8 +11,8 @@ namespace SkeletonsAdventure.Controls
     {
         #region Fields and Properties
         int selectedControl = 0;
-        bool acceptInput = true;
 
+        bool AcceptInput { get; set; } = true;
         public SpriteFont SpriteFont { get; set; }
         #endregion
         #region Constructors
@@ -42,6 +42,7 @@ namespace SkeletonsAdventure.Controls
         {
             if (Count == 0)
                 return;
+
             foreach (Control c in this)
             {
                 if (c.Enabled)
@@ -53,6 +54,7 @@ namespace SkeletonsAdventure.Controls
 
             if (!AcceptInput)
                 return;
+
             if (InputHandler.ButtonPressed(Buttons.LeftThumbstickUp, playerIndex) ||
             InputHandler.ButtonPressed(Buttons.DPadUp, playerIndex) ||
             InputHandler.KeyPressed(Keys.Up))
@@ -70,6 +72,7 @@ namespace SkeletonsAdventure.Controls
                     c.Draw(spriteBatch);
             }
         }
+
         public void NextControl()
         {
             if (Count == 0)
@@ -89,6 +92,7 @@ namespace SkeletonsAdventure.Controls
             } while (currentControl != selectedControl);
             this[selectedControl].HasFocus = true;
         }
+
         public void PreviousControl()
         {
             if (Count == 0)
@@ -109,12 +113,6 @@ namespace SkeletonsAdventure.Controls
             } while (currentControl != selectedControl);
             this[selectedControl].HasFocus = true;
         }
-        public bool AcceptInput
-        {
-            get { return acceptInput; }
-            set { acceptInput = value; }
-        }
-
         #endregion
     }
 }

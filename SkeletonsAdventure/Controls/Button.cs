@@ -9,18 +9,21 @@ namespace SkeletonsAdventure.Controls
     public class Button : Control
     {
         #region Fields
-        protected MouseState _currentMouse;
-        protected bool _isHovering = false;
-        protected MouseState _previousMouse;
         #endregion
         #region Properties
         public event EventHandler Click;
-        public Texture2D Texture { get; private set; } = GameManager.ButtonTexture;
+        public Texture2D Texture { get; set; } = GameManager.ButtonTexture;
+        public Color DisabledColor { get; set; } = Color.DarkGray;
+        public Color HoverColor { get; set; } = Color.Gray;
         public bool Clicked { get; private set; } = false;
-        //public Color PenColor { get; set; } = Color.Black;
         #endregion
         #region Constructors
         public Button()
+        {
+            Initialize();
+        }
+
+        public Button(string text) : base(text)
         {
             Initialize();
         }
@@ -54,15 +57,15 @@ namespace SkeletonsAdventure.Controls
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            var colour = Color.White;
+            Color color = BackgroundColor;
 
             if (_isHovering)
-                colour = Color.Gray;
+                color = HoverColor;
 
             if (Enabled is false)
-                colour = Color.DarkGray;
+                color = DisabledColor;
 
-            spriteBatch.Draw(Texture, Rectangle, colour);
+            spriteBatch.Draw(Texture, Rectangle, color);
 
             if (!string.IsNullOrEmpty(Text))
             {
@@ -86,16 +89,6 @@ namespace SkeletonsAdventure.Controls
                 if (_currentMouse.LeftButton == ButtonState.Released 
                     && _previousMouse.LeftButton == ButtonState.Pressed)
                     Clicked = true;
-        }
-
-        public void IsMouseHovering()
-        {
-            _previousMouse = _currentMouse;
-            _currentMouse = Mouse.GetState();
-
-            Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
-
-            _isHovering = mouseRectangle.Intersects(Rectangle);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)

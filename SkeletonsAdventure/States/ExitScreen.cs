@@ -16,14 +16,11 @@ namespace SkeletonsAdventure.States
 
         public ExitScreen(Game1 game) : base(game)
         {
-            ExitScreenMenu = new()
+            ExitScreenMenu = new(Game1.ScreenWidth, Game1.ScreenHeight)
             {
                 Position = new(0, 0),
                 Visible = true,
-                Width = Game1.ScreenWidth,
-                Height = Game1.ScreenHeight,
             };
-            ExitScreenMenu.TabBar.Width = Game1.ScreenWidth;
             ExitScreenMenu.SetBackgroundColor(Color.MidnightBlue);
             ExitScreenMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
 
@@ -44,6 +41,7 @@ namespace SkeletonsAdventure.States
         }
         public override void HandleInput(PlayerIndex playerIndex)
         {
+            ExitScreenMenu.HandleInput(playerIndex);
         }
 
         public override void PostUpdate(GameTime gameTime){}

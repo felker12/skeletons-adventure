@@ -17,10 +17,10 @@ namespace SkeletonsAdventure.GameObjects
         public Vector2 Position { get; set; } = new();
         public int ID { get; set; } = -1;
         public Rectangle DetectionArea { get; set; }
-        public PopUpBox ChestMenu { get; set; } = new()
+        public GameButtonBox ChestMenu { get; set; } = new()
         {
             Visible = false,
-            Texture = GameManager.PopUpBoxTexture,
+            Texture = GameManager.ButtonBoxTexture,
         };
         public Label Info { get; set; } = new()
         {

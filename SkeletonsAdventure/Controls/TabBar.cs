@@ -26,7 +26,7 @@ namespace SkeletonsAdventure.Controls
             TabClicked += HandleTabSelected;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             Vector2 position = new(), spacer = new(5, 0);
             _previousMouse = _currentMouse;
@@ -54,6 +54,8 @@ namespace SkeletonsAdventure.Controls
                         tab.IsHovering = false;
                 }
             }
+
+            ActiveMenu?.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

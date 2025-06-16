@@ -1,7 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.GameWorld;
+using System;
 
 namespace SkeletonsAdventure.Controls
 {
@@ -9,6 +10,10 @@ namespace SkeletonsAdventure.Controls
     {
         #region Event Region
         public event EventHandler Selected;
+
+        protected MouseState _currentMouse;
+        protected bool _isHovering = false;
+        protected MouseState _previousMouse;
         #endregion
         #region Property Region
         public string Name { get; set; }
@@ -16,11 +21,10 @@ namespace SkeletonsAdventure.Controls
         public int Width { get; set; }
         public int Height { get; set; }
         public Vector2 Position { get; set; }
-        public object Value { get; set; }
         public virtual bool HasFocus { get; set; } = false;
         public bool Enabled { get; set; } = true;
         public bool Visible { get; set; } = true;
-        public bool TabStop { get; set; }
+        public bool TabStop { get; set; } = false;
         public SpriteFont SpriteFont{ get; set; } = GameManager.Arial12;
         public Color TextColor { get; set; } = Color.White;
         public Color BackgroundColor { get; set; } = Color.White;
@@ -41,6 +45,10 @@ namespace SkeletonsAdventure.Controls
         {
             SpriteFont = font;
         }
+        public Control(string text)
+        {
+            Text = text;
+        }
 
         #endregion
         #region Abstract Methods
@@ -53,6 +61,16 @@ namespace SkeletonsAdventure.Controls
         protected virtual void OnSelected(EventArgs e)
         {
             Selected?.Invoke(this, e);
+        }
+
+        protected void IsMouseHovering()
+        {
+            _previousMouse = _currentMouse;
+            _currentMouse = Mouse.GetState();
+
+            Rectangle mouseRectangle = new(_currentMouse.X, _currentMouse.Y, 1, 1);
+
+            _isHovering = mouseRectangle.Intersects(Rectangle);
         }
         #endregion
     }

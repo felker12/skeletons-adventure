@@ -68,13 +68,18 @@ namespace SkeletonsAdventure.GameWorld
         public static Texture2D IceBulletTexture { get; private set; }
 
         //UI Textures
-        public static Texture2D PopUpBoxTexture { get; private set; }
+        public static Texture2D ButtonBoxTexture { get; private set; }
         public static Texture2D DefaultButtonTexture { get; private set; }
         public static Texture2D GameMenuTexture { get; set; }
         public static Texture2D BackpackBackground { get; set; }
         public static Texture2D StatusBarTexture { get; set; }
         public static Texture2D ButtonTexture { get; set; }
+        public static Texture2D TextBoxTexture { get; set; }
         //==========
+
+        //Colors
+        public static Color TextBoxColor { get; set; }
+        //=========
 
 
         //Attacks
@@ -99,6 +104,7 @@ namespace SkeletonsAdventure.GameWorld
             SetPaths();
             CreatePlayerLevelXPs();
 
+            SetColors();
             LoadFonts();
             LoadTextures();
             LoadAttacks();
@@ -111,6 +117,14 @@ namespace SkeletonsAdventure.GameWorld
             CreateAttacks();
             CreateQuests();
             CreateNPCs();
+        }
+
+        public static Texture2D CreateTextureFromColor(Color color)
+        {
+            Texture2D texture = new(GraphicsDevice, 1, 1);
+            texture.SetData([color]);
+
+            return texture;
         }
 
         private static void SetPaths()
@@ -266,6 +280,12 @@ namespace SkeletonsAdventure.GameWorld
             return PlayerLevelXPs[level];
         }
 
+        //Set the Colors
+        private static void SetColors()
+        {
+            TextBoxColor = new Color(210, 210, 210, 220);
+        }
+
         //Load the data from the content folder
         private static void LoadFonts()
         {
@@ -291,8 +311,8 @@ namespace SkeletonsAdventure.GameWorld
             AttackAreaTexture = new(GraphicsDevice, 1, 1);
             AttackAreaTexture.SetData([new Color(153, 29, 20, 250)]);
 
-            PopUpBoxTexture = new(GraphicsDevice, 1, 1);
-            PopUpBoxTexture.SetData([new Color(83, 105, 140, 230)]);
+            ButtonBoxTexture = new(GraphicsDevice, 1, 1);
+            ButtonBoxTexture.SetData([new Color(83, 105, 140, 230)]);
 
             DefaultButtonTexture = new(GraphicsDevice, 1, 1);
             DefaultButtonTexture.SetData([new Color(83, 105, 140, 230)]);
@@ -302,10 +322,11 @@ namespace SkeletonsAdventure.GameWorld
 
             BackpackBackground = Content.Load<Texture2D>(@"TiledFiles/BackpackBackground");
 
-            StatusBarTexture = new(GraphicsDevice, 1, 1);
-            StatusBarTexture.SetData([Color.White]);
+            StatusBarTexture = CreateTextureFromColor(Color.White);
 
             ButtonTexture = Content.Load<Texture2D>("Controls/Button");
+
+            TextBoxTexture = CreateTextureFromColor(TextBoxColor);
         }
 
         private static void LoadAttacks()

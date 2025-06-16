@@ -21,9 +21,13 @@ namespace SkeletonsAdventure.Controls
             Initialize();
         }
 
+        public LinkLabel(string text) : base(text)
+        {
+            Initialize();
+        }
+
         private void Initialize()
         {
-
             TabStop = true;
             HasFocus = false;
             Position = Vector2.Zero;
@@ -56,6 +60,7 @@ namespace SkeletonsAdventure.Controls
 
             if (!HasFocus)
                 return;
+
             if (InputHandler.KeyReleased(Keys.Enter) ||
             InputHandler.ButtonReleased(Buttons.A, playerIndex))
                 base.OnSelected(null);

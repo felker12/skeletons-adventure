@@ -32,6 +32,12 @@ namespace SkeletonsAdventure.GameMenu
             CreateControls();
         }
 
+        public PlayerInfoMenu(int width, int height) : base(width, height)
+        {
+            ControlManager = new(GameManager.Arial14);
+            CreateControls();
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);

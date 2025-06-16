@@ -11,19 +11,14 @@ namespace SkeletonsAdventure.Controls
 
         public ToggleButton() : base()
         {
-            Initialize();
+
         }
 
         public ToggleButton(SpriteFont font) : base(font)
         {
-            Initialize();
+
         }
 
-        private void Initialize()
-        {
-            //Color = Color.White;
-            //ToggledColor = Color.LightGray;
-        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             Color color;

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.Controls;
+using System;
 using System.Collections.Generic;
 namespace SkeletonsAdventure.GameMenu
 {
@@ -11,10 +12,19 @@ namespace SkeletonsAdventure.GameMenu
 
         public TabbedMenu() : base()
         {
-            Position = new Vector2(0,0);
             Width = 600;
             Height = 500;
+            Initialize();
+        }
 
+        public TabbedMenu(int width, int height) : base(width, height)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            Position = new Vector2(0, 0);
             TabBar.Width = Width;
             TabBar.Height = TabBar.MaxTabHeight();
             TabBar.Position = Position;
@@ -46,18 +56,12 @@ namespace SkeletonsAdventure.GameMenu
             base.Update(gameTime);
 
             if (Visible)
-            {
-                TabBar.Update();
-                TabBar.Position = Position;
+                TabBar.Update(gameTime);
+        }
 
-                if (TabBar.ActiveMenu != null)
-                {
-                    TabBar.ActiveMenu.Position = TabBar.Position + new Vector2(0, TabBar.Height);
-                    TabBar.ActiveMenu.Update(gameTime);
-                    TabBar.ActiveMenu.Width = Width;
-                    TabBar.ActiveMenu.Height = Height - TabBar.Height;
-                }
-            }
+        public override void MenuOpened()
+        {
+            TabBar.ActiveMenu?.MenuOpened();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -72,6 +76,14 @@ namespace SkeletonsAdventure.GameMenu
 
                 TabBar.ActiveMenu?.Draw(spriteBatch);
             }
+        }
+
+        public override void HandleInput(PlayerIndex playerIndex)
+        {
+            if (Visible is false)
+                return;
+
+            TabBar.ActiveMenu?.HandleInput(playerIndex);
         }
 
         public void SetMenuData(TabbedMenuData tabbedMenuData)
@@ -98,8 +110,14 @@ namespace SkeletonsAdventure.GameMenu
 
         public void AddMenu(BaseMenu menu)
         {
-            menu.Position = TabBar.Position + new Vector2(0, TabBar.Height);
             TabBar.AddMenu(menu);
+
+            foreach(BaseMenu baseMenu in TabBar.TabMenus.Values) //This way all the menus will the same size and position if the tabbar changes after a menu is added
+            {
+                baseMenu.Position = TabBar.Position + new Vector2(0, TabBar.Height);
+                baseMenu.Width = Width;
+                baseMenu.Height = Height - TabBar.Height;
+            }
         }
 
         public TabbedMenuData GetTabbedMenuData()

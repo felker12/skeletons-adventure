@@ -1,26 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.Controls;
-using SkeletonsAdventure.GameWorld;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.GameUI
 {
-    public class PopUpBox
+    internal class GameButtonBox : ButtonBox
     {
-        public Vector2 Position { get; set; } = new();
-        public Vector2 ButtonOffset { get; set; } = new(4, 4);
-        public Texture2D Texture { get; set; }
-        public int Width { get; set; } = 100;
-        public int Height { get; set; } = 100;
-        public Color Color { get; set; } = Color.White;
-        public bool Visible { get; set; } = false;
-        public List<GameButton> Buttons { get; set; } = [];
-        public ControlManager ControlManager { get; set; } = new(GameManager.Arial12);
-        public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
+        public new List<GameButton> Buttons { get; set; } = [];
 
-        public PopUpBox(Vector2 pos, Texture2D texture, int width, int height)
+        public GameButtonBox(Vector2 pos, Texture2D texture, int width, int height) : base(pos, texture, width, height)
         {
             Position = pos;
             Texture = texture;
@@ -28,11 +21,11 @@ namespace SkeletonsAdventure.GameUI
             Height = height;
         }
 
-        public PopUpBox()
+        public GameButtonBox() : base()
         {
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, Rectangle, Color);
 
@@ -43,27 +36,13 @@ namespace SkeletonsAdventure.GameUI
             }
         }
 
-        public virtual void Update(GameTime gameTime)
-        {
-            Vector2 offset = ButtonOffset;
-            foreach (GameButton button in Buttons)
-            {
-                if (button.Visible)
-                {
-                    button.Update(gameTime);
-                    button.Position = Position + offset;
-                    offset += new Vector2(0, button.Height);
-                }
-            }
-        }
-
-        public virtual void Update(GameTime gameTime, bool transformMouse, Matrix transformation)
+        public void Update(GameTime gameTime, bool transformMouse, Matrix transformation)
         {
             if (VisibleButtonsCount() > 0)
             {
-                Height = VisibleButtonsHeight() + (int)ButtonOffset.Y * 2;
-                Width = LongestButtonTextLength() + (int)ButtonOffset.X * 2;
-                Vector2 offset = ButtonOffset;
+                Height = VisibleButtonsHeight() + (int)ControlOffset.Y * 2;
+                Width = LongestButtonTextLength() + (int)ControlOffset.X * 2;
+                Vector2 offset = ControlOffset;
 
                 foreach (GameButton button in Buttons)
                 {
@@ -84,7 +63,7 @@ namespace SkeletonsAdventure.GameUI
             }
         }
 
-        public void HandleInput(PlayerIndex playerIndex)
+        public override void HandleInput(PlayerIndex playerIndex)
         {
             foreach (GameButton button in Buttons)
             {
@@ -114,7 +93,7 @@ namespace SkeletonsAdventure.GameUI
             }
         }
 
-        public int VisibleButtonsCount()
+        public override int VisibleButtonsCount()
         {
             int count = 0;
             foreach (GameButton button in Buttons)
@@ -125,7 +104,7 @@ namespace SkeletonsAdventure.GameUI
             return count;
         }
 
-        public int VisibleButtonsHeight()
+        public override int VisibleButtonsHeight()
         {
             int heightCount = 0;
 
@@ -138,7 +117,7 @@ namespace SkeletonsAdventure.GameUI
             return heightCount;
         }
 
-        public int LongestButtonTextLength()
+        public override int LongestButtonTextLength()
         {
             int length = 0;
 

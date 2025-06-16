@@ -13,10 +13,14 @@ namespace SkeletonsAdventure.GameMenu
         public QuestMenu QuestMenu { get; set; }
         public LinkLabel ReturnToGameLabel { get; set; }
         public LinkLabel ReturnToMenuLabel { get; set; }
-
         public Button SaveGameButton { get; set; }
 
-        public ExitScreenMenu() : base()
+        public ExitScreenMenu(int Width, int Height) : base(Width, Height)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             Visible = false;
             Title = "ExitScreenMenu";
@@ -34,6 +38,11 @@ namespace SkeletonsAdventure.GameMenu
             base.Draw(spriteBatch);
         }
 
+        public override void HandleInput(PlayerIndex playerIndex)
+        {
+            base.HandleInput(playerIndex);
+        }
+
         private void CreateTabbedMenu()
         {
             //Create the child menus for the tabbed menu
@@ -49,11 +58,15 @@ namespace SkeletonsAdventure.GameMenu
             AddMenu(QuestMenu);
 
             TabBar.SetActiveTab(SaveMenu); //Set the active tab
+
+            System.Diagnostics.Debug.WriteLine($"Height: {Height}");
+            System.Diagnostics.Debug.WriteLine("TabBar Height: " + TabBar.Height);
         }
 
         public override void MenuOpened()
         {
             TabBar.ActiveMenu?.MenuOpened(); //Call MenuOpened on the active menu to update it
+            base.MenuOpened(); //Call the base MenuOpened method to handle any additional logic
         }
 
         private void CreateSaveMenu()
