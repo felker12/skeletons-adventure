@@ -31,9 +31,12 @@ namespace SkeletonsAdventure.Controls
             if (Visible is false)
                 return;
 
-
             spriteBatch.Draw(Background, Rectangle, Color.White);
             spriteBatch.DrawRectangle(Rectangle, BackgroundOutlineColor, 2, 0);
+
+            if (Text == string.Empty || Text is null)
+                return;
+
             spriteBatch.DrawString(SpriteFont, Text, Position + new Vector2(5, 5), TextColor);
         }
 

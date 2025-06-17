@@ -558,7 +558,7 @@ namespace SkeletonsAdventure.GameWorld
                 MonsterToSlay = typeof(Skeleton).FullName,
             };
 
-            List <BaseTask> Tasks = [task, task2, task3, slayTask];
+            List <BaseTask> Tasks = [task.Clone(), task2.Clone(), task3.Clone(), slayTask.Clone()];
 
             Requirements requirements = new()
             {
@@ -598,7 +598,7 @@ namespace SkeletonsAdventure.GameWorld
                 Requirements = requirements,
                 Reward = questReward,
             };
-            SlaySkeletons.Tasks.Add(slayTask);
+            SlaySkeletons.Tasks.Add(slayTask.Clone());
 
             List<Quest> quests = [quest, quest2, quest3, SlaySkeletons];
 

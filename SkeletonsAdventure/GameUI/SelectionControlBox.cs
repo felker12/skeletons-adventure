@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
+using System;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameUI
@@ -11,6 +12,9 @@ namespace SkeletonsAdventure.GameUI
     {
         public List<SelectionControl> SelectionControls { get; set; } = [];
         public SelectionControl ActiveSelectionControl { get; set; }
+        public int ControlsCount => SelectionControls.Count;
+
+        public event EventHandler ActiveSelectionChanged;
 
         public SelectionControlBox(Vector2 pos, Texture2D texture, int width, int height) : base(pos, texture, width, height)
         {
@@ -86,17 +90,17 @@ namespace SkeletonsAdventure.GameUI
             {
                 ActiveSelectionControl = SelectionControls[0];
                 ActiveSelectionControl.HasFocus = true;
+                ActiveSelectionChanged?.Invoke(this, new EventArgs());
             }
         }
 
-        private void SelectionControl_Click(object sender, System.EventArgs e)
+        private void SelectionControl_Click(object sender, EventArgs e)
         {
-            //TOOD add logic to only have 1 SelectionControl with focus at a time
-            System.Diagnostics.Debug.WriteLine("Works");
-
             if(sender is SelectionControl control)
             {
                 ChangeFocus(control);
+                ActiveSelectionControl = control;
+                ActiveSelectionChanged?.Invoke(sender, e);
             }
         }
 
@@ -107,10 +111,14 @@ namespace SkeletonsAdventure.GameUI
                 selectionControl.HasFocus = false;
 
                 if (selectionControl == control)
-                {
                     selectionControl.HasFocus = true;
-                }
             }
+        }
+
+        public void Clear()
+        {
+            SelectionControls = [];
+            ActiveSelectionControl = null;
         }
     }
 }

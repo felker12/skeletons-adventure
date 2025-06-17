@@ -14,6 +14,7 @@ namespace SkeletonsAdventure.Controls
     {
         public event EventHandler Click;
         public Color HoverColor { get; set; } = Color.Gray;
+        public Color HasFocusColor { get; set; } = Color.DarkSlateGray;
         public bool Clicked { get; private set; } = false;
 
         public SelectionControl()
@@ -45,21 +46,18 @@ namespace SkeletonsAdventure.Controls
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Visible is false)
+            if (Visible is false || string.IsNullOrEmpty(Text))
                 return;
 
-            Color color = TextColor;
+            //if color has focus its color should be the focus color
+            //else if the mouse is hovering over it the color should be the covering color
+            //and if not it should be the default color
+            Color color = HasFocus ? HasFocusColor : (_isHovering ? HoverColor : TextColor);
 
-            if (_isHovering)
-                color = HoverColor;
+            var x = (Rectangle.X + (Rectangle.Width / 2)) - (SpriteFont.MeasureString(Text).X / 2);
+            var y = (Rectangle.Y + (Rectangle.Height / 2)) - (SpriteFont.MeasureString(Text).Y / 2);
 
-            if (!string.IsNullOrEmpty(Text))
-            {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (SpriteFont.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (SpriteFont.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(SpriteFont, Text, new Vector2(x, y), color);
-            }
+            spriteBatch.DrawString(SpriteFont, Text, new Vector2(x, y), color);
         }
 
         public override void HandleInput(PlayerIndex playerIndex)

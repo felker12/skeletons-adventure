@@ -82,7 +82,9 @@ namespace SkeletonsAdventure.GameObjects
                     continue; // Skip to the next quest if this one is already active
 
                 //add the quest to the player's active quests if all the requirements are met
-                player.ActiveQuests.Add(quest.Clone());
+                Quest q = quest.Clone();
+                q.StartQuest();
+                player.ActiveQuests.Add(q);
             }
         }
     }

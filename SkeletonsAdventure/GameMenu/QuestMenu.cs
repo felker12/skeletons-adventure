@@ -15,14 +15,11 @@ namespace SkeletonsAdventure.GameMenu
         //TODO this menu is used to display the player's quests
         public Player Player { get; set; } = World.Player;
 
+        private List<Quest> Quests = [];
         private Label QuestsLbl;
-
         private ToggleButton CompletedQuestsToggle, StartedQuestsToggle;
-
-        private TextBox QuestsTxtBox;
-        private ButtonBox QuestButtonBox;
-        private LinkLabelBox QuestLinkLabelBox;
         private SelectionControlBox QuestSelectionControlBox;
+        private TextBox SelectedQuestTextBox;
 
         public QuestMenu() : base()
         {
@@ -43,8 +40,6 @@ namespace SkeletonsAdventure.GameMenu
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime); 
-            QuestButtonBox.Update(gameTime);
-            QuestLinkLabelBox.Update(gameTime);
             QuestSelectionControlBox.Update(gameTime);
         }
 
@@ -53,8 +48,6 @@ namespace SkeletonsAdventure.GameMenu
             base.Draw(spriteBatch);
 
             spriteBatch.Begin();
-            QuestButtonBox.Draw(spriteBatch);
-            QuestLinkLabelBox.Draw(spriteBatch);
             QuestSelectionControlBox.Draw(spriteBatch);
             spriteBatch.End();
         }
@@ -73,7 +66,14 @@ namespace SkeletonsAdventure.GameMenu
         {
             UpdateWithPlayer(World.Player); 
             SetPositions(); 
-            LoadQuests();
+
+            if(QuestSelectionControlBox.ControlsCount == 0)
+            {
+                QuestSelectionControlBox.Clear(); //clear the ControlBox to be safe
+                LoadQuests();
+            }
+            else
+                QuestSelectionControlBox_ActiveSelectionChanged(this, null); //this updates the text box with any changes that may have happened to the active quest
         }
 
         private void CreateControls()
@@ -82,12 +82,6 @@ namespace SkeletonsAdventure.GameMenu
             QuestsLbl = new(GameManager.Arial16)
             {
                 Text = "Quests",
-            };
-
-            //Create the TextBox
-            QuestsTxtBox = new()
-            {
-                Text = "Test",
             };
 
             //Create the Toggles for the quests
@@ -101,8 +95,8 @@ namespace SkeletonsAdventure.GameMenu
 
             StartedQuestsToggle = new()
             {
-                Text = " Hide Started",
-                ToggledText = "Show Started",
+                Text = "Hide not Started",
+                ToggledText = "Show not Started",
                 Height = CompletedQuestsToggle.Height,
                 Width = CompletedQuestsToggle.Width
             };
@@ -117,31 +111,23 @@ namespace SkeletonsAdventure.GameMenu
             ControlManager.Add(CompletedQuestsToggle);
             ControlManager.Add(StartedQuestsToggle);
 
-            ControlManager.Add(QuestsTxtBox);
-
-            //Create the ButtonBox
-            QuestButtonBox = new()
-            {
-                Visible = true,
-                Texture = GameManager.TextBoxTexture,
-                DrawOutline = true,
-            };
-
-            QuestLinkLabelBox = new()
-            {
-                Visible = true,
-                Texture = GameManager.TextBoxTexture,
-                DrawOutline = true,
-            };
-
-
             QuestSelectionControlBox = new()
             {
                 Visible = true,
                 Texture = GameManager.TextBoxTexture,
                 DrawOutline = true,
             };
+
+            QuestSelectionControlBox.ActiveSelectionChanged += QuestSelectionControlBox_ActiveSelectionChanged;
+
+            SelectedQuestTextBox = new()
+            {
+                Visible = true,
+                Background = GameManager.TextBoxTexture,
+            };
+            ControlManager.Add(SelectedQuestTextBox);
         }
+
 
         private void SetPositions()
         {
@@ -152,70 +138,87 @@ namespace SkeletonsAdventure.GameMenu
             CompletedQuestsToggle.Position = new(QuestsLbl.Position.X, QuestsLbl.Position.Y + QuestsLbl.SpriteFont.LineSpacing + labelSpace);
             StartedQuestsToggle.Position = new(CompletedQuestsToggle.Position.X, CompletedQuestsToggle.Position.Y + CompletedQuestsToggle.Height + labelSpace);
 
-            QuestsTxtBox.Position = new(CompletedQuestsToggle.Position.X + CompletedQuestsToggle.Width + labelSpace, QuestsLbl.Position.Y);
-            QuestsTxtBox.Width = Width - (int)QuestsTxtBox.Position.X - labelSpace*3;
-            QuestsTxtBox.Height = 120;
+            QuestSelectionControlBox.Position = new(CompletedQuestsToggle.Position.X + CompletedQuestsToggle.Width + labelSpace, QuestsLbl.Position.Y);
+            QuestSelectionControlBox.Width = Width - (int)QuestSelectionControlBox.Position.X - labelSpace * 3;
+            QuestSelectionControlBox.Height = (int)(Height * .4);
 
-            QuestButtonBox.Position = new(QuestsTxtBox.Position.X, QuestsTxtBox.Position.Y + QuestsTxtBox.Height + labelSpace);
-            QuestButtonBox.Width = QuestsTxtBox.Width;
-            QuestButtonBox.Height = (int)(120);
-
-            QuestLinkLabelBox.Position = new(QuestsTxtBox.Position.X, QuestButtonBox.Position.Y + QuestButtonBox.Height + labelSpace);
-            QuestLinkLabelBox.Width = QuestButtonBox.Width;
-            QuestLinkLabelBox.Height = (int)(120);
-
-            QuestSelectionControlBox.Position = new(QuestLinkLabelBox.Position.X, QuestLinkLabelBox.Position.Y + QuestLinkLabelBox.Height + labelSpace);
-            QuestSelectionControlBox.Width = QuestLinkLabelBox.Width;
-            QuestSelectionControlBox.Height = (int)(120);
+            SelectedQuestTextBox.Position = new(QuestSelectionControlBox.Position.X, QuestSelectionControlBox.Position.Y + QuestSelectionControlBox.Height + labelSpace);
+            SelectedQuestTextBox.Width = QuestSelectionControlBox.Width;
+            SelectedQuestTextBox.Height = (int)(Height * .3);
         }
 
         private void LoadQuests()
         {
-            List<Quest> quests = [.. GameManager.QuestsClone.Values];
-            List<string> questStrings = quests.ConvertAll(q => $"{q.Name}");
+            Quests = [.. GameManager.QuestsClone.Values];
+            List<string> questStrings = Quests.ConvertAll(q => $"{q.Name}");
 
-            QuestsTxtBox.Text = string.Join(Environment.NewLine, questStrings);
-
-            QuestButtonBox.Buttons.Clear();
-            QuestLinkLabelBox.LinkLabels.Clear();
-            QuestLinkLabelBox.ActiveLinkLabel = null;
-
-            Button btn;
-            LinkLabel lbl;
-            SelectionControl control;
-            foreach (Quest quest in quests)
+            SelectionControl sc;
+            foreach (Quest quest in Quests)
             {
-                btn = new();
-                QuestButtonBox.AddButton(btn, quest.Name);
-                btn.Visible = true;
-                btn.Texture = GameManager.TextBoxTexture;
-                btn.BackgroundColor = GameManager.TextBoxColor;
+                if (CompletedQuestsToggle.Toggled)
+                {
+                    if (quest.CheckCompletedQuest(Player)) // Hide completed quests
+                        continue;
+                }
+                if (StartedQuestsToggle.Toggled)
+                {
+                    if (quest.CheckCompletedQuest(Player) is false) // Only show started quests
+                        continue;
+                }
 
-                lbl = new(quest.Name)
+                sc = new(quest.Name)
                 {
                     TextColor = Color.Black,
                 };
 
-                QuestLinkLabelBox.AddLinkLabel(lbl);
-
-
-                control = new(quest.Name)
-                {
-                    TextColor = Color.Black,
-                };
-
-                QuestSelectionControlBox.AddSelectionControl(control);
+                QuestSelectionControlBox.AddSelectionControl(sc);
             }
+        }
+
+        private Quest GetQuestByName(string name)
+        {
+            foreach(Quest quest in Quests)
+            {
+                if (quest.Name == name)
+                    return quest;
+            }
+
+            return null;
         }
 
         private void StartedQuestsToggle_Click(object sender, EventArgs e)
         {
-            //TODO
+            QuestSelectionControlBox.Clear();
+            LoadQuests();
         }
 
         private void CompletedQuestsToggle_Click(object sender, EventArgs e)
         {
-            //TODO
+            QuestSelectionControlBox.Clear();
+            LoadQuests();
+        }
+
+        private void QuestSelectionControlBox_ActiveSelectionChanged(object sender, EventArgs e)
+        {
+            if (QuestSelectionControlBox.ActiveSelectionControl != null)
+            {
+                string questName = QuestSelectionControlBox.ActiveSelectionControl.Text;
+                Quest quest;
+
+                //set the quest = to the quest info from the player if the quest is active or completed. If not set it to the quest from the quest list
+                if (Player.GetActiveQuestByName(questName) != null)
+                    quest = Player.GetActiveQuestByName(questName);
+                else if (Player.GetCompletedQuestByName(questName) != null)
+                    quest = Player.GetCompletedQuestByName(questName);
+                else
+                    quest = GetQuestByName(questName);
+
+                //Set the text box text to be the info of the quest
+                if (quest != null)
+                    SelectedQuestTextBox.Text = quest.QuestInfo;
+            }
+            else
+                SelectedQuestTextBox.Text = string.Empty; //Set the text boxes text to be empty if there is no quest to display
         }
     }
 }

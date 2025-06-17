@@ -262,6 +262,28 @@ namespace SkeletonsAdventure.Entities
             }
         }
 
+        public Quest GetActiveQuestByName(string name)
+        {
+            foreach (Quest quest in ActiveQuests)
+            {
+                if (quest.Name == name)
+                    return quest;
+            }
+
+            return null;
+        }
+
+        public Quest GetCompletedQuestByName(string name)
+        {
+            foreach (Quest quest in CompletedQuests)
+            {
+                if (quest.Name == name)
+                    return quest;
+            }
+
+            return null;
+        }
+
         public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
         {
             base.GetHitByAttack(attack, gameTime);

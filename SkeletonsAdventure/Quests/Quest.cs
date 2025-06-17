@@ -16,6 +16,7 @@ namespace SkeletonsAdventure.Quests
         public List<string> RequiredQuestNames { get; set; } = [];
         public List<BaseTask> Tasks { get; set; } = [];
         public BaseTask ActiveTask => GetActiveTask();
+        public string QuestInfo => GetQuestInfo();
 
         public Quest() { }
 
@@ -77,7 +78,7 @@ namespace SkeletonsAdventure.Quests
                 if (!task.IsCompleted)
                     return; // If any task is not completed, the quest is not completed
             }
-            IsCompleted = true; // All tasks are completed, mark the quest as completed
+            CompleteQuest();
         }
 
         public bool PlayerRequirementsMet(Player player)
@@ -140,19 +141,38 @@ namespace SkeletonsAdventure.Quests
 
         public BaseTask GetActiveTask()
         {
+            if (Active == false)
+                return null; //only have an active task if the quest is active
+
             return Tasks.FirstOrDefault(t => !t.IsCompleted);
         }
 
         public override string ToString()
         {
             return $"Name: {Name}, " +
-                   $"Description: {Description}, " +
-                   $"IsCompleted: {IsCompleted}, " +
-                   $"Active: {Active}, " +
-                   $"Requirements: {Requirements}, " +
-                   $"Rewards: {Reward}, " +
-                   $"Required Quests: {RequiredQuestsToString()}" +
-                   $"Tasks: {TasksToString()}";
+                   $"\nDescription: {Description}, " +
+                   $"\nIsCompleted: {IsCompleted}, " +
+                   $"\nActive: {Active}, " +
+                   $"\nRequirements: {Requirements}, " +
+                   $"\nRewards: {Reward}, " +
+                   $"\nRequired Quests: {RequiredQuestsToString()}" +
+                   $"\nTasks: {TasksToString()}";
+        }
+
+        public string GetQuestInfo()
+        {
+            string info = $"Name: {Name}, " +
+                   $"\nDescription: {Description}, " +
+                   $"\nIsCompleted: {IsCompleted}, " +
+                   $"\nActive: {Active}, " +
+                   $"\nRequirements: {Requirements}, " +
+                   $"\nRewards: {Reward}, " +
+                   $"\nRequired Quests: {RequiredQuestsToString()}";
+
+            if (ActiveTask != null)
+                info += $"\nActive Task: {ActiveTask}";
+
+            return info;
         }
 
         public List<BaseTaskData> GetBaseTaskDatas()

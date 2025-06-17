@@ -58,9 +58,6 @@ namespace SkeletonsAdventure.GameMenu
             AddMenu(QuestMenu);
 
             TabBar.SetActiveTab(SaveMenu); //Set the active tab
-
-            System.Diagnostics.Debug.WriteLine($"Height: {Height}");
-            System.Diagnostics.Debug.WriteLine("TabBar Height: " + TabBar.Height);
         }
 
         public override void MenuOpened()
