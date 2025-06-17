@@ -139,7 +139,7 @@ namespace SkeletonsAdventure.GameMenu
             StartedQuestsToggle.Position = new(CompletedQuestsToggle.Position.X, CompletedQuestsToggle.Position.Y + CompletedQuestsToggle.Height + labelSpace);
 
             QuestSelectionControlBox.Position = new(CompletedQuestsToggle.Position.X + CompletedQuestsToggle.Width + labelSpace, QuestsLbl.Position.Y);
-            QuestSelectionControlBox.Width = Width - (int)QuestSelectionControlBox.Position.X - labelSpace * 3;
+            QuestSelectionControlBox.Width = (int)(Width * .6);
             QuestSelectionControlBox.Height = (int)(Height * .4);
 
             SelectedQuestTextBox.Position = new(QuestSelectionControlBox.Position.X, QuestSelectionControlBox.Position.Y + QuestSelectionControlBox.Height + labelSpace);

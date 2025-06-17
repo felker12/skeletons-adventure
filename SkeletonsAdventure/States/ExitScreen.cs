@@ -25,9 +25,9 @@ namespace SkeletonsAdventure.States
             ExitScreenMenu.TabBar.SetAllTabsColors(Color.MidnightBlue);
 
             //Add event handlers to the controls in the Settings Menu
+            ExitScreenMenu.SaveGameLabel.Selected += SaveGameButton_Clicked;
             ExitScreenMenu.ReturnToGameLabel.Selected += ReturnToGameLabel_Selected;
             ExitScreenMenu.ReturnToMenuLabel.Selected += ReturnToMenuLabel_Selected; 
-            ExitScreenMenu.SaveGameButton.Click += SaveGameButton_Clicked;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses" xmlns:ItemClasses="RpgLibrary.ItemClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT44.8667564S</TotalTimeInWorld>
+    <TotalTimeInWorld>PT50.6334346S</TotalTimeInWorld>
     <CurrentLevel>Level0_Old</CurrentLevel>
     <PlayerData>
       <Items />
@@ -1260,7 +1260,7 @@
                 <entityLevel>40</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>250</currentHealth>
-                <position>2287.5 1412</position>
+                <position>2495 1458.25</position>
                 <respawnPosition>2240 1162</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -1339,7 +1339,7 @@
                 <entityLevel>7</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>85</currentHealth>
-                <position>897 3588</position>
+                <position>927 3634.25</position>
                 <respawnPosition>672 3338</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -1418,7 +1418,7 @@
                 <entityLevel>30</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>80</currentHealth>
-                <position>432.25 293.5</position>
+                <position>479.75 339.75</position>
                 <respawnPosition>256 106</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT10.3666874S</lastDeathTime>
@@ -1497,7 +1497,7 @@
                 <entityLevel>98</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>216</currentHealth>
-                <position>284 602</position>
+                <position>479 648.25</position>
                 <respawnPosition>224 522</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT13.3500267S</lastDeathTime>
@@ -1576,7 +1576,7 @@
                 <entityLevel>41</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>102</currentHealth>
-                <position>282.75 612.75</position>
+                <position>479 659</position>
                 <respawnPosition>64 714</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT14.3500287S</lastDeathTime>
@@ -1655,7 +1655,7 @@
                 <entityLevel>4</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>28</currentHealth>
-                <position>282.00012 1015.25</position>
+                <position>479.50012 1061.5</position>
                 <respawnPosition>32 1034</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT19.3167053S</lastDeathTime>
@@ -1734,7 +1734,7 @@
                 <entityLevel>54</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>128</currentHealth>
-                <position>353 1121.5</position>
+                <position>479.25 1167.75</position>
                 <respawnPosition>288 1034</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT16.8500337S</lastDeathTime>
@@ -1813,7 +1813,7 @@
                 <entityLevel>0</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>20</currentHealth>
-                <position>95.75 1515.75</position>
+                <position>479.5 1562</position>
                 <respawnPosition>192 1482</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT21.2667092S</lastDeathTime>
@@ -1892,7 +1892,7 @@
                 <entityLevel>69</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>158</currentHealth>
-                <position>2112.5 1988</position>
+                <position>2495 1993</position>
                 <respawnPosition>1920 1738</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -1971,7 +1971,7 @@
                 <entityLevel>53</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>126</currentHealth>
-                <position>32.2499 1902</position>
+                <position>418.5 1948.25</position>
                 <respawnPosition>96 1802</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT39.1167449S</lastDeathTime>
@@ -2050,7 +2050,7 @@
                 <entityLevel>84</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>188</currentHealth>
-                <position>2400.5 2052</position>
+                <position>2495.5 2098.25</position>
                 <respawnPosition>2208 1802</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2129,7 +2129,7 @@
                 <entityLevel>40</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>100</currentHealth>
-                <position>815.5 1992.75</position>
+                <position>1201.75 1992.75</position>
                 <respawnPosition>768 1834</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2208,7 +2208,7 @@
                 <entityLevel>78</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>176</currentHealth>
-                <position>32.7499 1973</position>
+                <position>419 2019.25</position>
                 <respawnPosition>224 1898</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT38.1834097S</lastDeathTime>
@@ -2287,7 +2287,7 @@
                 <entityLevel>63</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>146</currentHealth>
-                <position>1760 2184.75</position>
+                <position>1918.75 2184.75</position>
                 <respawnPosition>1760 2026</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2366,7 +2366,7 @@
                 <entityLevel>38</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>96</currentHealth>
-                <position>2037.25 2121.75</position>
+                <position>2239.75 2121.75</position>
                 <respawnPosition>2016 2058</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2445,7 +2445,7 @@
                 <entityLevel>18</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>56</currentHealth>
-                <position>608.25 2377.25</position>
+                <position>994.5 2377.25</position>
                 <respawnPosition>672 2186</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2524,7 +2524,7 @@
                 <entityLevel>43</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>106</currentHealth>
-                <position>992.75 2436</position>
+                <position>1087.75 2482.25</position>
                 <respawnPosition>864 2186</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2603,7 +2603,7 @@
                 <entityLevel>96</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>212</currentHealth>
-                <position>184.22537 2249.2705</position>
+                <position>382.97537 2295.5205</position>
                 <respawnPosition>224 2282</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT40.166747S</lastDeathTime>
@@ -2682,7 +2682,7 @@
                 <entityLevel>21</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>62</currentHealth>
-                <position>1263.5 2409</position>
+                <position>1649.75 2409</position>
                 <respawnPosition>1216 2314</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2761,7 +2761,7 @@
                 <entityLevel>61</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>142</currentHealth>
-                <position>1583.5 2409</position>
+                <position>1919.75 2455.25</position>
                 <respawnPosition>1536 2314</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2840,7 +2840,7 @@
                 <entityLevel>2</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>24</currentHealth>
-                <position>2063.75 2568.75</position>
+                <position>2450 2568.75</position>
                 <respawnPosition>2080 2410</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2919,7 +2919,7 @@
                 <entityLevel>85</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>190</currentHealth>
-                <position>2063.75 2569.5</position>
+                <position>2450 2569.5</position>
                 <respawnPosition>2080 2442</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -2998,7 +2998,7 @@
                 <entityLevel>4</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>28</currentHealth>
-                <position>591.5 2633.5</position>
+                <position>977.75 2633.5</position>
                 <respawnPosition>544 2506</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3077,7 +3077,7 @@
                 <entityLevel>9</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>38</currentHealth>
-                <position>885.25 2633.5</position>
+                <position>1087.75 2633.5</position>
                 <respawnPosition>864 2506</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3156,7 +3156,7 @@
                 <entityLevel>1</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>22</currentHealth>
-                <position>2336 2852</position>
+                <position>2494.75 2898.25</position>
                 <respawnPosition>2336 2602</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3235,7 +3235,7 @@
                 <entityLevel>80</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>180</currentHealth>
-                <position>2336 2884</position>
+                <position>2494.75 2930.25</position>
                 <respawnPosition>2336 2634</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3314,7 +3314,7 @@
                 <entityLevel>11</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>42</currentHealth>
-                <position>1504 2948</position>
+                <position>1662.75 2994.25</position>
                 <respawnPosition>1504 2698</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3393,7 +3393,7 @@
                 <entityLevel>48</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>116</currentHealth>
-                <position>1280.5 3290.5</position>
+                <position>1663 3305.5</position>
                 <respawnPosition>1248 2858</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3472,7 +3472,7 @@
                 <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>182</currentHealth>
-                <position>2336 3204</position>
+                <position>2494.75 3250.25</position>
                 <respawnPosition>2336 2954</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3551,7 +3551,7 @@
                 <entityLevel>72</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>164</currentHealth>
-                <position>32.000023 3113.5</position>
+                <position>418.25012 3113.5</position>
                 <respawnPosition>32 2986</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3630,7 +3630,7 @@
                 <entityLevel>50</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>120</currentHealth>
-                <position>1280.5 3236</position>
+                <position>1543 3282.25</position>
                 <respawnPosition>1248 2986</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3709,7 +3709,7 @@
                 <entityLevel>70</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>160</currentHealth>
-                <position>656.25 2856.75</position>
+                <position>1042.5 2856.75</position>
                 <respawnPosition>640 3018</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3788,7 +3788,7 @@
                 <entityLevel>47</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>114</currentHealth>
-                <position>1569 3396</position>
+                <position>1662.75 3442.25</position>
                 <respawnPosition>1504 3146</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3867,7 +3867,7 @@
                 <entityLevel>81</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>182</currentHealth>
-                <position>1903.5 3305</position>
+                <position>2174.75 3305</position>
                 <respawnPosition>1856 3210</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -3946,7 +3946,7 @@
                 <entityLevel>95</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>210</currentHealth>
-                <position>2292.25 3593.25</position>
+                <position>2494.75 3593.25</position>
                 <respawnPosition>2336 3242</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4025,7 +4025,7 @@
                 <entityLevel>0</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>20</currentHealth>
-                <position>916.5 3753.5</position>
+                <position>1119 3753.5</position>
                 <respawnPosition>1024 3466</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4104,7 +4104,7 @@
                 <entityLevel>68</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>156</currentHealth>
-                <position>2159.5 3593.5</position>
+                <position>2495.75 3593.5</position>
                 <respawnPosition>2112 3466</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4183,7 +4183,7 @@
                 <entityLevel>54</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>128</currentHealth>
-                <position>1280.5 3748</position>
+                <position>1663 3753</position>
                 <respawnPosition>1248 3498</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4262,7 +4262,7 @@
                 <entityLevel>87</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>194</currentHealth>
-                <position>1824 3752.75</position>
+                <position>2142.75 3752.75</position>
                 <respawnPosition>1824 3594</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4341,7 +4341,7 @@
                 <entityLevel>11</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>42</currentHealth>
-                <position>1280.5 3753.5</position>
+                <position>1663 3753.5</position>
                 <respawnPosition>1408 3626</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>
@@ -4420,7 +4420,7 @@
                 <entityLevel>95</entityLevel>
                 <baseXP>5</baseXP>
                 <currentHealth>210</currentHealth>
-                <position>751.5 3753.75</position>
+                <position>1119 3753.75</position>
                 <respawnPosition>704 3690</respawnPosition>
                 <isDead>false</isDead>
                 <lastDeathTime>PT0S</lastDeathTime>

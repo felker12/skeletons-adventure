@@ -11,9 +11,9 @@ namespace SkeletonsAdventure.GameMenu
         public BaseMenu Settings { get; private set; }
         public PlayerInfoMenu PlayerMenu { get; set; }
         public QuestMenu QuestMenu { get; set; }
+        public LinkLabel SaveGameLabel { get; set; }
         public LinkLabel ReturnToGameLabel { get; set; }
         public LinkLabel ReturnToMenuLabel { get; set; }
-        public Button SaveGameButton { get; set; }
 
         public ExitScreenMenu(int Width, int Height) : base(Width, Height)
         {
@@ -76,31 +76,34 @@ namespace SkeletonsAdventure.GameMenu
             SaveMenu.SetBackgroundColor(Color.MidnightBlue);
 
             //Add controls to the Menu
+            SaveGameLabel = new(GameManager.Arial20)
+            {
+                Text = "Press to save the game",
+                TabStop = true,
+            };
+            SaveGameLabel.Position = new(Game1.ScreenWidth / 2 - SaveGameLabel.SpriteFont.MeasureString(SaveGameLabel.Text).X / 2, 300);
+
             ReturnToGameLabel = new(GameManager.Arial20)
             {
-                Text = "Press ENTER to return to the game",
+                Text = "Press to return to the game",
                 TabStop = true,
-                HasFocus = true
             };
-            ReturnToGameLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).X / 2, 350);
+            ReturnToGameLabel.Position = new(Game1.ScreenWidth / 2 - ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).X / 2, 350);
 
             ReturnToMenuLabel = new(GameManager.Arial20)
             {
                 Text = "Press to return to menu screen",
                 TabStop = true,
             };
-            ReturnToMenuLabel.Position = new Vector2(Game1.ScreenWidth / 2 - ReturnToMenuLabel.SpriteFont.MeasureString(ReturnToMenuLabel.Text).X / 2,
+            ReturnToMenuLabel.Position = new(Game1.ScreenWidth / 2 - ReturnToMenuLabel.SpriteFont.MeasureString(ReturnToMenuLabel.Text).X / 2,
                 ReturnToGameLabel.Position.Y + ReturnToGameLabel.SpriteFont.MeasureString(ReturnToGameLabel.Text).Y + 20);
 
-            SaveGameButton = new Button(GameManager.Arial14)
-            {
-                Position = new Vector2(300, 200),
-                Text = "Save Game",
-            };
 
+            SaveMenu.ControlManager.Add(SaveGameLabel);
+            SaveMenu.ControlManager.Add(ReturnToGameLabel);
             SaveMenu.ControlManager.Add(ReturnToMenuLabel);
-            SaveMenu.ControlManager.Add(ReturnToGameLabel);//Add this label after return to menu label so if enter is pressed the event for this will be triggered instead of the 1 for return to menu
-            SaveMenu.ControlManager.Add(SaveGameButton);
+
+            SaveMenu.ControlManager.NextControl(); //Initialize the selected control and set the selected control to have focus
         }
 
         private void CreateSettingsMenu()
