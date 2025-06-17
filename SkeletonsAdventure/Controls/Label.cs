@@ -9,6 +9,11 @@ namespace SkeletonsAdventure.Controls
         {
             Initialize();
         }
+        public Label(string text)
+        {
+            Text = text;
+            Initialize();
+        }
 
         public Label(SpriteFont font) : base(font)
         {

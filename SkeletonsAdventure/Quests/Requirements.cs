@@ -3,7 +3,7 @@ using SkeletonsAdventure.Entities;
 
 namespace SkeletonsAdventure.Quests
 {
-    internal class Requirements
+    public class Requirements
     {
         public int Level { get; set; } = 0;
         public int Defence { get; set; } = 0;
@@ -32,7 +32,7 @@ namespace SkeletonsAdventure.Quests
             return new Requirements(this);
         }
 
-        public bool CheckRequirements(Player player)
+        internal bool CheckRequirements(Player player)
         {
             return CheckRequirements(player.Level, player.Defence, player.Attack);
         }

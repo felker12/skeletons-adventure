@@ -6,7 +6,7 @@ using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
-using SkeletonsAdventure.ItemLoot;
+using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 using System;
 using System.Collections.Generic;

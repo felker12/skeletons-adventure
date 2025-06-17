@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using RpgLibrary.ItemClasses;
-using SkeletonsAdventure.ItemLoot;
 
 namespace SkeletonsAdventure.ItemClasses
 {

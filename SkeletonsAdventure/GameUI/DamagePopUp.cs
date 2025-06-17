@@ -1,11 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.GameWorld;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.GameUI
 {
@@ -17,7 +12,7 @@ namespace SkeletonsAdventure.GameUI
         public float Speed { get; set; } = 160f; // Default speed in pixels per second
         public float Duration { get; set; } = 0.8f; // Default duration of 1 second
         public float ElapsedTime { get; private set; } = 0f;
-        public SpriteFont Font { get; } = GameManager.Arial14; // Assuming you have a default font
+        public SpriteFont Font { get; } = GameManager.Arial14;
         public bool TimedOut { get; private set; } = false; // Property to check if the pop-up has timed out
         public Color Color { get; set; } = Color.White; // Default color for the text
 
@@ -58,6 +53,5 @@ namespace SkeletonsAdventure.GameUI
         {
             return $"Position: {Position}, Duration: {Duration}, Elapsed Time: {ElapsedTime}";
         }
-
     }
 }

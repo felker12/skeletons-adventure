@@ -1,8 +1,7 @@
-﻿using SkeletonsAdventure.ItemClasses;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using RpgLibrary.ItemClasses;
 
-namespace SkeletonsAdventure.ItemLoot
+namespace SkeletonsAdventure.ItemClasses
 {
     internal class ItemList()
     {

@@ -40,10 +40,12 @@ namespace SkeletonsAdventure.GameWorld
         public ChestManager ChestManager { get; set; }
         public TiledMapObjectLayer EnterExitLayer { get; set; } = null;
         public TiledMapObjectLayer InteractableObjectLayer { get; set; } = null;
+        public TiledMapObjectLayer TeleporterLayer { get; set; } = null;
         public LevelExit LevelExit { get; set; } = null;
         public LevelExit LevelEntrance { get; set; } = null;
         internal InteractableObjectManager InteractableObjectManager { get; set; } = new();
         public DamagePopUpManager DamagePopUpManager { get; } = new(); //used to show damage popups when an entity is hit by an attack
+        public TeleporterManager TeleporterManager { get; set; } = new(); // used to manage teleporters in the level
 
         private TiledMapRenderer _tiledMapRenderer;
         private TiledMapTileLayer _mapCollisionLayer, _mapSpawnerLayer;
@@ -68,8 +70,10 @@ namespace SkeletonsAdventure.GameWorld
             AddEnemys();
 
             LoadInteractableObjects();
+            LoadTeleporters();
             CreateControls();
         }
+
 
         private void CreateMap(TiledMap tiledMap)
         {
@@ -81,6 +85,7 @@ namespace SkeletonsAdventure.GameWorld
             ChestManager = new(tiledMap.GetLayer<TiledMapTileLayer>("ChestLayer"));
             EnterExitLayer = TiledMap.GetLayer<TiledMapObjectLayer>("EnterExitLayer");
             InteractableObjectLayer = TiledMap.GetLayer<TiledMapObjectLayer>("InteractableObjectLayerObjects");
+            TeleporterLayer = TiledMap.GetLayer<TiledMapObjectLayer>("TeleporterLayer");
 
             Width = tiledMap.WidthInPixels;
             Height = tiledMap.HeightInPixels;
@@ -119,9 +124,8 @@ namespace SkeletonsAdventure.GameWorld
                 Camera.Transformation);
 
             ChestManager.Draw(spriteBatch);
-            EntityManager.Draw(spriteBatch);
-            ControlManager.Draw(spriteBatch);
             InteractableObjectManager.Draw(spriteBatch);
+            TeleporterManager.Draw(spriteBatch);
 
             foreach(Rectangle rec in EnterExitLayerObjectRectangles) //TODO delete this 
                 spriteBatch.DrawRectangle(rec, Color.White, 1, 0); //used to see where the hitboxes are for the exits
@@ -131,6 +135,8 @@ namespace SkeletonsAdventure.GameWorld
             if (LevelExit is not null && LevelExit.ExitTextVisible)
                 spriteBatch.DrawString(GameManager.Arial12, LevelExit.ExitText, LevelExit.ExitPosition, Color.White);
 
+            EntityManager.Draw(spriteBatch);
+            ControlManager.Draw(spriteBatch);
             DamagePopUpManager.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -152,6 +158,7 @@ namespace SkeletonsAdventure.GameWorld
             CheckIfPlayerNearChest();
 
             InteractableObjectManager.Update(gameTime, Player);
+            TeleporterManager.Update();
             DamagePopUpManager.Update(gameTime);
 
             if (LevelExit != null)
@@ -243,6 +250,37 @@ namespace SkeletonsAdventure.GameWorld
                     }
                 }
             }
+        }
+
+        private void LoadTeleporters()
+        {
+            if (TeleporterLayer is null)
+                return; //No teleporters in this level
+
+            string name; 
+            Teleporter teleporter;
+            foreach (TiledMapObject obj in TeleporterLayer.Objects)
+            {
+                name = obj.Name ?? string.Empty;
+                teleporter = new(name)
+                {
+                    Position = obj.Position,
+                    Width = (int)obj.Size.Width,
+                    Height = (int)obj.Size.Height,
+                };
+
+                if (obj.Properties.TryGetValue("ToName", out TiledMapPropertyValue value))
+                {
+                    teleporter.ToName = value;
+                }
+
+                TeleporterManager.AddTeleporter(teleporter);
+            }
+
+            
+
+            //TODO add the to destinations to the teleporters
+
         }
 
         private void AddEnemys()

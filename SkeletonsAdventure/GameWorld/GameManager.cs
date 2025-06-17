@@ -6,12 +6,10 @@ using RpgLibrary.AttackData;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
-using RpgLibrary.QuestClasses;
 using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameObjects;
 using SkeletonsAdventure.ItemClasses;
-using SkeletonsAdventure.ItemLoot;
 using SkeletonsAdventure.Quests;
 using System;
 using System.Collections.Generic;
@@ -396,12 +394,12 @@ namespace SkeletonsAdventure.GameWorld
             GameItem Coins = ItemsClone["Coins"];
             Coins.Quantity = 10;
 
-            //Create the loot list
-            ItemList loots = new();
-            loots.Add(ItemsClone["Robes"]);
-            loots.Add(ItemsClone["Bones"]);
-            loots.Add(Coins.Clone());
-            loots.Add(ItemsClone["Sword"]);
+            //Create the list of items the entity could drop
+            ItemList droppableItems = new();
+            droppableItems.Add(ItemsClone["Robes"]);
+            droppableItems.Add(ItemsClone["Bones"]);
+            droppableItems.Add(Coins.Clone());
+            droppableItems.Add(ItemsClone["Sword"]);
 
             string EnemiesPath = Path.Combine(GamePath, "Content", "EntityData");
             string[] fileNames = Directory.GetFiles(EnemiesPath);
@@ -417,7 +415,7 @@ namespace SkeletonsAdventure.GameWorld
                 Type type = Type.GetType(data.type); //Get the type of the entity from the data
 
                 Enemy en = (Enemy)Activator.CreateInstance(type, data);
-                en.LootList = loots.Clone(); //Set the loot list for the entity
+                en.LootList = droppableItems.Clone(); //Set the loot list for the entity
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
             }

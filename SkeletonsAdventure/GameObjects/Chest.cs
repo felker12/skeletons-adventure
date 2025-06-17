@@ -5,7 +5,6 @@ using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using SkeletonsAdventure.ItemLoot;
 using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
