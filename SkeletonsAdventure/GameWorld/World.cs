@@ -18,10 +18,9 @@ namespace SkeletonsAdventure.GameWorld
     {
         public static Dictionary<string, Level> Levels { get; set; } = [];
         public static Level CurrentLevel { get; set; }
-        public static Player Player { get; set; }
-        public static Camera Camera { get; set; }
-        public static GameTime TotalTimeInWorld { get; set; }
-
+        public static Player Player { get; set; } = new();
+        public static Camera Camera { get; set; } = new(Game1.ScreenWidth, Game1.ScreenHeight);
+        public static GameTime TotalTimeInWorld { get; set; } = new();
 
         private TiledMap _tiledMap;
         private readonly ContentManager _content;
@@ -36,13 +35,6 @@ namespace SkeletonsAdventure.GameWorld
 
         public void Initialilze()
         {
-            Camera = new(Game1.ScreenWidth, Game1.ScreenHeight);
-            Player = new()
-            {
-                Position = new(80, 80),
-                RespawnPosition = new(80, 80)
-            };
-
             //Clear the levels dictionary because the levels are static and will persist between game instances
             Levels = []; 
             CreateLevels(_content, _graphics);
@@ -50,11 +42,6 @@ namespace SkeletonsAdventure.GameWorld
             //TODO
             //SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
-
-            //if (CurrentLevel.LevelExit is not null)
-               // Player.Position = CurrentLevel.LevelExit.ExitPosition - new Vector2(0,20); //TODO
-
-            TotalTimeInWorld = new();
         }
 
 
@@ -213,22 +200,28 @@ namespace SkeletonsAdventure.GameWorld
 
             foreach (TiledMapObject obj in level.EnterExitLayer.Objects)
             {
-                if (obj.Name == "Exit")
-                {
-                    level.LevelExit = new(obj, World.Levels[obj.Properties["ToLocation"]]);
-                    level.PlayerEndPosition = new((int)obj.Position.X, (int)obj.Position.Y);
-                }
                 if (obj.Name == "Entrance")
                 {
                     if(obj.Properties.TryGetValue("ToLocation", out TiledMapPropertyValue value))
-                        level.LevelEntrance = new(obj, World.Levels[value]);
+                        level.LevelEntrance = new(obj, Levels[value]);
 
                     level.PlayerStartPosition = new((int)obj.Position.X, (int)obj.Position.Y);
                     level.PlayerRespawnPosition = level.PlayerStartPosition;
                 }
+                if (obj.Name == "Exit")
+                {
+                    level.LevelExit = new(obj, Levels[obj.Properties["ToLocation"]]);
+                    level.PlayerEndPosition = new((int)obj.Position.X, (int)obj.Position.Y);
+                }
 
                 rec = new((int)obj.Position.X, (int)obj.Position.Y, (int)obj.Size.Width, (int)obj.Size.Height);
                 level.EnterExitLayerObjectRectangles.Add(rec);
+            }
+
+            //if there is no level exit positin set it to the level entrance position
+            if(level.LevelExit is null) 
+            {
+                level.PlayerEndPosition = level.PlayerStartPosition;
             }
         }
 

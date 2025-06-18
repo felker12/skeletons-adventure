@@ -1,41 +1,39 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkeletonsAdventure.GameObjects
 {
     public class TeleporterManager()
     {
-        private List<Teleporter> Teleporters { get; set; } = [];
-
-        public void Update()
+        public List<Teleporter> Teleporters { get; private set; } = [];
+        public bool Teleported { get; set; } = false;
+        
+        internal void Update(Player player)
         {
-            foreach (var teleporter in Teleporters)
+            if (Teleported)
+            {
+                Teleported = false;
+                return;
+            }
+
+            foreach (Teleporter teleporter in Teleporters)
             {
                 if (teleporter is null)
                     continue;
 
-                teleporter.Update(World.Player.GetRectangle);
+                teleporter.Update(player);
 
-                // Check if the player is within the teleporter's rectangle
-                if (teleporter.Intersects(World.Player.GetRectangle))
+                if(teleporter.Teleported)
                 {
-                    // Logic to handle player interaction with the teleporter
-                    if (teleporter.CheckRequirements())
-                    {
-                        // Logic to handle teleportation, e.g., moving the player to the destination
-                        //World.Player.Position = teleporter.Destination; //TODO?
-
-
-                        System.Diagnostics.Debug.WriteLine(teleporter.ToString());
-                    }
+                    Teleported = true;
+                    teleporter.Teleported = false;
+                    break;
                 }
             }
         }
@@ -44,16 +42,7 @@ namespace SkeletonsAdventure.GameObjects
         {
             foreach (var teleporter in Teleporters)
             {
-                if (teleporter.IsActive)//TODO
-                {
-                    // Draw the teleporter
-                    teleporter.Draw(spriteBatch);
-                }
-                else
-                {
-                    // Optionally draw inactive teleporters differently
-                    spriteBatch.DrawRectangle(teleporter.Rectangle, Color.Red, 1, 1);
-                }
+                teleporter.Draw(spriteBatch);
             }
         }
 
@@ -78,22 +67,12 @@ namespace SkeletonsAdventure.GameObjects
             Teleporters.Clear();
         }
 
-        public List<Teleporter> GetTeleporters()
-        {
-            return Teleporters;
-        }
-
         public Teleporter GetTeleporterByName(string name)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("Teleporter name cannot be null or empty.", nameof(name));
 
             return Teleporters.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public List<Teleporter> GetActiveTeleporters()
-        {
-            return [.. Teleporters.Where(t => t.IsActive)];
         }
 
         public void SetDestinationForAllTeleporters()
@@ -105,17 +84,17 @@ namespace SkeletonsAdventure.GameObjects
                 if (teleporter is null)
                     continue;
 
-                //foreach(string name in names)
-                //{
-                //    if (teleporter.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(teleporter.ToName))
-                //    {
-                //        var destinationTeleporter = GetTeleporterByName(teleporter.ToName);
-                //        if (destinationTeleporter != null)
-                //        {
-                //            teleporter.Destination = destinationTeleporter.Position;
-                //        }
-                //    }
-                //}
+                foreach(string name in names)
+                {
+                    if (teleporter.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(teleporter.DestinationName))
+                    {
+                        Teleporter destinationTeleporter = GetTeleporterByName(teleporter.DestinationName);
+                        if (destinationTeleporter != null)
+                        {
+                            teleporter.Destination = destinationTeleporter.Position;
+                        }
+                    }
+                }
 
                 //TODO add logic to set destination based on ToName
             }

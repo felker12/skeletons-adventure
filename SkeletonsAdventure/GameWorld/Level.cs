@@ -158,7 +158,7 @@ namespace SkeletonsAdventure.GameWorld
             CheckIfPlayerNearChest();
 
             InteractableObjectManager.Update(gameTime, Player);
-            TeleporterManager.Update();
+            TeleporterManager.Update(Player);
             DamagePopUpManager.Update(gameTime);
 
             if (LevelExit != null)
@@ -204,8 +204,6 @@ namespace SkeletonsAdventure.GameWorld
                     if(enemy.GetType().FullName == entityData.type)
                     {
                         Enemy en = (Enemy)Activator.CreateInstance(enemy.GetType(), entityData);
-                        //TODO
-                        //dynamic en = Activator.CreateInstance(enemy.GetType(), entityData);
                         en.SetEnemyLevel(entityData.entityLevel);
                         en.LootList.Add(GameManager.LoadGameItemsFromItemData(entityData.Items));
 
@@ -268,19 +266,23 @@ namespace SkeletonsAdventure.GameWorld
                     Width = (int)obj.Size.Width,
                     Height = (int)obj.Size.Height,
                 };
+                teleporter.Info.Position = teleporter.Position;
 
                 if (obj.Properties.TryGetValue("ToName", out TiledMapPropertyValue value))
                 {
-                    teleporter.ToName = value;
+                    teleporter.DestinationName = value;
                 }
 
                 TeleporterManager.AddTeleporter(teleporter);
             }
 
-            
-
             //TODO add the to destinations to the teleporters
+            TeleporterManager.SetDestinationForAllTeleporters();
 
+            foreach(Teleporter t in TeleporterManager.Teleporters)
+            {
+                t.ToString();
+            }
         }
 
         private void AddEnemys()
