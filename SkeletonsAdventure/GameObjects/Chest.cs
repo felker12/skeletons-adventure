@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.GameObjectClasses;
+﻿using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
 {

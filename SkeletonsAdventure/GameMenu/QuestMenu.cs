@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.Entities;
+﻿using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.Controls;
-using System;
-using System.Collections.Generic;
 using SkeletonsAdventure.Quests;
 using SkeletonsAdventure.GameUI;
 

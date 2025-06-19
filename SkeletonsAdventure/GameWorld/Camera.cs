@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
+﻿
 namespace SkeletonsAdventure.GameWorld
 {
     internal class Camera(int screenW, int screenH)

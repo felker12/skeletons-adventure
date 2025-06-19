@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.Controls;
+﻿using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameMenu

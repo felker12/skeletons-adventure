@@ -1,6 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿global using System.Diagnostics; //this is just for debugging purposes
+
+global using System;
+global using System.Collections.Generic;
+global using Microsoft.Xna.Framework;
+global using Microsoft.Xna.Framework.Content;
+global using Microsoft.Xna.Framework.Graphics;
+
 using MonoGame.Extended.Tiled;
 using RpgLibrary.AttackData;
 using RpgLibrary.EntityClasses;
@@ -11,8 +16,6 @@ using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameObjects;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 

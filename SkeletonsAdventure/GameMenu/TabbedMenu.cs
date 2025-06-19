@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.MenuClasses;
+﻿using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.Controls;
-using System;
-using System.Collections.Generic;
+
 namespace SkeletonsAdventure.GameMenu
 {
     internal class TabbedMenu : BaseMenu

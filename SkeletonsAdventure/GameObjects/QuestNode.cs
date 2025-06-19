@@ -1,12 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Tiled;
+﻿using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.Quests;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SkeletonsAdventure.GameObjects

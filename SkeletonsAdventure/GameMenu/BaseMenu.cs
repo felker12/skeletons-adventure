@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using RpgLibrary.MenuClasses;
+﻿using RpgLibrary.MenuClasses;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
 

@@ -1,6 +1,5 @@
 ﻿using RpgLibrary.QuestClasses;
 using SkeletonsAdventure.Entities;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SkeletonsAdventure.Quests

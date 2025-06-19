@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using MonoGame.Extended.Tiled;
+﻿using MonoGame.Extended.Tiled;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
-
 
 namespace SkeletonsAdventure.EntitySpawners
 {

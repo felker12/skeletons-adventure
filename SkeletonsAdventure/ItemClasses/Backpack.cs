@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using RpgLibrary.ItemClasses;
-
+﻿
 namespace SkeletonsAdventure.ItemClasses
 {
     internal class Backpack() : ItemList

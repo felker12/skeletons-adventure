@@ -113,7 +113,7 @@ namespace SkeletonsAdventure.Entities
         {
             foreach(GameItem item in DroppedLootManager.Items)
             {
-                if (Player.GetRectangle.Intersects(item.ItemRectangle) && Player.Backpack.Add(item) == true)
+                if (Player.Rectangle.Intersects(item.ItemRectangle) && Player.Backpack.Add(item) == true)
                     DroppedLootManager.ItemToRemove.Add(item);
             }
         }
@@ -151,7 +151,7 @@ namespace SkeletonsAdventure.Entities
                         if (CheckForPlayer(enemy)) 
                             enemy.CheckedLastAtackArea = true;
 
-                        if (enemy.GetRectangle.Intersects(new((int)enemy.PositionLastAttackedFrom.X, (int)enemy.PositionLastAttackedFrom.Y, 1, 1)))
+                        if (enemy.Rectangle.Intersects(new((int)enemy.PositionLastAttackedFrom.X, (int)enemy.PositionLastAttackedFrom.Y, 1, 1)))
                         {
                             enemy.CheckedLastAtackArea = true;
                             if (CheckForPlayer(enemy))
@@ -172,7 +172,7 @@ namespace SkeletonsAdventure.Entities
         {
             bool playerInRange = false;
 
-            if (enemy.DetectionArea.Intersects(Player.GetRectangle))
+            if (enemy.DetectionArea.Intersects(Player.Rectangle))
             {
                 playerInRange = true;
             }
@@ -180,7 +180,7 @@ namespace SkeletonsAdventure.Entities
             enemy.Motion = Vector2.Zero; //Stops any motion caused by another method
 
             //if the enemy detects the player then move towerds the player
-            if (!enemy.GetRectangle.Intersects(Player.GetRectangle))
+            if (!enemy.Rectangle.Intersects(Player.Rectangle))
                 enemy.PathToPoint(Player.Position);
             else
                 enemy.FaceTarget(Player);
@@ -206,7 +206,7 @@ namespace SkeletonsAdventure.Entities
         private static void CheckCollision(AnimatedSprite entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
             Vector2 pos = entity.Position;
-            Rectangle rec = entity.GetRectangle;
+            Rectangle rec = entity.Rectangle;
             int width = tiledMap.TileWidth;
             int height = tiledMap.TileHeight;
 

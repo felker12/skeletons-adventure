@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.EntityClasses;
+﻿using RpgLibrary.EntityClasses;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -8,7 +6,6 @@ namespace SkeletonsAdventure.Entities
     {
         public EliteSkeleton(EntityData entityData) : base(entityData)
         {
-            ID = 842;
             IsElite = true;
         }
 

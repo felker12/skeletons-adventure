@@ -99,7 +99,7 @@ namespace SkeletonsAdventure.Attacks
 
             if (AttackVisible)
             {
-                spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+                spriteBatch.DrawRectangle(Rectangle, SpriteColor, 1, 0); //TODO
                 spriteBatch.DrawRectangle(DamageHitBox, Color.OrangeRed, 1, 0); //TODO
 
 
@@ -241,7 +241,7 @@ namespace SkeletonsAdventure.Attacks
             $"Visible: {AttackVisible}, " + 
             $"Motion: {Motion}, " +
             $"DamageHitBox: {DamageHitBox}, " +
-            $"Rectangle: {GetRectangle}, ";
+            $"Rectangle: {Rectangle}, ";
 
             return ToString;
         }

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.States;
@@ -38,11 +36,9 @@ namespace SkeletonsAdventure
             IsMouseVisible = true;
 
             GameManager = new(this);
-
             Components.Add(new InputHandler(this));
             GameScreen = new(this);
             ExitScreen = new(this);
-
 
             //TODO delete this: it uncaps the FPS
             //IsFixedTimeStep = false;

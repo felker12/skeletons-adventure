@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RpgLibrary.ItemClasses;
+﻿using RpgLibrary.ItemClasses;
 
 namespace SkeletonsAdventure.ItemClasses
 {

@@ -1,15 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using RpgLibrary.EntityClasses;
+﻿using RpgLibrary.EntityClasses;
 
 namespace SkeletonsAdventure.Entities
 {
-    internal class Skeleton : Enemy
+    internal class Skeleton(EntityData entityData) : Enemy(entityData)
     {
-        public Skeleton(EntityData entityData) : base(entityData)
-        {
-        }
-
         public override Skeleton Clone()
         {
             Skeleton skeleton = new(GetEntityData())

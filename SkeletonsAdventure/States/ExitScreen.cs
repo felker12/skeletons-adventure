@@ -1,11 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.DataClasses;
+﻿using RpgLibrary.DataClasses;
 using RpgLibrary.MenuClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.GameMenu;
 using SkeletonsAdventure.GameWorld;
-using System;
 using System.IO;
 
 namespace SkeletonsAdventure.States

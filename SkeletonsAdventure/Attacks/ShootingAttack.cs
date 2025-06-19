@@ -18,7 +18,6 @@ namespace SkeletonsAdventure.Attacks
 
         public ShootingAttack(ShootingAttack attack) : base(attack)
         {
-            PathPoints = [];
         }
 
         public override ShootingAttack Clone()
@@ -38,7 +37,7 @@ namespace SkeletonsAdventure.Attacks
             base.Update(gameTime);
 
             if (Duration.TotalMilliseconds % 50 < 1)
-                PathPoints.Add(GetCenter());
+                PathPoints.Add(Center);
         }
 
         private void DrawPath(SpriteBatch spriteBatch)
@@ -63,7 +62,7 @@ namespace SkeletonsAdventure.Attacks
         //TODO
         public void MoveInPositionDirection(Vector2 target)
         {
-            Motion = Vector2.Normalize(target - GetCenter()) * Speed;
+            Motion = Vector2.Normalize(target - Center) * Speed;
         }
 
         public void SetRotationBasedOffMotion()

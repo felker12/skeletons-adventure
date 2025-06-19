@@ -1,7 +1,4 @@
-﻿using CppNet;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.ItemClasses;
@@ -10,8 +7,6 @@ using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using System;
-using System.Collections.Generic;
 using Effect = RpgLibrary.ItemClasses.Effect;
 using SkeletonsAdventure.Quests;
 
@@ -154,7 +149,7 @@ namespace SkeletonsAdventure.Entities
             //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
 
             if (AimVisible)
-                spriteBatch.DrawLine(GetMousePosition(), GetPlayerCenter(), Color.White, 1);
+                spriteBatch.DrawLine(GetMousePosition(), Center, Color.White, 1);
         }
 
         public override void Update(GameTime gameTime)
@@ -183,12 +178,12 @@ namespace SkeletonsAdventure.Entities
             //Info.Text += $"\nCurrent Animation = {CurrentAnimation}";
 
             //Info.Text += "\nFPS = " + (1 / gameTime.ElapsedGameTime.TotalSeconds);
-            Info.Text += "\nActive quests: " + ActiveQuests.Count;
+            //Info.Text += "\nActive quests: " + ActiveQuests.Count;
 
-            if (ActiveQuests.Count > 0 && ActiveQuests[0].ActiveTask != null)
-                Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
-            else
-                Info.Text += "\nActive task: None";
+            //if (ActiveQuests.Count > 0 && ActiveQuests[0].ActiveTask != null)
+            //    Info.Text += "\nActive task: " + ActiveQuests[0].ActiveTask.ToString();
+            //else
+            //    Info.Text += "\nActive task: None";
 
             //Info.Text += $"{Position}";
             //Info.Text += $"\nbonusAttackFromLevel = {bonusAttackFromLevel}";
@@ -515,11 +510,6 @@ namespace SkeletonsAdventure.Entities
                 else
                     AimVisible = true;
             }
-        }
-
-        public Vector2 GetPlayerCenter()
-        {
-            return Position + new Vector2(Width / 2, Height / 2);
         }
 
         public static Vector2 GetMousePosition()

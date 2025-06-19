@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended.Tiled;
+﻿using MonoGame.Extended.Tiled;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameObjects

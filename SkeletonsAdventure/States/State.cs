@@ -1,7 +1,4 @@
 ﻿using SkeletonsAdventure.Controls;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.States

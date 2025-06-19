@@ -88,7 +88,7 @@ namespace SkeletonsAdventure.Attacks
                             continue;
                         if (entity is Enemy && SourceEntity is Enemy) //This line prevents enemies from attacking other enemies
                             continue;
-                        if (entity.GetRectangle.Intersects(attack.DamageHitBox))
+                        if (entity.Rectangle.Intersects(attack.DamageHitBox))
                             entity.GetHitByAttack(attack, gameTime);
                     }
                 }

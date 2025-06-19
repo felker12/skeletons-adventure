@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
@@ -72,7 +70,7 @@ namespace SkeletonsAdventure.GameObjects
             if (Info.Visible)
                 Info.Draw(spriteBatch);
 
-            spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            spriteBatch.DrawRectangle(Rectangle, SpriteColor, 1, 0); //TODO
         }
 
         public virtual InteractableObject Clone()
@@ -96,7 +94,7 @@ namespace SkeletonsAdventure.GameObjects
         {
             if(Active)
             {
-                if (GetRectangle.Intersects(player.GetRectangle))
+                if (Rectangle.Intersects(player.Rectangle))
                     Info.Visible = true;
                 else
                     Info.Visible = false;

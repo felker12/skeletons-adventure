@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-
+﻿
 namespace SkeletonsAdventure.States
 {
     internal class StateManager()

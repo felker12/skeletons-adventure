@@ -1,10 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+﻿using MonoGame.Extended;
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
-using System;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -127,7 +124,7 @@ namespace SkeletonsAdventure.Entities
         public void AutoAttack(Player player, GameTime gameTime)
         {
             //attack the player if the player is close enough
-            if (AttackArea.Intersects(player.GetRectangle))
+            if (AttackArea.Intersects(player.Rectangle))
             {
                 //TODO: add logic for other types of attacks (probably move this logic to the enemy)
                 //so there can be attacks based on what the enemy is

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.EntityClasses;
+﻿using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Animations;
 using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Engines;
@@ -8,23 +6,19 @@ using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
-using System;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
     internal class Entity : AnimatedSprite
     {
         public int baseDefence = 1, baseAttack = 1, baseHealth = 1, baseXP = 1, weaponAttack = 0, armourDefence = 0;
-        public Texture2D basicAttackTexture;
+        public Texture2D basicAttackTexture = GameManager.SkeletonAttackTexture;
         public TimeSpan lastDeathTime = new();
-        public Vector2 RespawnPosition = Vector2.Zero;
+        public Vector2 RespawnPosition { get; set; } = Vector2.Zero;
         public string Type { get; set; } = string.Empty;
-        public StatusBar HealthBar = new();
-
-        //TODO load the cooldown length from the entity data instead of being hard coded
+        public StatusBar HealthBar { get; set; } = new();
         public int AttackCoolDownLength { get; protected set; } = 600; //length of the delay between attacks in milliseconds
-        public AttackManager AttackManager { get; set; }
+        public AttackManager AttackManager { get; set; } 
         public EntityAttack EntityAttack { get; set; }
         public List<EntityAttack> AttacksHitBy { get; set; } = [];
         public int ID { get; protected set; } = 0;
@@ -70,7 +64,6 @@ namespace SkeletonsAdventure.Entities
             Attack = baseAttack;
 
             XP = baseXP;
-            basicAttackTexture = GameManager.SkeletonAttackTexture;
             EntityAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
         }
 
@@ -161,7 +154,7 @@ namespace SkeletonsAdventure.Entities
             AttacksHitBy.Add(attack);
 
             int dmg = (int)(DamageEngine.CalculateDamage(attack.Source, this) * attack.DamageModifier);
-            DamagePopUp damagePopUp = new(dmg.ToString(), GetCenter());
+            DamagePopUp damagePopUp = new(dmg.ToString(), Center);
 
             if (this is Enemy)
                 damagePopUp.Color = Color.Cyan;
@@ -175,7 +168,7 @@ namespace SkeletonsAdventure.Entities
             Health -= dmg;
 
             LastTimeAttacked = gameTime.TotalGameTime;
-            PositionLastAttackedFrom = attack.Source.GetCenter();
+            PositionLastAttackedFrom = attack.Source.Center;
 
             if (Health < 1)
                 EntityDied(attack);

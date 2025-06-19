@@ -1,8 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using RpgLibrary.EntityClasses;
+﻿using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Quests;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {

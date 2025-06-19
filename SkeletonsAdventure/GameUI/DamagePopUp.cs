@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.GameWorld;
+﻿using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.GameUI
 {
@@ -22,9 +20,7 @@ namespace SkeletonsAdventure.GameUI
             Position = position;
         }
 
-        public DamagePopUp() 
-        { 
-        }
+        public DamagePopUp() { }
 
         public void Update(GameTime gameTime)
         {

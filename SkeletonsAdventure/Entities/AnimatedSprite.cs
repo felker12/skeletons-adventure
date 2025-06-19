@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using SkeletonsAdventure.Animations;
-using System;
-using System.Collections.Generic;
+﻿using SkeletonsAdventure.Animations;
 
 namespace SkeletonsAdventure.Entities
 {

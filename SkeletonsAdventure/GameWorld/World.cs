@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Tiled;
 using RpgLibrary.DataClasses;
 using RpgLibrary.ItemClasses;
@@ -9,8 +6,6 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.ItemClasses;
-using System;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -171,17 +166,17 @@ namespace SkeletonsAdventure.GameWorld
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
             Levels.Add(level.Name, level);
 
-            //Level 1
+            //Level 1_Old
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1_Old");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
-            //Level 0
+            //Level 0_Old
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_Old");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
-            //Level 0 v2
+            //Level 0
             _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
             level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
             Levels.Add(level.Name, level);

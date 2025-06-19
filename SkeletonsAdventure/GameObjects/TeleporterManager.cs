@@ -1,18 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
-using SkeletonsAdventure.Entities;
-using SkeletonsAdventure.GameWorld;
-using System;
-using System.Collections.Generic;
+﻿using SkeletonsAdventure.Entities;
 using System.Linq;
 
 namespace SkeletonsAdventure.GameObjects
 {
-    public class TeleporterManager()
+    internal class TeleporterManager()
     {
-        public List<Teleporter> Teleporters { get; private set; } = [];
-        public bool Teleported { get; set; } = false;
+        internal List<Teleporter> Teleporters { get; private set; } = [];
+        internal bool Teleported { get; set; } = false;
         
         internal void Update(Player player)
         {
@@ -38,7 +32,7 @@ namespace SkeletonsAdventure.GameObjects
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        internal void Draw(SpriteBatch spriteBatch)
         {
             foreach (var teleporter in Teleporters)
             {
@@ -46,7 +40,7 @@ namespace SkeletonsAdventure.GameObjects
             }
         }
 
-        public void AddTeleporter(Teleporter teleporter)
+        internal void AddTeleporter(Teleporter teleporter)
         {
             if (teleporter is null)
                 throw new ArgumentNullException(nameof(teleporter), "Teleporter cannot be null.");
@@ -54,7 +48,7 @@ namespace SkeletonsAdventure.GameObjects
             Teleporters.Add(teleporter);
         }
 
-        public void RemoveTeleporter(Teleporter teleporter)
+        internal void RemoveTeleporter(Teleporter teleporter)
         {
             if (teleporter is null)
                 throw new ArgumentNullException(nameof(teleporter), "Teleporter cannot be null.");
@@ -62,12 +56,12 @@ namespace SkeletonsAdventure.GameObjects
             Teleporters.Remove(teleporter);
         }
 
-        public void ClearTeleporters()
+        internal void ClearTeleporters()
         {
             Teleporters.Clear();
         }
 
-        public Teleporter GetTeleporterByName(string name)
+        internal Teleporter GetTeleporterByName(string name)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentException("Teleporter name cannot be null or empty.", nameof(name));
@@ -75,7 +69,7 @@ namespace SkeletonsAdventure.GameObjects
             return Teleporters.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public void SetDestinationForAllTeleporters()
+        internal void SetDestinationForAllTeleporters()
         {
             List<string> names = [.. Teleporters.Select(t => t.Name).Distinct()];
 
@@ -95,8 +89,6 @@ namespace SkeletonsAdventure.GameObjects
                         }
                     }
                 }
-
-                //TODO add logic to set destination based on ToName
             }
         }
     }

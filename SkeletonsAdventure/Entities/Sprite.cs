@@ -1,48 +1,33 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+﻿using MonoGame.Extended;
 using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.GameWorld;
-using MonoGame.Extended;
 
 namespace SkeletonsAdventure.Entities
 {
     internal class Sprite
     {
-        public Texture2D Texture { get; set; }
-        public Label Info { get; set; }
-        public Rectangle GetRectangle => new((int)Position.X, (int)Position.Y, Width, Height);
-        public Rectangle Frame { get; set; }
+        public Texture2D Texture { get; set; } = GameManager.SkeletonTexture;
         public Color DefaultColor { get; set; } = Color.White;
-        public Color SpriteColor { get; set; }
+        public Color SpriteColor { get; set; } = Color.White;
         public Vector2 Position { get; set; } = new();
         public Vector2 Motion { get; set; } = new();
         public float Speed { get; set; } = 1.5f;
         public int Width { get; set; } = 32;
         public int Height { get; set; } = 32;
+        public Rectangle Frame { get; set; } = new(0, 0, 32, 32);
         public float RotationAngle { get; set; } = 0.0f;
         public float Scale { get; set; } = 1.0f;
         //TODO make use of the CanMove property. For example when the entity is stunned or frozen or casting a spell
-        public bool CanMove { get; set; } = true; 
-
-        public Sprite()
+        public bool CanMove { get; set; } = true;
+        public Label Info { get; set; } = new(string.Empty)
         {
-            Texture = GameManager.SkeletonTexture; //default to the player/skeleton sprite
-            Initialize();
-        }
+            Visible = true,
+        };
+        public Rectangle Rectangle => new((int)Position.X, (int)Position.Y, Width, Height);
+        public Vector2 FrameCenter => new(Width / 2, Height / 2);
+        public Vector2 Center => Position + FrameCenter;
 
-        private void Initialize()
-        {
-            SpriteColor = DefaultColor;
-            Info = new()
-            {
-                Text = "",
-                Position = new Vector2(Position.X, Position.Y),
-                TextColor = Color.White,
-                SpriteFont = GameManager.Arial12
-            };
-
-            Frame = new(0, 0, Width, Height);
-        }
+        public Sprite() { }
 
         public virtual void Update(GameTime gameTime)
         {
@@ -53,12 +38,10 @@ namespace SkeletonsAdventure.Entities
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 FrameCenter = new(Frame.Width / 2, Frame.Height / 2);
-
-            spriteBatch.Draw(Texture, Position + FrameCenter, Frame, SpriteColor, RotationAngle, FrameCenter, Scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, Center, Frame, SpriteColor, RotationAngle, FrameCenter, Scale, SpriteEffects.None, 1);
             //spriteBatch.Draw(Texture, Position, Frame, SpriteColor);
 
-            //spriteBatch.DrawRectangle(GetRectangle, SpriteColor, 1, 0); //TODO
+            //spriteBatch.DrawRectangle(Rectangle, SpriteColor, 1, 0); //TODO
 
             Info.Draw(spriteBatch);
         }
@@ -67,11 +50,6 @@ namespace SkeletonsAdventure.Entities
         {
             return new(MathHelper.Clamp(position.X, 0, World.CurrentLevel.Width - Width),
                 MathHelper.Clamp(position.Y, 0, World.CurrentLevel.Height - Height));
-        }
-
-        public Vector2 GetCenter()
-        {
-            return Position + new Vector2(Width / 2, Height / 2);
         }
     }
 }

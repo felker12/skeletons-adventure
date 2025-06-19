@@ -1,16 +1,12 @@
 ﻿using SkeletonsAdventure.Controls;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using SkeletonsAdventure.GameWorld;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Entities;
-using System;
 using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
-using System.Collections.Generic;
 using SkeletonsAdventure.GameUI;
 
 namespace SkeletonsAdventure.States

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using RpgLibrary.EntityClasses;
+﻿using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Entities

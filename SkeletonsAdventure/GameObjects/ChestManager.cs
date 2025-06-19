@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Tiled;
+﻿using MonoGame.Extended.Tiled;
 using RpgLibrary.GameObjectClasses;
 using SkeletonsAdventure.GameWorld;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameObjects
 {

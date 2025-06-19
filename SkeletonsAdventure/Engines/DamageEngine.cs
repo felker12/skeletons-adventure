@@ -1,5 +1,4 @@
 ﻿using SkeletonsAdventure.Entities;
-using System;
 
 namespace SkeletonsAdventure.Engines
 {

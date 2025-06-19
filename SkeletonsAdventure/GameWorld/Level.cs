@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
@@ -13,22 +11,17 @@ using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.EntitySpawners;
 using SkeletonsAdventure.GameObjects;
 using SkeletonsAdventure.GameUI;
-using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
-using System;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.GameWorld
 {
     internal class Level
     {
-        public Label title;
         public int Width { get; set; }
         public int Height { get; set; }
         public string Name { get; set; } = string.Empty;
-        protected ControlManager ControlManager { get; set; }
-        public Player Player { get; set; } = World.Player; //TODO this is a temporary fix to get the player working in the level
-        public Camera Camera { get; set; } = World.Camera; //TODO this is a temporary fix to get the camera working in the level
+        public Player Player { get; set; } = World.Player; 
+        public Camera Camera { get; set; } = World.Camera; 
         public EntityManager EntityManager { get; set; }
         public TiledMap TiledMap { get; private set; }
         public MinMaxPair EnemyLevels { get; set; }
@@ -71,9 +64,7 @@ namespace SkeletonsAdventure.GameWorld
 
             LoadInteractableObjects();
             LoadTeleporters();
-            CreateControls();
         }
-
 
         private void CreateMap(TiledMap tiledMap)
         {
@@ -90,23 +81,6 @@ namespace SkeletonsAdventure.GameWorld
             Width = tiledMap.WidthInPixels;
             Height = tiledMap.HeightInPixels;
             Name = tiledMap.Name[11..]; //trim "TiledFiles/" from the tiledmap name to use as the level name
-        }
-
-        private void CreateControls()
-        {
-            //TODO controls are temporary and used for debugging
-            title = new Label
-            {
-                Text = Name,
-                TextColor = Color.Orange
-            };
-            title.Position = new Vector2(Game1.ScreenWidth / 2 - (title.SpriteFont.MeasureString(title.Text)).X / 2, 20);
-
-            ControlManager = new(GameManager.Arial12)
-            {
-                title
-            };
-            //======================
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -136,7 +110,6 @@ namespace SkeletonsAdventure.GameWorld
                 spriteBatch.DrawString(GameManager.Arial12, LevelExit.ExitText, LevelExit.ExitPosition, Color.White);
 
             EntityManager.Draw(spriteBatch);
-            ControlManager.Draw(spriteBatch);
             DamagePopUpManager.Draw(spriteBatch);
 
             spriteBatch.End();
@@ -278,11 +251,6 @@ namespace SkeletonsAdventure.GameWorld
 
             //TODO add the to destinations to the teleporters
             TeleporterManager.SetDestinationForAllTeleporters();
-
-            foreach(Teleporter t in TeleporterManager.Teleporters)
-            {
-                t.ToString();
-            }
         }
 
         private void AddEnemys()
@@ -304,7 +272,7 @@ namespace SkeletonsAdventure.GameWorld
             Chest chestToOpen = null;
             foreach (Chest chest in ChestManager.Chests)
             {
-                if (chest.PlayerIntersects(Player.GetRectangle))
+                if (chest.PlayerIntersects(Player.Rectangle))
                 {
                     if(chest.Loot.Count > 0) //Cannot open empty chests
                     {
@@ -322,7 +290,7 @@ namespace SkeletonsAdventure.GameWorld
 
         public void CheckIfPlayerIsNearExit(LevelExit exit, Vector2 targetPosition)
         {
-            if (exit.ExitArea.Intersects(Player.GetRectangle))
+            if (exit.ExitArea.Intersects(Player.Rectangle))
             {
                 exit.ExitTextVisible = true;
 

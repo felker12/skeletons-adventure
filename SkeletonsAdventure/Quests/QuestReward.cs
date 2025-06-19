@@ -2,7 +2,6 @@
 using RpgLibrary.QuestClasses;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace SkeletonsAdventure.Quests
