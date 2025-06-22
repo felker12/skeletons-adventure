@@ -19,23 +19,22 @@ namespace SkeletonsAdventure.ItemClasses
         public int Price { get; set; } = 0;
         public float Weight { get; set;} = 0f;
         public bool Stackable { get; set; } = false;
-        public bool Equipped { get; set; } = false; 
-        public Label ToolTip { get; set; }
+        public bool Equipped { get; set; } = false;
+        public Label ToolTip { get; set; } = new()
+        {
+            Visible = false,
+            SpriteFont = GameManager.Arial10,
+            TextColor = Color.Aqua
+        };
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string TexturePath { get; set; } = string.Empty;
 
         public GameItem(BaseItem item, int quantity, Texture2D texture) : this(item)
         {
-            Image ??= texture;
+            BaseItem = item.Clone();
+            Image = texture;
             Quantity = quantity;
-
-            ToolTip ??= new()
-            {
-                Visible = false,
-                SpriteFont = GameManager.Arial10,
-                TextColor = Color.Aqua
-            };
         }
 
         public GameItem(BaseItem item)
@@ -52,13 +51,6 @@ namespace SkeletonsAdventure.ItemClasses
             Price = item.Price;
             Weight = item.Weight;
             Equipped = item.Equipped;
-
-            ToolTip = new()
-            {
-                Visible = false,
-                SpriteFont = GameManager.Arial10,
-                TextColor = Color.Aqua
-            };
 
             if (Stackable)
                 ToolTip.Text = Quantity + " " + Name;
@@ -95,11 +87,6 @@ namespace SkeletonsAdventure.ItemClasses
             };
             Quantity = gameItem.Quantity;
             Position = gameItem.Position;
-        }
-
-        public GameItem(ItemData data)
-        {
-            //TODO
         }
 
         public GameItem Clone()

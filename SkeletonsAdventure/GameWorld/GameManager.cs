@@ -281,6 +281,15 @@ namespace SkeletonsAdventure.GameWorld
             return PlayerLevelXPs[level];
         }
 
+        //Get an item from the items dictionary by its name
+        public static GameItem GetItemByName(string name)
+        {
+            if (ItemsClone.TryGetValue(name, out GameItem item))
+                return item.Clone();
+            else
+                return null;
+        }
+
         //Set the Colors
         private static void SetColors()
         {

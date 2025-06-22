@@ -4,7 +4,7 @@ namespace SkeletonsAdventure.Engines
     internal class DropTableItem
     {
         public string ItemName { get; set; } = string.Empty;
-        public int DropChance { get; set; } = 0; // Represents the chance of the item dropping, e.g., 10 for 10%
+        public int DropChance { get; set; } = 1; // Represents the chance of the item dropping, e.g., 10 for 10%
         public int MinQuantity { get; set; } = 1;
         public int MaxQuantity { get; set; } = 1;
 

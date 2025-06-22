@@ -1,9 +1,16 @@
 ﻿
+using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.ItemClasses;
+using System.Linq;
+
 namespace SkeletonsAdventure.Engines
 {
     internal class DropTable
     {
         private List<DropTableItem> DropTableList { get; set; } = [];
+        private static Random Random { get; set; } = new Random(); // Random number generator
+        private int RandomIndex { get; set; } // Index for random item selection
+
         private readonly int _maxDropChance = 100; // Represents the total drop chance, default is 100%
         public string[] ItemNames; // Array to hold item names based on drop chance
 
@@ -11,11 +18,14 @@ namespace SkeletonsAdventure.Engines
         {
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
         }
+
         public DropTable(List<DropTableItem> dropTableList)
         {
             DropTableList = dropTableList;
 
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
+
+            PopulateItemNames();
         }
 
         public List<DropTableItem> GetDropTableList()
@@ -23,7 +33,83 @@ namespace SkeletonsAdventure.Engines
             return DropTableList;
         }
 
-        public int RemainingDropChance()
+        public GameItem GetDrop()
+        {
+            GameItem gameItem = null;
+
+            if(ValidateAndPopulateItemNames() is false)
+                return null; // If item names are not populated, return null
+
+            for (int i = 0; i < _maxDropChance; i++)
+            {
+                gameItem = GetRandomItem(); // Get a random item from the drop table
+
+                if (gameItem is not null)
+                    break; // If a valid item is found, exit the loop
+            }
+
+            return gameItem; // Return the game item if found, otherwise return null
+        }
+
+        private bool ValidateAndPopulateItemNames()
+        {
+            if (IsItemNamesPopulated() is false) // Check if ItemNames array is populated with item names
+            {
+                PopulateItemNames(); // Populate the ItemNames array if not already done
+
+                if (IsItemNamesPopulated() is false) // Check if ItemNames array is populated with item names after populating
+                {
+                    return false; // If still not populated, return false
+                }
+            }
+
+            return true;
+        }
+
+        private GameItem GetRandomItem()
+        {
+            if (DropTableList.Count == 0)
+                return null; // Return null if there are no items in the drop table
+
+            RandomIndex = Random.Next(0, _maxDropChance + 1); // Get a random index based on the length of ItemNames array
+
+            string itemName = ItemNames[RandomIndex]; // Get the item name from the ItemNames array
+
+            if (itemName == string.Empty)
+                return null; // If the item name is empty, return null
+
+            return GameManager.GetItemByName(itemName); // Retrieve the item by name and return it
+        }
+
+        private bool IsItemNamesPopulated()
+        {
+            // Check if ItemNames array is populated with at least one non-empty item name
+            return ItemNames.Any(name => !string.IsNullOrEmpty(name));
+        }
+
+        //fills the ItemNames array with item names based on their drop chances
+        public void PopulateItemNames()
+        {
+            for (int i = 0; i < _maxDropChance; i++)
+            {
+                ItemNames[i] = string.Empty; // Initialize all item names to empty
+            }
+
+            int index = 0; // Index to track the position in ItemNames array
+            foreach (var item in DropTableList)
+            {
+                if (RemainingSpace() < item.DropChance)
+                    return; // If remaining drop chance is less than the item's drop chance, exit the method
+
+                for (int i = 0; i < item.DropChance; i++)
+                {
+                    ItemNames[index] = item.ItemName; // Assign the item name to the ItemNames array
+                    index++; // Move to the next index in the ItemNames array
+                }
+            }
+        }
+
+        public int RemainingSpace()
         {
             return _maxDropChance - TotalDropChance(); // Returns the remaining chance. Used to check if more items can be added.
         }
