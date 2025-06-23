@@ -1,4 +1,5 @@
 ﻿
+using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using System.Linq;
@@ -14,18 +15,31 @@ namespace SkeletonsAdventure.Engines
         private readonly int _maxDropChance = 100; // Represents the total drop chance, default is 100%
         public string[] ItemNames; // Array to hold item names based on drop chance
 
-        public DropTable() 
+        public DropTable()
         {
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
         }
 
-        public DropTable(List<DropTableItem> dropTableList)
+        private DropTable(List<DropTableItem> dropTableList)
         {
-            DropTableList = dropTableList;
+            DropTableList = dropTableList; //doesn't validate the drop table list, just assigns it //TODO
 
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
 
             PopulateItemNames();
+        }
+
+        public DropTableData ToData()
+        {
+            return new()
+            {
+                DropTableList = [.. DropTableList.Select(item => item.ToData())] // Convert each DropTableItem to DropTableItemData
+            };
+        }
+
+        public DropTable Clone()
+        {
+            return new(DropTableList);
         }
 
         public List<DropTableItem> GetDropTableList()
@@ -37,7 +51,7 @@ namespace SkeletonsAdventure.Engines
         {
             GameItem gameItem = null;
 
-            if(ValidateAndPopulateItemNames() is false)
+            if (ValidateAndPopulateItemNames() is false)
                 return null; // If item names are not populated, return null
 
             for (int i = 0; i < _maxDropChance; i++)
@@ -127,7 +141,7 @@ namespace SkeletonsAdventure.Engines
 
         public bool AddItem(DropTableItem item)
         {
-            if(TotalDropChance() >= 100)
+            if (TotalDropChance() >= 100)
             {
                 return false; // Cannot add item if total drop chance is already 100% or more
             }
@@ -139,6 +153,17 @@ namespace SkeletonsAdventure.Engines
         public void RemoveItem(DropTableItem item)
         {
             DropTableList.Remove(item);
+        }
+
+        public void Clear()
+        {
+            DropTableList.Clear(); // Clears the drop table list
+            ItemNames = new string[_maxDropChance]; // Reinitialize the ItemNames array
+        }
+
+        public override string ToString()
+        {
+            return string.Join(", ", DropTableList.Select(item => item.ToString())); // Returns a string representation of the drop table items
         }
     }
 }

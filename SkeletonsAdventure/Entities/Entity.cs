@@ -37,6 +37,7 @@ namespace SkeletonsAdventure.Entities
         public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
         public Vector2 PositionLastAttackedFrom { get; set; }
+        public DropTable DropTable { get; set; } = new(); //TODO change to use a string for the name of the drop table
 
         public Entity() : base()
         {
@@ -114,7 +115,8 @@ namespace SkeletonsAdventure.Entities
                 entityLevel = Level,
                 isDead = IsDead,
                 lastDeathTime = lastDeathTime,
-                Items = LootList.GetItemListItemData()
+                Items = LootList.GetItemListItemData(),
+                DropTableData = DropTable.ToData(),
             };
         }
 
@@ -144,7 +146,8 @@ namespace SkeletonsAdventure.Entities
             {
                 Position = Position,
                 Level = this.Level,
-                SpriteColor = this.SpriteColor
+                SpriteColor = this.SpriteColor,
+                DropTable = this.DropTable.Clone(),
             };
             return entity;
         }

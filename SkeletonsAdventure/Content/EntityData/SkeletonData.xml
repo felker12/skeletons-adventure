@@ -2,6 +2,9 @@
 <XnaContent xmlns:EntityClasses="RpgLibrary.EntityClasses">
   <Asset Type="EntityClasses:EntityData">
     <Items />
+	<DropTableData>
+		<DropTableList/>
+	</DropTableData>
     <id>836</id>
     <type>SkeletonsAdventure.Entities.Skeleton</type>
     <baseHealth>20</baseHealth>

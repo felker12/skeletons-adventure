@@ -6,6 +6,7 @@ namespace RpgLibrary.EntityClasses
     public class EntityData
     {
         public List<ItemData> Items { get; set; } = new();
+        public DropTableData DropTableData { get; set; } = new DropTableData();
 
         public int id = 0;
         public string type = string.Empty;

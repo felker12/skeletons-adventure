@@ -1,4 +1,6 @@
 ﻿
+using RpgLibrary.ItemClasses;
+
 namespace SkeletonsAdventure.Engines
 {
     internal class DropTableItem
@@ -22,6 +24,16 @@ namespace SkeletonsAdventure.Engines
         {
             ItemName = itemName;
             DropChance = dropChance;
+        }
+
+        public DropTableItem Clone()
+        {
+            return new(ItemName, DropChance, MinQuantity, MaxQuantity);
+        }
+
+        public DropTableItemData ToData()
+        {
+            return new(ItemName, DropChance, MinQuantity, MaxQuantity);
         }
 
         public override string ToString()

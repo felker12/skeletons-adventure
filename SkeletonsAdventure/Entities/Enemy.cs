@@ -2,6 +2,7 @@
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -17,6 +18,11 @@ namespace SkeletonsAdventure.Entities
             (int)Position.Y - Width, Width * 3, Height + Width * 2);
 
         public Enemy(EntityData entityData) : base(entityData)
+        {
+            Initialize();
+        }
+
+        public Enemy() : base()
         {
             Initialize();
         }
@@ -92,7 +98,11 @@ namespace SkeletonsAdventure.Entities
             Enemy enemy = new(GetEntityData())
             {
                 Position = Position,
-                LootList = LootList
+                LootList = LootList,
+                Level = this.Level,
+                SpriteColor = this.SpriteColor,
+                DefaultColor = this.DefaultColor,
+                DropTable = this.DropTable.Clone(),
             };
             return enemy;
         }

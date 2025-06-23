@@ -1,17 +1,16 @@
-﻿global using System.Diagnostics; //this is just for debugging purposes
-
-global using System;
-global using System.Collections.Generic;
-global using Microsoft.Xna.Framework;
+﻿global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Content;
 global using Microsoft.Xna.Framework.Graphics;
-
+global using System;
+global using System.Collections.Generic;
+global using System.Diagnostics; //this is just for debugging purposes
 using MonoGame.Extended.Tiled;
 using RpgLibrary.AttackData;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameObjects;
 using SkeletonsAdventure.ItemClasses;
@@ -41,6 +40,14 @@ namespace SkeletonsAdventure.GameWorld
 
         private static Dictionary<string, GameItem> Items { get; set; } = [];
         public static Dictionary<string, GameItem> ItemsClone => GetItemsClone();
+
+        //This is a dictionary of items that can be dropped by enemies, it is used to create the drop table for the enemies
+        private static Dictionary<string, DropTableItem> DropTableItems { get; set; } = [];
+        public static Dictionary<string, DropTableItem> DropTableItemsClone => GetDropTableItemsClone();
+
+        //TODO create a dictinary for Drop Tables
+        private static Dictionary<string, DropTable> DropTables { get; set; } = [];
+        public static Dictionary<string, DropTable> DropTablesClone => GetDropTablesClone();
 
         private static Dictionary<string, Chest> Chests { get; set; } = [];
         public static Dictionary<string, Chest> ChestsClone => GetChestsClone();
@@ -108,9 +115,12 @@ namespace SkeletonsAdventure.GameWorld
             SetColors();
             LoadFonts();
             LoadTextures();
+
             LoadAttacks();
 
             CreateItems();
+            CreateDropTables();
+
             CreateEnemies();
             //CreateEnemiesManually();
 
@@ -173,6 +183,26 @@ namespace SkeletonsAdventure.GameWorld
                 items.Add(item.Key, item.Value.Clone());
 
             return items;
+        }
+
+        private static Dictionary<string, DropTableItem> GetDropTableItemsClone()
+        {
+            Dictionary<string, DropTableItem> dropTableItems = [];
+
+            foreach (var item in DropTableItems)
+                dropTableItems.Add(item.Key, item.Value.Clone());
+
+            return dropTableItems;
+        }
+
+        private static Dictionary<string, DropTable> GetDropTablesClone()
+        {
+            Dictionary<string, DropTable> dropTables = [];
+
+            foreach (var item in DropTables)
+                dropTables.Add(item.Key, item.Value.Clone());
+
+            return dropTables;
         }
 
         private static Dictionary<string, Chest> GetChestsClone()
@@ -290,6 +320,14 @@ namespace SkeletonsAdventure.GameWorld
                 return null;
         }
 
+        public static DropTable GetDropTableByName(string name)
+        {
+            if (DropTablesClone.TryGetValue(name, out DropTable dropTable))
+                return dropTable.Clone();
+            else
+                return null;
+        }
+
         //Set the Colors
         private static void SetColors()
         {
@@ -395,8 +433,36 @@ namespace SkeletonsAdventure.GameWorld
 
                     if (Items.ContainsKey(gameItem.Name) == false)
                         Items.Add(gameItem.Name, gameItem);
+
+                    CreateDropTableItemFromGameItem(gameItem); //Create a drop table item from the game item
                 }
             }
+        }
+
+        private static void CreateDropTables()
+        {
+            DropTable BasicDropTable = new(); //Create a basic drop table
+            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Coins"].Name, 10, 1, 12));
+            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Robes"].Name, 10, 1, 1)); 
+            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Bones"].Name, 10, 1, 1)); 
+            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Sword"].Name, 10, 1, 1)); 
+            BasicDropTable.PopulateItemNames(); //Populate the item names in the drop table
+
+            DropTables.Add("BasicDropTable", BasicDropTable); //Add the basic drop table to the dictionary
+
+            //TODO : Create more drop tables as needed
+        }
+
+        private static bool CreateDropTableItemFromGameItem(GameItem item)
+        {
+            if (item is not null && item.BaseItem is not null && item.BaseItem.Name is not null)
+            {
+                DropTableItem dropTableItem = new(item.BaseItem.Name, 1, 1, 1);
+                DropTableItems.Add(dropTableItem.ItemName, dropTableItem);
+                return true; // Return true if the item was successfully added
+            }
+
+            return false; // Return false if the item was null or invalid
         }
 
         //Create the enemies from the content folder
@@ -428,6 +494,7 @@ namespace SkeletonsAdventure.GameWorld
 
                 Enemy en = (Enemy)Activator.CreateInstance(type, data);
                 en.LootList = droppableItems.Clone(); //Set the loot list for the entity
+                en.DropTable = GetDropTableByName("BasicDropTable"); //Set the drop table for the entity TODO: this should be set in the entity data
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
             }
