@@ -6,6 +6,7 @@ global using System.Collections.Generic;
 global using System.Diagnostics; //this is just for debugging purposes
 using MonoGame.Extended.Tiled;
 using RpgLibrary.AttackData;
+using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.GameObjectClasses;
 using RpgLibrary.ItemClasses;
@@ -17,6 +18,7 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 using System.IO;
 using System.Linq;
+using static Assimp.Metadata;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -439,7 +441,7 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
-        private static void CreateDropTables()
+        private static void CreateDropTables() //Drop tables should be created from the content folder
         {
             DropTable BasicDropTable = new(); //Create a basic drop table
             BasicDropTable.AddItem(new DropTableItem(ItemsClone["Coins"].Name, 10, 1, 12));
@@ -490,11 +492,8 @@ namespace SkeletonsAdventure.GameWorld
                 // Load using Content.Load with the correct content path format
                 EntityData data = Content.Load<EntityData>($"EntityData/{fileName}");
 
-                Type type = Type.GetType(data.type); //Get the type of the entity from the data
-
-                Enemy en = (Enemy)Activator.CreateInstance(type, data);
+                Enemy en = (Enemy)Activator.CreateInstance(Type.GetType(data.type), data);
                 en.LootList = droppableItems.Clone(); //Set the loot list for the entity
-                en.DropTable = GetDropTableByName("BasicDropTable"); //Set the drop table for the entity TODO: this should be set in the entity data
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
             }

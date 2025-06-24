@@ -37,7 +37,8 @@ namespace SkeletonsAdventure.Entities
         public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
         public Vector2 PositionLastAttackedFrom { get; set; }
-        public DropTable DropTable { get; set; } = new(); //TODO change to use a string for the name of the drop table
+        public string DropTableName { get; set; } = string.Empty; 
+        public DropTable DropTable => GameManager.GetDropTableByName(DropTableName);
 
         public Entity() : base()
         {
@@ -88,7 +89,6 @@ namespace SkeletonsAdventure.Entities
 
             //TODO
             Info.Text += "\nLevel = " + Level;
-            //Info.Text += "\nLast Attacked = " + (gameTime.TotalGameTime - LastTimeAttacked).TotalMilliseconds;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -101,7 +101,7 @@ namespace SkeletonsAdventure.Entities
 
         public EntityData GetEntityData()
         {
-            return new EntityData()
+            return new()
             {
                 id = ID,
                 type = Type,
@@ -116,7 +116,7 @@ namespace SkeletonsAdventure.Entities
                 isDead = IsDead,
                 lastDeathTime = lastDeathTime,
                 Items = LootList.GetItemListItemData(),
-                DropTableData = DropTable.ToData(),
+                dropTableName = DropTableName,
             };
         }
 
@@ -131,6 +131,7 @@ namespace SkeletonsAdventure.Entities
             Level = entityData.entityLevel;
             Health = entityData.currentHealth;
             IsDead = entityData.isDead;
+            DropTableName = entityData.dropTableName;
 
             if (entityData.position != null)
                 Position = (Vector2)entityData.position;
@@ -142,14 +143,13 @@ namespace SkeletonsAdventure.Entities
 
         public virtual Entity Clone()
         {
-            Entity entity = new(GetEntityData())
+            return new(GetEntityData())
             {
                 Position = Position,
                 Level = this.Level,
                 SpriteColor = this.SpriteColor,
-                DropTable = this.DropTable.Clone(),
+                //DropTableName = this.DropTableName, //TODO add this when drop tabels are added to the entity data
             };
-            return entity;
         }
 
         public virtual void GetHitByAttack(EntityAttack attack, GameTime gameTime)
@@ -284,14 +284,9 @@ namespace SkeletonsAdventure.Entities
 
         public void FaceTarget(Entity target)
         {
-            //find the center of target
-            Vector2 targetLocation = target.Position;
-            targetLocation.X += target.Width / 2;
-            targetLocation.Y += target.Height / 2;
-
-
             //find the distance to the center of the target
-            Vector2 distance = Position - targetLocation;
+            Vector2 distance = Position - target.Center;
+            //convert the distance to an int so it can be used for the animation
             distance.X = (int)distance.X;
             distance.Y = (int)distance.Y;
 

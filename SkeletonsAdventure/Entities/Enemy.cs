@@ -102,7 +102,7 @@ namespace SkeletonsAdventure.Entities
                 Level = this.Level,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor,
-                DropTable = this.DropTable.Clone(),
+                DropTableName = this.DropTableName,
             };
             return enemy;
         }

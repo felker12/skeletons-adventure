@@ -19,17 +19,16 @@ namespace SkeletonsAdventure.Entities
             BasicAttackColor = Color.Gray;
         }
 
-        //public override Spider Clone()
-        //{
-        //    Spider spider = new(GetEntityData())
-        //    {
-        //        Position = Position,
-        //        LootList = LootList,
-        //        SpriteColor = this.SpriteColor,
-        //        DefaultColor = this.DefaultColor,
-        //        DropTable = this.DropTable.Clone(),
-        //    };
-        //    return spider;
-        //}
+        public override Spider Clone()
+        {
+            Spider spider = new(GetEntityData())
+            {
+                Position = Position,
+                LootList = LootList,
+                SpriteColor = this.SpriteColor,
+                DefaultColor = this.DefaultColor,
+            };
+            return spider;
+        }
     }
 }

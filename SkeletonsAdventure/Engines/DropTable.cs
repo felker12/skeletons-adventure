@@ -3,6 +3,7 @@ using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SkeletonsAdventure.Engines
 {
@@ -45,6 +46,16 @@ namespace SkeletonsAdventure.Engines
         public List<DropTableItem> GetDropTableList()
         {
             return DropTableList;
+        }
+
+        public GameItem[] GetDrops(int amount)
+        {
+            GameItem[] items = new GameItem[amount];
+
+            for(int i = 0; i < amount + 1; i++)
+                items[i] = GetDrop();
+
+            return items;
         }
 
         public GameItem GetDrop()

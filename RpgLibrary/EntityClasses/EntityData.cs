@@ -6,7 +6,6 @@ namespace RpgLibrary.EntityClasses
     public class EntityData
     {
         public List<ItemData> Items { get; set; } = new();
-        public DropTableData DropTableData { get; set; } = new DropTableData();
 
         public int id = 0;
         public string type = string.Empty;
@@ -14,6 +13,7 @@ namespace RpgLibrary.EntityClasses
         public Vector2? position, respawnPosition;
         public bool isDead;
         public TimeSpan? lastDeathTime = new();
+        public string dropTableName = string.Empty;
 
         public EntityData() { }
 
@@ -32,6 +32,7 @@ namespace RpgLibrary.EntityClasses
             isDead = entityData.isDead;
             lastDeathTime = entityData.lastDeathTime;
             Items = entityData.Items;
+            dropTableName = entityData.dropTableName;
         }
 
         public virtual EntityData Clone()
@@ -53,7 +54,8 @@ namespace RpgLibrary.EntityClasses
             toString += respawnPosition + ", ";
             toString += currentHealth + ", ";
             toString += isDead + ", ";
-            toString += lastDeathTime;
+            toString += lastDeathTime + ", ";
+            toString += dropTableName;
 
             return toString;
         }

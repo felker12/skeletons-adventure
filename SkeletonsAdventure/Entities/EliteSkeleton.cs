@@ -9,18 +9,17 @@ namespace SkeletonsAdventure.Entities
             IsElite = true;
         }
 
-        //public override EliteSkeleton Clone()
-        //{
-        //    EliteSkeleton skeleton = new(GetEntityData())
-        //    {
-        //        Position = Position,
-        //        LootList = LootList,
-        //        Level = this.Level,
-        //        SpriteColor = this.SpriteColor,
-        //        DefaultColor = this.DefaultColor,
-        //        DropTable = this.DropTable.Clone(),
-        //    };
-        //    return skeleton;
-        //}
+        public override EliteSkeleton Clone()
+        {
+            EliteSkeleton skeleton = new(GetEntityData())
+            {
+                Position = Position,
+                LootList = LootList,
+                Level = this.Level,
+                SpriteColor = this.SpriteColor,
+                DefaultColor = this.DefaultColor,
+            };
+            return skeleton;
+        }
     }
 }
