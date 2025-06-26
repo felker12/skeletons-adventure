@@ -6,14 +6,19 @@ namespace RpgLibrary.EntityClasses
     public class EntityData
     {
         public List<ItemData> Items { get; set; } = new();
-
-        public int id = 0;
-        public string type = string.Empty;
-        public int baseHealth, baseDefence, baseAttack, entityLevel, baseXP, currentHealth;
-        public Vector2? position, respawnPosition;
-        public bool isDead;
-        public TimeSpan? lastDeathTime = new();
-        public string dropTableName = string.Empty;
+        public int id { get; set; } = 0;
+        public string type { get; set; } = string.Empty;
+        public int baseHealth { get; set; }
+        public int baseDefence { get; set; }
+        public int baseAttack { get; set; }
+        public int entityLevel { get; set; }
+        public int baseXP { get; set; }
+        public int currentHealth { get; set; }
+        public Vector2? position { get; set; }
+        public Vector2? respawnPosition { get; set; }
+        public bool isDead { get; set; }
+        public TimeSpan? lastDeathTime { get; set; } = new();
+        public string dropTableName { get; set; } = string.Empty;
 
         public EntityData() { }
 

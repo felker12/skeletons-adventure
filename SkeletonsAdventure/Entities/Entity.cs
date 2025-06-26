@@ -28,7 +28,6 @@ namespace SkeletonsAdventure.Entities
         public int Defence { get; set; }
         public int Attack { get; set; }
         public int RespawnTime { get; set; } = 3; //time in seconds until the entity respawns
-        public ItemList LootList { get; set; } = new();
         public int Level { get; protected set; } = 0;
         public Color BasicAttackColor { get; set; } = Color.White; //Color of the basic attack
         public bool IsDead { get; set; } = false;
@@ -37,24 +36,25 @@ namespace SkeletonsAdventure.Entities
         public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
         public Vector2 PositionLastAttackedFrom { get; set; }
-        public string DropTableName { get; set; } = string.Empty; 
-        public DropTable DropTable => GameManager.GetDropTableByName(DropTableName);
+        public string DropTableName { get; set; } = string.Empty;
+        public int NumberOfItemsToDrop { get; set; } = 2; //Number of items to drop from the drop table
+        public DropTable DropTable => GetDropTable();
+        public ItemList GuaranteedDrops { get; set; } = new();
 
         public Entity() : base()
         {
             Health = baseHealth;
             Position = new();
-            Type = this.GetType().Name;
+            Type = this.GetType().FullName;
 
             Initialize();
         }
 
         public Entity(EntityData entityData) : base()
         {
+            Type = this.GetType().FullName;
             UpdateEntityData(entityData);
             Initialize();
-
-            Type = this.GetType().FullName; //TODO remove this when the entity data is loaded from the file
         }
 
         private void Initialize()
@@ -115,7 +115,7 @@ namespace SkeletonsAdventure.Entities
                 entityLevel = Level,
                 isDead = IsDead,
                 lastDeathTime = lastDeathTime,
-                Items = LootList.GetItemListItemData(),
+                Items = GuaranteedDrops.GetItemListItemData(),
                 dropTableName = DropTableName,
             };
         }
@@ -148,7 +148,6 @@ namespace SkeletonsAdventure.Entities
                 Position = Position,
                 Level = this.Level,
                 SpriteColor = this.SpriteColor,
-                //DropTableName = this.DropTableName, //TODO add this when drop tabels are added to the entity data
             };
         }
 
@@ -165,16 +164,31 @@ namespace SkeletonsAdventure.Entities
             World.CurrentLevel.DamagePopUpManager.Add(damagePopUp);
             //TODO add logic for critical hits and color the attack orange if it is a critical
 
-
-            //TODO
-            //attack.Info.Text += dmg;
             Health -= dmg;
 
             LastTimeAttacked = gameTime.TotalGameTime;
             PositionLastAttackedFrom = attack.Source.Center;
 
             if (Health < 1)
-                EntityDied(attack);
+                EntityDiedByAttack(attack);
+        }
+
+        protected virtual DropTable GetDropTable()
+        {
+            //TODO override this method in the child classes to return the correct drop table
+            //TODO add logic to return different drop tables based on the entity's level or if elite
+            return GameManager.GetDropTableByName(DropTableName).Clone();
+        }
+
+        public virtual List<GameItem> GetDrops()
+        {
+            List<GameItem> items = DropTable.GetDropsList(NumberOfItemsToDrop);
+
+            //Add guaranteed drops to the list
+            foreach (GameItem item in GuaranteedDrops.Items) 
+                items.Add(item.Clone());
+
+            return items;
         }
 
         public virtual void Respawn()
@@ -188,7 +202,7 @@ namespace SkeletonsAdventure.Entities
             Info.Text = string.Empty;
         }
 
-        public virtual void EntityDied(EntityAttack attack) //TODO change how the timer for dead entities works
+        public virtual void EntityDiedByAttack(EntityAttack attack) //TODO change how the timer for dead entities works
         {
             AttacksHitBy.Clear();
 

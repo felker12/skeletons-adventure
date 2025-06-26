@@ -11,9 +11,7 @@ namespace SkeletonsAdventure.ItemLoot
         public void Update()
         {
             foreach(GameItem item in ItemToRemove)
-            {
                 Items.Remove(item);
-            }
 
             foreach (GameItem item in Items)
                 item.Update();
@@ -35,18 +33,17 @@ namespace SkeletonsAdventure.ItemLoot
 
         public void Add(List<GameItem> items, Vector2 pos)
         {
+            Vector2 offset = Vector2.Zero;
             foreach (GameItem item in items)
-                Add(item, pos);
+            {
+                Add(item, pos + offset);
+                offset += new Vector2(15, 15);
+            }
         }
 
         public void Add(ItemList lootList, Vector2 pos)
         {
-            Vector2 offset = Vector2.Zero;
-            foreach(GameItem item in lootList.Items)
-            { 
-                Add(item, pos + offset);
-                offset += new Vector2(15, 15);
-            }
+            Add(lootList.Items, pos);
         }
 
         public void Remove(GameItem item)
@@ -64,9 +61,7 @@ namespace SkeletonsAdventure.ItemLoot
             List<ItemData> droppedItemData = [];
 
             foreach (var gameItem in Items)
-            {
                 droppedItemData.Add(gameItem.GetItemData());
-            }
 
             return droppedItemData;
         }

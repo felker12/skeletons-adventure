@@ -103,7 +103,7 @@ namespace RpgEditor
                 baseHealth = baseHealth,
                 baseDefence = baseDefence,
                 baseAttack = baseAttack,
-                entityLevel = entityLevel,
+                ntityLevel = entityLevel,
                 baseXP = baseXP,
                 position = position,
                 respawnPosition = respawnPosition,
@@ -131,7 +131,7 @@ namespace RpgEditor
             tbBaseHealth.Text = entity.baseHealth.ToString();
             tbBaseDefence.Text = entity.baseDefence.ToString();
             tbBaseAttack.Text = entity.baseAttack.ToString();
-            tbEntityLevel.Text = entity.entityLevel.ToString();
+            tbEntityLevel.Text = entity.ntityLevel.ToString();
             tbBaseXP.Text = entity.baseXP.ToString();
             cbIsDead.Checked = entity.isDead;
             tbCurrentHealth.Text = entity.currentHealth.ToString();

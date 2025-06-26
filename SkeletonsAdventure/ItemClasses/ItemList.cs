@@ -35,14 +35,14 @@ namespace SkeletonsAdventure.ItemClasses
             {
                 if (item.BaseItem == gameItem.BaseItem)
                 {
-                    gameItem.Quantity += item.Quantity;
-                    gameItem.BaseItem.Quantity = gameItem.Quantity; //update the base item's quantity as well //TODO idk if this is necessary
+                    gameItem.AddQuantity(item.Quantity);
                     return true;
                 }
             }
 
             return false; //if no existing stack was found, return false
         }
+
         public virtual void Add(List<GameItem> items)
         {
             foreach (GameItem item in items)
@@ -81,9 +81,14 @@ namespace SkeletonsAdventure.ItemClasses
 
         public List<ItemData> GetItemListItemData()
         {
+            return GetItemListItemData(Items);
+        }
+
+        public static List<ItemData> GetItemListItemData(List<GameItem> items)
+        {
             List<ItemData> data = [];
 
-            foreach (GameItem item in Items)
+            foreach (GameItem item in items)
                 data.Add(item.GetItemData());
 
             return data;

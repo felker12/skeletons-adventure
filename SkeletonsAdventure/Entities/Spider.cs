@@ -7,16 +7,20 @@ namespace SkeletonsAdventure.Entities
     {
         public Spider(EntityData entityData) : base(entityData)
         {
-            Texture = GameManager.SpiderTexture;
-            SetFrames(6, 32, 32, 0, 32);
-            BasicAttackColor = Color.Gray;
+            Initialize();
         }
 
         public Spider() : base()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             Texture = GameManager.SpiderTexture;
             SetFrames(6, 32, 32, 0, 32);
             BasicAttackColor = Color.Gray;
+            EnemyType = EnemyType.Spider;
         }
 
         public override Spider Clone()
@@ -24,7 +28,7 @@ namespace SkeletonsAdventure.Entities
             Spider spider = new(GetEntityData())
             {
                 Position = Position,
-                LootList = LootList,
+                GuaranteedDrops = GuaranteedDrops,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor,
             };

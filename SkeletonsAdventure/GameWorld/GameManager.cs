@@ -18,7 +18,6 @@ using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 using System.IO;
 using System.Linq;
-using static Assimp.Metadata;
 
 namespace SkeletonsAdventure.GameWorld
 {
@@ -167,8 +166,7 @@ namespace SkeletonsAdventure.GameWorld
                 {
                     item = gameItem.Clone();
                     //TODO
-                    item.Quantity = itemData.Quantity;
-                    item.BaseItem.Quantity = itemData.Quantity;
+                    item.SetQuantity(itemData.Quantity);
                     item.Position = itemData.Position;
                 }
             }
@@ -441,12 +439,12 @@ namespace SkeletonsAdventure.GameWorld
             }
         }
 
-        private static void CreateDropTables() //Drop tables should be created from the content folder
+        private static void CreateDropTables() //TODO: Drop tables should be created from the content folder
         {
             DropTable BasicDropTable = new(); //Create a basic drop table
             BasicDropTable.AddItem(new DropTableItem(ItemsClone["Coins"].Name, 10, 1, 12));
             BasicDropTable.AddItem(new DropTableItem(ItemsClone["Robes"].Name, 10, 1, 1)); 
-            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Bones"].Name, 10, 1, 1)); 
+            BasicDropTable.AddItem(new DropTableItem(ItemsClone["Bones"].Name, 10, 1, 2)); 
             BasicDropTable.AddItem(new DropTableItem(ItemsClone["Sword"].Name, 10, 1, 1)); 
             BasicDropTable.PopulateItemNames(); //Populate the item names in the drop table
 
@@ -470,17 +468,6 @@ namespace SkeletonsAdventure.GameWorld
         //Create the enemies from the content folder
         private static void CreateEnemies()
         {
-            //set the quantiy of the stackable items
-            GameItem Coins = ItemsClone["Coins"];
-            Coins.Quantity = 10;
-
-            //Create the list of items the entity could drop
-            ItemList droppableItems = new();
-            droppableItems.Add(ItemsClone["Robes"]);
-            droppableItems.Add(ItemsClone["Bones"]);
-            droppableItems.Add(Coins.Clone());
-            droppableItems.Add(ItemsClone["Sword"]);
-
             string EnemiesPath = Path.Combine(GamePath, "Content", "EntityData");
             string[] fileNames = Directory.GetFiles(EnemiesPath);
 
@@ -493,7 +480,6 @@ namespace SkeletonsAdventure.GameWorld
                 EntityData data = Content.Load<EntityData>($"EntityData/{fileName}");
 
                 Enemy en = (Enemy)Activator.CreateInstance(Type.GetType(data.type), data);
-                en.LootList = droppableItems.Clone(); //Set the loot list for the entity
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
             }
@@ -502,71 +488,35 @@ namespace SkeletonsAdventure.GameWorld
         //This is the old method for creating enemies. It is kept for reference and testing purposes
         private static void CreateEnemiesManually()
         {
-            //set the quantiy of the stackable items
-            GameItem Coins = ItemsClone["Coins"];
-            Coins.Quantity = 10;
-
-            //Create the loot list
-            ItemList loots = new();
-            loots.Add(ItemsClone["Robes"]);
-            loots.Add(ItemsClone["Bones"]);
-            loots.Add(Coins.Clone());
-            loots.Add(ItemsClone["Sword"]);
-
-            //populate the loot list with the items the entity will be carrying
-            List<ItemData> items = [];
-
-            foreach (var loot in loots.Items)
-            {
-                items.Add(loot.GetItemData());
-            }
-
             //Create the entities from the data and add their items to their loot list
-            EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"))
-            {
-                //Items = items
-            };
+            EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"));
 
-            Skeleton skeleton = new(entityData)
-            {
-                //LootList = loots
-            };
+            Skeleton skeleton = new(entityData);
+            EliteSkeleton eliteSkeleton = new(entityData);
 
-            EliteSkeleton eliteSkeleton = new(entityData)
-            {
-                //LootList = loots
-            };
+            entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"));
 
-            entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"))
-            {
-                //Items = items
-            };
-
-            Spider spider = new(entityData)
-            {
-                //LootList = loots
-            };
+            Spider spider = new(entityData);
 
             //Add the entities to the dictionary
             Enemies.Add(skeleton.GetType().FullName, skeleton);
             Enemies.Add(eliteSkeleton.GetType().FullName, eliteSkeleton);
             Enemies.Add(spider.GetType().FullName, spider);
 
-
             //TODO these are temprorary paths, the files created here are not
             //saved in the content folder and will need to be moved to the content folder
             //ItemPath = Path.Combine(SavePath, "Items"); //Directory of the items
-            //EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
+            string EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
 
             //if (Path.Exists(ItemPath) == false)
             //    Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
-            //if (Path.Exists(EnemyPath) == false)
-            //    Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
+            if (Path.Exists(EnemyPath) == false)
+                Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
 
             //TODO test this
             foreach (var enemy in Enemies)//shouldn't be needed now
             {
-                //XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Value.GetType().Name}.xml", enemy.Value.GetEntityData());
+                XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Value.GetType().Name}Data.xml", enemy.Value.GetEntityData());
             }
         }
 
@@ -574,7 +524,7 @@ namespace SkeletonsAdventure.GameWorld
         private static void CreateChests() //TODO
         {
             ItemsClone.TryGetValue("Coins", out GameItem Coins);
-            Coins.Quantity = 10;
+            Coins.SetQuantity(10);
 
             ItemList loots = new();
             loots.Add(ItemsClone["Robes"]);

@@ -2,10 +2,18 @@
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
-using SkeletonsAdventure.Engines;
 
 namespace SkeletonsAdventure.Entities
 {
+    public enum EnemyType //TODO add more types as needed
+    {
+        Skeleton,
+        Spider,
+        Slime,
+        Zombie,
+        Goblin,
+    }
+
     internal class Enemy : Entity
     {
         private int x, y, x2, y2, walkDistance, detectionWidth, detectionHeight;
@@ -16,6 +24,8 @@ namespace SkeletonsAdventure.Entities
             (int)Position.Y - (detectionHeight - Height) / 2, detectionWidth, detectionHeight);
         public Rectangle AttackArea => new((int)Position.X - Width,
             (int)Position.Y - Width, Width * 3, Height + Width * 2);
+
+        public EnemyType EnemyType { get; set; }
 
         public Enemy(EntityData entityData) : base(entityData)
         {
@@ -68,6 +78,7 @@ namespace SkeletonsAdventure.Entities
                 DefaultColor = new Color(Color.Black, 255);
                 SpriteColor = DefaultColor;
                 XP *= 2;
+                NumberOfItemsToDrop += 1; //Elite enemies drop more items
             }
 
             UpdateEntityData(GetEntityData()); //TODO: check if this is needed
@@ -98,7 +109,7 @@ namespace SkeletonsAdventure.Entities
             Enemy enemy = new(GetEntityData())
             {
                 Position = Position,
-                LootList = LootList,
+                GuaranteedDrops = GuaranteedDrops,
                 Level = this.Level,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor,

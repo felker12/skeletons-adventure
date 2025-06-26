@@ -237,10 +237,8 @@ namespace SkeletonsAdventure.Entities
             GainXp(reward.XP);
             //TODO give gold and items
 
-            GameItem coins = new(GameManager.ItemsClone["Coins"])
-            {
-                Quantity = reward.Coins
-            };
+            GameItem coins = new(GameManager.ItemsClone["Coins"]);
+            coins.SetQuantity(reward.Coins);
 
             //if the items wont fit in the backpack, drop them on the ground
             if (Backpack.Add(coins) is false)
@@ -349,7 +347,7 @@ namespace SkeletonsAdventure.Entities
                                 else
                                     Health = MaxHealth;
 
-                                item.Quantity -= 1;
+                                item.RemoveQuantity(1);
                                 if (item.Quantity == 0)
                                     Backpack.Remove(item);
                             }

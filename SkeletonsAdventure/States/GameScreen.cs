@@ -351,7 +351,7 @@ namespace SkeletonsAdventure.States
             };
 
             //Position the status bars
-            HealthBar.Position = new(0,0);
+            HealthBar.Position = new(4, 20);
             ManaBar.Position = HealthBar.Position + new Vector2(0, HealthBar.Height + HealthBar.BorderWidth);
             XPProgress.Position = ManaBar.Position + new Vector2(0, ManaBar.Height + ManaBar.BorderWidth);
         }

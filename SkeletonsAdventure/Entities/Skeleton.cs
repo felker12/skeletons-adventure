@@ -2,14 +2,19 @@
 
 namespace SkeletonsAdventure.Entities
 {
-    internal class Skeleton(EntityData entityData) : Enemy(entityData)
+    internal class Skeleton : Enemy
     {
+        public Skeleton(EntityData entityData) : base(entityData)
+        {
+            EnemyType = EnemyType.Skeleton;
+        }
+
         public override Skeleton Clone()
         {
             Skeleton skeleton = new(GetEntityData())
             {
                 Position = Position,
-                LootList = LootList,
+                GuaranteedDrops = GuaranteedDrops,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor,
            };

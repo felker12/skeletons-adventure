@@ -71,8 +71,7 @@ namespace SkeletonsAdventure.Entities
                     if (entity.Health < 1)
                     {
                         entity.EntityDied(totalTimeInWorld);
-                        entity.IsDead = true;
-                        DroppedLootManager.Add(entity.LootList, entity.Position);
+                        DroppedLootManager.Add(entity.GetDrops(), entity.Position);
                     }
                 }
                 else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.RespawnTime))

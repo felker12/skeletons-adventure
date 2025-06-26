@@ -14,7 +14,7 @@ namespace SkeletonsAdventure.Entities
             EliteSkeleton skeleton = new(GetEntityData())
             {
                 Position = Position,
-                LootList = LootList,
+                GuaranteedDrops = GuaranteedDrops,
                 Level = this.Level,
                 SpriteColor = this.SpriteColor,
                 DefaultColor = this.DefaultColor,

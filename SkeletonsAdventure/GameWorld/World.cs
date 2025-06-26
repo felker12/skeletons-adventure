@@ -231,7 +231,7 @@ namespace SkeletonsAdventure.GameWorld
             }
 
             GameItem Coins = GameManager.ItemsClone["Coins"];
-            Coins.Quantity = 20;
+            Coins.SetQuantity(20);
 
             Player.Backpack.Add(Coins);
 

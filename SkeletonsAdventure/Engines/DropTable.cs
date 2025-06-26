@@ -3,13 +3,14 @@ using RpgLibrary.ItemClasses;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace SkeletonsAdventure.Engines
 {
     internal class DropTable
     {
-        private List<DropTableItem> DropTableList { get; set; } = [];
+        //private List<DropTableItem> DropTableList { get; set; } = [];
+
+        private Dictionary<string, DropTableItem> DropTableDictionary { get; set; } = [];
         private static Random Random { get; set; } = new Random(); // Random number generator
         private int RandomIndex { get; set; } // Index for random item selection
 
@@ -21,12 +22,10 @@ namespace SkeletonsAdventure.Engines
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
         }
 
-        private DropTable(List<DropTableItem> dropTableList)
+        private DropTable(Dictionary<string, DropTableItem> dictionary)
         {
-            DropTableList = dropTableList; //doesn't validate the drop table list, just assigns it //TODO
-
+            DropTableDictionary = dictionary;
             ItemNames = new string[_maxDropChance]; // Initialize the ItemNames array with the size of max drop chance
-
             PopulateItemNames();
         }
 
@@ -34,18 +33,13 @@ namespace SkeletonsAdventure.Engines
         {
             return new()
             {
-                DropTableList = [.. DropTableList.Select(item => item.ToData())] // Convert each DropTableItem to DropTableItemData
+                DropTableList = [.. DropTableDictionary.Values.Select(item => item.ToData())] // Convert each DropTableItem to DropTableItemData
             };
         }
 
         public DropTable Clone()
         {
-            return new(DropTableList);
-        }
-
-        public List<DropTableItem> GetDropTableList()
-        {
-            return DropTableList;
+            return new(DropTableDictionary);
         }
 
         public GameItem[] GetDrops(int amount)
@@ -55,6 +49,17 @@ namespace SkeletonsAdventure.Engines
             for(int i = 0; i < amount + 1; i++)
                 items[i] = GetDrop();
 
+            return items;
+        }
+
+        public List<GameItem> GetDropsList(int amount)
+        {
+            List<GameItem> items = [];
+
+            for (int i = 0; i < amount; i++)
+            {
+                items.Add(GetDrop()); // Add each drop to the list
+            }
             return items;
         }
 
@@ -93,7 +98,7 @@ namespace SkeletonsAdventure.Engines
 
         private GameItem GetRandomItem()
         {
-            if (DropTableList.Count == 0)
+            if (DropTableDictionary.Count == 0)
                 return null; // Return null if there are no items in the drop table
 
             RandomIndex = Random.Next(0, _maxDropChance + 1); // Get a random index based on the length of ItemNames array
@@ -103,7 +108,17 @@ namespace SkeletonsAdventure.Engines
             if (itemName == string.Empty)
                 return null; // If the item name is empty, return null
 
-            return GameManager.GetItemByName(itemName); // Retrieve the item by name and return it
+            GameItem item = GameManager.GetItemByName(itemName); // Retrieve the item by name
+
+            if(item.Stackable)
+            {
+                DropTableItem dropTableItem = DropTableDictionary[itemName];
+
+                int numb = Random.Next(dropTableItem.MinQuantity, dropTableItem.MaxQuantity + 1);
+                item.SetQuantity(numb);
+            }
+
+            return item;
         }
 
         private bool IsItemNamesPopulated()
@@ -121,7 +136,7 @@ namespace SkeletonsAdventure.Engines
             }
 
             int index = 0; // Index to track the position in ItemNames array
-            foreach (var item in DropTableList)
+            foreach (var item in DropTableDictionary.Values)
             {
                 if (RemainingSpace() < item.DropChance)
                     return; // If remaining drop chance is less than the item's drop chance, exit the method
@@ -142,7 +157,7 @@ namespace SkeletonsAdventure.Engines
         public int TotalDropChance()
         {
             int totalChance = 0;
-            foreach (var item in DropTableList)
+            foreach (var item in DropTableDictionary.Values)
             {
                 totalChance += item.DropChance;
             }
@@ -157,24 +172,24 @@ namespace SkeletonsAdventure.Engines
                 return false; // Cannot add item if total drop chance is already 100% or more
             }
 
-            DropTableList.Add(item);
+            DropTableDictionary.Add(item.ItemName, item);
             return true; // Item added successfully
         }
 
         public void RemoveItem(DropTableItem item)
         {
-            DropTableList.Remove(item);
+            DropTableDictionary.Remove(item.ItemName);
         }
 
         public void Clear()
         {
-            DropTableList.Clear(); // Clears the drop table list
+            DropTableDictionary.Clear(); // Clears the drop table list
             ItemNames = new string[_maxDropChance]; // Reinitialize the ItemNames array
         }
 
         public override string ToString()
         {
-            return string.Join(", ", DropTableList.Select(item => item.ToString())); // Returns a string representation of the drop table items
+            return string.Join(", ", DropTableDictionary.Values.Select(item => item.ToString())); // Returns a string representation of the drop table items
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SkeletonsAdventure.ItemClasses
         public Rectangle ItemRectangle { get; set; }
         public static int Width { get; } = 32;
         public static int Height { get; } = 32;
-        public int Quantity { get; set; } = 1;
+        public int Quantity { get; private set; } = 1;
         public int Price { get; set; } = 0;
         public float Weight { get; set;} = 0f;
         public bool Stackable { get; set; } = false;
@@ -130,6 +130,28 @@ namespace SkeletonsAdventure.ItemClasses
         {
             BaseItem.Equipped = equipped;
             Equipped = equipped;
+        }
+
+        public void SetQuantity(int quantity)
+        {
+            if (Stackable is false || BaseItem.Stackable is false)
+                return; // Only allow setting quantity for stackable items
+
+            Quantity = quantity;
+            BaseItem.Quantity = quantity;
+        }
+
+        public void AddQuantity(int quantity)
+        {
+            SetQuantity(Quantity + quantity);
+        }
+
+        public void RemoveQuantity(int quantity)
+        {
+            if (Stackable is false || BaseItem.Stackable is false)
+                return; // Only allow removing quantity for stackable items
+
+            SetQuantity(Quantity - quantity);
         }
 
         public ItemData GetItemData()

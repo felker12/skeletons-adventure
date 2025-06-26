@@ -2,14 +2,14 @@
 <XnaContent xmlns:EntityClasses="RpgLibrary.EntityClasses">
   <Asset Type="EntityClasses:EntityData">
     <Items />
-    <id>0</id>
-    <type>Enemy</type>
-    <baseHealth>1</baseHealth>
-    <baseDefence>1</baseDefence>
-    <baseAttack>1</baseAttack>
+    <id>836</id>
+    <type>SkeletonsAdventure.Entities.Skeleton</type>
+    <baseHealth>20</baseHealth>
+    <baseDefence>2</baseDefence>
+    <baseAttack>9</baseAttack>
     <entityLevel>0</entityLevel>
-    <baseXP>1</baseXP>
-    <currentHealth>1</currentHealth>
+    <baseXP>5</baseXP>
+    <currentHealth>20</currentHealth>
     <position>0 0</position>
     <respawnPosition>0 0</respawnPosition>
     <isDead>false</isDead>
