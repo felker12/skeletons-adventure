@@ -3,7 +3,6 @@ using SkeletonsAdventure.GameWorld;
 using Microsoft.Xna.Framework.Input;
 using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Entities;
-using RpgLibrary.ItemClasses;
 using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
@@ -17,6 +16,10 @@ namespace SkeletonsAdventure.States
         private MouseState _mouseState, _lastMouseState;
         private GameButton equip, unequip, pickUp, drop, consume;
         private GameItem itemUnderMouse = null;
+
+        Vector2 TransformedMousePosition => Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(Camera.Transformation));
+        Rectangle TransformedMouseRectangle => new((int)TransformedMousePosition.X, (int)TransformedMousePosition.Y, 1, 1);
+        Rectangle MouseRec => new(_mouseState.X, _mouseState.Y, 1, 1);
 
         private BoxSource CurrentSource { get; set; }
         public Camera Camera { get; set; }
@@ -139,29 +142,31 @@ namespace SkeletonsAdventure.States
 
             if (InputHandler.KeyReleased(Keys.Q))
             {
-
                 //TODO
                 //System.Diagnostics.Debug.WriteLine(World.CurrentLevel.EntityManager.Entities.Count);
+            }
+
+            if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
+            {
+                // Only try to pick up items if they're in the game world (not in backpack)
+                if (itemUnderMouse != null &&
+                    !BackpackMenu.Items.Contains(itemUnderMouse) && // Check if item is NOT in backpack
+                    TransformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
+                {
+                    PickUp_Click(null, new EventArgs());
+                }
             }
 
             World.HandleInput(playerIndex);
 
             if (GameItemPopUpBox.Visible)
-            {
                 GameItemPopUpBox.HandleInput(playerIndex);
-            }
         }
 
         private void CheckUnderMouse(GameTime gameTime)
         {
             _lastMouseState = _mouseState;
             _mouseState = Mouse.GetState();
-            Vector2 tempV,
-                //Mouse position in the world and their position is relative to that viewport
-                pos = Vector2.Transform(new(_mouseState.X, _mouseState.Y), Matrix.Invert(Camera.Transformation));
-            Rectangle transformedMouseRectangle = new((int)pos.X, (int)pos.Y, 1, 1),
-                mouseRec = new(_mouseState.X, _mouseState.Y, 1, 1),
-                tempR;
 
             itemUnderMouse = null;
 
@@ -169,54 +174,31 @@ namespace SkeletonsAdventure.States
             {
                 foreach (GameItem item in BackpackMenu.Items)
                 {
-                    //calculate the transformed position so we can find where the items are based on a world position
-                    tempV = Vector2.Transform(item.Position, Matrix.Invert(Camera.Transformation));
-                    tempV += new Vector2(BackpackMenu.Position.X, 0); //offset the world position with the width of the game viewport
-                    tempR = new((int)tempV.X, (int)tempV.Y, GameItem.Width, GameItem.Height);
-
-                    Intersects(mouseRec, item.ItemRectangle, item, BoxSource.Panel);
-
-                    if (GameItemPopUpBox.Visible)
-                    {
-                        Rectangle rec = new((int)GameItemPopUpBox.Position.X, (int)GameItemPopUpBox.Position.Y, 1, 1);
-                        if (rec.Intersects(item.ItemRectangle))
-                            itemUnderMouse = item;
-                    }
-                    else if (mouseRec.Intersects(item.ItemRectangle))
-                        itemUnderMouse = item;
+                    Intersects(MouseRec, item.ItemRectangle, item, BoxSource.Panel);
+                    SetItemUnderMouse(item, MouseRec);
                 }
             }
 
             foreach (GameItem item in World.CurrentLevel.EntityManager.DroppedLootManager.Items)
             {
-                Intersects(transformedMouseRectangle, item.ItemRectangle, item, BoxSource.Game);
-
-                if (GameItemPopUpBox.Visible)
-                {
-                    Rectangle rec = new((int)GameItemPopUpBox.Position.X, (int)GameItemPopUpBox.Position.Y, 1, 1);
-                    if (rec.Intersects(item.ItemRectangle))
-                        itemUnderMouse = item;
-                }
-                else if (transformedMouseRectangle.Intersects(item.ItemRectangle))
-                {
-                    itemUnderMouse = item;
-                }
+                Intersects(TransformedMouseRectangle, item.ItemRectangle, item, BoxSource.Game);
+                SetItemUnderMouse(item, TransformedMouseRectangle);
             }
 
             //hide popupbox when no more items are under mouse
             if (itemUnderMouse == null)
                 GameItemPopUpBox.Visible = false;
 
-            if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Only try to pick up items if they're in the game world (not in backpack)
-                if (itemUnderMouse != null && 
-                    !BackpackMenu.Items.Contains(itemUnderMouse) && // Check if item is NOT in backpack
-                    transformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
-                {
-                    PickUp_Click(null, new EventArgs());
-                }
-            }
+            //if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
+            //{
+            //    // Only try to pick up items if they're in the game world (not in backpack)
+            //    if (itemUnderMouse != null &&
+            //        !BackpackMenu.Items.Contains(itemUnderMouse) && // Check if item is NOT in backpack
+            //        TransformedMouseRectangle.Intersects(itemUnderMouse.ItemRectangle))
+            //    {
+            //        PickUp_Click(null, new EventArgs());
+            //    }
+            //}
 
             if (GameItemPopUpBox.Visible)
             {
@@ -224,43 +206,65 @@ namespace SkeletonsAdventure.States
                     button.Visible = false;
 
                 if (CurrentSource == BoxSource.Game)
-                {
-                    pickUp.Visible = true;
-
-                    GameItemPopUpBox.Update(gameTime, true, Camera.Transformation);
-
-                    if (transformedMouseRectangle.Intersects(GameItemPopUpBox.Rectangle) == false)
-                        GameItemPopUpBox.Visible = false;
-                }
+                    CheckMouseIntersectsInGame(gameTime, TransformedMouseRectangle);
                 else if (CurrentSource == BoxSource.Panel)
+                    CheckMouseIntersectsInPanel(gameTime, MouseRec);
+
+                consume.Text = $"Consume {itemUnderMouse.Name}";
+                drop.Text = $"Drop {itemUnderMouse.Name}";
+                equip.Text = $"Equip {itemUnderMouse.Name}";
+                unequip.Text = $"Unequip {itemUnderMouse.Name}";
+                pickUp.Text = $"Pick Up {itemUnderMouse.Name}";
+            }
+        }
+
+        private void SetItemUnderMouse(GameItem item, Rectangle rectangle)
+        {
+            if (GameItemPopUpBox.Visible)
+            {
+                Rectangle rec = new((int)GameItemPopUpBox.Position.X, (int)GameItemPopUpBox.Position.Y, 1, 1);
+                if (rec.Intersects(item.ItemRectangle))
+                    itemUnderMouse = item;
+            }
+            else if (rectangle.Intersects(item.ItemRectangle))
+                itemUnderMouse = item;
+        }
+
+        private void CheckMouseIntersectsInPanel(GameTime gameTime, Rectangle mouseRec)
+        {
+            if (itemUnderMouse != null)
+            {
+                if (itemUnderMouse is EquipableItem equipable == true)
                 {
-                    if (itemUnderMouse != null)
-                    {
-                        if (itemUnderMouse.BaseItem.Stackable == false)
-                        {
-                            if (itemUnderMouse.BaseItem.Equipped == true)
-                                unequip.Visible = true;
-                            else if (itemUnderMouse.BaseItem.Equipped == false)
-                                equip.Visible = true;
-                        }
-                        else if (itemUnderMouse.BaseItem.Stackable == true)
-                        {
-                            if (itemUnderMouse.BaseItem is Consumable)
-                                consume.Visible = true;
-                        }
-                    }
-
-                    drop.Visible = true;
-
-                    GameItemPopUpBox.Update(gameTime,false, Camera.Transformation);
-
-                    if (mouseRec.Intersects(GameItemPopUpBox.Rectangle) == false)
-                        GameItemPopUpBox.Visible = false;
+                    if (equipable.Equipped == true)
+                        unequip.Visible = true;
+                    else if (equipable.Equipped == false)
+                        equip.Visible = true;
+                }
+                else if (itemUnderMouse is Consumable)
+                {
+                    consume.Visible = true;
                 }
             }
 
-            if (itemUnderMouse != null)
-                Player.Info.Text += "\n" + itemUnderMouse.BaseItem.Name + " x " + itemUnderMouse.Quantity;
+            drop.Visible = true;
+
+            GameItemPopUpBox.Update(gameTime, false, Camera.Transformation);
+
+            if (mouseRec.Intersects(GameItemPopUpBox.Rectangle) == false)
+            {
+                GameItemPopUpBox.Visible = false;
+            }
+        }
+
+        private void CheckMouseIntersectsInGame(GameTime gameTime, Rectangle transformedMouseRectangle)
+        {
+            pickUp.Visible = true;
+
+            GameItemPopUpBox.Update(gameTime, true, Camera.Transformation);
+
+            if (transformedMouseRectangle.Intersects(GameItemPopUpBox.Rectangle) == false)
+                GameItemPopUpBox.Visible = false;
         }
 
         private bool Intersects(Rectangle mouseRec, Rectangle itemRec, GameItem item, BoxSource source)
@@ -358,7 +362,7 @@ namespace SkeletonsAdventure.States
 
         private void Consume_Click(object sender, EventArgs e)
         {
-            if (itemUnderMouse != null && itemUnderMouse.BaseItem is Consumable)
+            if (itemUnderMouse != null && itemUnderMouse is Consumable)
                 Player.ConsumeItem(itemUnderMouse);
         }
 

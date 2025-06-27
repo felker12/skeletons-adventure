@@ -12,7 +12,7 @@ namespace SkeletonsAdventure.ItemClasses
 
             if (Count <= Capacity)
             {
-                if (item.BaseItem.Stackable && ContainsBaseItem(item)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
+                if (item.Stackable && ContainsItem(item)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
                 {
                     return AddItemToStack(item); //returns true if the item was added to an existing stack
                 }

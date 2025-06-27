@@ -3,7 +3,7 @@ namespace RpgLibrary.ItemClasses
 {
     public class ConsumableData : ItemData
     {
-        public Effect Effect { get; set; }
+        public ConsumableEffect Effect { get; set; }
         public int EffectDuration { get; set; }
         public int EffectBonus { get; set; }
 

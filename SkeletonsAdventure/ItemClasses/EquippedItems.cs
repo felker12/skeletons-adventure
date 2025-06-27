@@ -10,7 +10,7 @@ namespace SkeletonsAdventure.ItemClasses
         {
             int att = 0;
 
-            if (Mainhand != null && Mainhand.BaseItem is Weapon weapon)
+            if (Mainhand != null && Mainhand is Weapon weapon)
                 att = weapon.AttackValue;
 
             return att;
@@ -20,13 +20,13 @@ namespace SkeletonsAdventure.ItemClasses
         {
             int def = 0;
 
-            if (HeadSlot != null && HeadSlot.BaseItem is Armor head)
+            if (HeadSlot != null && HeadSlot is Armor head)
                 def += head.DefenseValue;
-            if (BodySlot != null && BodySlot.BaseItem is Armor body)
+            if (BodySlot != null && BodySlot is Armor body)
                 def += body.DefenseValue;
-            if(HandsSlot != null && HandsSlot.BaseItem is Armor hands)
+            if(HandsSlot != null && HandsSlot is Armor hands)
                 def += hands.DefenseValue;
-            if (FeetSlot != null && FeetSlot.BaseItem is Armor feet)
+            if (FeetSlot != null && FeetSlot is Armor feet)
                 def += feet.DefenseValue;
 
             return def;
@@ -68,8 +68,7 @@ namespace SkeletonsAdventure.ItemClasses
 
         public void TryEquipItem(GameItem gameItem)
         {
-            BaseItem item = gameItem.BaseItem;
-            if(item is Weapon weapon)
+            if(gameItem is Weapon weapon)
             {
                 if (weapon.NumberHands == Hands.Both)
                 {
@@ -92,15 +91,15 @@ namespace SkeletonsAdventure.ItemClasses
                     if (Offhand != null)
                         TryUnequipItem(Offhand);
                     //If a mainhand weapon is equipped and it is a 2 handed weapon unequip it
-                    if (Mainhand != null && Mainhand.BaseItem is Weapon weap && weap.NumberHands == Hands.Both) 
+                    if (Mainhand != null && Mainhand is Weapon weap && weap.NumberHands == Hands.Both) 
                         TryUnequipItem(Mainhand);
 
                     Offhand = gameItem;
                 }
 
-                gameItem.SetEquipped(true);
+                weapon.SetEquipped(true);
             }
-            else if (item is Armor armor)
+            else if (gameItem is Armor armor)
             {
                 switch (armor.ArmorLocation)
                 {
@@ -125,7 +124,8 @@ namespace SkeletonsAdventure.ItemClasses
                         FeetSlot = gameItem;
                         break;
                 }
-                gameItem.SetEquipped(true);
+
+                armor.SetEquipped(true);
             }
         }
 
@@ -157,7 +157,10 @@ namespace SkeletonsAdventure.ItemClasses
             }
             else return;
 
-            gameItem.SetEquipped(false);
+            if(gameItem is Armor armor)
+                armor.SetEquipped(false);
+            if(gameItem is Weapon weapon)
+                weapon.SetEquipped(false);
         }
     }
 }

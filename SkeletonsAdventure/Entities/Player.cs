@@ -7,7 +7,6 @@ using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using Effect = RpgLibrary.ItemClasses.Effect;
 using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.Entities
@@ -331,14 +330,14 @@ namespace SkeletonsAdventure.Entities
 
         public void ConsumeItem(GameItem item)
         {
-            if (Backpack.ContainsBaseItem(item))
+            if (Backpack.ContainsItem(item))
             {
                 //TODO
-                if(item.BaseItem is Consumable consumable)
+                if(item is Consumable consumable)
                 {
                     switch(consumable.Effect)
                     {
-                        case Effect.Heal:
+                        case ConsumableEffect.Heal:
 
                             if(Health != MaxHealth)
                             {
@@ -352,11 +351,11 @@ namespace SkeletonsAdventure.Entities
                                     Backpack.Remove(item);
                             }
                             break;
-                        case Effect.DefenceIncrease: //TODO
-                            System.Diagnostics.Debug.WriteLine("increase def");
+                        case ConsumableEffect.DefenceIncrease: //TODO
+                            Debug.WriteLine("increase def");
                             break;
-                        case Effect.AttackIncrease: //TODO
-                            System.Diagnostics.Debug.WriteLine("increase attack");
+                        case ConsumableEffect.AttackIncrease: //TODO
+                            Debug.WriteLine("increase attack");
                             break;
                     }
                 }

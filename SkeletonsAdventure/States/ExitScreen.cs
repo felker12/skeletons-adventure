@@ -69,7 +69,7 @@ namespace SkeletonsAdventure.States
             catch (Exception ex)
             {
                 //TODO handle exception
-                System.Diagnostics.Debug.WriteLine(ex);
+                Debug.WriteLine(ex);
                 return;
             }
         }

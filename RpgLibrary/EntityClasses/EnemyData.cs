@@ -10,9 +10,6 @@ namespace RpgLibrary.EntityClasses
 {
     public class EnemyData : EntityData
     {
-        public string DropTableName { get; set; } = string.Empty;
-        public List<ItemData> GuaranteedItems { get; set; } = new();
-
         public EnemyData()
         {
 

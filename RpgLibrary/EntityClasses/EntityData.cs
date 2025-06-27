@@ -17,6 +17,8 @@ namespace RpgLibrary.EntityClasses
         public Vector2? RespawnPosition { get; set; }
         public bool IsDead { get; set; } = false;
         public TimeSpan? LastDeathTime { get; set; } = new();
+        public string DropTableName { get; set; } = string.Empty;
+        public List<ItemData> GuaranteedItems { get; set; } = new();
 
         public EntityData() { }
 
@@ -33,6 +35,7 @@ namespace RpgLibrary.EntityClasses
             RespawnPosition = entityData.RespawnPosition;
             CurrentHealth = entityData.CurrentHealth;
             IsDead = entityData.IsDead;
+            DropTableName = entityData.DropTableName;
             LastDeathTime = entityData.LastDeathTime;
         }
 
@@ -56,6 +59,8 @@ namespace RpgLibrary.EntityClasses
             toString += CurrentHealth + ", ";
             toString += IsDead + ", ";
             toString += LastDeathTime + ", ";
+            toString += DropTableName + ", ";
+            toString += string.Join(";", GuaranteedItems.Select(item => item.ToString()));
 
             return toString;
         }

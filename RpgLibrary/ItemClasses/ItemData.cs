@@ -2,20 +2,24 @@
 
 namespace RpgLibrary.ItemClasses
 {
+    public enum Hands { Main, Off, Both }
+    public enum ArmorLocation { Body, Head, Hands, Feet }
+    public enum ConsumableEffect { Heal, AttackIncrease, DefenceIncrease }
+
     public class ItemData
     {
-        public string Name = string.Empty;
-        public string Type = string.Empty;
-        public string Description = string.Empty;
-        public int Price;
-        public float Weight;
-        public bool Equipped;
-        public bool Stackable;
-        public bool Consumable;
-        public Vector2 Position = Vector2.Zero;
-        public int Quantity;
-        public Rectangle SourceRectangle;
-        public string TexturePath = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public int Price { get; set; }
+        public float Weight { get; set; }
+        public bool Equipped { get; set; }
+        public bool Stackable { get; set; }
+        public bool Consumable { get; set; }
+        public Vector2 Position { get; set; } = Vector2.Zero;
+        public int Quantity { get; set; }
+        public Rectangle SourceRectangle { get; set; }
+        public string TexturePath { get; set; } = string.Empty;
 
         public ItemData()
         {

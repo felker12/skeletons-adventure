@@ -110,7 +110,7 @@ namespace RpgEditor
                 CurrentHealth = currentHealth,
                 IsDead = cbIsDead.Checked,
                 LastDeathTime = TimeSpan.Zero, // You can add a field for this if needed
-                GuaranteedItems = new System.Collections.Generic.List<RpgLibrary.ItemClasses.ItemData>()
+                GuaranteedItems = [] //TODO implement this
             };
 
             this.DialogResult = DialogResult.OK;

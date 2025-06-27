@@ -162,7 +162,7 @@ namespace SkeletonsAdventure.GameWorld
 
             foreach (GameItem gameItem in Items.Values)
             {
-                if (itemData.Name == gameItem.BaseItem.Name)
+                if (itemData.Name == gameItem.Name)
                 {
                     item = gameItem.Clone();
                     item.SetQuantity(itemData.Quantity);
@@ -387,12 +387,11 @@ namespace SkeletonsAdventure.GameWorld
         //Create the items from the content folder
         private static void CreateItems()
         {
-            string[] folders = Directory.GetDirectories(@"Content/Items");
+            string[] folders = Directory.GetDirectories(@"Content\Items");
             string[] names;
             string filePath;
 
             ItemData itemData;
-            BaseItem baseItem;
             Texture2D itemTexure;
             GameItem gameItem;
             Weapon weapon;
@@ -407,28 +406,30 @@ namespace SkeletonsAdventure.GameWorld
                 foreach (string name in names)
                 {
                     filePath = $@"..\{folder}\{name}"; //add the folder name to the path of the folder to get the file path without the extension
+
                     itemData = Content.Load<ItemData>(filePath);
-                    baseItem = new(itemData.Clone());
-                    itemTexure = Content.Load<Texture2D>(@$"{baseItem.TexturePath}");
+                    itemTexure = Content.Load<Texture2D>(@$"{itemData.TexturePath}");
 
                     //cast the itemData to the correct type
                     if (itemData is WeaponData weaponData)
                     {
                         weapon = new(weaponData.Clone());
-                        baseItem = weapon;
+                        gameItem = weapon;
                     }
                     else if (itemData is ArmorData armorData)
                     {
                         armor = new(armorData.Clone());
-                        baseItem = armor;
+                        gameItem = armor;
                     }
                     else if (itemData is ConsumableData consumableData)
                     {
                         consumable = new(consumableData.Clone());
-                        baseItem = consumable;
+                        gameItem = consumable;
                     }
-
-                    gameItem = new(baseItem, 1, itemTexure);
+                    else
+                    {
+                        gameItem = new(itemData.Clone());
+                    }
 
                     if (Items.ContainsKey(gameItem.Name) == false)
                         Items.Add(gameItem.Name, gameItem);
@@ -454,9 +455,9 @@ namespace SkeletonsAdventure.GameWorld
 
         private static bool CreateDropTableItemFromGameItem(GameItem item)
         {
-            if (item is not null && item.BaseItem is not null && item.BaseItem.Name is not null)
+            if (item is not null && item.Name is not null)
             {
-                DropTableItem dropTableItem = new(item.BaseItem.Name, 1, 1, 1);
+                DropTableItem dropTableItem = new(item.Name, 1, 1, 1);
                 DropTableItems.Add(dropTableItem.ItemName, dropTableItem);
                 return true; // Return true if the item was successfully added
             }

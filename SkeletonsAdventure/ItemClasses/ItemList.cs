@@ -18,9 +18,9 @@ namespace SkeletonsAdventure.ItemClasses
             if (item is null)
                 return false;
 
-            if (item.BaseItem.Stackable && ContainsBaseItem(item)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
+            if (item is StackableItem stackable && ContainsItem(stackable)) //if the item is stackable and already exists in the backpack, increase the quantity of that item
             {
-                return AddItemToStack(item); //returns true if the item was added to an existing stack
+                return AddItemToStack(stackable); //returns true if the item was added to an existing stack
             }
             else
             {
@@ -33,7 +33,7 @@ namespace SkeletonsAdventure.ItemClasses
         {
             foreach (var gameItem in Items)
             {
-                if (item.BaseItem == gameItem.BaseItem)
+                if (item.Name == gameItem.Name)
                 {
                     gameItem.AddQuantity(item.Quantity);
                     return true;
@@ -89,26 +89,16 @@ namespace SkeletonsAdventure.ItemClasses
             List<ItemData> data = [];
 
             foreach (GameItem item in items)
-                data.Add(item.GetItemData());
+                data.Add(item.GetData());
 
             return data;
-        }
-
-        public bool ContainsBaseItem(GameItem item)
-        {
-            foreach (var gameItem in Items)
-            {
-                if (item.BaseItem == gameItem.BaseItem)
-                    return true;
-            }
-            return false;
         }
 
         public bool ContainsItem(GameItem item)
         {
             foreach (var gameItem in Items)
             {
-                if (item == gameItem)
+                if (item.Name == gameItem.Name)
                     return true;
             }
             return false;

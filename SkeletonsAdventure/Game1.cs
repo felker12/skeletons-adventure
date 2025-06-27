@@ -9,7 +9,6 @@ namespace SkeletonsAdventure
     {
         public static GraphicsDeviceManager Graphics { get; set; }
         public SpriteBatch SpriteBatch { get; private set; }
-        public static Viewport GameViewport { get; private set; }
         public GameScreen GameScreen { get; set; }
         public ExitScreen ExitScreen { get; private set; }
         public StateManager StateManager { get; private set; } = new();
@@ -25,20 +24,12 @@ namespace SkeletonsAdventure
         {
             Content.RootDirectory = "Content";
 
-            GameViewport = new(0, 0, ScreenWidth, ScreenHeight);
             Graphics = new GraphicsDeviceManager(this)
             {
                 PreferredBackBufferWidth = ScreenWidth,
                 PreferredBackBufferHeight = ScreenHeight,
             };
             Graphics.ApplyChanges();
-
-            IsMouseVisible = true;
-
-            GameManager = new(this);
-            Components.Add(new InputHandler(this));
-            GameScreen = new(this);
-            ExitScreen = new(this);
 
             //TODO delete this: it uncaps the FPS
             //IsFixedTimeStep = false;
@@ -48,6 +39,12 @@ namespace SkeletonsAdventure
         protected override void Initialize()
         {
             base.Initialize();
+            IsMouseVisible = true;
+
+            GameManager = new(this);
+            Components.Add(new InputHandler(this));
+            GameScreen = new(this);
+            ExitScreen = new(this);
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             //TODO
@@ -75,8 +72,8 @@ namespace SkeletonsAdventure
                     Exit();
             }
 
-            StateManager.Update(gameTime);
             StateManager.HandleInput(PlayerIndexInControl);
+            StateManager.Update(gameTime);
             base.Update(gameTime);
         }
 

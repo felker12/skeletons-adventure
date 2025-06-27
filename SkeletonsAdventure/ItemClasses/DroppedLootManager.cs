@@ -60,7 +60,7 @@ namespace SkeletonsAdventure.ItemClasses
             List<ItemData> droppedItemData = [];
 
             foreach (var gameItem in Items)
-                droppedItemData.Add(gameItem.GetItemData());
+                droppedItemData.Add(gameItem.GetData());
 
             return droppedItemData;
         }

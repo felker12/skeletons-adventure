@@ -8,6 +8,7 @@ namespace SkeletonsAdventure.States
 
         public void ChangeState(State state)
         {
+            CurrentState ??= state;
             CurrentState?.StateChangeFromHandler();
             _nextState = state;
             _nextState?.StateChangeToHandler();

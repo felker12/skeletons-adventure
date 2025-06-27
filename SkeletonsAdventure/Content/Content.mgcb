@@ -12,7 +12,7 @@
 
 /reference:..\pipeline-references\MonoGame.Extended.Content.Pipeline.dll
 /reference:..\pipeline-references\MonoGame.Extended.dll
-/reference:..\..\RpgLibrary\bin\Debug\net6.0\RpgLibrary.dll
+/reference:..\..\RpgLibrary\obj\Debug\net6.0\RpgLibrary.dll
 
 #---------------------------------- Content ---------------------------------#
 
