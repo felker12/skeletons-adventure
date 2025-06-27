@@ -101,7 +101,7 @@ namespace SkeletonsAdventure.Engines
             if (DropTableDictionary.Count == 0)
                 return null; // Return null if there are no items in the drop table
 
-            RandomIndex = Random.Next(0, _maxDropChance + 1); // Get a random index based on the length of ItemNames array
+            RandomIndex = Random.Next(0, _maxDropChance); // Get a random index based on the length of ItemNames array
 
             string itemName = ItemNames[RandomIndex]; // Get the item name from the ItemNames array
 

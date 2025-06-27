@@ -1,15 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Tiled;
-using MonoGame.Extended.Timers;
+﻿using MonoGame.Extended.Tiled;
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.GameWorld;
 using SkeletonsAdventure.ItemClasses;
-using SkeletonsAdventure.ItemLoot;
-using System;
-using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -18,7 +12,6 @@ namespace SkeletonsAdventure.Entities
         public List<Entity> Entities { get; } = []; //list of all entities in the level, including the player
         public DroppedLootManager DroppedLootManager { get; } = new(); //used to manage the loot dropped by dead entities
         public Player Player { get; set; } = World.Player;
-        public MinMaxPair EnemyLevelRange { get; set; } = new(0, 0); //used to set the level of enemies when they are created or respawned
 
         public EntityManager()
         {
@@ -71,7 +64,12 @@ namespace SkeletonsAdventure.Entities
                     if (entity.Health < 1)
                     {
                         entity.EntityDied(totalTimeInWorld);
-                        DroppedLootManager.Add(entity.GetDrops(), entity.Position);
+
+                        if (entity is Enemy enemy && enemy.DropTableName != string.Empty && enemy.GetDrops().Count > 0)
+                        {
+                            //if the enemy has a drop table then drop the loot
+                            DroppedLootManager.Add(enemy.GetDrops(), entity.Position);
+                        }
                     }
                 }
                 else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.RespawnTime))
@@ -110,10 +108,10 @@ namespace SkeletonsAdventure.Entities
 
         public void PickUpLoot()
         {
-            foreach(GameItem item in DroppedLootManager.Items)
+            foreach (GameItem item in DroppedLootManager.Items)
             {
                 if (Player.Rectangle.Intersects(item.ItemRectangle) && Player.Backpack.Add(item) == true)
-                    DroppedLootManager.ItemToRemove.Add(item);
+                    DroppedLootManager.Remove(item);
             }
         }
 
@@ -123,8 +121,8 @@ namespace SkeletonsAdventure.Entities
 
             foreach (Entity entity in Entities)
             {
-                if (entity is Enemy)
-                    entityManagerData.EntityData.Add(entity.GetEntityData());
+                if (entity is Enemy enemy)
+                    entityManagerData.EntityData.Add(enemy.GetEntityData());
             }
 
             return entityManagerData;

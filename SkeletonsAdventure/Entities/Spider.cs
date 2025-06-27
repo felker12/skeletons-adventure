@@ -5,7 +5,7 @@ namespace SkeletonsAdventure.Entities
 {
     internal class Spider : Enemy
     {
-        public Spider(EntityData entityData) : base(entityData)
+        public Spider(EnemyData data) : base(data)
         {
             Initialize();
         }

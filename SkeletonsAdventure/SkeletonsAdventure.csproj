@@ -14,7 +14,6 @@
     <MonoGameExtendedPipelineReferencePath>$(MSBuildThisFileDirectory)pipeline-references</MonoGameExtendedPipelineReferencePath>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Entities\5aohc2j4.s4i~" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

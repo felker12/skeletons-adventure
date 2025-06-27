@@ -103,6 +103,7 @@ namespace SkeletonsAdventure.States
         public override void PostUpdate(GameTime gameTime) { }
         public override void Update(GameTime gameTime)
         {
+            CheckUnderMouse(gameTime);
             World.Update(gameTime);
 
             int lvlXP = GameManager.GetLevelXPAtLevel(Player.Level);
@@ -118,8 +119,6 @@ namespace SkeletonsAdventure.States
 
             foreach (BaseMenu menu in Menus)
                 menu.Update(gameTime);
-
-            CheckUnderMouse(gameTime);
 
             //FPS.Update(gameTime);
         }
@@ -376,7 +375,7 @@ namespace SkeletonsAdventure.States
         private void PickUp_Click(object sender, EventArgs e)
         {
             if (itemUnderMouse != null && Player.Backpack.Add(itemUnderMouse) == true)
-                World.CurrentLevel.EntityManager.DroppedLootManager.ItemToRemove.Add(itemUnderMouse);
+                World.CurrentLevel.EntityManager.DroppedLootManager.Remove(itemUnderMouse);
         }
 
         private void Unequip_Click(object sender, EventArgs e)

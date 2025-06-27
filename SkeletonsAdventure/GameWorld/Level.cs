@@ -5,7 +5,6 @@ using MonoGame.Extended.Tiled.Renderers;
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using RpgLibrary.WorldClasses;
-using SkeletonsAdventure.Controls;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.EntitySpawners;
@@ -54,10 +53,7 @@ namespace SkeletonsAdventure.GameWorld
 
             ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
-            EntityManager = new()
-            {
-                EnemyLevelRange = enemyLevels,
-            };
+            EntityManager = new();
             EnemyLevels = enemyLevels;
             EntityManager.Add(Player);
             AddEnemys();
@@ -174,13 +170,16 @@ namespace SkeletonsAdventure.GameWorld
             {
                 foreach(EntityData entityData in entityManagerData.EntityData)
                 {
-                    if(enemy.GetType().FullName == entityData.type)
+                    if(entityData is EnemyData data)
                     {
-                        Enemy en = (Enemy)Activator.CreateInstance(enemy.GetType(), entityData);
-                        en.SetEnemyLevel(entityData.entityLevel);
-                        en.GuaranteedDrops.Add(GameManager.LoadGameItemsFromItemData(entityData.Items));
+                        if (enemy.GetType().FullName == data.Type)
+                        {
+                            Enemy en = (Enemy)Activator.CreateInstance(enemy.GetType(), data);
+                            en.SetEnemyLevel(data.EntityLevel);
+                            en.GuaranteedDrops.Add(GameManager.LoadGameItemsFromItemData(data.GuaranteedItems));
 
-                        EntityManager.Add(en);
+                            EntityManager.Add(en);
+                        }
                     }
                 }
             }

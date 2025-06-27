@@ -36,10 +36,6 @@ namespace SkeletonsAdventure.Entities
         public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
         public Vector2 PositionLastAttackedFrom { get; set; }
-        public string DropTableName { get; set; } = string.Empty;
-        public int NumberOfItemsToDrop { get; set; } = 2; //Number of items to drop from the drop table
-        public DropTable DropTable => GetDropTable();
-        public ItemList GuaranteedDrops { get; set; } = new();
 
         public Entity() : base()
         {
@@ -50,10 +46,10 @@ namespace SkeletonsAdventure.Entities
             Initialize();
         }
 
-        public Entity(EntityData entityData) : base()
+        public Entity(EntityData data) : base()
         {
             Type = this.GetType().FullName;
-            UpdateEntityData(entityData);
+            UpdateEntityData(data);
             Initialize();
         }
 
@@ -99,46 +95,43 @@ namespace SkeletonsAdventure.Entities
             base.Draw(spriteBatch);
         }
 
-        public EntityData GetEntityData()
+        public virtual EntityData GetEntityData()
         {
             return new()
             {
-                id = ID,
-                type = Type,
-                baseHealth = baseHealth,
-                baseDefence = baseDefence,
-                baseAttack = baseAttack,
-                currentHealth = Health,
-                position = Position,
-                respawnPosition = RespawnPosition,
-                baseXP = baseXP,
-                entityLevel = Level,
-                isDead = IsDead,
-                lastDeathTime = lastDeathTime,
-                Items = GuaranteedDrops.GetItemListItemData(),
-                dropTableName = DropTableName,
+                ID = ID,
+                Type = Type,
+                BaseHealth = baseHealth,
+                BaseDefence = baseDefence,
+                BaseAttack = baseAttack,
+                CurrentHealth = Health,
+                Position = Position,
+                RespawnPosition = RespawnPosition,
+                BaseXP = baseXP,
+                EntityLevel = Level,
+                IsDead = IsDead,
+                LastDeathTime = lastDeathTime,
             };
         }
 
-        public void UpdateEntityData(EntityData entityData)
+        public virtual void UpdateEntityData(EntityData entityData)
         {
-            ID = entityData.id;
-            Type = entityData.type;
-            baseHealth = entityData.baseHealth;
-            baseAttack = entityData.baseAttack;
-            baseDefence = entityData.baseDefence;
-            baseXP = entityData.baseXP;
-            Level = entityData.entityLevel;
-            Health = entityData.currentHealth;
-            IsDead = entityData.isDead;
-            DropTableName = entityData.dropTableName;
+            ID = entityData.ID;
+            Type = entityData.Type;
+            baseHealth = entityData.BaseHealth;
+            baseAttack = entityData.BaseAttack;
+            baseDefence = entityData.BaseDefence;
+            baseXP = entityData.BaseXP;
+            Level = entityData.EntityLevel;
+            Health = entityData.CurrentHealth;
+            IsDead = entityData.IsDead;
 
-            if (entityData.position != null)
-                Position = (Vector2)entityData.position;
-            if (entityData.respawnPosition != null)
-                RespawnPosition = (Vector2)entityData.respawnPosition;
-            if (entityData.lastDeathTime != null)
-                lastDeathTime = (TimeSpan)entityData.lastDeathTime;
+            if (entityData.Position != null)
+                Position = (Vector2)entityData.Position;
+            if (entityData.RespawnPosition != null)
+                RespawnPosition = (Vector2)entityData.RespawnPosition;
+            if (entityData.LastDeathTime != null)
+                lastDeathTime = (TimeSpan)entityData.LastDeathTime;
         }
 
         public virtual Entity Clone()
@@ -173,23 +166,6 @@ namespace SkeletonsAdventure.Entities
                 EntityDiedByAttack(attack);
         }
 
-        protected virtual DropTable GetDropTable()
-        {
-            //TODO override this method in the child classes to return the correct drop table
-            //TODO add logic to return different drop tables based on the entity's level or if elite
-            return GameManager.GetDropTableByName(DropTableName).Clone();
-        }
-
-        public virtual List<GameItem> GetDrops()
-        {
-            List<GameItem> items = DropTable.GetDropsList(NumberOfItemsToDrop);
-
-            //Add guaranteed drops to the list
-            foreach (GameItem item in GuaranteedDrops.Items) 
-                items.Add(item.Clone());
-
-            return items;
-        }
 
         public virtual void Respawn()
         {

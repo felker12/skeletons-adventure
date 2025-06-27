@@ -165,7 +165,6 @@ namespace SkeletonsAdventure.GameWorld
                 if (itemData.Name == gameItem.BaseItem.Name)
                 {
                     item = gameItem.Clone();
-                    //TODO
                     item.SetQuantity(itemData.Quantity);
                     item.Position = itemData.Position;
                 }
@@ -477,24 +476,41 @@ namespace SkeletonsAdventure.GameWorld
                 string fileName = Path.GetFileNameWithoutExtension(s);
                 
                 // Load using Content.Load with the correct content path format
-                EntityData data = Content.Load<EntityData>($"EntityData/{fileName}");
-
-                Enemy en = (Enemy)Activator.CreateInstance(Type.GetType(data.type), data);
+                EnemyData data = Content.Load<EnemyData>($"EntityData/{fileName}");
+                Enemy en = (Enemy)Activator.CreateInstance(Type.GetType(data.Type), data);
 
                 Enemies.Add(en.GetType().FullName, en); //Add the entity to the dictionary of enemies
             }
+
+            //TODO this is used for testing
+            /*
+
+            string EnemyPath = Path.Combine(SavePath, "Enemies"); //Directory of the enemies
+
+            //if (Path.Exists(ItemPath) == false)
+            //    Directory.CreateDirectory(ItemPath); //Create the directory if it doesn't exist
+            if (Path.Exists(EnemyPath) == false)
+                Directory.CreateDirectory(EnemyPath); //Create the directory if it doesn't exist
+
+            //TODO test this
+            foreach (var enemy in Enemies)//shouldn't be needed now
+            {
+                XnaSerializer.Serialize($@"{EnemyPath}\{enemy.Value.GetType().Name}Data.xml", enemy.Value.GetEntityData());
+            }
+
+            */
         }
 
         //This is the old method for creating enemies. It is kept for reference and testing purposes
         private static void CreateEnemiesManually()
         {
             //Create the entities from the data and add their items to their loot list
-            EntityData entityData = new(Content.Load<EntityData>(@"EntityData/SkeletonData"));
+            EnemyData entityData = new(Content.Load<EnemyData>(@"EntityData/SkeletonData"));
 
             Skeleton skeleton = new(entityData);
             EliteSkeleton eliteSkeleton = new(entityData);
 
-            entityData = new(Content.Load<EntityData>(@"EntityData/SpiderData"));
+            entityData = new(Content.Load<EnemyData>(@"EntityData/SpiderData"));
 
             Spider spider = new(entityData);
 
@@ -636,11 +652,12 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void CreateNPCs() //TODO
         {
-
+            /*
             NPCData data = new()
             {
 
             };
+            */
         }
 
         public static List<TiledMapTile> TileLocations(int id, TiledMapTile[] tiles)

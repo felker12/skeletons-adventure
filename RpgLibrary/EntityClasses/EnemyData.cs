@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RpgLibrary.ItemClasses;
+using SharpFont;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace RpgLibrary.EntityClasses
 {
-    internal class EnemyData : EntityData
+    public class EnemyData : EntityData
     {
+        public string DropTableName { get; set; } = string.Empty;
+        public List<ItemData> GuaranteedItems { get; set; } = new();
 
         public EnemyData()
         {
@@ -16,14 +20,19 @@ namespace RpgLibrary.EntityClasses
 
         public EnemyData(EnemyData data) : base(data)
         {
-
+            GuaranteedItems = data.GuaranteedItems;
+            DropTableName = data.DropTableName;
         }
 
-        public EnemyData(EntityData entityData) : base(entityData)
+        public EnemyData(EntityData data) : base(data)
         {
-
         }
 
-
+        public override string ToString()
+        {
+            return base.ToString() + 
+                $"{DropTableName}, " +
+                $"";
+        }
     }
 }

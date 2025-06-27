@@ -98,19 +98,19 @@ namespace RpgEditor
 
             Entity = new EntityData
             {
-                id = id,
-                type = tbType.Text,
-                baseHealth = baseHealth,
-                baseDefence = baseDefence,
-                baseAttack = baseAttack,
-                ntityLevel = entityLevel,
-                baseXP = baseXP,
-                position = position,
-                respawnPosition = respawnPosition,
-                currentHealth = currentHealth,
-                isDead = cbIsDead.Checked,
-                lastDeathTime = TimeSpan.Zero, // You can add a field for this if needed
-                Items = new System.Collections.Generic.List<RpgLibrary.ItemClasses.ItemData>()
+                ID = id,
+                Type = tbType.Text,
+                BaseHealth = baseHealth,
+                BaseDefence = baseDefence,
+                BaseAttack = baseAttack,
+                EntityLevel = entityLevel,
+                BaseXP = baseXP,
+                Position = position,
+                RespawnPosition = respawnPosition,
+                CurrentHealth = currentHealth,
+                IsDead = cbIsDead.Checked,
+                LastDeathTime = TimeSpan.Zero, // You can add a field for this if needed
+                GuaranteedItems = new System.Collections.Generic.List<RpgLibrary.ItemClasses.ItemData>()
             };
 
             this.DialogResult = DialogResult.OK;
@@ -126,24 +126,24 @@ namespace RpgEditor
 
         public void LoadEntity(EntityData entity)
         {
-            tbType.Text = entity.type;
-            tbId.Text = entity.id.ToString();
-            tbBaseHealth.Text = entity.baseHealth.ToString();
-            tbBaseDefence.Text = entity.baseDefence.ToString();
-            tbBaseAttack.Text = entity.baseAttack.ToString();
-            tbEntityLevel.Text = entity.ntityLevel.ToString();
-            tbBaseXP.Text = entity.baseXP.ToString();
-            cbIsDead.Checked = entity.isDead;
-            tbCurrentHealth.Text = entity.currentHealth.ToString();
-            if (entity.position.HasValue)
+            tbType.Text = entity.Type;
+            tbId.Text = entity.ID.ToString();
+            tbBaseHealth.Text = entity.BaseHealth.ToString();
+            tbBaseDefence.Text = entity.BaseDefence.ToString();
+            tbBaseAttack.Text = entity.BaseAttack.ToString();
+            tbEntityLevel.Text = entity.EntityLevel.ToString();
+            tbBaseXP.Text = entity.BaseXP.ToString();
+            cbIsDead.Checked = entity.IsDead;
+            tbCurrentHealth.Text = entity.CurrentHealth.ToString();
+            if (entity.Position.HasValue)
             {
-                tbPositionX.Text = entity.position.Value.X.ToString();
-                tbPositionY.Text = entity.position.Value.Y.ToString();
+                tbPositionX.Text = entity.Position.Value.X.ToString();
+                tbPositionY.Text = entity.Position.Value.Y.ToString();
             }
-            if (entity.respawnPosition.HasValue)
+            if (entity.RespawnPosition.HasValue)
             {
-                tbRespawnX.Text = entity.respawnPosition.Value.X.ToString();
-                tbRespawnY.Text = entity.respawnPosition.Value.Y.ToString();
+                tbRespawnX.Text = entity.RespawnPosition.Value.X.ToString();
+                tbRespawnY.Text = entity.RespawnPosition.Value.Y.ToString();
             }
         }
 

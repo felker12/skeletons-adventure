@@ -1,22 +1,21 @@
-﻿using SkeletonsAdventure.ItemClasses;
-using RpgLibrary.ItemClasses;
+﻿using RpgLibrary.ItemClasses;
+using System.Linq;
 
-namespace SkeletonsAdventure.ItemLoot
+namespace SkeletonsAdventure.ItemClasses
 {
-    internal class DroppedLootManager()
+    internal class DroppedLootManager
     {
         public List<GameItem> Items { get; set; } = [];
-        public List<GameItem> ItemToRemove { get; set; } = [];
+        private List<GameItem> ItemsToRemove { get; set; } = [];
 
         public void Update()
         {
-            foreach(GameItem item in ItemToRemove)
+            foreach (GameItem item in ItemsToRemove)
                 Items.Remove(item);
+            ItemsToRemove.Clear();
 
             foreach (GameItem item in Items)
                 item.Update();
-
-            ItemToRemove.Clear();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -46,14 +45,14 @@ namespace SkeletonsAdventure.ItemLoot
             Add(lootList.Items, pos);
         }
 
-        public void Remove(GameItem item)
-        {
-            Items.Remove(item);
-        }
-
         public void Clear()
         {
             Items.Clear();
+        }
+
+        public void AddToRemoveList(GameItem item)
+        {
+            ItemsToRemove.Add(item);
         }
 
         public List<ItemData> GetDroppedItemData()
@@ -64,6 +63,11 @@ namespace SkeletonsAdventure.ItemLoot
                 droppedItemData.Add(gameItem.GetItemData());
 
             return droppedItemData;
+        }
+
+        public void Remove(GameItem item)
+        {
+            ItemsToRemove.Add(item);
         }
     }
 }

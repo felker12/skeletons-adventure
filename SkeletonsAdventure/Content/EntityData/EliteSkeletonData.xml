@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:EntityClasses="RpgLibrary.EntityClasses">
-  <Asset Type="EntityClasses:EntityData">
-    <Items />
-    <id>842</id>
-    <type>SkeletonsAdventure.Entities.EliteSkeleton</type>
-    <baseHealth>20</baseHealth>
-    <baseDefence>2</baseDefence>
-    <baseAttack>9</baseAttack>
-    <entityLevel>0</entityLevel>
-    <baseXP>5</baseXP>
-    <currentHealth>20</currentHealth>
-    <position>0 0</position>
-    <respawnPosition>0 0</respawnPosition>
-    <isDead>false</isDead>
-    <lastDeathTime>PT0S</lastDeathTime>
-    <dropTableName>BasicDropTable</dropTableName>
+  <Asset Type="EntityClasses:EnemyData">
+    <Type>SkeletonsAdventure.Entities.EliteSkeleton</Type>
+    <ID>842</ID>
+    <BaseHealth>20</BaseHealth>
+    <BaseDefence>2</BaseDefence>
+    <BaseAttack>9</BaseAttack>
+    <EntityLevel>0</EntityLevel>
+    <BaseXP>5</BaseXP>
+    <CurrentHealth>20</CurrentHealth>
+    <Position>0 0</Position>
+    <RespawnPosition>0 0</RespawnPosition>
+    <IsDead>false</IsDead>
+    <LastDeathTime>PT0S</LastDeathTime>
+    <DropTableName>BasicDropTable</DropTableName>
+    <GuaranteedItems />
   </Asset>
 </XnaContent>

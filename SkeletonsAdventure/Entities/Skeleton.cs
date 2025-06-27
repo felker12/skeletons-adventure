@@ -4,7 +4,7 @@ namespace SkeletonsAdventure.Entities
 {
     internal class Skeleton : Enemy
     {
-        public Skeleton(EntityData entityData) : base(entityData)
+        public Skeleton(EnemyData data) : base(data)
         {
             EnemyType = EnemyType.Skeleton;
         }

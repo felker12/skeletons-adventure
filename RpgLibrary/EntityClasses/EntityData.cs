@@ -5,39 +5,35 @@ namespace RpgLibrary.EntityClasses
 {
     public class EntityData
     {
-        public List<ItemData> Items { get; set; } = new();
-        public int id { get; set; } = 0;
-        public string type { get; set; } = string.Empty;
-        public int baseHealth { get; set; }
-        public int baseDefence { get; set; }
-        public int baseAttack { get; set; }
-        public int entityLevel { get; set; }
-        public int baseXP { get; set; }
-        public int currentHealth { get; set; }
-        public Vector2? position { get; set; }
-        public Vector2? respawnPosition { get; set; }
-        public bool isDead { get; set; }
-        public TimeSpan? lastDeathTime { get; set; } = new();
-        public string dropTableName { get; set; } = string.Empty;
+        public string Type { get; set; } = string.Empty;
+        public int ID { get; set; } = 0;
+        public int BaseHealth { get; set; }
+        public int BaseDefence { get; set; }
+        public int BaseAttack { get; set; }
+        public int EntityLevel { get; set; }
+        public int BaseXP { get; set; }
+        public int CurrentHealth { get; set; }
+        public Vector2? Position { get; set; }
+        public Vector2? RespawnPosition { get; set; }
+        public bool IsDead { get; set; } = false;
+        public TimeSpan? LastDeathTime { get; set; } = new();
 
         public EntityData() { }
 
         public EntityData(EntityData entityData)
         {
-            id = entityData.id;
-            type = entityData.type;
-            baseHealth = entityData.baseHealth;
-            baseDefence = entityData.baseDefence;
-            baseAttack = entityData.baseAttack;
-            entityLevel = entityData.entityLevel;
-            baseXP = entityData.baseXP;
-            position = entityData.position;
-            respawnPosition = entityData.respawnPosition;
-            currentHealth = entityData.currentHealth;
-            isDead = entityData.isDead;
-            lastDeathTime = entityData.lastDeathTime;
-            Items = entityData.Items;
-            dropTableName = entityData.dropTableName;
+            ID = entityData.ID;
+            Type = entityData.Type;
+            BaseHealth = entityData.BaseHealth;
+            BaseDefence = entityData.BaseDefence;
+            BaseAttack = entityData.BaseAttack;
+            EntityLevel = entityData.EntityLevel;
+            BaseXP = entityData.BaseXP;
+            Position = entityData.Position;
+            RespawnPosition = entityData.RespawnPosition;
+            CurrentHealth = entityData.CurrentHealth;
+            IsDead = entityData.IsDead;
+            LastDeathTime = entityData.LastDeathTime;
         }
 
         public virtual EntityData Clone()
@@ -48,19 +44,18 @@ namespace RpgLibrary.EntityClasses
         public override string ToString()
         {
             string toString = string.Empty;
-            toString += id + ", ";
-            toString += type + ", ";
-            toString += baseHealth + ", ";
-            toString += baseDefence + ", ";
-            toString += baseAttack + ", ";
-            toString += entityLevel + ", ";
-            toString += baseXP + ", ";
-            toString += position + ", ";
-            toString += respawnPosition + ", ";
-            toString += currentHealth + ", ";
-            toString += isDead + ", ";
-            toString += lastDeathTime + ", ";
-            toString += dropTableName;
+            toString += ID + ", ";
+            toString += Type + ", ";
+            toString += BaseHealth + ", ";
+            toString += BaseDefence + ", ";
+            toString += BaseAttack + ", ";
+            toString += EntityLevel + ", ";
+            toString += BaseXP + ", ";
+            toString += Position + ", ";
+            toString += RespawnPosition + ", ";
+            toString += CurrentHealth + ", ";
+            toString += IsDead + ", ";
+            toString += LastDeathTime + ", ";
 
             return toString;
         }

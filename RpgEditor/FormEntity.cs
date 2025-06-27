@@ -59,7 +59,7 @@ namespace RpgEditor
             if (lbDetails.SelectedItem is EntityData data)
             {
                 DialogResult result = MessageBox.Show(
-                    $"Are you sure you want to delete {data.type}?",
+                    $"Are you sure you want to delete {data.Type}?",
                     "Delete",
                     MessageBoxButtons.YesNo);
 
@@ -81,19 +81,19 @@ namespace RpgEditor
 
         private void AddEntity(EntityData entityData)
         {
-            if (FormDetails.ItemDataManager.EntityData.ContainsKey(entityData.type))
+            if (FormDetails.ItemDataManager.EntityData.ContainsKey(entityData.Type))
             {
                 DialogResult result = MessageBox.Show(
-                    entityData.type + " already exists. Overwrite it?",
+                    entityData.Type + " already exists. Overwrite it?",
                     "Existing quest",
                     MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                     return;
-                FormDetails.ItemDataManager.EntityData[entityData.type] = entityData;
+                FormDetails.ItemDataManager.EntityData[entityData.Type] = entityData;
                 FillListBox();
                 return;
             }
-            FormDetails.ItemDataManager.EntityData.Add(entityData.type, entityData);
+            FormDetails.ItemDataManager.EntityData.Add(entityData.Type, entityData);
             lbDetails.Items.Add(entityData);
         }
     }

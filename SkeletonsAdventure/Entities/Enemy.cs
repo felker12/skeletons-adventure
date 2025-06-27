@@ -2,6 +2,9 @@
 using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
+using SkeletonsAdventure.Engines;
+using SkeletonsAdventure.GameWorld;
+using SkeletonsAdventure.ItemClasses;
 
 namespace SkeletonsAdventure.Entities
 {
@@ -26,10 +29,15 @@ namespace SkeletonsAdventure.Entities
             (int)Position.Y - Width, Width * 3, Height + Width * 2);
 
         public EnemyType EnemyType { get; set; }
+        public string DropTableName { get; set; } = string.Empty;
+        public int NumberOfItemsToDrop { get; set; } = 2; //Number of items to drop from the drop table
+        public DropTable DropTable => GetDropTable();
+        public ItemList GuaranteedDrops { get; set; } = new();
 
-        public Enemy(EntityData entityData) : base(entityData)
+        public Enemy(EnemyData data) : base(data)
         {
             Initialize();
+            UpdateEntityData(data);
         }
 
         public Enemy() : base()
@@ -47,8 +55,12 @@ namespace SkeletonsAdventure.Entities
 
         public void SetEnemyLevel(MinMaxPair levels)
         {
-            Level = levels.GetRandomNumberInRange();
-            EnemyStatAdjustmentForLevel();
+            if (IsElite) //If the enemy is elite, set the level to the max of the range
+                Level = levels.Max;
+            else //Otherwise, set the level to a random number in the range
+                Level = levels.GetRandomNumberInRange();
+
+            EnemyStatAdjustmentForLevel(); // Adjust the enemy's stats based on the level
         }
 
         public void SetEnemyLevel(int level) //TODO
@@ -61,8 +73,8 @@ namespace SkeletonsAdventure.Entities
         {
             MaxHealth = baseHealth + Level * 2;
             Health = MaxHealth;
-            Defence = baseDefence + Level * 2;
-            Attack = baseAttack + Level * 2;
+            Defence = (int)(baseDefence + Level * 1.5);
+            Attack = (int)(baseAttack + Level * 1.5);
             XP = baseXP + Level * 2;
 
             if(IsElite)
@@ -106,7 +118,7 @@ namespace SkeletonsAdventure.Entities
 
         public override Enemy Clone()
         {
-            Enemy enemy = new(GetEntityData())
+            return new(GetEntityData())
             {
                 Position = Position,
                 GuaranteedDrops = GuaranteedDrops,
@@ -115,7 +127,57 @@ namespace SkeletonsAdventure.Entities
                 DefaultColor = this.DefaultColor,
                 DropTableName = this.DropTableName,
             };
-            return enemy;
+        }
+
+        public override EnemyData GetEntityData()
+        {
+            return new(base.GetEntityData())
+            {
+                GuaranteedItems = GuaranteedDrops.GetItemListItemData(),
+                DropTableName = DropTableName,
+            };
+        }
+
+        public virtual void UpdateEntityData(EnemyData entityData)
+        {
+            base.UpdateEntityData(entityData);
+            DropTableName = entityData.DropTableName;
+        }
+
+        //Get the drop table based on the enemies level
+        //TODO add different drop tables for different level ranges
+        protected virtual DropTable GetDropTable()
+        {
+            DropTable table = Level switch
+            {
+                >= 100 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 90 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 80 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 70 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 60 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 50 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 40 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 30 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 20 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                >= 10 => GameManager.GetDropTableByName(DropTableName).Clone(),
+                _ => GameManager.GetDropTableByName(DropTableName).Clone()
+            };
+
+            //TODO add logic to return different drop tables based on the entity's level
+            return table;
+        }
+
+        // Returns a list of items that the enemy drops when killed
+        // this includes the items from the drop table and the guaranteed drops
+        public virtual List<GameItem> GetDrops()
+        {
+            List<GameItem> items = DropTable.GetDropsList(NumberOfItemsToDrop);
+
+            //Add guaranteed drops to the list
+            foreach (GameItem item in GuaranteedDrops.Items)
+                items.Add(item.Clone());
+
+            return items;
         }
 
         public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
