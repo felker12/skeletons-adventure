@@ -1,4 +1,5 @@
 ﻿using RpgLibrary.QuestClasses;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Quests
 {
@@ -8,7 +9,6 @@ namespace SkeletonsAdventure.Quests
         public int CompletedAmount { get; set; } = 0;
         public string TaskToComplete { get; set; } = string.Empty;
         public bool IsCompleted => CompletedAmount >= RequiredAmount;
-        public string CompletedProgress => $"{CompletedAmount} out of {RequiredAmount} completed for task: {TaskToComplete}"; 
         public string Progress => $"{TaskToComplete}: {CompletedAmount} out of {RequiredAmount}";
 
         public BaseTask() { }

@@ -193,7 +193,7 @@ namespace SkeletonsAdventure.Entities
                     if (quest.ActiveTask is not null && quest.ActiveTask is SlayTask slayTask)
                     {
                         if (slayTask.GetEntityToSlay().GetType() == this.GetType())
-                            slayTask.ProgressTask();
+                            quest.ProgressTask();
                     }
                 }
             }

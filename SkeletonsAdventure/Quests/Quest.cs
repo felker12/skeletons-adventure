@@ -1,6 +1,7 @@
 ﻿using RpgLibrary.QuestClasses;
 using SkeletonsAdventure.Entities;
 using System.Linq;
+using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Quests
 {
@@ -79,6 +80,20 @@ namespace SkeletonsAdventure.Quests
                     return; // If any task is not completed, the quest is not completed
             }
             CompleteQuest();
+        }
+
+        public void ProgressTask()//Can only progress the active task
+        {
+            BaseTask task = ActiveTask;
+            task.ProgressTask();
+            World.AddMessage(task.Progress);
+
+            if (task.IsCompleted)
+            {
+                // If the task is completed, check if all tasks are completed
+                CheckTasksCompleted();
+                World.AddMessage($"Task: '{task.TaskToComplete}' completed for quest '{Name}'.");
+            }
         }
 
         public bool PlayerRequirementsMet(Player player)

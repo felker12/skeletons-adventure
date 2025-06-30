@@ -215,8 +215,6 @@ namespace SkeletonsAdventure.Entities
             if (ActiveQuests != null && ActiveQuests.Count > 0)
                 foreach (Quest quest in ActiveQuests)
                 {
-                    quest.CheckTasksCompleted();
-
                     if (quest.IsCompleted)
                         completed.Add(quest);
                 }
@@ -276,6 +274,7 @@ namespace SkeletonsAdventure.Entities
             {
                 ActiveQuests.Add(quest);
                 SetDisplayQuestName(quest); //Make this the current quest to display
+                World.AddMessage($"Quest {quest.Name} started: {quest.Description}");
             }
         }
 
