@@ -11,34 +11,24 @@ namespace SkeletonsAdventure.GameWorld
 {
     internal class World
     {
-        public static Dictionary<string, Level> Levels { get; set; } = [];
+        public static Dictionary<string, Level> Levels { get; set; }
         public static Level CurrentLevel { get; set; }
-        public static Player Player { get; set; } = new();
+        public static Player Player { get; set; }
         public static Camera Camera { get; set; } = new(Game1.ScreenWidth, Game1.ScreenHeight);
         public static GameTime TotalTimeInWorld { get; set; } = new();
-
-        private TiledMap _tiledMap;
-        private readonly ContentManager _content;
-        private readonly GraphicsDevice _graphics;
+        public static List<string> MessagesToAdd { get; private set; } = [];
 
         public World(ContentManager content, GraphicsDevice graphics)
         {
-            _content = content;
-            _graphics = graphics;
-            Initialilze();
-        }
-
-        public void Initialilze()
-        {
+            Player = new();
             //Clear the levels dictionary because the levels are static and will persist between game instances
-            Levels = []; 
-            CreateLevels(_content, _graphics);
+            Levels = [];
+            CreateLevels(content, graphics);
 
             //TODO
             //SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
         }
-
 
         public static void Update(GameTime gameTime)
         {
@@ -81,7 +71,7 @@ namespace SkeletonsAdventure.GameWorld
 
         public static void LoadWorldDataIntoLevels(WorldData worldData)
         {
-            Player.UpdatePlayerData(worldData.PlayerData);
+            Player.UpdatePlayerWithData(worldData.PlayerData);
             LoadPlayerGameItemsFromGameData(worldData.PlayerData.backpack);
             TotalTimeInWorld.TotalGameTime = worldData.TotalTimeInWorld;
 
@@ -128,9 +118,7 @@ namespace SkeletonsAdventure.GameWorld
                 levels.Add(level.Key, level.Value.GetLevelData());
 
                 if (level.Value == CurrentLevel)
-                {
                     name = level.Key;
-                }
             }
 
             return new()
@@ -154,38 +142,38 @@ namespace SkeletonsAdventure.GameWorld
             CurrentLevel.EntityManager.Player = Player;
         }
 
-        public void CreateLevels(ContentManager content, GraphicsDevice graphics)
+        public static void CreateLevels(ContentManager content, GraphicsDevice graphics)
         {
+            TiledMap tiledMap;
+
             //Test Level
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/TestLevel");
-            Level level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/TestLevel");
+            Level level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
             Levels.Add(level.Name, level);
 
             //Test Level
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Testing");
-            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Testing");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
             Levels.Add(level.Name, level);
 
             //Level 1_Old
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1_Old");
-            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1_Old");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
             //Level 0_Old
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_Old");
-            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_Old");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
             Levels.Add(level.Name, level);
 
             //Level 0
-            _tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
-            level = new(graphics, _tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
             Levels.Add(level.Name, level);
 
             //Initialize Levels
             foreach (Level lvl in Levels.Values)
-            {
                 InitializeLevel(lvl);
-            }
         }
 
         private static void InitializeLevel(Level level)
@@ -218,6 +206,11 @@ namespace SkeletonsAdventure.GameWorld
             {
                 level.PlayerEndPosition = level.PlayerStartPosition;
             }
+        }
+
+        public static void AddMessage(string message)
+        {
+            MessagesToAdd.Add(message);
         }
 
         public static void FillPlayerBackback() //TODO this is for testing

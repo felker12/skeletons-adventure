@@ -68,10 +68,7 @@ namespace SkeletonsAdventure.GameUI
 
         public void ToggleVisibility()
         {
-            if (Visible == true)
-                Visible = false;
-            else if (Visible == false)
-                Visible = true;
+            Visible = !Visible;
         }
     }
 }

@@ -49,7 +49,7 @@ namespace SkeletonsAdventure.Entities
         public Entity(EntityData data) : base()
         {
             Type = this.GetType().FullName;
-            UpdateEntityData(data);
+            UpdateEntityWithData(data);
             Initialize();
         }
 
@@ -114,7 +114,7 @@ namespace SkeletonsAdventure.Entities
             };
         }
 
-        public virtual void UpdateEntityData(EntityData entityData)
+        public virtual void UpdateEntityWithData(EntityData entityData)
         {
             ID = entityData.ID;
             Type = entityData.Type;

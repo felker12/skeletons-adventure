@@ -73,6 +73,7 @@ namespace SkeletonsAdventure.States
             WorldData worldData;
             MenuManagerData gameScreenMenuData;
             TabbedMenuData exitScreenData;
+            List<string> messageBoxText;
 
             try
             {
@@ -84,15 +85,17 @@ namespace SkeletonsAdventure.States
                 worldData = XnaSerializer.Deserialize<WorldData>(savePath + @"\World.xml");
                 gameScreenMenuData = XnaSerializer.Deserialize<MenuManagerData>(savePath + @"\GameScreenMenuData.xml");
                 exitScreenData = XnaSerializer.Deserialize<TabbedMenuData>(savePath + @"\ExitScreenData.xml");
+                messageBoxText = XnaSerializer.Deserialize<List<String>>(Path.Combine(savePath, "MessageBox"));
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);//TODO: Handle exception
+                Debug.WriteLine(ex);//TODO: Handle exception
                 return;
             }
 
             //Update the game with the saved information
             Game.GameScreen = new(Game, worldData);
+            Game.GameScreen.MessageBox.AddMessages(messageBoxText);
             UpdateMenusFromSave(gameScreenMenuData);
             Game.ExitScreen.SetExitScreenMenuData(exitScreenData);
 

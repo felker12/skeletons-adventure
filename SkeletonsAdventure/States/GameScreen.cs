@@ -7,6 +7,7 @@ using RpgLibrary.WorldClasses;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameMenu;
 using SkeletonsAdventure.GameUI;
+using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.States
 {
@@ -31,6 +32,11 @@ namespace SkeletonsAdventure.States
         private StatusBar HealthBar { get; set; }
         private StatusBar ManaBar { get; set; }
         private StatusBar XPProgress { get; set; }
+        public Label QuestToDisplay { get; set; } = new()
+        {
+            Text = "No Quest",
+        };
+        public MessageBox MessageBox { get; private set; } = new();
 
         private FPSCounter FPS { get; set; } = new();
 
@@ -60,6 +66,11 @@ namespace SkeletonsAdventure.States
 
             Menus = [BackpackMenu];//TODO add more menus here when made
             CreateStatusBars();
+
+            QuestToDisplay.Position = new(10, XPProgress.Position.Y + XPProgress.Height + 10);
+            ControlManager.Add(QuestToDisplay);
+            MessageBox.Position = new(4, Game1.ScreenHeight - MessageBox.Height - 4);
+            MessageBox.AddMessage("Welcome!");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -98,6 +109,9 @@ namespace SkeletonsAdventure.States
             ManaBar.Draw(spriteBatch);
             XPProgress.Draw(spriteBatch);
 
+            ControlManager.Draw(spriteBatch);
+            MessageBox.Draw(spriteBatch);
+
             //FPS.Draw(spriteBatch, GameManager.InfoFont, new(10,10), Color.MonoGameOrange);
 
             spriteBatch.End();
@@ -118,11 +132,16 @@ namespace SkeletonsAdventure.States
             ManaBar.Update(Player.Mana, Player.MaxMana, ManaBar.Position);
             XPProgress.Update(playerXPSinceLastLevel, playerXPToLevel, XPProgress.Position);
 
+            UpdateQuestToDisplayLabel();
+            ControlManager.Update(gameTime, PlayerIndexInControl);
+
             BackpackMenu.Update(World.CurrentLevel.EntityManager.Player.Backpack.Items);
 
             foreach (BaseMenu menu in Menus)
                 menu.Update(gameTime);
 
+            LoadMessagesFromWorld();
+            MessageBox.Update();
             //FPS.Update(gameTime);
         }
 
@@ -146,6 +165,11 @@ namespace SkeletonsAdventure.States
                 //System.Diagnostics.Debug.WriteLine(World.CurrentLevel.EntityManager.Entities.Count);
             }
 
+            if (InputHandler.KeyReleased(Keys.C))
+            {
+                MessageBox.ToggleVisibility();
+            }
+
             if (_mouseState.LeftButton == ButtonState.Released && _lastMouseState.LeftButton == ButtonState.Pressed)
             {
                 // Only try to pick up items if they're in the game world (not in backpack)
@@ -161,6 +185,30 @@ namespace SkeletonsAdventure.States
 
             if (GameItemPopUpBox.Visible)
                 GameItemPopUpBox.HandleInput(playerIndex);
+
+            MessageBox.HandleInput();
+        }
+
+        private void UpdateQuestToDisplayLabel()
+        {
+            Quest quest = Player.GetActiveQuestByName(Player.DisplayQuestName);
+
+            if(quest is null)
+            {
+                QuestToDisplay.Visible = false;
+                QuestToDisplay.Text = string.Empty;
+            }
+            else
+            {
+                QuestToDisplay.Visible = true;
+                QuestToDisplay.Text = quest.QuestDetails;
+            }
+        }
+
+        private void LoadMessagesFromWorld()
+        {
+            MessageBox.AddMessages(World.MessagesToAdd);
+            World.MessagesToAdd.Clear();
         }
 
         private void CheckUnderMouse(GameTime gameTime)

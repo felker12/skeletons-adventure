@@ -37,6 +37,7 @@ namespace SkeletonsAdventure.Entities
         public bool AimVisible { get; set; } = false;
         public List<Quest> ActiveQuests { get; set; } = [];
         public List<Quest> CompletedQuests { get; set; } = [];
+        public string DisplayQuestName { get; private set; } = string.Empty;
 
         public Player() : base()
         {
@@ -98,9 +99,9 @@ namespace SkeletonsAdventure.Entities
             //IcePillar2.SetFrames(4, 62, 62, 0, 62);
         }
 
-        public void UpdatePlayerData(PlayerData playerData)
+        public void UpdatePlayerWithData(PlayerData playerData)
         {
-            UpdateEntityData(playerData);
+            UpdateEntityWithData(playerData);
 
             TotalXP = playerData.totalXP;
             BaseMana = playerData.baseMana;
@@ -115,6 +116,7 @@ namespace SkeletonsAdventure.Entities
             //TODO update active quests and completed quests
             ActiveQuests = playerData.activeQuests.ConvertAll(q => new Quest(q));
             CompletedQuests = playerData.completedQuests.ConvertAll(q => new Quest(q));
+            DisplayQuestName = playerData.displayQuestName;
 
             PlayerStatAdjustmentForLevel();
         }
@@ -134,7 +136,8 @@ namespace SkeletonsAdventure.Entities
                 bonusManaFromAttributePoints = bonusManaFromAttributePoints,
                 backpack = Backpack.GetItemListItemData(),
                 activeQuests = ActiveQuests.ConvertAll(q => q.GetQuestData()),
-                completedQuests = CompletedQuests.ConvertAll(q => q.GetQuestData())
+                completedQuests = CompletedQuests.ConvertAll(q => q.GetQuestData()),
+                displayQuestName = DisplayQuestName
             };
         }
 
@@ -227,8 +230,25 @@ namespace SkeletonsAdventure.Entities
                     ActiveQuests.Remove(quest);
                     CompletedQuests.Add(quest);
                     GiveQuestReward(quest.Reward);
+                    World.AddMessage($"Quest {quest.Name} Completed!");
+                    World.AddMessage($"Rewards gained: {quest.Reward}");
                 }
             }
+
+            SetDisplayQuestName();
+        }
+
+        public void SetDisplayQuestName()
+        {
+            if (ActiveQuests.Count > 0)
+                DisplayQuestName = ActiveQuests[0].Name;
+            else
+                DisplayQuestName = string.Empty;
+        }
+
+        public void SetDisplayQuestName(Quest quest)
+        {
+            DisplayQuestName = quest.Name;
         }
 
         public void GiveQuestReward(QuestReward reward)
@@ -241,16 +261,21 @@ namespace SkeletonsAdventure.Entities
 
             //if the items wont fit in the backpack, drop them on the ground
             if (Backpack.Add(coins) is false)
-            {
                 World.CurrentLevel.EntityManager.DroppedLootManager.Add(coins, Position);
-            }
             
             foreach (GameItem item in reward.Items)
             {
                 if (Backpack.Add(item.Clone()) is false)
-                {
                     World.CurrentLevel.EntityManager.DroppedLootManager.Add(item.Clone(), Position);
-                }
+            }
+        }
+
+        public void AddActiveQuest(Quest quest)
+        {
+            if (quest != null && ActiveQuests.Contains(quest) is false)
+            {
+                ActiveQuests.Add(quest);
+                SetDisplayQuestName(quest); //Make this the current quest to display
             }
         }
 

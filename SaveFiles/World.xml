@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:WorldClasses="RpgLibrary.WorldClasses" xmlns:ItemClasses="RpgLibrary.ItemClasses">
   <Asset Type="WorldClasses:WorldData">
-    <TotalTimeInWorld>PT20.6833747S</TotalTimeInWorld>
+    <TotalTimeInWorld>PT6.3666794S</TotalTimeInWorld>
     <CurrentLevel>TestLevel</CurrentLevel>
     <PlayerData>
       <Type>SkeletonsAdventure.Entities.Player</Type>
@@ -9,20 +9,20 @@
       <BaseHealth>10000</BaseHealth>
       <BaseDefence>6</BaseDefence>
       <BaseAttack>400</BaseAttack>
-      <EntityLevel>1</EntityLevel>
+      <EntityLevel>0</EntityLevel>
       <BaseXP>1</BaseXP>
-      <CurrentHealth>10020</CurrentHealth>
-      <Position>324.53555 890.536</Position>
+      <CurrentHealth>10000</CurrentHealth>
+      <Position>350.2466 251.24652</Position>
       <RespawnPosition>266 92</RespawnPosition>
       <IsDead>false</IsDead>
       <LastDeathTime>PT0S</LastDeathTime>
       <DropTableName></DropTableName>
       <GuaranteedItems />
-      <totalXP>157</totalXP>
+      <totalXP>0</totalXP>
       <baseMana>1000</baseMana>
-      <mana>1020</mana>
-      <maxMana>1020</maxMana>
-      <attributePoints>5</attributePoints>
+      <mana>1000</mana>
+      <maxMana>1000</maxMana>
+      <attributePoints>0</attributePoints>
       <bonusAttackFromAttributePoints>0</bonusAttackFromAttributePoints>
       <bonusDefenceFromAttributePoints>0</bonusDefenceFromAttributePoints>
       <bonusHealthFromAttributePoints>0</bonusHealthFromAttributePoints>
@@ -34,7 +34,7 @@
           <Description>A Robe</Description>
           <Price>10</Price>
           <Weight>5</Weight>
-          <Equipped>false</Equipped>
+          <Equipped>true</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>1120 32</Position>
@@ -71,7 +71,7 @@
           <Stackable>true</Stackable>
           <Consumable>false</Consumable>
           <Position>1184 32</Position>
-          <Quantity>35</Quantity>
+          <Quantity>23</Quantity>
           <SourceRectangle>0 0 0 0</SourceRectangle>
           <TexturePath>TileSets/ProjectUtumno_full</TexturePath>
         </Item>
@@ -81,7 +81,7 @@
           <Description>A Sword</Description>
           <Price>40</Price>
           <Weight>15</Weight>
-          <Equipped>false</Equipped>
+          <Equipped>true</Equipped>
           <Stackable>false</Stackable>
           <Consumable>false</Consumable>
           <Position>1216 32</Position>
@@ -158,6 +158,7 @@
       </backpack>
       <activeQuests />
       <completedQuests />
+      <displayQuestName></displayQuestName>
     </PlayerData>
     <Levels>
       <Item>
@@ -178,7 +179,7 @@
                 <EntityLevel>76</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>430</CurrentHealth>
-                <Position>998.75 1028</Position>
+                <Position>1215 778</Position>
                 <RespawnPosition>800 778</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -194,10 +195,10 @@
                 <EntityLevel>76</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>172</CurrentHealth>
-                <Position>368.75 458</Position>
+                <Position>797.5 458</Position>
                 <RespawnPosition>320 458</RespawnPosition>
                 <IsDead>false</IsDead>
-                <LastDeathTime>PT17.0500341S</LastDeathTime>
+                <LastDeathTime>PT0S</LastDeathTime>
                 <DropTableName>BasicDropTable</DropTableName>
                 <GuaranteedItems />
               </Item>
@@ -210,7 +211,7 @@
                 <EntityLevel>76</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>172</CurrentHealth>
-                <Position>934.75 708</Position>
+                <Position>1213.5 458</Position>
                 <RespawnPosition>736 458</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -226,7 +227,7 @@
                 <EntityLevel>76</EntityLevel>
                 <BaseXP>4</BaseXP>
                 <CurrentHealth>167</CurrentHealth>
-                <Position>806.75 538</Position>
+                <Position>1085.5 288</Position>
                 <RespawnPosition>608 288</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
@@ -595,9 +596,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>52</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>124</CurrentHealth>
+                <CurrentHealth>22</CurrentHealth>
                 <Position>256 106</Position>
                 <RespawnPosition>256 106</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -611,283 +612,11 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>40</EntityLevel>
+                <EntityLevel>55</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>100</CurrentHealth>
+                <CurrentHealth>130</CurrentHealth>
                 <Position>224 522</Position>
                 <RespawnPosition>224 522</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>67</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>154</CurrentHealth>
-                <Position>64 714</Position>
-                <RespawnPosition>64 714</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>47</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>114</CurrentHealth>
-                <Position>32 1034</Position>
-                <RespawnPosition>32 1034</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>61</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>142</CurrentHealth>
-                <Position>288 1034</Position>
-                <RespawnPosition>288 1034</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>15</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>50</CurrentHealth>
-                <Position>192 1482</Position>
-                <RespawnPosition>192 1482</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>56</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>132</CurrentHealth>
-                <Position>1920 1738</Position>
-                <RespawnPosition>1920 1738</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>1</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>22</CurrentHealth>
-                <Position>96 1802</Position>
-                <RespawnPosition>96 1802</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>62</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>144</CurrentHealth>
-                <Position>2208 1802</Position>
-                <RespawnPosition>2208 1802</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>56</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>132</CurrentHealth>
-                <Position>768 1834</Position>
-                <RespawnPosition>768 1834</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>61</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>142</CurrentHealth>
-                <Position>224 1898</Position>
-                <RespawnPosition>224 1898</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>36</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>92</CurrentHealth>
-                <Position>1760 2026</Position>
-                <RespawnPosition>1760 2026</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>74</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>168</CurrentHealth>
-                <Position>2016 2058</Position>
-                <RespawnPosition>2016 2058</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>82</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>184</CurrentHealth>
-                <Position>672 2186</Position>
-                <RespawnPosition>672 2186</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>85</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>190</CurrentHealth>
-                <Position>864 2186</Position>
-                <RespawnPosition>864 2186</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>74</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>168</CurrentHealth>
-                <Position>224 2282</Position>
-                <RespawnPosition>224 2282</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>43</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>106</CurrentHealth>
-                <Position>1216 2314</Position>
-                <RespawnPosition>1216 2314</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>29</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>78</CurrentHealth>
-                <Position>1536 2314</Position>
-                <RespawnPosition>1536 2314</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>1</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>22</CurrentHealth>
-                <Position>2080 2410</Position>
-                <RespawnPosition>2080 2410</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
                 <DropTableName>BasicDropTable</DropTableName>
@@ -902,6 +631,278 @@
                 <EntityLevel>98</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>216</CurrentHealth>
+                <Position>64 714</Position>
+                <RespawnPosition>64 714</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>58</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>136</CurrentHealth>
+                <Position>32 1034</Position>
+                <RespawnPosition>32 1034</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>47</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>114</CurrentHealth>
+                <Position>288 1034</Position>
+                <RespawnPosition>288 1034</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>22</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>64</CurrentHealth>
+                <Position>192 1482</Position>
+                <RespawnPosition>192 1482</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>46</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>112</CurrentHealth>
+                <Position>1920 1738</Position>
+                <RespawnPosition>1920 1738</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>75</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>170</CurrentHealth>
+                <Position>96 1802</Position>
+                <RespawnPosition>96 1802</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>93</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>206</CurrentHealth>
+                <Position>2208 1802</Position>
+                <RespawnPosition>2208 1802</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>49</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>118</CurrentHealth>
+                <Position>768 1834</Position>
+                <RespawnPosition>768 1834</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>58</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>136</CurrentHealth>
+                <Position>224 1898</Position>
+                <RespawnPosition>224 1898</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>28</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>76</CurrentHealth>
+                <Position>1760 2026</Position>
+                <RespawnPosition>1760 2026</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>49</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>118</CurrentHealth>
+                <Position>2016 2058</Position>
+                <RespawnPosition>2016 2058</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>97</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>214</CurrentHealth>
+                <Position>672 2186</Position>
+                <RespawnPosition>672 2186</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>71</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>162</CurrentHealth>
+                <Position>864 2186</Position>
+                <RespawnPosition>864 2186</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>84</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>188</CurrentHealth>
+                <Position>224 2282</Position>
+                <RespawnPosition>224 2282</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>32</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>84</CurrentHealth>
+                <Position>1216 2314</Position>
+                <RespawnPosition>1216 2314</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>46</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>112</CurrentHealth>
+                <Position>1536 2314</Position>
+                <RespawnPosition>1536 2314</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>83</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>186</CurrentHealth>
+                <Position>2080 2410</Position>
+                <RespawnPosition>2080 2410</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>4</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>28</CurrentHealth>
                 <Position>2080 2442</Position>
                 <RespawnPosition>2080 2442</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -915,9 +916,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>30</EntityLevel>
+                <EntityLevel>35</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>80</CurrentHealth>
+                <CurrentHealth>90</CurrentHealth>
                 <Position>544 2506</Position>
                 <RespawnPosition>544 2506</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -931,9 +932,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>29</EntityLevel>
+                <EntityLevel>79</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>78</CurrentHealth>
+                <CurrentHealth>178</CurrentHealth>
                 <Position>864 2506</Position>
                 <RespawnPosition>864 2506</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -947,9 +948,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>15</EntityLevel>
+                <EntityLevel>99</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>50</CurrentHealth>
+                <CurrentHealth>218</CurrentHealth>
                 <Position>2336 2602</Position>
                 <RespawnPosition>2336 2602</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -963,9 +964,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>68</EntityLevel>
+                <EntityLevel>94</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>156</CurrentHealth>
+                <CurrentHealth>208</CurrentHealth>
                 <Position>2336 2634</Position>
                 <RespawnPosition>2336 2634</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -979,11 +980,27 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>81</EntityLevel>
+                <EntityLevel>17</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>182</CurrentHealth>
+                <CurrentHealth>54</CurrentHealth>
                 <Position>1504 2698</Position>
                 <RespawnPosition>1504 2698</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
+                <EntityLevel>26</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>72</CurrentHealth>
+                <Position>1248 2858</Position>
+                <RespawnPosition>1248 2858</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
                 <DropTableName>BasicDropTable</DropTableName>
@@ -998,22 +1015,6 @@
                 <EntityLevel>78</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>176</CurrentHealth>
-                <Position>1248 2858</Position>
-                <RespawnPosition>1248 2858</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>22</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>64</CurrentHealth>
                 <Position>2336 2954</Position>
                 <RespawnPosition>2336 2954</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1027,9 +1028,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>59</EntityLevel>
+                <EntityLevel>78</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>138</CurrentHealth>
+                <CurrentHealth>176</CurrentHealth>
                 <Position>32 2986</Position>
                 <RespawnPosition>32 2986</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1043,9 +1044,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>6</EntityLevel>
+                <EntityLevel>98</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>32</CurrentHealth>
+                <CurrentHealth>216</CurrentHealth>
                 <Position>1248 2986</Position>
                 <RespawnPosition>1248 2986</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1059,9 +1060,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>45</EntityLevel>
+                <EntityLevel>64</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>110</CurrentHealth>
+                <CurrentHealth>148</CurrentHealth>
                 <Position>640 3018</Position>
                 <RespawnPosition>640 3018</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1075,9 +1076,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>76</EntityLevel>
+                <EntityLevel>26</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>172</CurrentHealth>
+                <CurrentHealth>72</CurrentHealth>
                 <Position>1504 3146</Position>
                 <RespawnPosition>1504 3146</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1091,9 +1092,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>25</EntityLevel>
+                <EntityLevel>87</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>70</CurrentHealth>
+                <CurrentHealth>194</CurrentHealth>
                 <Position>1856 3210</Position>
                 <RespawnPosition>1856 3210</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1107,9 +1108,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>65</EntityLevel>
+                <EntityLevel>82</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>150</CurrentHealth>
+                <CurrentHealth>184</CurrentHealth>
                 <Position>2336 3242</Position>
                 <RespawnPosition>2336 3242</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1123,9 +1124,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>13</EntityLevel>
+                <EntityLevel>24</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>46</CurrentHealth>
+                <CurrentHealth>68</CurrentHealth>
                 <Position>1024 3466</Position>
                 <RespawnPosition>1024 3466</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1139,9 +1140,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>22</EntityLevel>
+                <EntityLevel>83</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>64</CurrentHealth>
+                <CurrentHealth>186</CurrentHealth>
                 <Position>2112 3466</Position>
                 <RespawnPosition>2112 3466</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1155,9 +1156,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>74</EntityLevel>
+                <EntityLevel>14</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>168</CurrentHealth>
+                <CurrentHealth>48</CurrentHealth>
                 <Position>1248 3498</Position>
                 <RespawnPosition>1248 3498</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1171,9 +1172,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>67</EntityLevel>
+                <EntityLevel>64</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>154</CurrentHealth>
+                <CurrentHealth>148</CurrentHealth>
                 <Position>1824 3594</Position>
                 <RespawnPosition>1824 3594</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1187,9 +1188,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>66</EntityLevel>
+                <EntityLevel>27</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>152</CurrentHealth>
+                <CurrentHealth>74</CurrentHealth>
                 <Position>1408 3626</Position>
                 <RespawnPosition>1408 3626</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1203,9 +1204,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>90</EntityLevel>
+                <EntityLevel>33</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>200</CurrentHealth>
+                <CurrentHealth>86</CurrentHealth>
                 <Position>704 3690</Position>
                 <RespawnPosition>704 3690</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1298,9 +1299,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>1</EntityLevel>
+                <EntityLevel>0</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>22</CurrentHealth>
+                <CurrentHealth>20</CurrentHealth>
                 <Position>128 1386</Position>
                 <RespawnPosition>128 1386</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1314,9 +1315,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>0</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>20</CurrentHealth>
+                <CurrentHealth>22</CurrentHealth>
                 <Position>416 1578</Position>
                 <RespawnPosition>416 1578</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1330,9 +1331,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>0</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>20</CurrentHealth>
+                <CurrentHealth>22</CurrentHealth>
                 <Position>736 1578</Position>
                 <RespawnPosition>736 1578</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1346,9 +1347,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>1</EntityLevel>
+                <EntityLevel>0</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>22</CurrentHealth>
+                <CurrentHealth>20</CurrentHealth>
                 <Position>1408 1610</Position>
                 <RespawnPosition>1408 1610</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1362,9 +1363,9 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
-                <EntityLevel>0</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>5</BaseXP>
-                <CurrentHealth>20</CurrentHealth>
+                <CurrentHealth>22</CurrentHealth>
                 <Position>1440 2058</Position>
                 <RespawnPosition>1440 2058</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1378,11 +1379,27 @@
                 <BaseHealth>20</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>9</BaseAttack>
+                <EntityLevel>0</EntityLevel>
+                <BaseXP>5</BaseXP>
+                <CurrentHealth>20</CurrentHealth>
+                <Position>1664 2058</Position>
+                <RespawnPosition>1664 2058</RespawnPosition>
+                <IsDead>false</IsDead>
+                <LastDeathTime>PT0S</LastDeathTime>
+                <DropTableName>BasicDropTable</DropTableName>
+                <GuaranteedItems />
+              </Item>
+              <Item Type="RpgLibrary.EntityClasses.EnemyData">
+                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
+                <ID>836</ID>
+                <BaseHealth>20</BaseHealth>
+                <BaseDefence>2</BaseDefence>
+                <BaseAttack>9</BaseAttack>
                 <EntityLevel>1</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>22</CurrentHealth>
-                <Position>1664 2058</Position>
-                <RespawnPosition>1664 2058</RespawnPosition>
+                <Position>192 2538</Position>
+                <RespawnPosition>192 2538</RespawnPosition>
                 <IsDead>false</IsDead>
                 <LastDeathTime>PT0S</LastDeathTime>
                 <DropTableName>BasicDropTable</DropTableName>
@@ -1397,22 +1414,6 @@
                 <EntityLevel>0</EntityLevel>
                 <BaseXP>5</BaseXP>
                 <CurrentHealth>20</CurrentHealth>
-                <Position>192 2538</Position>
-                <RespawnPosition>192 2538</RespawnPosition>
-                <IsDead>false</IsDead>
-                <LastDeathTime>PT0S</LastDeathTime>
-                <DropTableName>BasicDropTable</DropTableName>
-                <GuaranteedItems />
-              </Item>
-              <Item Type="RpgLibrary.EntityClasses.EnemyData">
-                <Type>SkeletonsAdventure.Entities.Skeleton</Type>
-                <ID>836</ID>
-                <BaseHealth>20</BaseHealth>
-                <BaseDefence>2</BaseDefence>
-                <BaseAttack>9</BaseAttack>
-                <EntityLevel>1</EntityLevel>
-                <BaseXP>5</BaseXP>
-                <CurrentHealth>22</CurrentHealth>
                 <Position>832 2538</Position>
                 <RespawnPosition>832 2538</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1458,9 +1459,9 @@
                 <BaseHealth>15</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>7</BaseAttack>
-                <EntityLevel>1</EntityLevel>
+                <EntityLevel>0</EntityLevel>
                 <BaseXP>4</BaseXP>
-                <CurrentHealth>17</CurrentHealth>
+                <CurrentHealth>15</CurrentHealth>
                 <Position>416 2112</Position>
                 <RespawnPosition>416 2112</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1490,9 +1491,9 @@
                 <BaseHealth>15</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>7</BaseAttack>
-                <EntityLevel>1</EntityLevel>
+                <EntityLevel>0</EntityLevel>
                 <BaseXP>4</BaseXP>
-                <CurrentHealth>17</CurrentHealth>
+                <CurrentHealth>15</CurrentHealth>
                 <Position>1088 2144</Position>
                 <RespawnPosition>1088 2144</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1506,9 +1507,9 @@
                 <BaseHealth>15</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>7</BaseAttack>
-                <EntityLevel>0</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>4</BaseXP>
-                <CurrentHealth>15</CurrentHealth>
+                <CurrentHealth>17</CurrentHealth>
                 <Position>1504 2560</Position>
                 <RespawnPosition>1504 2560</RespawnPosition>
                 <IsDead>false</IsDead>
@@ -1538,9 +1539,9 @@
                 <BaseHealth>15</BaseHealth>
                 <BaseDefence>2</BaseDefence>
                 <BaseAttack>7</BaseAttack>
-                <EntityLevel>0</EntityLevel>
+                <EntityLevel>1</EntityLevel>
                 <BaseXP>4</BaseXP>
-                <CurrentHealth>15</CurrentHealth>
+                <CurrentHealth>17</CurrentHealth>
                 <Position>480 2944</Position>
                 <RespawnPosition>480 2944</RespawnPosition>
                 <IsDead>false</IsDead>

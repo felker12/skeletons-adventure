@@ -50,23 +50,17 @@ namespace SkeletonsAdventure.GameObjects
             Info.Position = Position;
             Info.Text = "Press R to Interact";
             Info.Visible = false;
-            Info.TextColor = Color.Orange;
+            Info.TextColor = Color.GhostWhite;
         }
 
         public virtual void Update(GameTime gameTime, Player player)
         {
-            //base.Update(gameTime);
-
-            if (CheckPlayerNear(player))
-            {
+            if (CheckPlayerNear(player) && Active)
                 HandleInput(player);
-            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //base.Draw(spriteBatch);
-
             if (Info.Visible)
                 Info.Draw(spriteBatch);
 
@@ -90,15 +84,12 @@ namespace SkeletonsAdventure.GameObjects
             };
         }
 
-        public bool CheckPlayerNear(Player player)
+        public virtual bool CheckPlayerNear(Player player)
         {
-            if(Active)
-            {
-                if (Rectangle.Intersects(player.Rectangle))
-                    Info.Visible = true;
-                else
-                    Info.Visible = false;
-            }
+            if (Rectangle.Intersects(player.Rectangle))
+                Info.Visible = true;
+            else
+                Info.Visible = false;
 
             return Info.Visible;
         }
@@ -115,7 +106,7 @@ namespace SkeletonsAdventure.GameObjects
         public virtual void Interact(Player player)
         {
             // This method can be overridden in derived classes to provide specific interaction logic
-            System.Diagnostics.Debug.WriteLine($"Interacting with {TypeOfObject} at {Position}" +
+            Debug.WriteLine($"Interacting with {TypeOfObject} at {Position}" +
                 $", of type {this.GetType().Name}");
         }
     }

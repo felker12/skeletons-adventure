@@ -16,6 +16,7 @@ namespace SkeletonsAdventure.Quests
         public List<BaseTask> Tasks { get; set; } = [];
         public BaseTask ActiveTask => GetActiveTask();
         public string QuestInfo => GetQuestInfo();
+        public string QuestDetails => GetQuestDetails();
 
         public Quest() { }
 
@@ -104,9 +105,7 @@ namespace SkeletonsAdventure.Quests
             foreach (Quest completedQuest in player.CompletedQuests)
             {
                 if (completedQuest.Name == Name)
-                {
                     return true;
-                }
             }
             return false;
         }
@@ -116,9 +115,7 @@ namespace SkeletonsAdventure.Quests
             foreach (Quest activeQuest in player.ActiveQuests)
             {
                 if (activeQuest.Name == Name)
-                {
                     return true;
-                }
             }
             return false;
         }
@@ -158,7 +155,7 @@ namespace SkeletonsAdventure.Quests
                    $"\nTasks: {TasksToString()}";
         }
 
-        public string GetQuestInfo()
+        private string GetQuestInfo()
         {
             string info = $"Name: {Name}, " +
                    $"\nDescription: {Description}, " +
@@ -170,6 +167,16 @@ namespace SkeletonsAdventure.Quests
 
             if (ActiveTask != null)
                 info += $"\nActive Task: {ActiveTask}";
+
+            return info;
+        }
+
+        private string GetQuestDetails()
+        {
+            string info = $"Name: {Name} ";
+
+            if (ActiveTask != null)
+                info += $"\n{ActiveTask}";
 
             return info;
         }

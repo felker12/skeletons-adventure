@@ -48,18 +48,12 @@ namespace SkeletonsAdventure.Controls
 
         public void ToggleActive()
         {
-            if (Active == true)
-                Active = false;
-            else if (Active == false)
-                Active = true;
+            Active = !Active;
         }
 
         public void ToggleVisibility()
         {
-            if (Visible == true)
-                Visible = false;
-            else if (Visible == false)
-                Visible = true;
+            Visible = !Visible;
         }
     }
 }

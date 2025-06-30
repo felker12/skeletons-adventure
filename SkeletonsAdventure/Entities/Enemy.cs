@@ -37,7 +37,7 @@ namespace SkeletonsAdventure.Entities
         public Enemy(EnemyData data) : base(data)
         {
             Initialize();
-            UpdateEntityData(data);
+            UpdateEntityWithData(data);
         }
 
         public Enemy() : base()
@@ -93,7 +93,7 @@ namespace SkeletonsAdventure.Entities
                 NumberOfItemsToDrop += 1; //Elite enemies drop more items
             }
 
-            UpdateEntityData(GetEntityData()); //TODO: check if this is needed
+            UpdateEntityWithData(GetEntityData()); //TODO: check if this is needed
         }
         public override void Update(GameTime gameTime)
         {
@@ -138,9 +138,9 @@ namespace SkeletonsAdventure.Entities
             };
         }
 
-        public virtual void UpdateEntityData(EnemyData entityData)
+        public virtual void UpdateEntityWithData(EnemyData entityData)
         {
-            base.UpdateEntityData(entityData);
+            base.UpdateEntityWithData(entityData);
             DropTableName = entityData.DropTableName;
         }
 

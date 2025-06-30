@@ -7,12 +7,9 @@ namespace SkeletonsAdventure.Quests
         public int RequiredAmount { get; set; } = 1;
         public int CompletedAmount { get; set; } = 0;
         public string TaskToComplete { get; set; } = string.Empty;
-
         public bool IsCompleted => CompletedAmount >= RequiredAmount;
-        public string CompletedProgress 
-        { 
-            get => $"{CompletedAmount} out of {RequiredAmount} completed for task: {TaskToComplete}"; 
-        }
+        public string CompletedProgress => $"{CompletedAmount} out of {RequiredAmount} completed for task: {TaskToComplete}"; 
+        public string Progress => $"{TaskToComplete}: {CompletedAmount} out of {RequiredAmount}";
 
         public BaseTask() { }
 
@@ -56,7 +53,7 @@ namespace SkeletonsAdventure.Quests
 
         public override string ToString()
         {
-            return CompletedProgress;
+            return Progress;
         }
     }
 }

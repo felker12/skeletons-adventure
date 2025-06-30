@@ -17,6 +17,7 @@ namespace RpgLibrary.EntityClasses
         public List<ItemData> backpack = new();
         public List<QuestData> activeQuests = new();
         public List<QuestData> completedQuests = new();
+        public string displayQuestName = string.Empty;
 
         public PlayerData() { }
 
@@ -34,6 +35,7 @@ namespace RpgLibrary.EntityClasses
             backpack = entityData.backpack;
             activeQuests = entityData.activeQuests;
             completedQuests = entityData.completedQuests;
+            displayQuestName = entityData.displayQuestName;
         }
 
         public PlayerData(EntityData entityData) : base(entityData)
@@ -52,6 +54,10 @@ namespace RpgLibrary.EntityClasses
             toString += bonusDefenceFromAttributePoints + ", ";
             toString += bonusHealthFromAttributePoints + ", ";
             toString += bonusManaFromAttributePoints + ", ";
+            //toString += string.Join(";", backpack.Select(item => item.ToString())) + ", ";
+            //toString += string.Join(";", activeQuests.Select(quest => quest.ToString())) + ", ";
+            //toString += string.Join(";", completedQuests.Select(quest => quest.ToString())) + ", ";
+            toString += displayQuestName;
             return toString;
         }
     }

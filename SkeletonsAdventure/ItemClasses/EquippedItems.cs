@@ -65,7 +65,6 @@ namespace SkeletonsAdventure.ItemClasses
             //TODO: Implement health bonus for equipped items
             return 0; // Placeholder for future health bonus implementation
         }
-
         public void TryEquipItem(GameItem gameItem)
         {
             if(gameItem is Weapon weapon)

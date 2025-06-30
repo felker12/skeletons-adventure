@@ -148,7 +148,6 @@ namespace SkeletonsAdventure.GameMenu
             Quests = [.. GameManager.QuestsClone.Values];
             List<string> questStrings = Quests.ConvertAll(q => $"{q.Name}");
 
-            SelectionControl sc;
             foreach (Quest quest in Quests)
             {
                 if (CompletedQuestsToggle.Toggled)
@@ -158,16 +157,11 @@ namespace SkeletonsAdventure.GameMenu
                 }
                 if (StartedQuestsToggle.Toggled)
                 {
-                    if (quest.CheckCompletedQuest(Player) is false) // Only show started quests
+                    if (quest.CheckActiveQuest(Player) is false) // Only show started quests
                         continue;
                 }
 
-                sc = new(quest.Name)
-                {
-                    TextColor = Color.Black,
-                };
-
-                QuestSelectionControlBox.AddSelectionControl(sc);
+                QuestSelectionControlBox.AddSelectionControl(new(quest.Name){TextColor = Color.Black});
             }
         }
 
