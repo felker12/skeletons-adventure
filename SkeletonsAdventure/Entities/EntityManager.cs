@@ -77,11 +77,11 @@ namespace SkeletonsAdventure.Entities
                     entity.Respawn();
                 }
 
-                List<EntityAttack> toRemove = [];
+                List<BasicAttack> toRemove = [];
                 foreach (Entity otherEntity in Entities)
                 {
                     if (entity != otherEntity) //make sure we are not checking the same entity
-                        foreach (EntityAttack atk in entity.AttacksHitBy)
+                        foreach (BasicAttack atk in entity.AttacksHitBy)
                         {
                             if (atk.AttackTimedOut())
                                 toRemove.Add(atk); //remove any timed out attacks
@@ -91,7 +91,7 @@ namespace SkeletonsAdventure.Entities
                 }
 
                 //remove the attacks that need to be removed
-                foreach (EntityAttack atk in toRemove)
+                foreach (BasicAttack atk in toRemove)
                 {
                     entity.AttacksHitBy.Remove(atk);
                 }
@@ -192,7 +192,7 @@ namespace SkeletonsAdventure.Entities
                 if(entity.CanMove)
                     CheckCollision(entity, tiledMap, mapCollisionLayer);
 
-                foreach(EntityAttack entityAttack in entity.AttackManager.Attacks)
+                foreach(BasicAttack entityAttack in entity.AttackManager.Attacks)
                 {
                     if (entityAttack.CanMove)
                         CheckCollision(entityAttack, tiledMap, mapCollisionLayer);

@@ -53,8 +53,8 @@ namespace SkeletonsAdventure.GameWorld
         private static Dictionary<string, Chest> Chests { get; set; } = [];
         public static Dictionary<string, Chest> ChestsClone => GetChestsClone();
 
-        private static Dictionary<string, EntityAttack> EntityAttacks { get; set; } = [];
-        public static Dictionary<string, EntityAttack> EntityAttackClone => GetEntityAttacksClone();
+        private static Dictionary<string, BasicAttack> EntityAttacks { get; set; } = [];
+        public static Dictionary<string, BasicAttack> EntityAttackClone => GetEntityAttacksClone();
 
         private static Dictionary<string, Quest> Quests { get; set; } = [];
         public static Dictionary<string, Quest> QuestsClone => GetQuestsClone();
@@ -225,11 +225,11 @@ namespace SkeletonsAdventure.GameWorld
             return enemy;
         }
 
-        private static Dictionary<string, EntityAttack> GetEntityAttacksClone()
+        private static Dictionary<string, BasicAttack> GetEntityAttacksClone()
         {
-            Dictionary<string, EntityAttack> attack = [];
+            Dictionary<string, BasicAttack> attack = [];
 
-            foreach (KeyValuePair<string, EntityAttack> item in EntityAttacks)
+            foreach (KeyValuePair<string, BasicAttack> item in EntityAttacks)
                 attack.Add(item.Key, item.Value.Clone());
 
             return attack;
@@ -564,7 +564,7 @@ namespace SkeletonsAdventure.GameWorld
         private static void CreateAttacks()
         {
             //Create the attacks from the content folder
-            EntityAttack attack = new(BasicAttackData, SkeletonAttackTexture, null);
+            BasicAttack attack = new(BasicAttackData, SkeletonAttackTexture, null);
             EntityAttacks.Add(attack.GetType().Name, attack);
 
             FireBall fireball = new(FireBallData, FireBallTexture2, null);

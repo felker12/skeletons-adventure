@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace SkeletonsAdventure.Attacks
 {
-    internal class ShootingAttack : EntityAttack
+    internal class ShootingAttack : BasicAttack
     {
         public List<Vector2> PathPoints { get; set; } = [];
 

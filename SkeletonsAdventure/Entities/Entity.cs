@@ -19,8 +19,8 @@ namespace SkeletonsAdventure.Entities
         public StatusBar HealthBar { get; set; } = new();
         public int AttackCoolDownLength { get; protected set; } = 600; //length of the delay between attacks in milliseconds
         public AttackManager AttackManager { get; set; } 
-        public EntityAttack EntityAttack { get; set; }
-        public List<EntityAttack> AttacksHitBy { get; set; } = [];
+        public BasicAttack BasicAttack { get; set; }
+        public List<BasicAttack> AttacksHitBy { get; set; } = [];
         public int ID { get; protected set; } = 0;
         public int XP { get; set; } //Xp gained for killing the entity
         public int MaxHealth { get; set; }
@@ -62,7 +62,7 @@ namespace SkeletonsAdventure.Entities
             Attack = baseAttack;
 
             XP = baseXP;
-            EntityAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
+            BasicAttack = new(GameManager.BasicAttackData, basicAttackTexture, this);
         }
 
         public override void Update(GameTime gameTime)
@@ -144,7 +144,7 @@ namespace SkeletonsAdventure.Entities
             };
         }
 
-        public virtual void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        public virtual void GetHitByAttack(BasicAttack attack, GameTime gameTime)
         {
             AttacksHitBy.Add(attack);
 
@@ -178,12 +178,14 @@ namespace SkeletonsAdventure.Entities
             Info.Text = string.Empty;
         }
 
-        public virtual void EntityDiedByAttack(EntityAttack attack) //TODO change how the timer for dead entities works
+        public virtual void EntityDiedByAttack(BasicAttack attack) //TODO change how the timer for dead entities works
         {
+            string message = $"{this.GetType().Name} was killed by {attack.Source.GetType().Name} with {attack.GetType().Name}.";
             AttacksHitBy.Clear();
 
             if (attack.Source is Player player)
             {
+                message += $"{XP} XP was gained.";
                 //check if there is an active task that requires the player to kill this entity
                 foreach (Quest quest in player.ActiveQuests)
                 {
@@ -197,6 +199,8 @@ namespace SkeletonsAdventure.Entities
                     }
                 }
             }
+
+            World.AddMessage(message);
         }
 
         public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works
@@ -207,7 +211,7 @@ namespace SkeletonsAdventure.Entities
             AttackManager.ClearAttacks();
         }
 
-        public virtual void PerformAttack(GameTime gameTime, EntityAttack entityAttack)
+        public virtual void PerformAttack(GameTime gameTime, BasicAttack entityAttack)
         {
             if(AttackingIsOnCoolDown(gameTime) is false && entityAttack.IsOnCooldown(gameTime) is false)
             {
@@ -229,7 +233,7 @@ namespace SkeletonsAdventure.Entities
             }
         }
 
-        private void SetEntityAttackMotion(EntityAttack entityAttack)
+        private void SetEntityAttackMotion(BasicAttack entityAttack)
         {
             if (CurrentAnimation == AnimationKey.Up)
                 entityAttack.Motion = new(0, -1);

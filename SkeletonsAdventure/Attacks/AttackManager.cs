@@ -9,12 +9,12 @@ namespace SkeletonsAdventure.Attacks
     internal class AttackManager(Entity entity)
     {
         public Entity SourceEntity { get; set; } = entity;
-        public List<EntityAttack> Attacks { get; private set; } = [];
+        public List<BasicAttack> Attacks { get; private set; } = [];
         public TimeSpan LastAttackTime { get; set; } = new(0, 0, 0, 0);
 
         private bool _attacked = false;
 
-        public List<EntityAttack> ToRemove = [];
+        public List<BasicAttack> ToRemove = [];
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -47,7 +47,7 @@ namespace SkeletonsAdventure.Attacks
             }
         }
 
-        public void AddAttack(EntityAttack atk, GameTime gameTime)
+        public void AddAttack(BasicAttack atk, GameTime gameTime)
         {
             if (atk is ShootingAttack shootingAtk)
                 shootingAtk.PathPoints = [];
@@ -59,7 +59,7 @@ namespace SkeletonsAdventure.Attacks
             _attacked = true;
         }
 
-        public void RemoveAttack(EntityAttack atk)
+        public void RemoveAttack(BasicAttack atk)
         {
             atk.Position = Vector2.Zero;
             atk.AttackVisible = true;
@@ -97,7 +97,7 @@ namespace SkeletonsAdventure.Attacks
 
         public static void ClearOldAttacks(List<Entity> entities)
         {
-            List<EntityAttack> oldAttacks = [];
+            List<BasicAttack> oldAttacks = [];
 
             foreach (var entity in entities)
             {

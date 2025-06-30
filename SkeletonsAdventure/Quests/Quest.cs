@@ -113,6 +113,8 @@ namespace SkeletonsAdventure.Quests
         {
             IsCompleted = true;
             Active = false;
+            World.AddMessage($"Quest {Name} Completed!");
+            World.AddMessage($"Rewards gained: {Reward}");
         }
 
         public bool CheckCompletedQuest(Player player)

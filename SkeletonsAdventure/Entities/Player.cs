@@ -213,11 +213,13 @@ namespace SkeletonsAdventure.Entities
         {
             List<Quest> completed = [];
             if (ActiveQuests != null && ActiveQuests.Count > 0)
+            {
                 foreach (Quest quest in ActiveQuests)
                 {
                     if (quest.IsCompleted)
                         completed.Add(quest);
                 }
+            }
 
             //if there are any completed quests, remove them from the active quests and
             //add them to the completed quests as well as give the player the rewards
@@ -228,8 +230,6 @@ namespace SkeletonsAdventure.Entities
                     ActiveQuests.Remove(quest);
                     CompletedQuests.Add(quest);
                     GiveQuestReward(quest.Reward);
-                    World.AddMessage($"Quest {quest.Name} Completed!");
-                    World.AddMessage($"Rewards gained: {quest.Reward}");
                 }
             }
 
@@ -300,7 +300,7 @@ namespace SkeletonsAdventure.Entities
             return null;
         }
 
-        public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        public override void GetHitByAttack(BasicAttack attack, GameTime gameTime)
         {
             base.GetHitByAttack(attack, gameTime);
         }
@@ -392,7 +392,7 @@ namespace SkeletonsAdventure.Entities
             if (InputHandler.KeyReleased(Keys.E) ||
             InputHandler.ButtonDown(Buttons.RightTrigger, PlayerIndex.One))
             {
-                PerformAttack(gameTime, EntityAttack);
+                PerformAttack(gameTime, BasicAttack);
             }
 
             //Keys 1 through 0 

@@ -180,7 +180,7 @@ namespace SkeletonsAdventure.Entities
             return items;
         }
 
-        public override void GetHitByAttack(EntityAttack attack, GameTime gameTime)
+        public override void GetHitByAttack(BasicAttack attack, GameTime gameTime)
         {
             base.GetHitByAttack(attack, gameTime);
 
@@ -211,7 +211,7 @@ namespace SkeletonsAdventure.Entities
             {
                 //TODO: add logic for other types of attacks (probably move this logic to the enemy)
                 //so there can be attacks based on what the enemy is
-                PerformAttack(gameTime, EntityAttack);
+                PerformAttack(gameTime, BasicAttack);
             }
         }
 

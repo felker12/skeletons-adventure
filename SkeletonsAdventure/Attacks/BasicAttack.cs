@@ -10,7 +10,7 @@ using System;
 
 namespace SkeletonsAdventure.Attacks
 {
-    internal class EntityAttack : AnimatedSprite
+    internal class BasicAttack : AnimatedSprite
     {
         public int AttackLength { get; set; }
         public TimeSpan StartTime { get; set; }
@@ -28,7 +28,7 @@ namespace SkeletonsAdventure.Attacks
         public Vector2 StartPosition { get; set; } = new();
         public Vector2 InitialMotion { get; set; }
 
-        public EntityAttack(EntityAttack attack) : base()
+        public BasicAttack(BasicAttack attack) : base()
         {
             Width = attack.Width;
             Height = attack.Height;
@@ -55,7 +55,7 @@ namespace SkeletonsAdventure.Attacks
             Initialize();
         }
 
-        public EntityAttack(AttackData attackData, Texture2D texture, Entity source) : base()
+        public BasicAttack(AttackData attackData, Texture2D texture, Entity source) : base()
         {
             AttackLength = attackData.AttackLength;
             StartTime = attackData.StartTime;
@@ -84,9 +84,9 @@ namespace SkeletonsAdventure.Attacks
             }
         }
 
-        public virtual EntityAttack Clone()
+        public virtual BasicAttack Clone()
         {
-            return new EntityAttack(this);
+            return new BasicAttack(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
