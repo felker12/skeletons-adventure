@@ -43,7 +43,7 @@ namespace SkeletonsAdventure.Entities
         {
             baseAttack = 400; //TODO correct the values
             baseDefence = 6;
-            baseHealth = 10000;
+            baseHealth = 3000;
             TotalXP = 0;
 
             Initialize(); 
@@ -328,6 +328,9 @@ namespace SkeletonsAdventure.Entities
         {
             AttributePoints += 5;
             justLeveled = true;
+
+            World.AddMessage($"You leveled up! You are now level {Level}!");
+            World.AddMessage($"Tottal Attribute Points: {AttributePoints}");
         }
 
         private void PlayerStatAdjustmentForLevel()

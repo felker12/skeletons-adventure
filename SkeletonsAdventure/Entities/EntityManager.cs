@@ -1,5 +1,4 @@
 ﻿using MonoGame.Extended.Tiled;
-using RpgLibrary.DataClasses;
 using RpgLibrary.EntityClasses;
 using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.GameWorld;
@@ -53,17 +52,12 @@ namespace SkeletonsAdventure.Entities
             {
                 if (entity.IsDead == false) //Ensure dead enemies cannot be hit
                 {
-                    entity.Update(gameTime);
-
-                    if (entity == Player)
-                        PickUpLoot(); //If the player walks over loot pick it up
-
                     entity.AttackManager.CheckAttackHit(Entities, gameTime); //TODO: this might have to be changed to totalTimeInWorld instead later
                     AttackManager.ClearOldAttacks(Entities);
 
                     if (entity.Health < 1)
                     {
-                        entity.EntityDied(totalTimeInWorld);
+                        //entity.EntityDied(totalTimeInWorld);
 
                         if (entity is Enemy enemy && enemy.DropTableName != string.Empty && enemy.GetDrops().Count > 0)
                         {
@@ -71,6 +65,11 @@ namespace SkeletonsAdventure.Entities
                             DroppedLootManager.Add(enemy.GetDrops(), entity.Position);
                         }
                     }
+
+                    entity.Update(gameTime);
+
+                    if (entity == Player)
+                        PickUpLoot(); //If the player walks over loot pick it up
                 }
                 else if (entity.IsDead && totalTimeInWorld.TotalGameTime - entity.lastDeathTime > new TimeSpan(0, 0, entity.RespawnTime))
                 {

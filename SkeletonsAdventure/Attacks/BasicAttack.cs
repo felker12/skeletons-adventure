@@ -1,12 +1,8 @@
-﻿using Assimp;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended;
+﻿using MonoGame.Extended;
 using RpgLibrary.AttackData;
 using SkeletonsAdventure.Animations;
 using SkeletonsAdventure.Entities;
 using SkeletonsAdventure.GameWorld;
-using System;
 
 namespace SkeletonsAdventure.Attacks
 {

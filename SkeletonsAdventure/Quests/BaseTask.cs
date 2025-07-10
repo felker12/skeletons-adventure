@@ -1,5 +1,4 @@
 ﻿using RpgLibrary.QuestClasses;
-using SkeletonsAdventure.GameWorld;
 
 namespace SkeletonsAdventure.Quests
 {

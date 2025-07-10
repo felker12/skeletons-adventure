@@ -4,7 +4,6 @@ using SkeletonsAdventure.Attacks;
 using SkeletonsAdventure.Engines;
 using SkeletonsAdventure.GameUI;
 using SkeletonsAdventure.GameWorld;
-using SkeletonsAdventure.ItemClasses;
 using SkeletonsAdventure.Quests;
 
 namespace SkeletonsAdventure.Entities
@@ -35,7 +34,7 @@ namespace SkeletonsAdventure.Entities
         public bool IsInvincible { get; set; } = false; //TODO add invincibility frames to the entity
         public bool CanAttack { get; set; } = true; //TODO add a check to see if the entity can attack or not because of a status effect
         public TimeSpan LastTimeAttacked { get; set; }
-        public Vector2 PositionLastAttackedFrom { get; set; }
+        public Vector2 PositionLastAttackedFrom { get; set; } // the position of the center of the entity that last attacked this entity
 
         public Entity() : base()
         {
@@ -147,6 +146,8 @@ namespace SkeletonsAdventure.Entities
         public virtual void GetHitByAttack(BasicAttack attack, GameTime gameTime)
         {
             AttacksHitBy.Add(attack);
+            LastTimeAttacked = gameTime.TotalGameTime;
+            PositionLastAttackedFrom = attack.Source.Center;
 
             int dmg = (int)(DamageEngine.CalculateDamage(attack.Source, this) * attack.DamageModifier);
             DamagePopUp damagePopUp = new(dmg.ToString(), Center);
@@ -159,11 +160,11 @@ namespace SkeletonsAdventure.Entities
 
             Health -= dmg;
 
-            LastTimeAttacked = gameTime.TotalGameTime;
-            PositionLastAttackedFrom = attack.Source.Center;
-
             if (Health < 1)
+            {
+                EntityDied(gameTime);
                 EntityDiedByAttack(attack);
+            }
         }
 
 
@@ -177,6 +178,13 @@ namespace SkeletonsAdventure.Entities
             LastTimeAttacked = TimeSpan.Zero;
             Info.Text = string.Empty;
         }
+        public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works
+        {
+            IsDead = true;
+            lastDeathTime = gameTime.TotalGameTime;
+            Motion = Vector2.Zero;
+            AttackManager.ClearAttacks();
+        }
 
         public virtual void EntityDiedByAttack(BasicAttack attack) //TODO change how the timer for dead entities works
         {
@@ -185,7 +193,7 @@ namespace SkeletonsAdventure.Entities
 
             if (attack.Source is Player player)
             {
-                message += $"{XP} XP was gained.";
+                message += $" {XP} XP was gained.";
                 //check if there is an active task that requires the player to kill this entity
                 foreach (Quest quest in player.ActiveQuests)
                 {
@@ -201,14 +209,6 @@ namespace SkeletonsAdventure.Entities
             }
 
             World.AddMessage(message);
-        }
-
-        public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works
-        {
-            IsDead = true;
-            lastDeathTime = gameTime.TotalGameTime;
-            Motion = Vector2.Zero;
-            AttackManager.ClearAttacks();
         }
 
         public virtual void PerformAttack(GameTime gameTime, BasicAttack entityAttack)
