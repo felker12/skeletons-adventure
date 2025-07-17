@@ -25,7 +25,6 @@ namespace SkeletonsAdventure.GameWorld
         public TiledMap TiledMap { get; private set; }
         public MinMaxPair EnemyLevels { get; set; }
         private GraphicsDevice GraphicsDevice { get; }
-        public GameTime TotalTimeInWorld { get; set; }
         public Vector2 PlayerStartPosition { get; set; } = new(80, 80);
         public Vector2 PlayerEndPosition { get; set; } = new(80, 80);//location of the exit so if the player comes back to the level this is where they will be placed
         public Vector2 PlayerRespawnPosition { get; set; } = new(80, 80);
@@ -51,11 +50,14 @@ namespace SkeletonsAdventure.GameWorld
             Enemies = enemies;
             CreateMap(tiledMap);
 
-            ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
+            if(ChestManager.TiledMapTileLayer != null)
+                ChestManager.Chests = ChestManager.GetChestsFromTiledMapTileLayer(GameManager.ChestsClone["BasicChest"]);
 
             EntityManager = new();
             EnemyLevels = enemyLevels;
             EntityManager.Add(Player);
+
+            if(_mapSpawnerLayer != null)
             AddEnemys();
 
             LoadInteractableObjects();
@@ -120,8 +122,6 @@ namespace SkeletonsAdventure.GameWorld
             Camera.Update(Player.Position);
 
             _tiledMapRenderer.Update(gameTime);
-
-            TotalTimeInWorld = totalTimeInWorld;
 
             ChestManager.Update(gameTime);
             CheckIfPlayerNearChest();

@@ -25,9 +25,13 @@ namespace SkeletonsAdventure.GameWorld
             Levels = [];
             CreateLevels(content, graphics);
 
+            foreach (var lvl in Levels)
+                Debug.WriteLine(lvl.Key);
+
             //TODO
             //SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
-            SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
+            //SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
+            SetCurrentLevel(Levels["Dungeon/Dungeon"], new(100,100));
         }
 
         public static void Update(GameTime gameTime)
@@ -142,6 +146,11 @@ namespace SkeletonsAdventure.GameWorld
             CurrentLevel.EntityManager.Player = Player;
         }
 
+        private static void AddLevel(Level level)
+        {
+            Levels.Add(level.Name, level);
+        }
+
         public static void CreateLevels(ContentManager content, GraphicsDevice graphics)
         {
             TiledMap tiledMap;
@@ -149,27 +158,32 @@ namespace SkeletonsAdventure.GameWorld
             //Test Level
             tiledMap = content.Load<TiledMap>(@"TiledFiles/TestLevel");
             Level level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
-            Levels.Add(level.Name, level);
+            AddLevel(level);
 
             //Test Level
             tiledMap = content.Load<TiledMap>(@"TiledFiles/Testing");
             level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(76, 76));
-            Levels.Add(level.Name, level);
+            AddLevel(level);
 
             //Level 1_Old
             tiledMap = content.Load<TiledMap>(@"TiledFiles/Level1_Old");
             level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
-            Levels.Add(level.Name, level);
+            AddLevel(level);
 
             //Level 0_Old
             tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0_Old");
             level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
-            Levels.Add(level.Name, level);
+            AddLevel(level);
 
             //Level 0
             tiledMap = content.Load<TiledMap>(@"TiledFiles/Level0");
             level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
-            Levels.Add(level.Name, level);
+            AddLevel(level);
+
+            //Level Dungeon
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Dungeon/Dungeon");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
+            AddLevel(level);
 
             //Initialize Levels
             foreach (Level lvl in Levels.Values)
@@ -178,6 +192,9 @@ namespace SkeletonsAdventure.GameWorld
 
         private static void InitializeLevel(Level level)
         {
+            if (level.EnterExitLayer == null)
+                return;
+
             //TODO just used to temporarily provide a way to see where the hitboxes are for the exits
             Rectangle rec;
 

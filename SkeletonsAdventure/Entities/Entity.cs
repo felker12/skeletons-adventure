@@ -162,7 +162,6 @@ namespace SkeletonsAdventure.Entities
 
             if (Health < 1)
             {
-                EntityDied(gameTime);
                 EntityDiedByAttack(attack);
             }
         }
@@ -178,6 +177,7 @@ namespace SkeletonsAdventure.Entities
             LastTimeAttacked = TimeSpan.Zero;
             Info.Text = string.Empty;
         }
+
         public virtual void EntityDied(GameTime gameTime) //TODO change how the timer for dead entities works
         {
             IsDead = true;

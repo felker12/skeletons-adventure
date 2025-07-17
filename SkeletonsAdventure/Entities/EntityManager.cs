@@ -57,7 +57,7 @@ namespace SkeletonsAdventure.Entities
 
                     if (entity.Health < 1)
                     {
-                        //entity.EntityDied(totalTimeInWorld);
+                        entity.EntityDied(totalTimeInWorld);
 
                         if (entity is Enemy enemy && enemy.DropTableName != string.Empty && enemy.GetDrops().Count > 0)
                         {
@@ -201,6 +201,12 @@ namespace SkeletonsAdventure.Entities
 
         private static void CheckCollision(AnimatedSprite entity, TiledMap tiledMap, TiledMapTileLayer mapCollisionLayer)
         {
+            if (mapCollisionLayer == null)
+            {
+                entity.Position += entity.Motion * entity.Speed * Game1.DeltaTime * Game1.BaseSpeedMultiplier;
+                return;
+            }
+
             Vector2 pos = entity.Position;
             Rectangle rec = entity.Rectangle;
             int width = tiledMap.TileWidth;
