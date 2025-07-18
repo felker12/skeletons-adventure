@@ -257,6 +257,16 @@
 /processorParam:TextureFormat=Color
 /build:TiledFiles/BackpackBackground.png
 
+#begin TiledFiles/Catacombs.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:TiledFiles/Catacombs.tmx
+
+#begin TiledFiles/Catacombs1.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:TiledFiles/Catacombs1.tmx
+
 #begin TiledFiles/Dungeon/decorative_cracks_coasts_animation.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -418,6 +428,23 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:TiledFiles/Level1_Old.tmx
+
+#begin TiledFiles/mainlevbuild.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TiledFiles/mainlevbuild.png
+
+#begin TiledFiles/mainlevbuild.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:TiledFiles/mainlevbuild.tsx
 
 #begin TiledFiles/ProjectUtumno_full.tsx
 /importer:TiledMapTilesetImporter

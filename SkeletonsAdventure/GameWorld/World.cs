@@ -31,7 +31,9 @@ namespace SkeletonsAdventure.GameWorld
             //TODO
             //SetCurrentLevel(Levels["Level0"], Levels["Level0"].PlayerStartPosition);
             //SetCurrentLevel(Levels["TestLevel"], Levels["TestLevel"].PlayerStartPosition);
-            SetCurrentLevel(Levels["Dungeon/Dungeon"], new(100,100));
+            //SetCurrentLevel(Levels["Dungeon/Dungeon"], new(100,100));
+            SetCurrentLevel(Levels["Catacombs"], new(100, 100));
+            SetCurrentLevel(Levels["Catacombs1"], new(100, 100));
         }
 
         public static void Update(GameTime gameTime)
@@ -183,6 +185,16 @@ namespace SkeletonsAdventure.GameWorld
             //Level Dungeon
             tiledMap = content.Load<TiledMap>(@"TiledFiles/Dungeon/Dungeon");
             level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 100));
+            AddLevel(level);
+
+            //Level Catacombs
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Catacombs");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
+            AddLevel(level);
+
+            //Level Catacombs1
+            tiledMap = content.Load<TiledMap>(@"TiledFiles/Catacombs1");
+            level = new(graphics, tiledMap, GameManager.EnemiesClone, new MinMaxPair(0, 1));
             AddLevel(level);
 
             //Initialize Levels
